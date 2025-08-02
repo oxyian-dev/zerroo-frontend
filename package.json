@@ -1,0 +1,85 @@
+{
+    "name": "zerroo",
+    "version": "1.0",
+    "private": true,
+    "dependencies": {
+        "@emotion/react": "^11.10.4",
+        "@emotion/styled": "^11.10.4",
+        "@mui/icons-material": "^5.10.3",
+        "@mui/lab": "^5.0.0-alpha.99",
+        "@mui/material": "^5.10.5",
+        "@mui/x-charts-pro": "^7.23.2",
+        "@mui/x-data-grid-premium": "^5.17.18",
+        "@mui/x-date-pickers-pro": "^5.0.16",
+        "@tabler/icons": "^1.39.1",
+        "apexcharts": "^3.36.0",
+        "decimal.js": "^10.4.2",
+        "formik": "^2.2.9",
+        "framer-motion": "^7.6.1",
+        "history": "^5.3.0",
+        "js-cookie": "^3.0.1",
+        "material-ui-confirm": "^3.0.7",
+        "material-ui-popup-state": "^4.1.0",
+        "moment": "^2.29.4",
+        "mui-image": "^1.0.7",
+        "notistack": "^2.0.8",
+        "npm": "^9.4.1",
+        "prop-types": "^15.8.1",
+        "react": "^18.2.0",
+        "react-apexcharts": "^1.4.0",
+        "react-device-detect": "^2.2.2",
+        "react-dom": "^18.2.0",
+        "react-draggable": "^4.4.5",
+        "react-image-crop": "^10.0.9",
+        "react-images-uploading": "^3.1.7",
+        "react-imask": "^6.4.3",
+        "react-lazy-load-image-component": "^1.5.5",
+        "react-perfect-scrollbar": "^1.5.8",
+        "react-responsive-carousel": "^3.2.23",
+        "react-router-dom": "^6.4.2",
+        "react-scripts": "5.0.1",
+        "react-sortablejs": "^6.1.4",
+        "sortablejs": "^1.15.0",
+        "uuid": "^9.0.0",
+        "web-vitals": "^2.1.4",
+        "yup": "^0.32.11",
+        "zerroo": "file:"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "eslint": "^7.27.0",
+        "eslint-config-airbnb-typescript": "^12.3.1",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-config-react-app": "6.0.0",
+        "eslint-import-resolver-typescript": "2.4.0",
+        "eslint-plugin-flowtype": "^5.7.2",
+        "eslint-plugin-import": "^2.23.3",
+        "eslint-plugin-jsx-a11y": "6.3.1",
+        "eslint-plugin-prettier": "^3.4.0",
+        "eslint-plugin-react": "^7.31.8",
+        "eslint-plugin-react-hooks": "4.0.8",
+        "prettier": "^2.2.1",
+        "react-error-overlay": "^6.0.9"
+    }
+}
