@@ -45,7 +45,8 @@
         "yup": "^0.32.11",
         "zerroo": "file:"
     },
-    "scripts": {
+    "scripts": {        
+        "dev": "react-scripts dev",
         "start": "react-scripts start",
         "build": "react-scripts build",
         "eject": "react-scripts eject"
