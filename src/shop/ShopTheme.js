@@ -246,6 +246,7 @@ const ShopTheme = createTheme({
             styleOverrides: {
                 root: {
                     '& .MuiOutlinedInput-root': {
+                        backgroundColor: 'rgba(255,255,255,.02)',
                         color: 'white',
                         '& fieldset': {
                             borderColor: 'rgba(255,255,255,.15)',
@@ -256,9 +257,43 @@ const ShopTheme = createTheme({
                         '&.Mui-focused fieldset': {
                             borderColor: '#efcb77',
                         },
+                        '& input': {
+                            color: '#fff !important',
+                            WebkitTextFillColor: '#fff !important',
+                            backgroundColor: 'transparent',
+                            '&:-webkit-autofill': {
+                                WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                WebkitTextFillColor: '#fff !important',
+                                transition: 'background-color 5000s ease-in-out 0s',
+                                borderRadius: 0,
+                            },
+                            '&:-webkit-autofill:hover': {
+                                WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                WebkitTextFillColor: '#fff !important',
+                            },
+                            '&:-webkit-autofill:focus': {
+                                WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                WebkitTextFillColor: '#fff !important',
+                            },
+                            '&:-webkit-autofill:active': {
+                                WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                WebkitTextFillColor: '#fff !important',
+                            },
+                        },
+                        '& textarea': {
+                            color: '#fff !important',
+                            WebkitTextFillColor: '#fff !important',
+                        },
                     },
                     '& .MuiInputLabel-root': {
                         color: 'rgba(255,255,255,.68)',
+                        '&.Mui-focused': {
+                            color: '#efcb77',
+                        },
+                    },
+                    '& .MuiInputBase-input': {
+                        color: '#fff !important',
+                        WebkitTextFillColor: '#fff !important',
                     },
                 },
             },

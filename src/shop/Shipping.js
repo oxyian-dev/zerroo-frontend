@@ -1,19 +1,10 @@
 import { Container, Typography, Box, Divider } from '@mui/material'
 import React from 'react'
 import Faq from '../components/Faq'
-import { Helmet } from 'react-helmet-async'
 
 export default function Shipping() {
     return (
         <>
-            <Helmet>
-                <title>Shipping Information | Victory World</title>
-                <meta
-                    name="description"
-                    content="Find answers to all your shipping-related questions. Learn about delivery times, charges, and policies at Victory World."
-                />
-            </Helmet>
-
             <Container
                 component="main"
                 maxWidth={false}
