@@ -77,7 +77,11 @@ const MobileCart = () => {
     }
 
     return (
-        <Box sx={{ background: '#020202', minHeight: '100vh', pb: 12 }}>
+        <Box
+            sx={{ background: '#020202', minHeight: '100vh', pb: 12 }}
+            role="main"
+            aria-label="Shopping cart"
+        >
             <Box sx={{ px: 3, pt: 3 }}>
                 {cart.length === 0 ? (
                     /* Empty Cart State */
@@ -88,20 +92,25 @@ const MobileCart = () => {
                             justifyContent: 'center',
                             alignItems: 'center'
                         }}
+                        role="status"
+                        aria-live="polite"
                     >
                         <Stack spacing={3} alignItems="center">
-                            <IconShoppingCart 
-                                size={80} 
-                                style={{ 
+                            <IconShoppingCart
+                                size={80}
+                                style={{
                                     color: 'rgba(255,255,255,.3)'
-                                }} 
+                                }}
+                                aria-hidden="true"
                             />
                             <Typography
+                                component="h1"
                                 sx={{
                                     fontSize: '1.5rem',
                                     fontWeight: 700,
                                     color: 'white',
-                                    textAlign: 'center'
+                                    textAlign: 'center',
+                                    letterSpacing: '-0.02em'
                                 }}
                             >
                                 Your cart is empty
@@ -110,17 +119,19 @@ const MobileCart = () => {
                                 sx={{
                                     fontSize: '0.95rem',
                                     color: 'rgba(255,255,255,.68)',
-                                    textAlign: 'center'
+                                    textAlign: 'center',
+                                    lineHeight: 1.5
                                 }}
                             >
                                 Add items to get started
                             </Typography>
-                            <Button 
-                                component={Link} 
-                                to="/" 
+                            <Button
+                                component={Link}
+                                to="/"
                                 variant="contained"
                                 size="large"
-                                endIcon={<IconShoppingCart />}
+                                endIcon={<IconShoppingCart aria-hidden="true" />}
+                                aria-label="Continue shopping and browse products"
                                 sx={{
                                     background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
                                     color: '#000',
@@ -137,6 +148,10 @@ const MobileCart = () => {
                                         transform: 'translateY(-3px)',
                                         boxShadow: '0 20px 50px rgba(221,180,93,.22)',
                                         background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
+                                    },
+                                    '&:focus-visible': {
+                                        outline: '3px solid #efcb77',
+                                        outlineOffset: '4px'
                                     }
                                 }}
                             >
