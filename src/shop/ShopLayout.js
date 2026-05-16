@@ -374,7 +374,7 @@ const ShopLayout = () => {
                     </Typography>
 
                     {/* Categories Navigation */}
-                    <List
+                    {/* <List
                         sx={{
                             py: 1,
                             '& .MuiListItemButton-root': {
@@ -460,7 +460,7 @@ const ShopLayout = () => {
                                 </ListItemButton>
                             )
                         ))}
-                    </List>
+                    </List> */}
                 </Drawer>
 
                 {/* Main Content Area */}
