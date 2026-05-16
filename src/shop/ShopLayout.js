@@ -975,10 +975,10 @@ const ShopLayout = () => {
                             }}
                         >
                             <Typography sx={{ color: 'inherit', fontSize: 'inherit' }}>
-                                © 2026 Victory World. All Rights Reserved.
+                                © 2026 Victory World.
                             </Typography>
                             <Typography sx={{ color: 'inherit', fontSize: 'inherit' }}>
-                                Crafted With Luxury Precision
+                                 All Rights Reserved.
                             </Typography>
                         </Box>
                     </Container>
