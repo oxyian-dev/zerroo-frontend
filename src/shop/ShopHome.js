@@ -1,426 +1,396 @@
-import { Box, Button, Card, CardActionArea, CardContent, CardMedia, Container, Grid, IconButton, Stack, Typography } from "@mui/material";
-import { IconBrandLinkedin } from "@tabler/icons";
-import Image from "mui-image";
+import { Box, Button, Card, CardActionArea, CardContent, CardMedia, Container, Grid, Stack, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import PerfectScrollbar from 'react-perfect-scrollbar';
-import 'react-perfect-scrollbar/dist/css/styles.css';
 import { Link } from "react-router-dom";
-import { clearAuthLocalStorage, isLoggedIn, isOrgUser } from "../auth/AuthProvider";
-import { getCartCount } from "../utils/CartUtil";
+import { isLoggedIn, isOrgUser } from "../auth/AuthProvider";
 import fetcher from "../utils/fetcher";
 import { WorkDriveImage, href } from "../utils/util";
 
 const ShopHome = () => {
+    const [featured, setFeatured] = useState([]);
+    const [brands, setBrands] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [brandsLoading, setBrandsLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [currentSlide, setCurrentSlide] = useState(0);
 
-
-    const [layout, setLayout] = useState({ title: '', back: '' })
-    const [categories, setCategories] = useState([])
-    const [dropdown, setDropdown] = useState({})
-
-
-    useEffect(() => {
-        fetcher('/api/ui/nav/categories')
-            .then(r => r.json())
-            .then(({ categories }) => {
-                setCategories(categories)
-                let dropdown = {}
-                categories.forEach(category => {
-                    dropdown[category.parent.id] = { open: false, anchorEl: null }
-                })
-                setDropdown(dropdown)
-            })
-    }, [])
-
-    useEffect(() => {
-        if (isLoggedIn()) {
-            fetcher('/api/carts/count')
-                .then(r => r.json())
-                .then(({ count }) => {
-                    setLayout({ ...layout, cart_count: count })
-                })
-        } else {
-            setLayout({ ...layout, cart_count: getCartCount() })
+    // Hero slides data
+    const heroSlides = [
+        {
+            image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1600&auto=format&fit=crop",
+            label: "VICTORY WORLD",
+            title: "Your Gateway to Health & Prosperity",
+            description: "Join India's fastest-growing direct selling company. Build your business with premium health and wellness products while creating unlimited income opportunities.",
+            showLogo: true
+        },
+        {
+            image: "https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=1600&auto=format&fit=crop",
+            label: "Business Opportunity",
+            title: "Transform Lives Through Wellness",
+            description: "Empower yourself and others with quality products across personal care, health care, body care, home care, and nutrition.",
+            showLogo: false
         }
-    }, [])
+    ];
 
-
-    const [activeCategoryId, setActiveCategoryId] = useState(null);
-
-    const handleParentClick = (id) => {
-        setActiveCategoryId((prevId) => (prevId === id ? null : id));
-    };
-
-    const [featured, setFeatured] = useState([])
-
+    // Auto-advance hero slider
     useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+        }, 5000);
+        return () => clearInterval(interval);
+    }, [heroSlides.length]);
+
+    // Fetch brands
+    useEffect(() => {
+        setBrandsLoading(true);
+        
+        fetcher('/api/brands')
+            .then(r => r.json())
+            .then((data) => {
+                if (Array.isArray(data) && data.length > 0) {
+                    // Take first 5 brands for the services bar
+                    setBrands(data.slice(0, 5));
+                } else {
+                    setBrands([]);
+                }
+                setBrandsLoading(false);
+            })
+            .catch((err) => {
+                console.error('Error fetching brands:', err);
+                setBrands([]);
+                setBrandsLoading(false);
+            });
+    }, []);
+
+    // Fetch featured products
+    useEffect(() => {
+        setLoading(true);
+        setError(null);
+        
         fetcher('/api/ui/featured')
             .then(r => r.json())
-            .then(({ featured }) => {
-                const finalListing = []
-                const unique = [];
-                for (let i = 0; i < featured.length; i++) {
-                    const u = featured[i].group_id + '-' + featured[i].color;
-                    if (unique.indexOf(u) <= -1) {
-                        unique.push(u);
-                        finalListing.push(featured[i])
+            .then((data) => {
+                const featuredProducts = data?.featured || [];
+                
+                if (Array.isArray(featuredProducts) && featuredProducts.length > 0) {
+                    const finalListing = [];
+                    const unique = [];
+                    
+                    for (let i = 0; i < featuredProducts.length; i++) {
+                        const product = featuredProducts[i];
+                        if (product && product.group_id && product.color) {
+                            const u = product.group_id + '-' + product.color;
+                            if (unique.indexOf(u) <= -1) {
+                                unique.push(u);
+                                finalListing.push(product);
+                            }
+                        }
                     }
+                    setFeatured(finalListing);
+                } else {
+                    setFeatured([]);
                 }
-                setFeatured(finalListing)
+                setLoading(false);
             })
-        if (!isLoggedIn()) {
-            clearAuthLocalStorage()
-        }
-    }, [])
+            .catch((err) => {
+                console.error('Error fetching featured products:', err);
+                setError(err.message || 'Failed to load featured products');
+                setFeatured([]);
+                setLoading(false);
+            });
+    }, []);
 
     return (
         <React.Fragment>
-            <Box px={2} py={2}>
-                <Grid container>
-                    <Grid item xs={12}>
-                        <Image
-                            src="/img/FamilyShopping.jpg"
-                            style={{ width: "100%", height: "auto", display: "block" }}
+            {/* ================================================= */}
+            {/* HERO SLIDER SECTION */}
+            {/* ================================================= */}
+            <Box
+                component="section"
+                sx={{
+                    position: 'relative',
+                    minHeight: '100vh',
+                    overflow: 'hidden',
+                }}
+            >
+                {heroSlides.map((slide, index) => (
+                    <Box
+                        key={index}
+                        sx={{
+                            position: 'absolute',
+                            inset: 0,
+                            minHeight: '100vh',
+                            display: 'flex',
+                            alignItems: 'center',
+                            opacity: currentSlide === index ? 1 : 0,
+                            transition: 'opacity 1.4s ease-in-out',
+                            pointerEvents: currentSlide === index ? 'auto' : 'none',
+                        }}
+                    >
+                        <Box
+                            component="img"
+                            src={slide.image}
+                            alt="Hero"
+                            sx={{
+                                position: 'absolute',
+                                inset: 0,
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'cover',
+                            }}
                         />
-                    </Grid>
-                </Grid>
+                        <Box sx={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(0,0,0,.84), rgba(0,0,0,.92))' }} />
+                        <Container maxWidth={false} sx={{ maxWidth: '1440px', px: { md: '80px', xs: '24px' }, position: 'relative', zIndex: 2, pt: { md: '140px', xs: '100px' }, width: '100%' }}>
+                            <Grid container spacing={{ md: 15, xs: 8 }} alignItems="center">
+                                <Grid item xs={12} md={slide.showLogo ? 6 : 12}>
+                                    <Typography sx={{ textTransform: 'uppercase', letterSpacing: '0.45em', fontSize: { md: '0.78rem', xs: '0.7rem' }, fontWeight: 700, color: '#efcb77', mb: { md: '32px', xs: '24px' } }}>{slide.label}</Typography>
+                                    <Typography sx={{ fontSize: { xs: 'clamp(2.5rem, 10vw, 3.5rem)', md: 'clamp(3.5rem, 7vw, 7rem)' }, lineHeight: 0.95, fontWeight: 900, textTransform: 'uppercase', letterSpacing: '-0.05em', background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', mb: { md: 5, xs: 4 }, maxWidth: slide.showLogo ? '100%' : '800px' }}>{slide.title}</Typography>
+                                    <Typography sx={{ color: 'rgba(255,255,255,.68)', lineHeight: 2.1, fontSize: { md: '1.05rem', xs: '1rem' }, mb: { md: 6, xs: 5 }, maxWidth: slide.showLogo ? '100%' : '720px' }}>{slide.description}</Typography>
+                                    {index === 0 && (
+                                        <Stack direction={{ md: 'row', xs: 'column' }} spacing={3}>
+                                            <Button component={Link} to={isLoggedIn() ? (isOrgUser() ? "/admin" : "/dashboard") : "/login"} size="large" sx={{ background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)', color: '#000', padding: { md: '18px 42px', xs: '16px 36px' }, textTransform: 'uppercase', letterSpacing: '0.22em', fontSize: { md: '0.78rem', xs: '0.72rem' }, fontWeight: 700, boxShadow: '0 15px 35px rgba(221,180,93,.15)', transition: 'all 0.4s ease', borderRadius: 0, '&:hover': { transform: 'translateY(-5px)', boxShadow: '0 20px 50px rgba(221,180,93,.22)' } }}>Explore Services</Button>
+                                            <Button size="large" sx={{ border: '1px solid rgba(255,255,255,.15)', color: 'white', padding: { md: '18px 42px', xs: '16px 36px' }, textTransform: 'uppercase', letterSpacing: '0.2em', fontSize: { md: '0.78rem', xs: '0.72rem' }, fontWeight: 600, transition: 'all 0.35s ease', borderRadius: 0, '&:hover': { borderColor: '#ddb45d', color: '#ddb45d', background: 'transparent' } }} component="a" href="https://surveyheart.com/form/65b39e08cdb9323f78e24041" target="_blank" rel="noopener noreferrer">Contact Us</Button>
+                                        </Stack>
+                                    )}
+                                </Grid>
+                                {slide.showLogo && (
+                                    <Grid item xs={12} md={6}>
+                                        <Box sx={{ width: { md: '500px', xs: '300px' }, height: { md: '500px', xs: '300px' }, borderRadius: '50%', border: '1px solid rgba(255,255,255,.12)', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: 'auto', background: 'radial-gradient(circle, rgba(221,180,93,.08), transparent 70%)', '&::before': { content: '""', position: 'absolute', inset: '30px', borderRadius: '50%', border: '1px solid rgba(221,180,93,.2)' }, '&::after': { content: '""', position: 'absolute', width: { md: '640px', xs: '400px' }, height: { md: '640px', xs: '400px' }, borderRadius: '50%', border: '1px solid rgba(255,255,255,.04)' } }}>
+                                            <Box component="img" src="brand_logo/web-app-manifest-512x512.png" alt="Victory World" sx={{ width: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 40px rgba(221,180,93,.22))' }} />
+                                        </Box>
+                                    </Grid>
+                                )}
+                            </Grid>
+                        </Container>
+                    </Box>
+                ))}
+                <Box sx={{ position: 'absolute', bottom: '48px', left: '50%', transform: 'translateX(-50%)', zIndex: 10, display: 'flex', gap: '12px' }}>
+                    {heroSlides.map((_, index) => (
+                        <Box key={index} onClick={() => setCurrentSlide(index)} sx={{ width: '12px', height: '12px', borderRadius: '50%', background: currentSlide === index ? '#ddb45d' : '#fff', opacity: currentSlide === index ? 1 : 0.18, cursor: 'pointer', transition: 'all 0.3s ease', boxShadow: currentSlide === index ? '0 0 20px rgba(221,180,93,.5)' : 'none', '&:hover': { opacity: currentSlide === index ? 1 : 0.4 } }} />
+                    ))}
+                </Box>
+            </Box>
 
-                <Grid container spacing={2} mt={2} mb={4} justifyContent="center">
-                    {categories
-                        .filter(({ parent }) => Boolean(parent?.image))
-                        .map(({ parent }) => (
-                            <Grid
-                                item
-                                xs={6}
-                                md={4}
-                                key={`parent-${parent.id}`}
-                                display="flex"
-                                justifyContent="center"
+            {/* SERVICES BAR - BRANDS */}
+            <Box component="section" sx={{ borderTop: '1px solid rgba(255,255,255,.08)', borderBottom: '1px solid rgba(255,255,255,.08)', background: '#050505', overflow: 'hidden' }}>
+                <Box sx={{ display: 'grid', gridTemplateColumns: { xs: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(5, 1fr)' } }}>
+                    {brandsLoading ? (
+                        // Loading state - show placeholder boxes
+                        Array.from({ length: 5 }).map((_, index) => (
+                            <Box key={index} sx={{ padding: { md: '36px', xs: '24px' }, borderRight: '1px solid rgba(255,255,255,.08)', textAlign: 'center', '&:last-child': { borderRight: 'none' } }}>
+                                <Box sx={{ width: '60%', height: '20px', background: 'rgba(255,255,255,.1)', margin: '0 auto', borderRadius: '4px' }} />
+                            </Box>
+                        ))
+                    ) : brands.length > 0 ? (
+                        // Display brands from API
+                        brands.map((brand, index) => (
+                            <Box
+                                key={index}
+                                component={Link}
+                                to="/shop"
+                                sx={{
+                                    padding: { md: '36px', xs: '24px' },
+                                    borderRight: '1px solid rgba(255,255,255,.08)',
+                                    textTransform: 'uppercase',
+                                    fontSize: { md: '0.78rem', xs: '0.7rem' },
+                                    letterSpacing: '0.16em',
+                                    color: 'rgba(255,255,255,.7)',
+                                    transition: 'all 0.35s ease',
+                                    textAlign: 'center',
+                                    cursor: 'pointer',
+                                    textDecoration: 'none',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    '&:hover': {
+                                        background: 'rgba(221,180,93,.06)',
+                                        color: '#f5dc97'
+                                    },
+                                    '&:last-child': { borderRight: 'none' }
+                                }}
                             >
-                                <Card>
-                                    <CardActionArea onClick={() => handleParentClick(parent.id)}>
-                                        <WorkDriveImage
-                                            image={parent.image}
-                                            alt={parent.category}
-                                            sx={{
-                                                mx: "auto",
-                                            }}
-                                        />
-                                    </CardActionArea>
-                                </Card>
+                                {brand.Brand}
+                            </Box>
+                        ))
+                    ) : (
+                        // Fallback to default categories if no brands
+                        ['Personal Care', 'Health Care', 'Body Care', 'Home Care', 'Nutrition'].map((service, index) => (
+                            <Box key={index} sx={{ padding: { md: '36px', xs: '24px' }, borderRight: '1px solid rgba(255,255,255,.08)', textTransform: 'uppercase', fontSize: { md: '0.78rem', xs: '0.7rem' }, letterSpacing: '0.16em', color: 'rgba(255,255,255,.7)', transition: 'all 0.35s ease', textAlign: 'center', cursor: 'pointer', '&:hover': { background: 'rgba(221,180,93,.06)', color: '#f5dc97' }, '&:last-child': { borderRight: 'none' } }}>{service}</Box>
+                        ))
+                    )}
+                </Box>
+            </Box>
+
+            {/* ABOUT SECTION */}
+            <Box component="section" sx={{ background: '#020202', py: { md: '190px', xs: '100px' }, overflow: 'hidden' }}>
+                <Container maxWidth={false} sx={{ maxWidth: '1440px', px: { md: '80px', xs: '24px' } }}>
+                    <Grid container spacing={{ md: 12, xs: 8 }} alignItems="center">
+                        <Grid item xs={12} lg={6}>
+                            <Typography sx={{ textTransform: 'uppercase', letterSpacing: '0.45em', fontSize: { md: '0.78rem', xs: '0.7rem' }, fontWeight: 700, color: '#efcb77', mb: { md: '32px', xs: '24px' } }}>About Victory World</Typography>
+                            <Typography sx={{ fontSize: { xs: 'clamp(2rem, 8vw, 2.8rem)', md: 'clamp(2.8rem, 5vw, 5rem)' }, lineHeight: 1, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '-0.04em', color: 'white', mb: { md: 6, xs: 4 } }}>Empowering Lives Through Quality & Opportunity</Typography>
+                            <Typography sx={{ color: 'rgba(255,255,255,.68)', lineHeight: 2.1, fontSize: { md: '1.05rem', xs: '1rem' }, mb: { md: 6, xs: 4 } }}>Victory World is a leading direct selling company offering premium health and wellness products. We provide a unique business opportunity for individuals to become distributors, purchase products at special prices, and build their own income by selling to others.</Typography>
+                            <Stack spacing={4}>
+                                <Typography sx={{ color: 'rgba(255,255,255,.68)', lineHeight: 2.1, fontSize: { md: '1.05rem', xs: '1rem' } }}>Our comprehensive product range spans personal care, health care, body care, home care, and nutrition - everything you need for a healthier lifestyle.</Typography>
+                                <Typography sx={{ color: 'rgba(255,255,255,.68)', lineHeight: 2.1, fontSize: { md: '1.05rem', xs: '1rem' } }}>Join thousands of successful distributors who have transformed their lives through Victory World's proven business model and premium product portfolio.</Typography>
+                            </Stack>
+                        </Grid>
+                        <Grid item xs={12} lg={6}>
+                            <Box sx={{ position: 'relative', overflow: 'visible' }}>
+                                <Box component="img" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop" alt="About" sx={{ width: '100%', height: { md: '850px', xs: '500px' }, objectFit: 'cover' }} />
+                                <Box sx={{ position: 'absolute', top: { md: '70px', xs: '30px' }, right: { md: '-50px', xs: '-20px' }, width: { md: '290px', xs: '200px' }, padding: { md: '42px', xs: '28px' }, background: 'linear-gradient(135deg, rgba(255,248,220,.95), rgba(221,180,93,.96))', color: '#000', textTransform: 'uppercase', fontWeight: 800, lineHeight: 1.7, fontSize: { md: '1.15rem', xs: '0.9rem' }, boxShadow: '0 30px 60px rgba(0,0,0,.4)' }}>Premium Quality Products For Better Living</Box>
+                       <Box sx={{ position: 'absolute', left: { md: '-50px', xs: '-20px' }, bottom: { md: '70px', xs: '30px' }, width: { md: '290px', xs: '200px' }, padding: { md: '42px', xs: '28px' }, background: 'linear-gradient(135deg, rgba(255,248,220,.95), rgba(221,180,93,.96))', color: '#000', textTransform: 'uppercase', fontWeight: 800, lineHeight: 1.7, fontSize: { md: '1.15rem', xs: '0.9rem' }, boxShadow: '0 30px 60px rgba(0,0,0,.4)' }}>Your Success. Our Mission</Box>
+                            </Box>
+                        </Grid>
+                    </Grid>
+                </Container>
+            </Box>
+
+            {/* PRODUCT CATEGORIES SECTION */}
+            <Box component="section" sx={{ background: '#020202', py: { md: '190px', xs: '100px' }, borderTop: '1px solid rgba(255,255,255,.08)', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
+                <Container maxWidth={false} sx={{ maxWidth: '1440px', px: { md: '80px', xs: '24px' } }}>
+                    <Grid container spacing={{ md: 8, xs: 4 }} alignItems="end" sx={{ mb: { md: '112px', xs: '64px' } }}>
+                        <Grid item xs={12} lg={6}>
+                            <Typography sx={{ textTransform: 'uppercase', letterSpacing: '0.45em', fontSize: { md: '0.78rem', xs: '0.7rem' }, fontWeight: 700, color: '#efcb77', mb: { md: '32px', xs: '24px' } }}>Product Categories</Typography>
+                            <Typography sx={{ fontSize: { xs: 'clamp(2rem, 8vw, 2.8rem)', md: 'clamp(2.8rem, 5vw, 5rem)' }, lineHeight: 1, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '-0.04em', color: 'white' }}>Premium Products For Every Need</Typography>
+                        </Grid>
+                        <Grid item xs={12} lg={6}>
+                            <Typography sx={{ color: 'rgba(255,255,255,.68)', lineHeight: 2.1, fontSize: { md: '1.05rem', xs: '1rem' } }}>Discover our comprehensive range of health and wellness products designed to enhance your lifestyle and well-being.</Typography>
+                        </Grid>
+                    </Grid>
+                    <Grid container spacing={{ md: 4, xs: 3 }}>
+                        <Grid item xs={12} lg={5}>
+                            <Box sx={{ position: 'relative', overflow: 'hidden', minHeight: { md: '820px', xs: '500px' }, cursor: 'pointer', transition: 'transform 0.45s ease', '&:hover': { transform: 'scale(1.02)' } }}>
+                                <Box component="img" src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=1200&auto=format&fit=crop" alt="Featured" sx={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                                <Box sx={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 0%, rgba(0,0,0,.2) 20%, rgba(0,0,0,1) 100%)' }} />
+                                <Box sx={{ position: 'absolute', bottom: 0, left: 0, p: { md: '56px', xs: '32px' } }}>
+                                    <Typography sx={{ textTransform: 'uppercase', letterSpacing: '0.45em', fontSize: '0.78rem', fontWeight: 700, color: '#efcb77', mb: 3 }}>Featured Category</Typography>
+                                    <Typography sx={{ fontSize: { md: '3rem', xs: '2rem' }, fontWeight: 900, textTransform: 'uppercase', lineHeight: 1.1, color: 'white', mb: 4 }}>Health Care Products</Typography>
+                                    <Typography sx={{ color: 'rgba(255,255,255,.68)', lineHeight: 2.1, fontSize: '1.05rem', maxWidth: '400px', mb: 6 }}>Premium health supplements and wellness products for optimal living.</Typography>
+                                    <Button component={Link} to="/shop" sx={{ background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)', color: '#000', padding: '18px 42px', textTransform: 'uppercase', letterSpacing: '0.22em', fontSize: '0.78rem', fontWeight: 700, boxShadow: '0 15px 35px rgba(221,180,93,.15)', transition: 'all 0.4s ease', borderRadius: 0, '&:hover': { transform: 'translateY(-5px)', boxShadow: '0 20px 50px rgba(221,180,93,.22)' } }}>Explore Products</Button>
+                                </Box>
+                            </Box>
+                        </Grid>
+                        <Grid item xs={12} lg={7}>
+                            <Grid container spacing={{ md: 4, xs: 3 }}>
+                                {[
+                                    { number: '01', title: 'Personal Care', description: 'Premium skincare, haircare, and grooming essentials for daily wellness.' },
+                                    { number: '02', title: 'Body Care', description: 'Luxurious body lotions, oils, and treatments for complete care.' },
+                                    { number: '03', title: 'Home Care', description: 'Eco-friendly cleaning and household essentials for a healthy home.' },
+                                    { number: '04', title: 'Nutrition Products', description: 'High-quality supplements and nutritional products for optimal health.' }
+                                ].map((service, index) => (
+                                    <Grid item xs={12} md={6} key={index}>
+                                        <Box sx={{ background: 'linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01))', border: '1px solid rgba(255,255,255,.08)', minHeight: { md: '370px', xs: '320px' }, p: { md: '60px', xs: '40px' }, transition: 'all 0.45s cubic-bezier(0.4, 0, 0.2, 1)', position: 'relative', overflow: 'hidden', backdropFilter: 'blur(10px)', '&::before': { content: '""', position: 'absolute', top: '-120px', right: '-120px', width: '260px', height: '260px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(221,180,93,.16), transparent 70%)' }, '&:hover': { transform: 'translateY(-8px)', borderColor: 'rgba(221,180,93,.2)', boxShadow: '0 25px 60px rgba(0,0,0,.45)' } }}>
+                                            <Box sx={{ width: '74px', height: '74px', border: '1px solid rgba(221,180,93,.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', mb: '44px', fontSize: '1.6rem', fontWeight: 700, color: '#f5dc97', position: 'relative', zIndex: 1 }}>{service.number}</Box>
+                                            <Typography sx={{ fontSize: { md: '2.5rem', xs: '1.8rem' }, fontWeight: 900, textTransform: 'uppercase', lineHeight: 1.1, color: 'white', mb: '28px', position: 'relative', zIndex: 1 }}>{service.title}</Typography>
+                                            <Typography sx={{ color: 'rgba(255,255,255,.68)', lineHeight: 2.1, fontSize: '1.05rem', position: 'relative', zIndex: 1 }}>{service.description}</Typography>
+                                        </Box>
+                                    </Grid>
+                                ))}
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Container>
+            </Box>
+
+            {/* TESTIMONIALS */}
+            <Box component="section" sx={{ background: '#020202', py: { md: '190px', xs: '100px' }, overflow: 'hidden' }}>
+                <Container maxWidth={false} sx={{ maxWidth: '1440px', px: { md: '80px', xs: '24px' } }}>
+                    <Box sx={{ display: 'flex', flexDirection: { xs: 'column', lg: 'row' }, alignItems: { lg: 'flex-end' }, justifyContent: 'space-between', gap: { md: 7, xs: 4 }, mb: { md: '96px', xs: '56px' } }}>
+                        <Box>
+                            <Typography sx={{ textTransform: 'uppercase', letterSpacing: '0.45em', fontSize: { md: '0.78rem', xs: '0.7rem' }, fontWeight: 700, color: '#efcb77', mb: { md: '32px', xs: '24px' } }}>Success Stories</Typography>
+                            <Typography sx={{ fontSize: { xs: 'clamp(2rem, 8vw, 2.8rem)', md: 'clamp(2.8rem, 5vw, 5rem)' }, lineHeight: 1, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '-0.04em', color: 'white' }}>Trusted By Thousands</Typography>
+                        </Box>
+                        <Typography sx={{ color: 'rgba(255,255,255,.68)', lineHeight: 2.1, fontSize: { md: '1.05rem', xs: '1rem' }, maxWidth: '560px' }}>Join our growing community of successful distributors building their dreams with Victory World.</Typography>
+                    </Box>
+                    <Grid container spacing={{ md: 4, xs: 3 }}>
+                        {[{ text: "Victory World changed my life! The products are excellent and the business opportunity is genuine. I'm earning more than I ever imagined.", name: "Rajesh Kumar", title: "Top Distributor" }, { text: "The support and training from Victory World is outstanding. Quality products and a proven system make success achievable for everyone.", name: "Priya Sharma", title: "Regional Leader" }].map((testimonial, index) => (
+                            <Grid item xs={12} md={6} key={index}>
+                                <Box sx={{ border: '1px solid rgba(255,255,255,.08)', background: 'linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01))', minHeight: { md: '480px', xs: '380px' }, p: { md: '72px', xs: '48px' }, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', transition: 'all 0.45s ease', '&:hover': { borderColor: 'rgba(221,180,93,.2)', transform: 'translateY(-8px)', boxShadow: '0 25px 60px rgba(0,0,0,.45)' } }}>
+                                    <Box>
+                                        <Typography sx={{ color: '#efcb77', fontSize: { md: '1.5rem', xs: '1.2rem' }, mb: { md: 6, xs: 4 } }}>★ ★ ★ ★ ★</Typography>
+                                        <Typography sx={{ fontSize: { md: '1.55rem', xs: '1.2rem' }, lineHeight: 1.9, color: 'rgba(255,255,255,.86)', fontWeight: 300 }}>"{testimonial.text}"</Typography>
+                                    </Box>
+                                    <Box sx={{ mt: 4 }}>
+                                        <Typography sx={{ textTransform: 'uppercase', letterSpacing: '0.18em', fontSize: '0.9rem', fontWeight: 600, color: 'white' }}>{testimonial.name}</Typography>
+                                        <Typography sx={{ color: 'rgba(255,255,255,.45)', mt: 1.5, fontSize: '0.95rem' }}>{testimonial.title}</Typography>
+                                    </Box>
+                                </Box>
                             </Grid>
                         ))}
-                </Grid>
+                    </Grid>
+                </Container>
+            </Box>
 
-                <Container>
-                    {activeCategoryId && (
-                        <Box mt={5}>
-                            {categories
-                                .filter(({ parent }) => parent.id === activeCategoryId)
-                                .map(({ parent, children }) => (
-                                    <Box key={`children-${parent.id}`}>
-                                        <Typography variant="h2" mb={{ md: 4, xs: 2 }} textAlign="center">
-                                            {parent.category} Categories
-                                        </Typography>
-
-                                        <Grid container spacing={{ md: 4, xs: 2 }} justifyContent="center">
-                                            {children.length > 0 ? (
-                                                children
-                                                    .filter(({ image }) => Boolean(image))
-                                                    .map(({ id, category, image }) => (
-                                                        <Grid
-                                                            item
-                                                            xs={6}
-                                                            md={3}
-                                                            key={id}
-                                                            display="flex"
-                                                            justifyContent="center"
-                                                        >
-                                                            <Card>
-                                                                <CardActionArea component={Link}
-                                                                    to={`/c/${id}/${href(category)}`}>
-                                                                    <CardMedia>
-                                                                        <WorkDriveImage
-                                                                            image={image}
-                                                                            alt={category}
-                                                                        />
-                                                                    </CardMedia>
-                                                                    <CardContent>
-                                                                        <Typography variant="h4">
-                                                                            {category}
-                                                                        </Typography>
-                                                                    </CardContent>
-                                                                </CardActionArea>
-                                                            </Card>
-                                                        </Grid>
-                                                    ))
-                                            ) : (
-                                                <Typography variant="h3" color="text.secondary">
-                                                    No Subcategories
-                                                </Typography>
-                                            )}
-                                        </Grid>
-                                    </Box>
-                                ))}
+            {/* FEATURED PRODUCTS */}
+            <Box component="section" sx={{ background: '#020202', py: { md: '190px', xs: '100px' }, borderTop: '1px solid rgba(255,255,255,.08)', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
+                <Container maxWidth={false} sx={{ maxWidth: '1440px', px: { md: '80px', xs: '24px' } }}>
+                    <Box sx={{ display: 'flex', flexDirection: { xs: 'column', lg: 'row' }, alignItems: { lg: 'flex-end' }, justifyContent: 'space-between', gap: { md: 8, xs: 4 }, mb: { md: '112px', xs: '64px' } }}>
+                        <Box>
+                            <Typography sx={{ textTransform: 'uppercase', letterSpacing: '0.45em', fontSize: { md: '0.78rem', xs: '0.7rem' }, fontWeight: 700, color: '#efcb77', mb: { md: '32px', xs: '24px' } }}>Latest Collection</Typography>
+                            <Typography sx={{ fontSize: { xs: 'clamp(2rem, 8vw, 2.8rem)', md: 'clamp(2.8rem, 5vw, 5rem)' }, lineHeight: 1, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '-0.04em', color: 'white' }}>Featured Products</Typography>
                         </Box>
+                        <Button component={Link} to="/shop" sx={{ border: '1px solid rgba(255,255,255,.15)', color: 'white', padding: '18px 42px', textTransform: 'uppercase', letterSpacing: '0.2em', fontSize: '0.78rem', fontWeight: 600, transition: 'all 0.35s ease', borderRadius: 0, '&:hover': { borderColor: '#ddb45d', color: '#ddb45d', background: 'transparent' } }}>View All Products</Button>
+                    </Box>
+                    {loading ? (
+                        <Box sx={{ textAlign: 'center', py: 8 }}><Typography sx={{ color: 'rgba(255,255,255,.68)', fontSize: '1.1rem' }}>Loading featured products...</Typography></Box>
+                    ) : error ? (
+                        <Box sx={{ textAlign: 'center', py: 8 }}><Typography sx={{ color: 'rgba(255,100,100,.8)', fontSize: '1.1rem', mb: 2 }}>{error}</Typography></Box>
+                    ) : featured.length === 0 ? (
+                        <Box sx={{ textAlign: 'center', py: 8 }}><Typography sx={{ color: 'rgba(255,255,255,.68)', fontSize: '1.1rem' }}>No featured products available.</Typography></Box>
+                    ) : (
+                        <Grid container spacing={{ md: 4, xs: 3 }}>
+                            {featured.slice(0, 4).map(({ image, title, id, category }, index) => (
+                                <Grid item xs={6} md={3} key={index}>
+                                    <Card sx={{ background: 'transparent', overflow: 'hidden', transition: 'all 0.45s cubic-bezier(0.4, 0, 0.2, 1)', '&:hover': { transform: 'translateY(-12px)' } }}>
+                                        <CardActionArea component={Link} to={`/p/${id}/${href(category)}/${href(title)}`}>
+                                            <Box sx={{ overflow: 'hidden', '&:hover img': { transform: 'scale(1.08)' } }}>
+                                                <CardMedia sx={{ transition: 'transform 1s ease' }}><WorkDriveImage image={image} alt={title} /></CardMedia>
+                                            </Box>
+                                            <CardContent sx={{ p: { md: 5, xs: 3 } }}>
+                                                <Typography sx={{ textTransform: 'uppercase', letterSpacing: '0.18em', fontSize: '0.78rem', fontWeight: 700, color: '#efcb77', mb: 2 }}>{category}</Typography>
+                                                <Typography sx={{ fontSize: { md: '1.25rem', xs: '1rem' }, lineHeight: 1.3, fontWeight: 800, textTransform: 'uppercase', color: 'white' }}>{title}</Typography>
+                                            </CardContent>
+                                        </CardActionArea>
+                                    </Card>
+                                </Grid>
+                            ))}
+                        </Grid>
                     )}
                 </Container>
             </Box>
 
-
-            <Box
-                sx={{
-                    background: "linear-gradient(180deg, #A4574F 0%, #C37256 100%)"
-                }}>
-                <Box position="relative" height={{ md: "calc(100vh - 101px)", xs: "70vh" }} maxHeight={{ md: "calc(100vh - 50px)", xs: "50vh" }} pb={{ md: 50, xs: 50 }} pt={{ md: 5, xs: 10 }}>
-                    <Container>
-                        <Typography textAlign="center" color="white" mb={3} variant="h1" fontSize={{ md: 48, xs: 32 }} lineHeight={1}>
-                            Zerroo - Where Fashion Meets Opportunity
-                        </Typography>
-                        <Typography textAlign="center" color="white" mb={3} variant="h2" fontSize={{ md: 24, xs: 18 }} lineHeight={1}>
-                            Join the Next Generation of Direct Selling
-                        </Typography>
-
-                        <Box display="flex" flexDirection="column" alignItems="center" gap={2} position="relative" zIndex={2}>
-                            <Stack direction="row" spacing={2}>
-                                <Button
-                                    size="large"
-                                    variant="contained"
-                                    component="a"
-                                    href="https://surveyheart.com/form/65b39e08cdb9323f78e24041"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    Register Now
-                                </Button>
-                                <Button
-                                    href="https://top-earners.zerroo.in/"
-                                    size="large"
-                                    variant="contained"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    Top earners
-                                </Button>
-                            </Stack>
-
-                            <Button
-                                component={Link}
-                                to={isLoggedIn() ? (isOrgUser() ? "/admin" : "/dashboard") : "/login"}
-                                size="large"
-                                variant="contained"
-                            >
-                                {isLoggedIn() ? "Goto Dashboard" : "Login"}
-                            </Button>
-                        </Box>
-
-                    </Container>
-
-                    <Box position="absolute" width="100%" bottom={0} zIndex={1}>
-                        <img src="/img/home.png" style={{ width: "100%", height: "auto", display: "block" }} />
+            {/* CTA SECTION - 3 STEPS */}
+            <Box component="section" sx={{ background: 'linear-gradient(135deg, #d69d45 0%, #9f6720 50%, #d69d45 100%)', py: { md: '140px', xs: '100px' }, position: 'relative', overflow: 'hidden', '&::before': { content: '""', position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at 30% 50%, rgba(255,247,220,.1), transparent 50%)' }, '&::after': { content: '""', position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, background: 'radial-gradient(circle at 70% 50%, rgba(255,247,220,.08), transparent 50%)' } }}>
+                <Container maxWidth={false} sx={{ maxWidth: '1440px', px: { md: '80px', xs: '24px' }, position: 'relative', zIndex: 1 }}>
+                    <Box sx={{ textAlign: 'center', maxWidth: '960px', margin: '0 auto', mb: { md: 10, xs: 8 } }}>
+                        <Typography sx={{ fontSize: { xs: 'clamp(2rem, 8vw, 2.8rem)', md: 'clamp(2.8rem, 5vw, 5rem)' }, lineHeight: 1.05, fontWeight: 900, textTransform: 'uppercase', letterSpacing: '-0.04em', color: 'white', mb: { md: 5, xs: 4 }, textShadow: '0 2px 20px rgba(0,0,0,.2)' }}>Start Your Journey with Victory World</Typography>
+                        <Typography sx={{ color: 'rgba(255,255,255,.95)', lineHeight: 2.1, fontSize: { md: '1.15rem', xs: '1.05rem' }, maxWidth: '720px', margin: '0 auto' }}>Transform your life in three simple steps. Join thousands of successful distributors building their dreams.</Typography>
                     </Box>
-                </Box>
-            </Box>
-
-            <Box py={{ md: 4, xs: 4 }}>
-                <Container>
-                    <Grid container spacing={12}>
-                        <Grid item md={4} xs={12} pb={2}>
-                            <Image src="/img/karthick.jpg" style={{ width: "100%", height: "auto", display: "block" }} />
-                            <Typography variant="h2">Karthick Haridoss</Typography>
-                            <Typography variant="h4">Founder</Typography>
-                            <IconButton component="a" href="https://www.linkedin.com/in/karthick-haridoss-7690781a9?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target='_blank' rel="noopener noreferrer" sx={{ color: 'primary.main' }}>
-                                <IconBrandLinkedin size={30} />
-                            </IconButton>
-                        </Grid>
-                        <Grid item md={4} xs={12} pb={2}>
-                            <Image src="/img/mohan.jpg" style={{ width: "100%", height: "auto", display: "block" }} />
-                            <Typography variant="h2">Mohan</Typography>
-                            <Typography variant="h4">Chief executive officer </Typography>
-                            <IconButton component="a" href="https://www.linkedin.com/in/mohan-haridoss-h-800799190?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target='_blank' rel="noopener noreferrer" sx={{ color: 'primary.main' }} >
-                                <IconBrandLinkedin size={30} />
-                            </IconButton>
-                        </Grid>
-                        <Grid item md={4} xs={12} pb={2}>
-                            <Image src="/img/santhosh.jpg" style={{ width: "100%", height: "auto", display: "block" }} />
-                            <Typography variant="h2">Santhosh Kumar </Typography>
-                            <Typography variant="h4">Co-founder</Typography>
-                            <IconButton component="a" href="https://www.linkedin.com/in/santhosh-kumar-tj-9b55221ba?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target='_blank' rel="noopener noreferrer" sx={{ color: 'primary.main' }}>
-                                <IconBrandLinkedin size={30} />
-                            </IconButton>
-                        </Grid>
-                        <Grid item md={12} xs={12} alignSelf="center">
-                            <Typography color="primary.main" variant="h2" mb={{ md: 2, xs: 1 }} textAlign={{ md: "center", xs: "center" }}>
-                                Our Story
-                            </Typography>
-                            <Typography alignSelf="center">
-                                Our journey started with a clear goal to help people gain financial freedom and make the world a better place. We're on a mission to support deserving people through fashion by providing top-notch products and chances to learn new skills. We're committed to doing things the right way and speaking up for what's right worldwide. Our aim is to be the go-to option for anyone looking to grow, find new opportunities, and be part of a supportive community.
-                            </Typography>
-                        </Grid>
-                    </Grid>
-                </Container>
-            </Box>
-
-            <Box py={{ md: 8, xs: 4 }}>
-                <Container>
-                    <Grid container spacing={{ md: 4, xs: 2 }}>
-                        <Grid item md={6} xs={12}>
-                            <Box height="100%" p={{ md: 8, xs: 4 }} sx={{
-                                background: "linear-gradient(180deg, #EC2A7A 0%, #861854 100%)"
-
-                            }}>
-                                <Typography textAlign="center" variant="h2" color="white" mb={3}>
-                                    Vision
-                                </Typography>
-                                <Typography variant="body2" color="white">
-                                    To become the best company in the world by reaching millions of people globally with quality products and services at very reasonable and affordable prices, helping them achieve financial growth. To reduce unemployment. To contribute to India's economic rise and its journey towards becoming a developed country through Zerroo.
-                                </Typography>
-                            </Box>
-                        </Grid>
-                        <Grid item md={6} xs={12}>
-                            <Box p={{ md: 8, xs: 4 }} sx={{
-                                background: "linear-gradient(180deg, #EC2A7A 0%, #861854 100%)"
-                            }}>
-                                <Typography textAlign="center" variant="h2" color="white" mb={3}>
-                                    Mission
-                                </Typography>
-                                <Typography variant="body2" color="white">
-                                    The company's mandate is to uplift deserving and underprivileged individuals worldwide through fashion, providing a pathway to a better quality of life. This includes supporting thousands of willing Zerroo Retailers/Representatives in enhancing their appearance, youthfulness, and skills through our training and development programs, enabling them to learn and sell our high-quality products and services effectively.
-                                </Typography>
-                            </Box>
-                        </Grid>
-                    </Grid>
-                </Container>
-            </Box>
-
-            <Box sx={{
-                background: "linear-gradient(180deg, #EC2A7A 0%, #861854 100%)"
-            }}>
-                <Container sx={{ py: { md: 8, xs: 4 } }}>
-                    <Typography textAlign="center" color="white" variant="h2" fontSize={{ xs: 28, md: 40 }} mb={{ md: 4, xs: 3 }}>
-                        New Arrivals
-                    </Typography>
-                    <PerfectScrollbar>
-                        <Stack
-                            display="flex"
-                            direction="row"
-                            spacing={{ md: 2, xs: 1 }}
-                            pb={2}
-                        >
-                            {featured.map(({ image, title, id, category }, key) => (
-                                <Box key={key} minWidth={300}>
-                                    <Card>
-                                        <CardActionArea component={Link} to={`/p/${id}/${href(category)}/${href(title)}`}>
-                                            <CardMedia>
-                                                <WorkDriveImage image={image} alt={title} />
-                                            </CardMedia>
-                                            <CardContent>
-                                                <Typography textAlign="center">{title}</Typography>
-                                            </CardContent>
-                                        </CardActionArea>
-                                    </Card>
-                                </Box>
-                            ))}
-                        </Stack>
-                    </PerfectScrollbar>
-                </Container>
-            </Box>
-
-            <Box py={{ md: 8, xs: 4 }}>
-                <Container>
-                    <Grid container spacing={{ md: 8, xs: 4 }}>
-                        <Grid item md={6} xs={12} alignSelf="center">
-                            <Grid container spacing={4}>
-                                <Grid item xs={12}>
-                                    <Typography textAlign="center" color="primary.main" variant="h1">
-                                        Our Opportunity
-                                    </Typography>
-                                </Grid>
-                                {[
-                                    {
-                                        title: "No investment needed to start."
-                                    },
-                                    {
-                                        title: "No prior business experience required"
-                                    },
-                                    {
-                                        title: "To become a Financial Independence"
-                                    },
-                                    {
-                                        title: "Personal Growth and Development"
-                                    },
-                                ].map(({ icon, title, subtitle }, key) => (
-                                    <Grid textAlign="center" item xs={6} md={6} key={key}>
-                                        <Stack spacing={1}>
-                                            <Box>
-                                                <img src={`/icons/opp-${key + 1}.svg`} />
-                                            </Box>
-                                            <Typography variant="body2">{title}</Typography>
-                                        </Stack>
-                                    </Grid>
-                                ))}
-                            </Grid>
-                        </Grid>
-                        <Grid item md={6} xs={12}>
-                            <Image src="/img/opportunity.webp" style={{ width: "100%", height: "auto", display: "block" }} />
-                        </Grid>
-                    </Grid>
-                </Container>
-            </Box>
-
-            <Box py={{ md: 8, xs: 4 }} sx={{
-                background: "linear-gradient(90deg, #E62977 0%, #53112B 100%)"
-            }}>
-                <Container>
-                    <Typography textAlign="center" color="white" variant="h1">
-                        Taking one step forward can empower you.
-                        With Zerroo's direct selling, every sale helps you earn money
-                    </Typography>
-                </Container>
-            </Box>
-
-            <Box py={{ md: 8, xs: 4 }}>
-                <Container>
-                    <Typography textAlign="center" variant="h1" color="primary.main" mb={{ md: 8, xs: 4 }}>
-                        Why Choose Zerroo
-                    </Typography>
-                    <Grid container spacing={{ md: 8, xs: 4 }}>
+                    
+                    <Grid container spacing={{ md: 5, xs: 4 }} sx={{ mb: { md: 8, xs: 6 } }}>
                         {[
-                            {
-                                title: "Empowerment",
-                                subtitle: "We empower you to control your financial future by offering the chance to build your own business through our direct selling model and fulfill your dreams."
-                            },
-                            {
-                                title: "Flexibility",
-                                subtitle: "Your experience can be customized to match your goals and lifestyle. Our flexible platform empowers you to create the life you've always dreamed of."
-                            },
-                            {
-                                title: "Quality Products",
-                                subtitle: "We pride ourselves on offering only the finest quality fashion products that are crafted to last."
-                            },
-                            {
-                                title: "Mentorship",
-                                subtitle: "We provide comprehensive training and support to help you succeed in your business."
-                            },
-                        ].map(({ title, subtitle }, key) => (
-                            <Grid item md={6} xs={12} key={key}>
-                                <Grid container spacing={{ md: 4 }}>
-                                    <Grid item xs={4} order={{ md: key % 2 == 0 ? 1 : 2, xs: 1 }}>
-                                        <Image src={`/icons/why-${key + 1}.svg`} />
-                                    </Grid>
-                                    <Grid item xs={8} order={{ md: key % 2 == 0 ? 2 : 1, xs: 2 }}>
-                                        <Box p={2}>
-                                            <Typography variant="h1" mb={2}>{title}</Typography>
-                                            <Typography variant="body2">{subtitle}</Typography>
-                                        </Box>
-                                    </Grid>
-                                </Grid>
+                            { step: '01', title: 'Register Yourself as a Distributor', description: 'Sign up and become part of the Victory World family. Get instant access to our complete product catalog and business tools.' },
+                            { step: '02', title: 'Buy Products at Distributor Prices', description: 'Enjoy exclusive distributor pricing on all premium products. Stock up and save while building your inventory.' },
+                            { step: '03', title: 'Sell Products and Earn Extra Income', description: 'Share quality products with others and earn attractive commissions. Build your network and grow your income unlimited.' }
+                        ].map((item, index) => (
+                            <Grid item xs={12} md={4} key={index}>
+                                <Box sx={{ background: 'rgba(255,255,255,.1)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,.2)', p: { md: 6, xs: 4 }, minHeight: { md: '320px', xs: '280px' }, display: 'flex', flexDirection: 'column', transition: 'all 0.4s ease', '&:hover': { transform: 'translateY(-8px)', background: 'rgba(255,255,255,.15)', boxShadow: '0 20px 50px rgba(0,0,0,.3)' } }}>
+                                    <Typography sx={{ fontSize: { md: '4rem', xs: '3rem' }, fontWeight: 900, color: 'rgba(255,255,255,.3)', lineHeight: 1, mb: 3 }}>{item.step}</Typography>
+                                    <Typography sx={{ fontSize: { md: '1.5rem', xs: '1.2rem' }, fontWeight: 800, textTransform: 'uppercase', color: 'white', mb: 3, lineHeight: 1.2 }}>{item.title}</Typography>
+                                    <Typography sx={{ color: 'rgba(255,255,255,.9)', lineHeight: 1.8, fontSize: { md: '1.05rem', xs: '1rem' } }}>{item.description}</Typography>
+                                </Box>
                             </Grid>
                         ))}
                     </Grid>
+
+                    <Stack direction={{ md: 'row', xs: 'column' }} spacing={3} justifyContent="center" sx={{ '& .MuiButton-root': { borderRadius: 0 } }}>
+                        <Button component="a" href="https://surveyheart.com/form/65b39e08cdb9323f78e24041" target="_blank" rel="noopener noreferrer" size="large" sx={{ background: 'white', color: '#000', padding: { md: '18px 42px', xs: '16px 36px' }, textTransform: 'uppercase', letterSpacing: '0.22em', fontSize: { md: '0.78rem', xs: '0.72rem' }, fontWeight: 700, boxShadow: '0 15px 35px rgba(0,0,0,.25)', transition: 'all 0.4s ease', '&:hover': { transform: 'translateY(-5px)', boxShadow: '0 20px 50px rgba(0,0,0,.35)', background: 'white' } }}>Become a Distributor</Button>
+                        <Button component={Link} to="/shop" size="large" sx={{ border: '2px solid white', color: 'white', padding: { md: '18px 42px', xs: '16px 36px' }, textTransform: 'uppercase', letterSpacing: '0.2em', fontSize: { md: '0.78rem', xs: '0.72rem' }, fontWeight: 700, transition: 'all 0.35s ease', '&:hover': { background: 'white', color: '#000', transform: 'translateY(-3px)' } }}>Browse Products</Button>
+                    </Stack>
                 </Container>
             </Box>
+
         </React.Fragment>
     );
 }
 
-export default ShopHome
+export default ShopHome;

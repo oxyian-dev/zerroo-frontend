@@ -5,6 +5,7 @@ import {
     Badge,
     Box,
     Collapse,
+    Container,
     Divider,
     Drawer,
     Grid,
@@ -15,8 +16,8 @@ import {
     ListItemText,
     Menu,
     MenuItem,
-    Popover,
-    Stack, Toolbar,
+    Stack,
+    Toolbar,
     Typography
 } from "@mui/material";
 import { IconDashboard, IconLogin, IconLogout, IconMenu2, IconNotebook, IconShoppingCart, IconUser, IconX } from "@tabler/icons";
@@ -24,7 +25,6 @@ import { useEffect, useState } from "react";
 import { BrowserView, MobileView } from 'react-device-detect';
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { getName, getUsername, isDistributor, isLoggedIn, isOrgUser } from "../auth/AuthProvider";
-import Footer from '../components/Footer';
 import LogoSection from '../layout/MainLayout/LogoSection';
 import { getCartCount } from "../utils/CartUtil";
 import fetcher from "../utils/fetcher";
@@ -89,20 +89,46 @@ const ShopLayout = () => {
     return (
         <Box>
             <MobileView>
-                <AppBar position="sticky">
+                {/* Modern Mobile Header */}
+                <AppBar
+                    position="sticky"
+                    elevation={0}
+                    sx={{
+                        borderBottom: '1px solid rgba(255,255,255,.08)',
+                        background: 'rgba(0,0,0,.7)',
+                        backdropFilter: 'blur(16px)',
+                        WebkitBackdropFilter: 'blur(16px)',
+                    }}
+                >
                     <Toolbar>
                         <IconButton
                             edge="start"
                             color="inherit"
                             aria-label="menu"
-                            sx={{ mr: 2 }}
+                            sx={{
+                                mr: 2,
+                                color: 'rgba(255,255,255,.82)',
+                                '&:hover': {
+                                    color: '#f5dc97',
+                                }
+                            }}
                             onClick={() => setOpenDrawer(!openDrawer)}
                         >
                             {openDrawer ? <IconX /> : <IconMenu2 />}
                         </IconButton>
 
                         {layout.title !== '' && (
-                            <Typography variant="h3" color="inherit" component="div" flexGrow={1} noWrap>
+                            <Typography
+                                variant="h3"
+                                color="inherit"
+                                component="div"
+                                flexGrow={1}
+                                noWrap
+                                sx={{
+                                    color: 'white',
+                                    fontWeight: 700,
+                                }}
+                            >
                                 {layout.title}
                             </Typography>
                         )}
@@ -120,9 +146,24 @@ const ShopLayout = () => {
                                 aria-label="menu"
                                 component={Link}
                                 to="/cart"
-                                sx={{ ml: 2 }}
+                                sx={{
+                                    ml: 2,
+                                    color: 'rgba(255,255,255,.82)',
+                                    '&:hover': {
+                                        color: '#f5dc97',
+                                    }
+                                }}
                             >
-                                <Badge badgeContent={layout.cart_count} color="primary">
+                                <Badge
+                                    badgeContent={layout.cart_count}
+                                    sx={{
+                                        '& .MuiBadge-badge': {
+                                            background: 'linear-gradient(135deg, #fff7dc 0%, #efcb77 50%, #d69d45 100%)',
+                                            color: '#000',
+                                            fontWeight: 700,
+                                        }
+                                    }}
+                                >
                                     <IconShoppingCart />
                                 </Badge>
                             </IconButton>
@@ -130,31 +171,46 @@ const ShopLayout = () => {
                     </Toolbar>
                 </AppBar>
 
-                {!openDrawer && (
-                    <Box textAlign="center" mt={2} >
-                        <Typography variant="h6" fontWeight="bold" color="primary.main">
-                            "We don't design clothes,
-                        </Typography>
-                        <Typography variant="h6" fontWeight="bold" color="primary.main">
-                            We design dreams"
-                        </Typography>
-                    </Box>
-                )}
-
                 <Drawer
                     anchor="left"
                     open={openDrawer}
                     onClose={() => setOpenDrawer(false)}
+                    PaperProps={{
+                        sx: {
+                            background: '#0a0a0a',
+                            borderRight: '1px solid rgba(255,255,255,.08)',
+                            width: '280px',
+                        }
+                    }}
                 >
-                    <Box bgcolor="primary.main">
-                        <Box my={2} mx={8}>
+                    <Box
+                        sx={{
+                            background: 'rgba(0,0,0,.7)',
+                            borderBottom: '1px solid rgba(255,255,255,.08)',
+                        }}
+                    >
+                        <Box my={2} mx={4}>
                             <LogoSection />
                         </Box>
                     </Box>
 
-                    <Divider />
+                    <Divider sx={{ borderColor: 'rgba(255,255,255,.08)' }} />
 
-                    <List>
+                    <List
+                        sx={{
+                            '& .MuiListItemButton-root': {
+                                color: 'rgba(255,255,255,.82)',
+                                '&:hover': {
+                                    bgcolor: 'rgba(221,180,93,.06)',
+                                    color: '#f5dc97',
+                                }
+                            },
+                            '& .MuiListItemIcon-root': {
+                                color: 'inherit',
+                                minWidth: '40px',
+                            }
+                        }}
+                    >
                         {isOrgUser() && (
                             <ListItemButton
                                 component={Link}
@@ -165,7 +221,7 @@ const ShopLayout = () => {
                                 }}
                             >
                                 <ListItemIcon>
-                                    <IconDashboard />
+                                    <IconDashboard size={20} />
                                 </ListItemIcon>
                                 <ListItemText primary="Dashboard" />
                             </ListItemButton>
@@ -181,7 +237,7 @@ const ShopLayout = () => {
                                 }}
                             >
                                 <ListItemIcon>
-                                    <IconDashboard />
+                                    <IconDashboard size={20} />
                                 </ListItemIcon>
                                 <ListItemText primary="Dashboard" />
                             </ListItemButton>
@@ -197,7 +253,7 @@ const ShopLayout = () => {
                                 }}
                             >
                                 <ListItemIcon>
-                                    <IconUser />
+                                    <IconUser size={20} />
                                 </ListItemIcon>
                                 <ListItemText primary="Account" />
                             </ListItemButton>
@@ -213,7 +269,7 @@ const ShopLayout = () => {
                                 }}
                             >
                                 <ListItemIcon>
-                                    <IconShoppingCart />
+                                    <IconShoppingCart size={20} />
                                 </ListItemIcon>
                                 <ListItemText primary="Your Orders" />
                             </ListItemButton>
@@ -229,7 +285,7 @@ const ShopLayout = () => {
                                 }}
                             >
                                 <ListItemIcon>
-                                    <IconLogout />
+                                    <IconLogout size={20} />
                                 </ListItemIcon>
                                 <ListItemText primary="Logout" />
                             </ListItemButton>
@@ -242,20 +298,44 @@ const ShopLayout = () => {
                                 }}
                             >
                                 <ListItemIcon>
-                                    <IconLogin />
+                                    <IconLogin size={20} />
                                 </ListItemIcon>
                                 <ListItemText primary="Login" />
                             </ListItemButton>
                         )}
                     </List>
 
-                    <Divider />
+                    <Divider sx={{ borderColor: 'rgba(255,255,255,.08)' }} />
 
-                    <Typography textAlign="center" mt={4} fontWeight="bold" variant="h4">
+                    <Typography
+                        textAlign="center"
+                        mt={4}
+                        fontWeight="bold"
+                        variant="h4"
+                        sx={{
+                            color: '#efcb77',
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.2em',
+                            fontSize: '0.9rem',
+                        }}
+                    >
                         Categories
                     </Typography>
 
-                    <List>
+                    <List
+                        sx={{
+                            '& .MuiListItemButton-root': {
+                                color: 'rgba(255,255,255,.82)',
+                                '&:hover': {
+                                    bgcolor: 'rgba(221,180,93,.06)',
+                                    color: '#f5dc97',
+                                }
+                            },
+                            '& .MuiListItemIcon-root': {
+                                color: 'inherit',
+                            }
+                        }}
+                    >
                         {categories.map(({ parent, children }, key) => (
                             children.length > 0 ? (
                                 <div key={key}>
@@ -266,7 +346,7 @@ const ShopLayout = () => {
                                         }}
                                     >
                                         <ListItemText primary={parent.category} />
-                                        {mobileExpanded[parent.id] ? <ExpandLess /> : <ExpandMore />}
+                                        {mobileExpanded[parent.id] ? <ExpandLess sx={{ color: '#f5dc97' }} /> : <ExpandMore sx={{ color: '#f5dc97' }} />}
                                     </ListItemButton>
                                     <Collapse in={mobileExpanded[parent.id]} timeout="auto" unmountOnExit>
                                         <List>
@@ -301,64 +381,303 @@ const ShopLayout = () => {
                                 </ListItemButton>
                             )
                         ))}
-                        <ListItemButton
-                            component="a"
-                            href="/pdf/ZERROO PRESENTATION PLAN.pdf"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={() => {
-                                setMobileExpanded({});
-                                setOpenDrawer(false);
-                            }}
-                        >
-                            <ListItemText primary="Plan Book" />
-                        </ListItemButton>
                     </List>
                 </Drawer>
 
-                <Box pb={4} minHeight="calc(100vh - 144px)">
+                <Box
+                    sx={{
+                        pb: 4,
+                        minHeight: 'calc(100vh - 144px)',
+                        background: '#020202',
+                    }}
+                >
                     <Outlet context={[setLayout, layout]} />
                 </Box>
 
-                <Footer />
+                {/* Elite Mobile Footer - Matching sample_code.html exactly */}
+                <Box
+                    component="footer"
+                    sx={{
+                        borderTop: '1px solid rgba(255,255,255,.08)',
+                        background: '#050505',
+                    }}
+                >
+                    <Container
+                        maxWidth={false}
+                        sx={{
+                            px: '24px',
+                            py: '112px',
+                        }}
+                    >
+                        <Grid container spacing={24}>
+                            {/* LEFT - Brand/Logo Section */}
+                            <Grid item xs={12}>
+                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2.5, mb: 2.5 }}>
+                                    <Box
+                                        component="img"
+                                        src="/brand_logo/web-app-manifest-192x192.png"
+                                        sx={{ width: '64px' }}
+                                        alt="Victory World"
+                                    />
+                                    <Typography
+                                        component="h3"
+                                        sx={{
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '0.35em',
+                                            fontSize: '0.875rem',
+                                            fontWeight: 600,
+                                            color: 'white',
+                                        }}
+                                    >
+                                        Victory World
+                                    </Typography>
+                                </Box>
+                                <Typography
+                                    sx={{
+                                        color: 'rgba(255,255,255,.68)',
+                                        lineHeight: 2.1,
+                                        fontSize: '1.05rem',
+                                    }}
+                                >
+                                    We provide a unique business opportunity for individuals to become distributors, purchase products at special prices, and build their own income by selling to others.
+                                </Typography>
+                            </Grid>
+
+                            {/* CENTER - Services */}
+                            <Grid item xs={12}>
+                                <Typography
+                                    component="h4"
+                                    sx={{
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '0.25em',
+                                        fontSize: '0.8rem',
+                                        color: '#efcb77',
+                                        mb: '34px',
+                                        fontWeight: 600,
+                                    }}
+                                >
+                                    Services
+                                </Typography>
+                                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                                    <Typography
+                                        component={Link}
+                                        to="/"
+                                        sx={{
+                                            color: 'rgba(255,255,255,.62)',
+                                            textDecoration: 'none',
+                                            transition: '0.3s ease',
+                                            display: 'block',
+                                            '&:hover': {
+                                                color: '#f5dc97',
+                                            }
+                                        }}
+                                    >
+                                        Home
+                                    </Typography>
+                                    <Typography
+                                        component={Link}
+                                        to="/shop"
+                                        sx={{
+                                            color: 'rgba(255,255,255,.62)',
+                                            textDecoration: 'none',
+                                            transition: '0.3s ease',
+                                            display: 'block',
+                                            '&:hover': {
+                                                color: '#f5dc97',
+                                            }
+                                        }}
+                                    >
+                                        Shop
+                                    </Typography>
+                                    
+                                    <Typography
+                                        component={Link}
+                                        to="/privacy-policy"
+                                        sx={{
+                                            color: 'rgba(255,255,255,.62)',
+                                            textDecoration: 'none',
+                                            transition: '0.3s ease',
+                                            display: 'block',
+                                            '&:hover': {
+                                                color: '#f5dc97',
+                                            }
+                                        }}
+                                    >
+                                        Privacy Policy
+                                    </Typography>
+                                </Box>
+                            </Grid>
+
+                            {/* RIGHT - Contact */}
+                            <Grid item xs={12}>
+                                <Typography
+                                    component="h4"
+                                    sx={{
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '0.25em',
+                                        fontSize: '0.8rem',
+                                        color: '#efcb77',
+                                        mb: '34px',
+                                        fontWeight: 600,
+                                    }}
+                                >
+                                    Contact
+                                </Typography>
+                                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, color: 'rgba(255,255,255,.62)', lineHeight: 2 }}>
+                                    <Typography>
+                                        Office Suite B, Second Floor,<br />
+                                        21A Brook Street, India
+                                    </Typography>
+                                    <Typography>
+                                        enquiries@victoryworld.in
+                                    </Typography>
+                                    <Typography>
+                                        +44 01943 816670
+                                    </Typography>
+                                </Box>
+                            </Grid>
+                        </Grid>
+
+                        {/* BOTTOM */}
+                        <Box
+                            sx={{
+                                mt: '96px',
+                                pt: '40px',
+                                borderTop: '1px solid rgba(255,255,255,.1)',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'space-between',
+                                gap: 3,
+                                color: 'rgba(255,255,255,.4)',
+                                fontSize: '0.875rem',
+                            }}
+                        >
+                            <Typography sx={{ color: 'inherit', fontSize: 'inherit' }}>
+                                © 2026 Victory World. All Rights Reserved.
+                            </Typography>
+                            <Typography sx={{ color: 'inherit', fontSize: 'inherit' }}>
+                                Crafted With Luxury Precision
+                            </Typography>
+                        </Box>
+                    </Container>
+                </Box>
             </MobileView>
 
             <BrowserView>
-                <AppBar position="sticky">
-                    <Toolbar>
-                        <Box>
-                            <LogoSection />
-                        </Box>
+                {/* Modern Fixed Header with Backdrop Blur */}
+                <AppBar
+                    position="fixed"
+                    elevation={0}
+                    sx={{
+                        height: '110px',
+                        borderBottom: '1px solid rgba(255,255,255,.08)',
+                        background: 'rgba(0,0,0,.7)',
+                        backdropFilter: 'blur(16px)',
+                        WebkitBackdropFilter: 'blur(16px)',
+                    }}
+                >
+                    <Container
+                        maxWidth={false}
+                        sx={{
+                            maxWidth: '1440px',
+                            height: '100%',
+                            px: { md: '80px', xs: '24px' },
+                        }}
+                    >
                         <Box
-                            position="absolute"
-                            left="50%"
-                            sx={{ transform: 'translateX(-50%)', textAlign: 'center' }}
+                            sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'space-between',
+                                height: '100%',
+                            }}
                         >
-                            <Typography color="white" variant="h3" fontWeight="bold">
-                                "We don't design clothes,
-                            </Typography>
-                            <Typography color="white" variant="h3" fontWeight="bold">
-                                We design dreams"
-                            </Typography>
-                        </Box>
-                        <Box position='absolute' right={20}>
-                            <Stack direction='row' spacing={2}>
-                                <IconButton
-                                    size='large'
-                                    variant='text'
-                                    color='light'
-                                    component="a"
-                                    href="/pdf/ZERROO PRESENTATION PLAN.pdf"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+                            {/* Logo */}
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, maxHeight: '50px' }}>
+                                <LogoSection />
+                            </Box>
 
+                            {/* Navigation Links */}
+                            <Box sx={{ display: { xs: 'none', lg: 'flex' }, alignItems: 'center', gap: 7 }}>
+                                <Typography
+                                    component={Link}
+                                    to="/"
+                                    sx={{
+                                        position: 'relative',
+                                        fontSize: '0.8rem',
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '0.2em',
+                                        color: 'rgba(255,255,255,.82)',
+                                        textDecoration: 'none',
+                                        transition: '0.3s ease',
+                                        '&:hover': {
+                                            color: '#f5dc97',
+                                        },
+                                        '&::after': {
+                                            content: '""',
+                                            position: 'absolute',
+                                            left: 0,
+                                            bottom: '-10px',
+                                            width: 0,
+                                            height: '1px',
+                                            background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
+                                            transition: '0.35s ease',
+                                        },
+                                        '&:hover::after': {
+                                            width: '100%',
+                                        }
+                                    }}
                                 >
-                                    <IconNotebook size='30' />
-                                </IconButton>
+                                    Home
+                                </Typography>
+                                <Typography
+                                    component={Link}
+                                    to="/shop"
+                                    sx={{
+                                        position: 'relative',
+                                        fontSize: '0.8rem',
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '0.2em',
+                                        color: 'rgba(255,255,255,.82)',
+                                        textDecoration: 'none',
+                                        transition: '0.3s ease',
+                                        '&:hover': {
+                                            color: '#f5dc97',
+                                        },
+                                        '&::after': {
+                                            content: '""',
+                                            position: 'absolute',
+                                            left: 0,
+                                            bottom: '-10px',
+                                            width: 0,
+                                            height: '1px',
+                                            background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
+                                            transition: '0.35s ease',
+                                        },
+                                        '&:hover::after': {
+                                            width: '100%',
+                                        }
+                                    }}
+                                >
+                                    Shop
+                                </Typography>                                
+                            </Box>
+
+                            {/* Right Side Actions */}
+                            <Stack direction="row" spacing={2} alignItems="center">
                                 {login ? (
                                     <Box>
-                                        <IconButton color="inherit" onClick={handleUserMenuClick}>
-                                            <IconUser size='30' />
+                                        <IconButton
+                                            color="inherit"
+                                            onClick={handleUserMenuClick}
+                                            sx={{
+                                                color: 'rgba(255,255,255,.82)',
+                                                '&:hover': {
+                                                    color: '#f5dc97',
+                                                }
+                                            }}
+                                        >
+                                            <IconUser size={24} />
                                         </IconButton>
 
                                         <Menu
@@ -374,11 +693,14 @@ const ShopLayout = () => {
                                                     overflow: 'visible',
                                                     filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
                                                     mt: 1.5,
-                                                    '& .MuiAvatar-root': {
-                                                        width: 32,
-                                                        height: 32,
-                                                        ml: -0.5,
-                                                        mr: 1,
+                                                    bgcolor: '#0a0a0a',
+                                                    border: '1px solid rgba(255,255,255,.08)',
+                                                    '& .MuiMenuItem-root': {
+                                                        color: 'rgba(255,255,255,.82)',
+                                                        '&:hover': {
+                                                            bgcolor: 'rgba(221,180,93,.06)',
+                                                            color: '#f5dc97',
+                                                        }
                                                     },
                                                     '&:before': {
                                                         content: '""',
@@ -388,85 +710,279 @@ const ShopLayout = () => {
                                                         right: 14,
                                                         width: 10,
                                                         height: 10,
-                                                        bgcolor: 'background.paper',
+                                                        bgcolor: '#0a0a0a',
                                                         transform: 'translateY(-50%) rotate(45deg)',
                                                         zIndex: 0,
+                                                        border: '1px solid rgba(255,255,255,.08)',
                                                     },
                                                 },
                                             }}
                                             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                                             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                                         >
-                                            <Typography px={2} py={1}>{getName()}</Typography>
+                                            <Typography px={2} py={1} sx={{ color: 'white', fontWeight: 600 }}>{getName()}</Typography>
                                             {isDistributor() && (
-                                                <Typography px={2} py={1}>{getUsername()}</Typography>
+                                                <Typography px={2} py={1} sx={{ color: 'rgba(255,255,255,.6)', fontSize: '0.9rem' }}>{getUsername()}</Typography>
                                             )}
-                                            <Divider />
+                                            <Divider sx={{ borderColor: 'rgba(255,255,255,.08)' }} />
                                             {isOrgUser() && (
                                                 <MenuItem component={Link} to="/admin">
-                                                    <ListItemIcon>
-                                                        <IconDashboard />
+                                                    <ListItemIcon sx={{ color: 'inherit' }}>
+                                                        <IconDashboard size={20} />
                                                     </ListItemIcon>
                                                     Dashboard
                                                 </MenuItem>
                                             )}
                                             {isDistributor() && (
                                                 <MenuItem component={Link} to="/dashboard">
-                                                    <ListItemIcon>
-                                                        <IconDashboard />
+                                                    <ListItemIcon sx={{ color: 'inherit' }}>
+                                                        <IconDashboard size={20} />
                                                     </ListItemIcon>
                                                     Dashboard
                                                 </MenuItem>
                                             )}
-
                                             {isDistributor() && (
                                                 <MenuItem component={Link} to="/dashboard/account">
-                                                    <ListItemIcon>
-                                                        <IconUser />
+                                                    <ListItemIcon sx={{ color: 'inherit' }}>
+                                                        <IconUser size={20} />
                                                     </ListItemIcon>
                                                     Account
                                                 </MenuItem>
                                             )}
-
                                             {isDistributor() && (
                                                 <MenuItem component={Link} to="/dashboard/your-orders">
-                                                    <ListItemIcon>
-                                                        <IconShoppingCart />
+                                                    <ListItemIcon sx={{ color: 'inherit' }}>
+                                                        <IconShoppingCart size={20} />
                                                     </ListItemIcon>
                                                     Your Orders
                                                 </MenuItem>
                                             )}
-
                                             <MenuItem component={Link} to='/logout'>
-                                                <ListItemIcon>
-                                                    <IconLogout />
+                                                <ListItemIcon sx={{ color: 'inherit' }}>
+                                                    <IconLogout size={20} />
                                                 </ListItemIcon>
                                                 Logout
                                             </MenuItem>
                                         </Menu>
                                     </Box>
                                 ) : (
-                                    <IconButton color="inherit" component={Link} to="/login">
-                                        <IconUser size='30' />
+                                    <IconButton
+                                        color="inherit"
+                                        component={Link}
+                                        to="/login"
+                                        sx={{
+                                            color: 'rgba(255,255,255,.82)',
+                                            '&:hover': {
+                                                color: '#f5dc97',
+                                            }
+                                        }}
+                                    >
+                                        <IconUser size={24} />
                                     </IconButton>
                                 )}
                                 {viewCart && (
-                                    <Box>
-                                        <IconButton component={Link} to="/cart" color="inherit">
-                                            <Badge badgeContent={layout.cart_count} color="primary">
-                                                <IconShoppingCart size='30' />
-                                            </Badge>
-                                        </IconButton>
-                                    </Box>
+                                    <IconButton
+                                        component={Link}
+                                        to="/cart"
+                                        color="inherit"
+                                        sx={{
+                                            color: 'rgba(255,255,255,.82)',
+                                            '&:hover': {
+                                                color: '#f5dc97',
+                                            }
+                                        }}
+                                    >
+                                        <Badge
+                                            badgeContent={layout.cart_count}
+                                            sx={{
+                                                '& .MuiBadge-badge': {
+                                                    background: 'linear-gradient(135deg, #fff7dc 0%, #efcb77 50%, #d69d45 100%)',
+                                                    color: '#000',
+                                                    fontWeight: 700,
+                                                }
+                                            }}
+                                        >
+                                            <IconShoppingCart size={24} />
+                                        </Badge>
+                                    </IconButton>
                                 )}
                             </Stack>
                         </Box>
-                    </Toolbar>
+                    </Container>
                 </AppBar>
-                <Box minHeight="calc(100vh - 148.5px)">
+
+                {/* Main Content with proper spacing for fixed header */}
+                <Box sx={{ pt: '110px', minHeight: 'calc(100vh - 110px)', background: '#020202' }}>
                     <Outlet context={[setLayout, layout]} />
                 </Box>
-                <Footer />
+
+                {/* Elite Desktop Footer - Matching sample_code.html exactly */}
+                <Box
+                    component="footer"
+                    sx={{
+                        borderTop: '1px solid rgba(255,255,255,.08)',
+                        background: '#050505',
+                    }}
+                >
+                    <Container
+                        maxWidth={false}
+                        sx={{
+                            maxWidth: '1440px',
+                            px: '80px',
+                            py: '112px',
+                        }}
+                    >
+                        <Grid container spacing={24}>
+                            {/* LEFT - Brand/Logo Section */}
+                            <Grid item xs={12} lg={4}>
+                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2.5, mb: 2.5 }}>
+                                    <Box
+                                        component="img"
+                                        src="/brand_logo/web-app-manifest-192x192.png"
+                                        sx={{ width: '64px' }}
+                                        alt="Victory world"
+                                    />
+                                    <Typography
+                                        component="h3"
+                                        sx={{
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '0.35em',
+                                            fontSize: '0.875rem',
+                                            fontWeight: 600,
+                                            color: 'white',
+                                        }}
+                                    >
+                                        Victory world
+                                    </Typography>
+                                </Box>
+                                <Typography
+                                    sx={{
+                                        color: 'rgba(255,255,255,.68)',
+                                        lineHeight: 2.1,
+                                        fontSize: '1.05rem',
+                                    }}
+                                >
+                                    We provide a unique business opportunity for individuals to become distributors, purchase products at special prices, and build their own income by selling to others.
+                                </Typography>
+                            </Grid>
+
+                            {/* CENTER - Services */}
+                            <Grid item xs={12} lg={4}>
+                                <Typography
+                                    component="h4"
+                                    sx={{
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '0.25em',
+                                        fontSize: '0.8rem',
+                                        color: '#efcb77',
+                                        mb: '34px',
+                                        fontWeight: 600,
+                                    }}
+                                >
+                                    Services
+                                </Typography>
+                                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                                    <Typography
+                                        component={Link}
+                                        to="/"
+                                        sx={{
+                                            color: 'rgba(255,255,255,.62)',
+                                            textDecoration: 'none',
+                                            transition: '0.3s ease',
+                                            display: 'block',
+                                            '&:hover': {
+                                                color: '#f5dc97',
+                                            }
+                                        }}
+                                    >
+                                        Home
+                                    </Typography>
+                                    <Typography
+                                        component={Link}
+                                        to="/shop"
+                                        sx={{
+                                            color: 'rgba(255,255,255,.62)',
+                                            textDecoration: 'none',
+                                            transition: '0.3s ease',
+                                            display: 'block',
+                                            '&:hover': {
+                                                color: '#f5dc97',
+                                            }
+                                        }}
+                                    >
+                                        Shop
+                                    </Typography>                                   
+                                    <Typography
+                                        component={Link}
+                                        to="/privacy-policy"
+                                        sx={{
+                                            color: 'rgba(255,255,255,.62)',
+                                            textDecoration: 'none',
+                                            transition: '0.3s ease',
+                                            display: 'block',
+                                            '&:hover': {
+                                                color: '#f5dc97',
+                                            }
+                                        }}
+                                    >
+                                        Privacy Policy
+                                    </Typography>
+                                </Box>
+                            </Grid>
+
+                            {/* RIGHT - Contact */}
+                            <Grid item xs={12} lg={4}>
+                                <Typography
+                                    component="h4"
+                                    sx={{
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '0.25em',
+                                        fontSize: '0.8rem',
+                                        color: '#efcb77',
+                                        mb: '34px',
+                                        fontWeight: 600,
+                                    }}
+                                >
+                                    Contact
+                                </Typography>
+                                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, color: 'rgba(255,255,255,.62)', lineHeight: 2 }}>
+                                    <Typography>
+                                        Office Suite B, Second Floor,<br />
+                                        21A Brook Street, India
+                                    </Typography>
+                                    <Typography>
+                                        enquiries@victoryworld.in
+                                    </Typography>
+                                    <Typography>
+                                        +44 01943 816670
+                                    </Typography>
+                                </Box>
+                            </Grid>
+                        </Grid>
+
+                        {/* BOTTOM */}
+                        <Box
+                            sx={{
+                                mt: '96px',
+                                pt: '40px',
+                                borderTop: '1px solid rgba(255,255,255,.1)',
+                                display: 'flex',
+                                flexDirection: 'row',
+                                justifyContent: 'space-between',
+                                gap: 3,
+                                color: 'rgba(255,255,255,.4)',
+                                fontSize: '0.875rem',
+                            }}
+                        >
+                            <Typography sx={{ color: 'inherit', fontSize: 'inherit' }}>
+                                © 2026 Victory World. All Rights Reserved.
+                            </Typography>
+                            <Typography sx={{ color: 'inherit', fontSize: 'inherit' }}>
+                                Crafted With Luxury Precision
+                            </Typography>
+                        </Box>
+                    </Container>
+                </Box>
             </BrowserView>
         </Box >
     )

@@ -1,0 +1,998 @@
+import { Box, Button, Card, CardActionArea, CardContent, CardMedia, Container, Grid, Stack, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { isLoggedIn, isOrgUser } from "../auth/AuthProvider";
+import fetcher from "../utils/fetcher";
+import { WorkDriveImage, href } from "../utils/util";
+
+const ShopHome = () => {
+    const [featured, setFeatured] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    // Fetch featured products
+    useEffect(() => {
+        setLoading(true);
+        setError(null);
+        
+        fetcher('/api/ui/featured')
+            .then(r => r.json())
+            .then((data) => {
+                // Check if response has the expected structure
+                const featuredProducts = data?.featured || [];
+                
+                // Safely handle the deduplication logic
+                if (Array.isArray(featuredProducts) && featuredProducts.length > 0) {
+                    const finalListing = [];
+                    const unique = [];
+                    
+                    for (let i = 0; i < featuredProducts.length; i++) {
+                        const product = featuredProducts[i];
+                        if (product && product.group_id && product.color) {
+                            const u = product.group_id + '-' + product.color;
+                            if (unique.indexOf(u) <= -1) {
+                                unique.push(u);
+                                finalListing.push(product);
+                            }
+                        }
+                    }
+                    setFeatured(finalListing);
+                } else {
+                    setFeatured([]);
+                }
+                setLoading(false);
+            })
+            .catch((err) => {
+                console.error('Error fetching featured products:', err);
+                setError(err.message || 'Failed to load featured products');
+                setFeatured([]);
+                setLoading(false);
+            });
+    }, []);
+
+    return (
+        <React.Fragment>
+            {/* ================================================= */}
+            {/* HERO SECTION */}
+            {/* ================================================= */}
+            <Box
+                component="section"
+                sx={{
+                    position: 'relative',
+                    minHeight: '100vh',
+                    display: 'flex',
+                    alignItems: 'center',
+                    background: '#020202',
+                    overflow: 'hidden',
+                    pt: { md: '110px', xs: '64px' }, // Account for fixed header
+                }}
+            >
+                {/* Hero Overlay */}
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        inset: 0,
+                        background: 'linear-gradient(180deg, rgba(0,0,0,.84), rgba(0,0,0,.92))',
+                        zIndex: 1,
+                    }}
+                />
+
+                {/* Content */}
+                <Container
+                    maxWidth={false}
+                    sx={{
+                        maxWidth: '1440px',
+                        px: { md: '80px', xs: '24px' },
+                        position: 'relative',
+                        zIndex: 2,
+                        py: { md: '140px', xs: '100px' },
+                    }}
+                >
+                    <Grid container spacing={{ md: 15, xs: 8 }} alignItems="center">
+                        <Grid item xs={12} md={8}>
+                            {/* Elite Label */}
+                            <Typography
+                                sx={{
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.45em',
+                                    fontSize: { md: '0.78rem', xs: '0.7rem' },
+                                    fontWeight: 700,
+                                    color: '#efcb77',
+                                    mb: { md: '32px', xs: '24px' },
+                                    animation: 'fadeInUp 0.8s ease-out',
+                                    '@keyframes fadeInUp': {
+                                        from: {
+                                            opacity: 0,
+                                            transform: 'translateY(20px)',
+                                        },
+                                        to: {
+                                            opacity: 1,
+                                            transform: 'translateY(0)',
+                                        }
+                                    }
+                                }}
+                            >
+                                ZERROO FASHION REVOLUTION
+                            </Typography>
+
+                            {/* Elite Heading with Gold Gradient */}
+                            <Typography
+                                sx={{
+                                    fontSize: {
+                                        xs: 'clamp(2.5rem, 10vw, 3.5rem)',
+                                        md: 'clamp(3.5rem, 7vw, 7rem)'
+                                    },
+                                    lineHeight: 0.95,
+                                    fontWeight: 900,
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '-0.05em',
+                                    background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
+                                    WebkitBackgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent',
+                                    backgroundClip: 'text',
+                                    mb: { md: 5, xs: 4 },
+                                    animation: 'fadeInUp 0.8s ease-out 0.2s both',
+                                }}
+                            >
+                                Where Fashion Meets Opportunity
+                            </Typography>
+
+                            {/* Elite Paragraph */}
+                            <Typography
+                                sx={{
+                                    color: 'rgba(255,255,255,.68)',
+                                    lineHeight: 2.1,
+                                    fontSize: { md: '1.05rem', xs: '1rem' },
+                                    mb: { md: 6, xs: 5 },
+                                    maxWidth: '680px',
+                                    animation: 'fadeInUp 0.8s ease-out 0.4s both',
+                                }}
+                            >
+                                Join the next generation of direct selling. Build your empire with premium fashion products and unlimited earning potential.
+                            </Typography>
+
+                            {/* CTA Buttons */}
+                            <Stack
+                                direction={{ md: 'row', xs: 'column' }}
+                                spacing={3}
+                                sx={{
+                                    animation: 'fadeInUp 0.8s ease-out 0.6s both',
+                                }}
+                            >
+                                <Button
+                                    component={Link}
+                                    to={isLoggedIn() ? (isOrgUser() ? "/admin" : "/dashboard") : "/login"}
+                                    size="large"
+                                    sx={{
+                                        background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
+                                        color: '#000',
+                                        padding: { md: '18px 42px', xs: '16px 36px' },
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '0.22em',
+                                        fontSize: { md: '0.78rem', xs: '0.72rem' },
+                                        fontWeight: 700,
+                                        boxShadow: '0 15px 35px rgba(221,180,93,.15)',
+                                        transition: 'all 0.4s ease',
+                                        borderRadius: 0,
+                                        '&:hover': {
+                                            transform: 'translateY(-5px)',
+                                            boxShadow: '0 20px 50px rgba(221,180,93,.22)',
+                                            background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
+                                        }
+                                    }}
+                                >
+                                    {isLoggedIn() ? "Dashboard" : "Get Started"}
+                                </Button>
+                                <Button
+                                    size="large"
+                                    sx={{
+                                        border: '1px solid rgba(255,255,255,.15)',
+                                        color: 'white',
+                                        padding: { md: '18px 42px', xs: '16px 36px' },
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '0.2em',
+                                        fontSize: { md: '0.78rem', xs: '0.72rem' },
+                                        fontWeight: 600,
+                                        transition: 'all 0.35s ease',
+                                        borderRadius: 0,
+                                        '&:hover': {
+                                            borderColor: '#ddb45d',
+                                            color: '#ddb45d',
+                                            background: 'transparent',
+                                        }
+                                    }}
+                                    component="a"
+                                    href="https://surveyheart.com/form/65b39e08cdb9323f78e24041"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Register Now
+                                </Button>
+                            </Stack>
+                        </Grid>
+                    </Grid>
+                </Container>
+            </Box>
+
+            {/* ================================================= */}
+            {/* SERVICES/FEATURES SECTION */}
+            {/* ================================================= */}
+            <Box
+                component="section"
+                sx={{
+                    background: '#020202',
+                    py: { md: '190px', xs: '100px' },
+                    borderTop: '1px solid rgba(255,255,255,.08)',
+                    borderBottom: '1px solid rgba(255,255,255,.08)',
+                }}
+            >
+                <Container
+                    maxWidth={false}
+                    sx={{
+                        maxWidth: '1440px',
+                        px: { md: '80px', xs: '24px' },
+                    }}
+                >
+                    {/* Section Heading */}
+                    <Grid container spacing={{ md: 16, xs: 8 }} alignItems="end" sx={{ mb: { md: '120px', xs: '64px' } }}>
+                        <Grid item xs={12} md={6}>
+                            <Typography
+                                sx={{
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.45em',
+                                    fontSize: { md: '0.78rem', xs: '0.7rem' },
+                                    fontWeight: 700,
+                                    color: '#efcb77',
+                                    mb: { md: '32px', xs: '24px' },
+                                }}
+                            >
+                                Why Choose Zerroo
+                            </Typography>
+                            <Typography
+                                sx={{
+                                    fontSize: {
+                                        xs: 'clamp(2rem, 8vw, 2.8rem)',
+                                        md: 'clamp(2.8rem, 5vw, 5rem)'
+                                    },
+                                    lineHeight: 1,
+                                    fontWeight: 800,
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '-0.04em',
+                                    color: 'white',
+                                }}
+                            >
+                                Elite Business Solutions For Modern Entrepreneurs
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <Typography
+                                sx={{
+                                    color: 'rgba(255,255,255,.68)',
+                                    lineHeight: 2.1,
+                                    fontSize: { md: '1.05rem', xs: '1rem' },
+                                }}
+                            >
+                                We provide integrated fashion products, business training, and unlimited earning opportunities for ambitious individuals worldwide.
+                            </Typography>
+                        </Grid>
+                    </Grid>
+
+                    {/* Service Cards Grid */}
+                    <Grid container spacing={{ md: 4, xs: 3 }}>
+                        {[
+                            {
+                                number: '01',
+                                title: 'Premium Products',
+                                description: 'High-quality fashion items crafted with precision and style for the modern consumer.'
+                            },
+                            {
+                                number: '02',
+                                title: 'Flexible Business',
+                                description: 'Build your empire on your terms with our flexible direct selling platform.'
+                            },
+                            {
+                                number: '03',
+                                title: 'Training & Support',
+                                description: 'Comprehensive mentorship and development programs to ensure your success.'
+                            },
+                            {
+                                number: '04',
+                                title: 'Unlimited Earnings',
+                                description: 'No ceiling on your income potential. Your success is only limited by your ambition.'
+                            },
+                        ].map((service, index) => (
+                            <Grid item xs={12} md={6} key={index}>
+                                <Box
+                                    sx={{
+                                        background: 'linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01))',
+                                        border: '1px solid rgba(255,255,255,.08)',
+                                        minHeight: { md: '400px', xs: '340px' },
+                                        p: { md: '60px', xs: '40px' },
+                                        transition: 'all 0.45s cubic-bezier(0.4, 0, 0.2, 1)',
+                                        position: 'relative',
+                                        overflow: 'hidden',
+                                        backdropFilter: 'blur(10px)',
+                                        borderRadius: '2px',
+                                        '&::before': {
+                                            content: '""',
+                                            position: 'absolute',
+                                            top: '-120px',
+                                            right: '-120px',
+                                            width: '260px',
+                                            height: '260px',
+                                            borderRadius: '50%',
+                                            background: 'radial-gradient(circle, rgba(221,180,93,.16), transparent 70%)',
+                                            transition: 'all 0.45s ease',
+                                        },
+                                        '&:hover': {
+                                            transform: 'translateY(-12px)',
+                                            borderColor: 'rgba(221,180,93,.3)',
+                                            boxShadow: '0 30px 70px rgba(0,0,0,.5)',
+                                            background: 'linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02))',
+                                        },
+                                        '&:hover::before': {
+                                            top: '-100px',
+                                            right: '-100px',
+                                            width: '300px',
+                                            height: '300px',
+                                        }
+                                    }}
+                                >
+                                    {/* Service Number */}
+                                    <Box
+                                        sx={{
+                                            width: { md: '74px', xs: '64px' },
+                                            height: { md: '74px', xs: '64px' },
+                                            border: '1px solid rgba(221,180,93,.3)',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            mb: { md: '48px', xs: '36px' },
+                                            fontSize: { md: '1.6rem', xs: '1.4rem' },
+                                            fontWeight: 700,
+                                            color: '#f5dc97',
+                                            position: 'relative',
+                                            zIndex: 1,
+                                        }}
+                                    >
+                                        {service.number}
+                                    </Box>
+
+                                    <Typography
+                                        sx={{
+                                            fontSize: { md: '2.5rem', xs: '1.8rem' },
+                                            fontWeight: 900,
+                                            textTransform: 'uppercase',
+                                            lineHeight: 1.1,
+                                            color: 'white',
+                                            mb: { md: '28px', xs: '20px' },
+                                            position: 'relative',
+                                            zIndex: 1,
+                                            letterSpacing: '-0.02em',
+                                        }}
+                                    >
+                                        {service.title}
+                                    </Typography>
+
+                                    <Typography
+                                        sx={{
+                                            color: 'rgba(255,255,255,.68)',
+                                            lineHeight: 2.1,
+                                            fontSize: { md: '1.05rem', xs: '0.95rem' },
+                                            position: 'relative',
+                                            zIndex: 1,
+                                        }}
+                                    >
+                                        {service.description}
+                                    </Typography>
+                                </Box>
+                            </Grid>
+                        ))}
+                    </Grid>
+                </Container>
+            </Box>
+
+            {/* ================================================= */}
+            {/* FEATURED PRODUCTS SECTION */}
+            {/* ================================================= */}
+            <Box
+                component="section"
+                sx={{
+                    background: '#020202',
+                    py: { md: '190px', xs: '100px' },
+                }}
+            >
+                <Container
+                    maxWidth={false}
+                    sx={{
+                        maxWidth: '1440px',
+                        px: { md: '80px', xs: '24px' },
+                    }}
+                >
+                    <Typography
+                        sx={{
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.45em',
+                            fontSize: { md: '0.78rem', xs: '0.7rem' },
+                            fontWeight: 700,
+                            color: '#efcb77',
+                            mb: { md: '32px', xs: '24px' },
+                            textAlign: 'center',
+                        }}
+                    >
+                        Featured Collection
+                    </Typography>
+
+                    <Typography
+                        sx={{
+                            fontSize: {
+                                xs: 'clamp(2rem, 8vw, 2.8rem)',
+                                md: 'clamp(2.8rem, 5vw, 5rem)'
+                            },
+                            lineHeight: 1,
+                            fontWeight: 800,
+                            textTransform: 'uppercase',
+                            letterSpacing: '-0.04em',
+                            background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            backgroundClip: 'text',
+                            textAlign: 'center',
+                            mb: { md: '96px', xs: '56px' },
+                        }}
+                    >
+                        New Arrivals
+                    </Typography>
+
+                    {/* Products Grid */}
+                    {loading ? (
+                        <Box sx={{ textAlign: 'center', py: 8 }}>
+                            <Typography sx={{ color: 'rgba(255,255,255,.68)', fontSize: '1.1rem' }}>
+                                Loading featured products...
+                            </Typography>
+                        </Box>
+                    ) : error ? (
+                        <Box sx={{ textAlign: 'center', py: 8 }}>
+                            <Typography sx={{ color: 'rgba(255,100,100,.8)', fontSize: '1.1rem', mb: 2 }}>
+                                {error}
+                            </Typography>
+                            <Typography sx={{ color: 'rgba(255,255,255,.5)', fontSize: '0.95rem' }}>
+                                Please try again later or contact support.
+                            </Typography>
+                        </Box>
+                    ) : featured.length === 0 ? (
+                        <Box sx={{ textAlign: 'center', py: 8 }}>
+                            <Typography sx={{ color: 'rgba(255,255,255,.68)', fontSize: '1.1rem' }}>
+                                No featured products available at the moment.
+                            </Typography>
+                        </Box>
+                    ) : (
+                        <Grid container spacing={{ md: 4, xs: 3 }}>
+                            {featured.slice(0, 8).map(({ image, title, id, category }, index) => (
+                                <Grid item xs={6} md={3} key={index}>
+                                    <Card
+                                        sx={{
+                                            background: 'linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01))',
+                                            border: '1px solid rgba(255,255,255,.08)',
+                                            backdropFilter: 'blur(10px)',
+                                            borderRadius: '4px',
+                                            overflow: 'hidden',
+                                            transition: 'all 0.45s cubic-bezier(0.4, 0, 0.2, 1)',
+                                            position: 'relative',
+                                            '&::before': {
+                                                content: '""',
+                                                position: 'absolute',
+                                                top: 0,
+                                                left: 0,
+                                                right: 0,
+                                                bottom: 0,
+                                                background: 'linear-gradient(180deg, transparent 0%, rgba(221,180,93,.05) 100%)',
+                                                opacity: 0,
+                                                transition: 'opacity 0.45s ease',
+                                                zIndex: 1,
+                                                pointerEvents: 'none',
+                                            },
+                                            '&:hover': {
+                                                transform: 'translateY(-12px)',
+                                                borderColor: 'rgba(221,180,93,.3)',
+                                                boxShadow: '0 30px 70px rgba(0,0,0,.5)',
+                                            },
+                                            '&:hover::before': {
+                                                opacity: 1,
+                                            }
+                                        }}
+                                    >
+                                        <CardActionArea
+                                            component={Link}
+                                            to={`/p/${id}/${href(category)}/${href(title)}`}
+                                            sx={{
+                                                '&:hover .MuiCardMedia-root': {
+                                                    transform: 'scale(1.05)',
+                                                }
+                                            }}
+                                        >
+                                            <CardMedia
+                                                sx={{
+                                                    transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
+                                                }}
+                                            >
+                                                <WorkDriveImage image={image} alt={title} />
+                                            </CardMedia>
+                                            <CardContent sx={{ p: { md: 3, xs: 2.5 }, position: 'relative', zIndex: 2 }}>
+                                                <Typography
+                                                    sx={{
+                                                        color: 'white',
+                                                        fontWeight: 600,
+                                                        fontSize: { md: '1.05rem', xs: '0.9rem' },
+                                                        textAlign: 'center',
+                                                        lineHeight: 1.4,
+                                                        letterSpacing: '0.01em',
+                                                    }}
+                                                >
+                                                    {title}
+                                                </Typography>
+                                            </CardContent>
+                                        </CardActionArea>
+                                    </Card>
+                                </Grid>
+                            ))}
+                        </Grid>
+                    )}
+
+                    {/* View All Button */}
+                    <Box sx={{ textAlign: 'center', mt: { md: '96px', xs: '56px' } }}>
+                        <Button
+                            component={Link}
+                            to="/shop"
+                            size="large"
+                            sx={{
+                                background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
+                                color: '#000',
+                                padding: { md: '18px 42px', xs: '16px 36px' },
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.22em',
+                                fontSize: { md: '0.78rem', xs: '0.72rem' },
+                                fontWeight: 700,
+                                boxShadow: '0 15px 35px rgba(221,180,93,.15)',
+                                transition: 'all 0.4s ease',
+                                borderRadius: 0,
+                                '&:hover': {
+                                    transform: 'translateY(-5px)',
+                                    boxShadow: '0 20px 50px rgba(221,180,93,.22)',
+                                    background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
+                                }
+                            }}
+                        >
+                            View All Products
+                        </Button>
+                    </Box>
+                </Container>
+            </Box>
+
+            {/* ================================================= */}
+            {/* STATS/TESTIMONIALS SECTION */}
+            {/* ================================================= */}
+            <Box
+                component="section"
+                sx={{
+                    background: '#020202',
+                    py: { md: '190px', xs: '100px' },
+                    borderTop: '1px solid rgba(255,255,255,.08)',
+                }}
+            >
+                <Container
+                    maxWidth={false}
+                    sx={{
+                        maxWidth: '1440px',
+                        px: { md: '80px', xs: '24px' },
+                    }}
+                >
+                    <Grid container spacing={{ md: 4, xs: 3 }}>
+                        {[
+                            {
+                                number: '10,000+',
+                                label: 'Active Distributors',
+                                description: 'Building their empires with Zerroo'
+                            },
+                            {
+                                number: '₹50Cr+',
+                                label: 'Earnings Distributed',
+                                description: 'Empowering financial freedom'
+                            },
+                            {
+                                number: '500+',
+                                label: 'Premium Products',
+                                description: 'Curated fashion collection'
+                            },
+                            {
+                                number: '100%',
+                                label: 'Success Support',
+                                description: 'Comprehensive training programs'
+                            },
+                        ].map((stat, index) => (
+                            <Grid item xs={6} md={3} key={index}>
+                                <Box
+                                    sx={{
+                                        border: '1px solid rgba(255,255,255,.08)',
+                                        background: 'linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01))',
+                                        minHeight: { md: '340px', xs: '280px' },
+                                        p: { md: '48px', xs: '28px' },
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        justifyContent: 'center',
+                                        textAlign: 'center',
+                                        transition: 'all 0.45s cubic-bezier(0.4, 0, 0.2, 1)',
+                                        borderRadius: '2px',
+                                        position: 'relative',
+                                        overflow: 'hidden',
+                                        '&::before': {
+                                            content: '""',
+                                            position: 'absolute',
+                                            top: 0,
+                                            left: 0,
+                                            right: 0,
+                                            bottom: 0,
+                                            background: 'radial-gradient(circle at center, rgba(221,180,93,.08), transparent 70%)',
+                                            opacity: 0,
+                                            transition: 'opacity 0.45s ease',
+                                        },
+                                        '&:hover': {
+                                            transform: 'translateY(-12px)',
+                                            borderColor: 'rgba(221,180,93,.3)',
+                                            boxShadow: '0 30px 70px rgba(0,0,0,.5)',
+                                        },
+                                        '&:hover::before': {
+                                            opacity: 1,
+                                        }
+                                    }}
+                                >
+                                    <Typography
+                                        sx={{
+                                            fontSize: { md: '3.5rem', xs: '2.2rem' },
+                                            fontWeight: 900,
+                                            background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
+                                            WebkitBackgroundClip: 'text',
+                                            WebkitTextFillColor: 'transparent',
+                                            backgroundClip: 'text',
+                                            mb: { md: 2.5, xs: 2 },
+                                            position: 'relative',
+                                            zIndex: 1,
+                                        }}
+                                    >
+                                        {stat.number}
+                                    </Typography>
+                                    <Typography
+                                        sx={{
+                                            fontSize: { md: '1.15rem', xs: '0.95rem' },
+                                            fontWeight: 700,
+                                            color: 'white',
+                                            mb: { md: 1.5, xs: 1 },
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '0.1em',
+                                            position: 'relative',
+                                            zIndex: 1,
+                                        }}
+                                    >
+                                        {stat.label}
+                                    </Typography>
+                                    <Typography
+                                        sx={{
+                                            color: 'rgba(255,255,255,.68)',
+                                            fontSize: { md: '0.95rem', xs: '0.85rem' },
+                                            lineHeight: 1.8,
+                                            position: 'relative',
+                                            zIndex: 1,
+                                        }}
+                                    >
+                                        {stat.description}
+                                    </Typography>
+                                </Box>
+                            </Grid>
+                        ))}
+                    </Grid>
+                </Container>
+            </Box>
+
+            {/* ================================================= */}
+            {/* CTA SECTION */}
+            {/* ================================================= */}
+            <Box
+                component="section"
+                sx={{
+                    background: 'linear-gradient(135deg, #d69d45 0%, #9f6720 50%, #d69d45 100%)',
+                    py: { md: '140px', xs: '100px' },
+                    position: 'relative',
+                    overflow: 'hidden',
+                    '&::before': {
+                        content: '""',
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        background: 'radial-gradient(circle at 30% 50%, rgba(255,247,220,.1), transparent 50%)',
+                    },
+                    '&::after': {
+                        content: '""',
+                        position: 'absolute',
+                        top: 0,
+                        right: 0,
+                        bottom: 0,
+                        left: 0,
+                        background: 'radial-gradient(circle at 70% 50%, rgba(255,247,220,.08), transparent 50%)',
+                    }
+                }}
+            >
+                <Container
+                    maxWidth={false}
+                    sx={{
+                        maxWidth: '1440px',
+                        px: { md: '80px', xs: '24px' },
+                        position: 'relative',
+                        zIndex: 1,
+                    }}
+                >
+                    <Box sx={{ textAlign: 'center', maxWidth: '960px', margin: '0 auto' }}>
+                        <Typography
+                            sx={{
+                                fontSize: {
+                                    xs: 'clamp(2rem, 8vw, 2.8rem)',
+                                    md: 'clamp(2.8rem, 5vw, 5rem)'
+                                },
+                                lineHeight: 1.05,
+                                fontWeight: 900,
+                                textTransform: 'uppercase',
+                                letterSpacing: '-0.04em',
+                                color: 'white',
+                                mb: { md: 5, xs: 4 },
+                                textShadow: '0 2px 20px rgba(0,0,0,.2)',
+                            }}
+                        >
+                            Ready To Transform Your Future?
+                        </Typography>
+                        <Typography
+                            sx={{
+                                color: 'rgba(255,255,255,.95)',
+                                lineHeight: 2.1,
+                                fontSize: { md: '1.15rem', xs: '1.05rem' },
+                                mb: { md: 7, xs: 5 },
+                                maxWidth: '720px',
+                                margin: '0 auto',
+                                marginBottom: { md: 7, xs: 5 },
+                            }}
+                        >
+                            Join thousands of successful entrepreneurs building their empires with Zerroo. Start your journey today.
+                        </Typography>
+                        <Stack
+                            direction={{ md: 'row', xs: 'column' }}
+                            spacing={3}
+                            justifyContent="center"
+                            sx={{
+                                '& .MuiButton-root': {
+                                    borderRadius: 0,
+                                }
+                            }}
+                        >
+                            <Button
+                                component="a"
+                                href="https://surveyheart.com/form/65b39e08cdb9323f78e24041"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                size="large"
+                                sx={{
+                                    background: 'white',
+                                    color: '#000',
+                                    padding: { md: '18px 42px', xs: '16px 36px' },
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.22em',
+                                    fontSize: { md: '0.78rem', xs: '0.72rem' },
+                                    fontWeight: 700,
+                                    boxShadow: '0 15px 35px rgba(0,0,0,.25)',
+                                    transition: 'all 0.4s ease',
+                                    '&:hover': {
+                                        transform: 'translateY(-5px)',
+                                        boxShadow: '0 20px 50px rgba(0,0,0,.35)',
+                                        background: 'white',
+                                    }
+                                }}
+                            >
+                                Register Now
+                            </Button>
+                            <Button
+                                component="a"
+                                href="https://top-earners.zerroo.in/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                size="large"
+                                sx={{
+                                    border: '2px solid white',
+                                    color: 'white',
+                                    padding: { md: '18px 42px', xs: '16px 36px' },
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.2em',
+                                    fontSize: { md: '0.78rem', xs: '0.72rem' },
+                                    fontWeight: 700,
+                                    transition: 'all 0.35s ease',
+                                    '&:hover': {
+                                        background: 'white',
+                                        color: '#000',
+                                        transform: 'translateY(-3px)',
+                                    }
+                                }}
+                            >
+                                View Top Earners
+                            </Button>
+                        </Stack>
+                    </Box>
+                </Container>
+            </Box>
+
+            {/* ================================================= */}
+            {/* FOOTER CONTENT */}
+            {/* ================================================= */}
+            <Box
+                component="footer"
+                sx={{
+                    background: '#020202',
+                    py: { md: '120px', xs: '60px' },
+                    borderTop: '1px solid rgba(255,255,255,.08)',
+                }}
+            >
+                <Container
+                    maxWidth={false}
+                    sx={{
+                        maxWidth: '1440px',
+                        px: { md: '80px', xs: '24px' },
+                    }}
+                >
+                    <Grid container spacing={{ md: 8, xs: 6 }}>
+                        <Grid item xs={12} md={4}>
+                            <Typography
+                                sx={{
+                                    fontSize: '2rem',
+                                    fontWeight: 900,
+                                    background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
+                                    WebkitBackgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent',
+                                    backgroundClip: 'text',
+                                    mb: 3,
+                                }}
+                            >
+                                ZERROO
+                            </Typography>
+                            <Typography
+                                sx={{
+                                    color: 'rgba(255,255,255,.62)',
+                                    lineHeight: 2,
+                                    fontSize: '0.95rem',
+                                }}
+                            >
+                                Empowering entrepreneurs worldwide through premium fashion and unlimited opportunities.
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={6} md={2}>
+                            <Typography
+                                sx={{
+                                    fontSize: '1.1rem',
+                                    fontWeight: 700,
+                                    color: 'white',
+                                    mb: 3,
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.1em',
+                                }}
+                            >
+                                Quick Links
+                            </Typography>
+                            <Stack spacing={2}>
+                                {[
+                                    { label: 'Shop', to: '/shop' },
+                                    { label: 'About', to: '/about' },
+                                    { label: 'Contact', to: '/contact' },
+                                ].map((link, index) => (
+                                    <Typography
+                                        key={index}
+                                        component={Link}
+                                        to={link.to}
+                                        sx={{
+                                            color: 'rgba(255,255,255,.62)',
+                                            textDecoration: 'none',
+                                            transition: '0.3s ease',
+                                            '&:hover': {
+                                                color: '#f5dc97',
+                                            }
+                                        }}
+                                    >
+                                        {link.label}
+                                    </Typography>
+                                ))}
+                            </Stack>
+                        </Grid>
+                        <Grid item xs={6} md={2}>
+                            <Typography
+                                sx={{
+                                    fontSize: '1.1rem',
+                                    fontWeight: 700,
+                                    color: 'white',
+                                    mb: 3,
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.1em',
+                                }}
+                            >
+                                Legal
+                            </Typography>
+                            <Stack spacing={2}>
+                                {[
+                                    { label: 'Privacy Policy', to: '/privacy-policy' },
+                                    { label: 'Terms of Service', to: '/terms-of-service' },
+                                ].map((link, index) => (
+                                    <Typography
+                                        key={index}
+                                        component={Link}
+                                        to={link.to}
+                                        sx={{
+                                            color: 'rgba(255,255,255,.62)',
+                                            textDecoration: 'none',
+                                            transition: '0.3s ease',
+                                            '&:hover': {
+                                                color: '#f5dc97',
+                                            }
+                                        }}
+                                    >
+                                        {link.label}
+                                    </Typography>
+                                ))}
+                            </Stack>
+                        </Grid>
+                        <Grid item xs={12} md={4}>
+                            <Typography
+                                sx={{
+                                    fontSize: '1.1rem',
+                                    fontWeight: 700,
+                                    color: 'white',
+                                    mb: 3,
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.1em',
+                                }}
+                            >
+                                Contact
+                            </Typography>
+                            <Stack spacing={2}>
+                                <Typography sx={{ color: 'rgba(255,255,255,.62)', lineHeight: 2 }}>
+                                    Email: support@zerroo.in
+                                </Typography>
+                                <Typography sx={{ color: 'rgba(255,255,255,.62)', lineHeight: 2 }}>
+                                    Phone: +91 XXX XXX XXXX
+                                </Typography>
+                            </Stack>
+                        </Grid>
+                    </Grid>
+
+                    {/* Bottom Bar */}
+                    <Box
+                        sx={{
+                            mt: { md: '96px', xs: '48px' },
+                            pt: { md: '40px', xs: '24px' },
+                            borderTop: '1px solid rgba(255,255,255,.1)',
+                            display: 'flex',
+                            flexDirection: { md: 'row', xs: 'column' },
+                            justifyContent: 'space-between',
+                            gap: 3,
+                            textAlign: { md: 'left', xs: 'center' },
+                        }}
+                    >
+                        <Typography sx={{ color: 'rgba(255,255,255,.4)', fontSize: '0.9rem' }}>
+                            © 2025 Zerroo. All Rights Reserved.
+                        </Typography>
+                        <Typography sx={{ color: 'rgba(255,255,255,.4)', fontSize: '0.9rem' }}>
+                            Crafted With Luxury Precision
+                        </Typography>
+                    </Box>
+                </Container>
+            </Box>
+        </React.Fragment>
+    );
+}
+
+export default ShopHome;
+
+// Made with Bob
