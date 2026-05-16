@@ -137,11 +137,9 @@ const MobileShopList = () => {
     }, [id, params])
 
     useEffect(() => {
-        const filterUrl = id
-            ? `/api/listing/filter?category=${id}`
-            : `/api/listing/filter`;
+        if (!id) return
         
-        fetcher(filterUrl)
+        fetcher(`/api/listing/filter?category=${id}`)
             .then(r => r.json())
             .then(filters => {
                 // Ensure all filter properties are arrays
