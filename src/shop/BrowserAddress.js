@@ -67,11 +67,34 @@ const BrowserAddress = () => {
 
     const AddAddressDialog = () => {
         return (
-            <Dialog open={addAddressDialogOpen} onClose={() => {
-                setAddAddressDialogOpen(false)
-            }}>
+            <Dialog
+                open={addAddressDialogOpen}
+                onClose={() => {
+                    setAddAddressDialogOpen(false)
+                }}
+                PaperProps={{
+                    sx: {
+                        background: 'linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01))',
+                        backdropFilter: 'blur(10px)',
+                        border: '1px solid rgba(255,255,255,.08)',
+                        borderRadius: '4px',
+                        maxWidth: '600px'
+                    }
+                }}
+            >
                 <DialogTitle>
-                    <Typography textAlign="center" variant="h3">Add Address</Typography>
+                    <Typography
+                        textAlign="center"
+                        variant="h3"
+                        sx={{
+                            color: 'white',
+                            fontSize: { md: 'clamp(2rem, 4vw, 3.5rem)', xs: 'clamp(1.5rem, 6vw, 2rem)' },
+                            fontWeight: 700,
+                            mb: 2
+                        }}
+                    >
+                        Add Address
+                    </Typography>
                 </DialogTitle>
                 <DialogContent>
                     <Box mt={2}>
@@ -137,6 +160,16 @@ const BrowserAddress = () => {
                                                     onBlur={handleBlur}
                                                     onChange={handleChange}
                                                     label="First Name"
+                                                    sx={{
+                                                        '& .MuiOutlinedInput-root': {
+                                                            color: 'white',
+                                                            '& fieldset': { borderColor: 'rgba(255,255,255,.15)' },
+                                                            '&:hover fieldset': { borderColor: 'rgba(255,255,255,.3)' },
+                                                            '&.Mui-focused fieldset': { borderColor: '#efcb77' }
+                                                        },
+                                                        '& .MuiInputLabel-root': { color: 'rgba(255,255,255,.68)' },
+                                                        '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' }
+                                                    }}
                                                 />
                                                 {touched.firstname && errors.firstname && (
                                                     <FormHelperText error id="error-firstname">
@@ -156,6 +189,16 @@ const BrowserAddress = () => {
                                                     onBlur={handleBlur}
                                                     onChange={handleChange}
                                                     label="Last Name"
+                                                    sx={{
+                                                        '& .MuiOutlinedInput-root': {
+                                                            color: 'white',
+                                                            '& fieldset': { borderColor: 'rgba(255,255,255,.15)' },
+                                                            '&:hover fieldset': { borderColor: 'rgba(255,255,255,.3)' },
+                                                            '&.Mui-focused fieldset': { borderColor: '#efcb77' }
+                                                        },
+                                                        '& .MuiInputLabel-root': { color: 'rgba(255,255,255,.68)' },
+                                                        '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' }
+                                                    }}
                                                 />
                                                 {touched.lastname && errors.lastname && (
                                                     <FormHelperText error id="error-lastname">
@@ -175,6 +218,16 @@ const BrowserAddress = () => {
                                                     onBlur={handleBlur}
                                                     onChange={handleChange}
                                                     label="Phone No"
+                                                    sx={{
+                                                        '& .MuiOutlinedInput-root': {
+                                                            color: 'white',
+                                                            '& fieldset': { borderColor: 'rgba(255,255,255,.15)' },
+                                                            '&:hover fieldset': { borderColor: 'rgba(255,255,255,.3)' },
+                                                            '&.Mui-focused fieldset': { borderColor: '#efcb77' }
+                                                        },
+                                                        '& .MuiInputLabel-root': { color: 'rgba(255,255,255,.68)' },
+                                                        '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' }
+                                                    }}
                                                 />
                                                 {touched.phone && errors.phone && (
                                                     <FormHelperText error id="error-phone">
@@ -197,6 +250,16 @@ const BrowserAddress = () => {
                                                         endAdornment: <PopoverAdornment
                                                             content="Maybe used if the main Phone Number is not available" />
                                                     }}
+                                                    sx={{
+                                                        '& .MuiOutlinedInput-root': {
+                                                            color: 'white',
+                                                            '& fieldset': { borderColor: 'rgba(255,255,255,.15)' },
+                                                            '&:hover fieldset': { borderColor: 'rgba(255,255,255,.3)' },
+                                                            '&.Mui-focused fieldset': { borderColor: '#efcb77' }
+                                                        },
+                                                        '& .MuiInputLabel-root': { color: 'rgba(255,255,255,.68)' },
+                                                        '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' }
+                                                    }}
                                                 />
                                                 {touched.alt_phone && errors.alt_phone && (
                                                     <FormHelperText error id="error-alt_phone">
@@ -215,6 +278,16 @@ const BrowserAddress = () => {
                                                     onBlur={handleBlur}
                                                     onChange={handleChange}
                                                     label="Email"
+                                                    sx={{
+                                                        '& .MuiOutlinedInput-root': {
+                                                            color: 'white',
+                                                            '& fieldset': { borderColor: 'rgba(255,255,255,.15)' },
+                                                            '&:hover fieldset': { borderColor: 'rgba(255,255,255,.3)' },
+                                                            '&.Mui-focused fieldset': { borderColor: '#efcb77' }
+                                                        },
+                                                        '& .MuiInputLabel-root': { color: 'rgba(255,255,255,.68)' },
+                                                        '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' }
+                                                    }}
                                                 />
                                                 {touched.email && errors.email && (
                                                     <FormHelperText error id="error-email">
@@ -234,6 +307,16 @@ const BrowserAddress = () => {
                                                     onBlur={handleBlur}
                                                     onChange={handleChange}
                                                     label="Flat, House no., Building, Company, Apartment"
+                                                    sx={{
+                                                        '& .MuiOutlinedInput-root': {
+                                                            color: 'white',
+                                                            '& fieldset': { borderColor: 'rgba(255,255,255,.15)' },
+                                                            '&:hover fieldset': { borderColor: 'rgba(255,255,255,.3)' },
+                                                            '&.Mui-focused fieldset': { borderColor: '#efcb77' }
+                                                        },
+                                                        '& .MuiInputLabel-root': { color: 'rgba(255,255,255,.68)' },
+                                                        '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' }
+                                                    }}
                                                 />
                                                 {touched.address_1 && errors.address_1 && (
                                                     <FormHelperText error id="error-address_1">
@@ -253,6 +336,16 @@ const BrowserAddress = () => {
                                                     onBlur={handleBlur}
                                                     onChange={handleChange}
                                                     label="Street Name, Area"
+                                                    sx={{
+                                                        '& .MuiOutlinedInput-root': {
+                                                            color: 'white',
+                                                            '& fieldset': { borderColor: 'rgba(255,255,255,.15)' },
+                                                            '&:hover fieldset': { borderColor: 'rgba(255,255,255,.3)' },
+                                                            '&.Mui-focused fieldset': { borderColor: '#efcb77' }
+                                                        },
+                                                        '& .MuiInputLabel-root': { color: 'rgba(255,255,255,.68)' },
+                                                        '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' }
+                                                    }}
                                                 />
                                                 {touched.address_2 && errors.address_2 && (
                                                     <FormHelperText error id="error-address_2">
@@ -271,6 +364,16 @@ const BrowserAddress = () => {
                                                     onBlur={handleBlur}
                                                     onChange={handleChange}
                                                     label="Landmark"
+                                                    sx={{
+                                                        '& .MuiOutlinedInput-root': {
+                                                            color: 'white',
+                                                            '& fieldset': { borderColor: 'rgba(255,255,255,.15)' },
+                                                            '&:hover fieldset': { borderColor: 'rgba(255,255,255,.3)' },
+                                                            '&.Mui-focused fieldset': { borderColor: '#efcb77' }
+                                                        },
+                                                        '& .MuiInputLabel-root': { color: 'rgba(255,255,255,.68)' },
+                                                        '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' }
+                                                    }}
                                                 />
                                                 {touched.landmark && errors.landmark && (
                                                     <FormHelperText error id="error-landmark">
@@ -290,6 +393,16 @@ const BrowserAddress = () => {
                                                     onBlur={handleBlur}
                                                     onChange={handleChange}
                                                     label="Postcode"
+                                                    sx={{
+                                                        '& .MuiOutlinedInput-root': {
+                                                            color: 'white',
+                                                            '& fieldset': { borderColor: 'rgba(255,255,255,.15)' },
+                                                            '&:hover fieldset': { borderColor: 'rgba(255,255,255,.3)' },
+                                                            '&.Mui-focused fieldset': { borderColor: '#efcb77' }
+                                                        },
+                                                        '& .MuiInputLabel-root': { color: 'rgba(255,255,255,.68)' },
+                                                        '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' }
+                                                    }}
                                                 />
                                                 {touched.postcode && errors.postcode && (
                                                     <FormHelperText error id="error-postcode">
@@ -309,6 +422,16 @@ const BrowserAddress = () => {
                                                     onBlur={handleBlur}
                                                     onChange={handleChange}
                                                     label="City / District"
+                                                    sx={{
+                                                        '& .MuiOutlinedInput-root': {
+                                                            color: 'white',
+                                                            '& fieldset': { borderColor: 'rgba(255,255,255,.15)' },
+                                                            '&:hover fieldset': { borderColor: 'rgba(255,255,255,.3)' },
+                                                            '&.Mui-focused fieldset': { borderColor: '#efcb77' }
+                                                        },
+                                                        '& .MuiInputLabel-root': { color: 'rgba(255,255,255,.68)' },
+                                                        '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' }
+                                                    }}
                                                 />
                                                 {touched.city && errors.city && (
                                                     <FormHelperText error id="error-city">
@@ -348,6 +471,17 @@ const BrowserAddress = () => {
                                                     onChange={handleChange}
                                                     label="Save this Address as"
                                                     helperText={`Eg: ${getName()}'s Home`}
+                                                    sx={{
+                                                        '& .MuiOutlinedInput-root': {
+                                                            color: 'white',
+                                                            '& fieldset': { borderColor: 'rgba(255,255,255,.15)' },
+                                                            '&:hover fieldset': { borderColor: 'rgba(255,255,255,.3)' },
+                                                            '&.Mui-focused fieldset': { borderColor: '#efcb77' }
+                                                        },
+                                                        '& .MuiInputLabel-root': { color: 'rgba(255,255,255,.68)' },
+                                                        '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' },
+                                                        '& .MuiFormHelperText-root': { color: 'rgba(255,255,255,.62)' }
+                                                    }}
                                                 />
                                                 {touched.saved_name && errors.saved_name && (
                                                     <FormHelperText error id="error-name">
@@ -358,10 +492,22 @@ const BrowserAddress = () => {
                                         </Grid>
                                         <Grid item xs={12}>
                                             <FormGroup>
-                                                <FormControlLabel control={
-                                                    <Checkbox name="is_default" value={values.default} onBlur={handleBlur}
-                                                        onChange={handleChange} />
-                                                } label="Make default" />
+                                                <FormControlLabel
+                                                    control={
+                                                        <Checkbox
+                                                            name="is_default"
+                                                            value={values.default}
+                                                            onBlur={handleBlur}
+                                                            onChange={handleChange}
+                                                            sx={{
+                                                                color: 'rgba(255,255,255,.68)',
+                                                                '&.Mui-checked': { color: '#efcb77' }
+                                                            }}
+                                                        />
+                                                    }
+                                                    label="Make default"
+                                                    sx={{ '& .MuiFormControlLabel-label': { color: 'rgba(255,255,255,.82)' } }}
+                                                />
                                             </FormGroup>
                                         </Grid>
                                     </Grid>
@@ -377,6 +523,23 @@ const BrowserAddress = () => {
                                             size="large"
                                             type="submit"
                                             variant="contained"
+                                            sx={{
+                                                background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
+                                                color: '#000',
+                                                padding: { md: '18px 42px', xs: '16px 36px' },
+                                                textTransform: 'uppercase',
+                                                letterSpacing: '0.22em',
+                                                fontSize: { md: '0.78rem', xs: '0.72rem' },
+                                                fontWeight: 700,
+                                                boxShadow: '0 15px 35px rgba(221,180,93,.15)',
+                                                transition: 'all 0.4s ease',
+                                                borderRadius: 0,
+                                                '&:hover': {
+                                                    transform: 'translateY(-5px)',
+                                                    boxShadow: '0 20px 50px rgba(221,180,93,.22)',
+                                                    background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)'
+                                                }
+                                            }}
                                         >
                                             Add Address
                                         </LoadingButton>
@@ -699,6 +862,17 @@ const BrowserAddress = () => {
                                                     onChange={handleChange}
                                                     label="Save this Address as"
                                                     helperText={`Eg: ${getName()}'s Home`}
+                                                    sx={{
+                                                        '& .MuiOutlinedInput-root': {
+                                                            color: 'white',
+                                                            '& fieldset': { borderColor: 'rgba(255,255,255,.15)' },
+                                                            '&:hover fieldset': { borderColor: 'rgba(255,255,255,.3)' },
+                                                            '&.Mui-focused fieldset': { borderColor: '#efcb77' }
+                                                        },
+                                                        '& .MuiInputLabel-root': { color: 'rgba(255,255,255,.68)' },
+                                                        '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' },
+                                                        '& .MuiFormHelperText-root': { color: 'rgba(255,255,255,.62)' }
+                                                    }}
                                                 />
                                                 {touched.saved_name && errors.saved_name && (
                                                     <FormHelperText error id="error-name">
@@ -709,11 +883,23 @@ const BrowserAddress = () => {
                                         </Grid>
                                         <Grid item xs={12}>
                                             <FormGroup>
-                                                <FormControlLabel control={
-                                                    <Checkbox name="is_default" value={values.is_default}
-                                                        onBlur={handleBlur} checked={values.is_default}
-                                                        onChange={handleChange} />
-                                                } label="Make default" />
+                                                <FormControlLabel
+                                                    control={
+                                                        <Checkbox
+                                                            name="is_default"
+                                                            value={values.is_default}
+                                                            onBlur={handleBlur}
+                                                            checked={values.is_default}
+                                                            onChange={handleChange}
+                                                            sx={{
+                                                                color: 'rgba(255,255,255,.68)',
+                                                                '&.Mui-checked': { color: '#efcb77' }
+                                                            }}
+                                                        />
+                                                    }
+                                                    label="Make default"
+                                                    sx={{ '& .MuiFormControlLabel-label': { color: 'rgba(255,255,255,.82)' } }}
+                                                />
                                             </FormGroup>
                                         </Grid>
                                     </Grid>
@@ -723,8 +909,30 @@ const BrowserAddress = () => {
                                         </Box>
                                     )}
                                     <Box mt={2}>
-                                        <LoadingButton loading={isSubmitting} fullWidth size="large" type="submit"
-                                            variant="contained">
+                                        <LoadingButton
+                                            loading={isSubmitting}
+                                            fullWidth
+                                            size="large"
+                                            type="submit"
+                                            variant="contained"
+                                            sx={{
+                                                background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
+                                                color: '#000',
+                                                padding: { md: '18px 42px', xs: '16px 36px' },
+                                                textTransform: 'uppercase',
+                                                letterSpacing: '0.22em',
+                                                fontSize: { md: '0.78rem', xs: '0.72rem' },
+                                                fontWeight: 700,
+                                                boxShadow: '0 15px 35px rgba(221,180,93,.15)',
+                                                transition: 'all 0.4s ease',
+                                                borderRadius: 0,
+                                                '&:hover': {
+                                                    transform: 'translateY(-5px)',
+                                                    boxShadow: '0 20px 50px rgba(221,180,93,.22)',
+                                                    background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)'
+                                                }
+                                            }}
+                                        >
                                             Edit Address
                                         </LoadingButton>
                                     </Box>
@@ -772,28 +980,100 @@ const BrowserAddress = () => {
     }
 
     return (
-        <Container sx={{ mb: 4 }}>
+        <Container sx={{ mb: 4, px: { md: 10, xs: 3 } }}>
             <Box my={5} textAlign="center">
                 <Link to="/cart" style={{ textDecoration: 'none' }}>
-                    <Typography color="primary" fontSize={18} mr={2} display="inline">CART</Typography>
+                    <Typography
+                        color="#efcb77"
+                        fontSize={{ md: 18, xs: 16 }}
+                        mr={2}
+                        display="inline"
+                        sx={{
+                            letterSpacing: '0.16em',
+                            transition: 'all 0.3s ease',
+                            '&:hover': { color: '#f5dc97' }
+                        }}
+                    >
+                        CART
+                    </Typography>
                 </Link>
-                ---------------
-                <Typography fontWeight="bold" fontSize={18} mx={1} display="inline">ADDRESS</Typography>
-                ---------------
-                <Typography fontSize={18} ml={2} display="inline">PAYMENT</Typography>
+                <Typography
+                    fontSize={{ md: 18, xs: 16 }}
+                    display="inline"
+                    sx={{ color: 'rgba(255,255,255,.3)' }}
+                >
+                    ---------------
+                </Typography>
+                <Typography
+                    fontWeight="bold"
+                    fontSize={{ md: 18, xs: 16 }}
+                    mx={1}
+                    display="inline"
+                    sx={{
+                        color: 'white',
+                        letterSpacing: '0.16em'
+                    }}
+                >
+                    ADDRESS
+                </Typography>
+                <Typography
+                    fontSize={{ md: 18, xs: 16 }}
+                    display="inline"
+                    sx={{ color: 'rgba(255,255,255,.3)' }}
+                >
+                    ---------------
+                </Typography>
+                <Typography
+                    fontSize={{ md: 18, xs: 16 }}
+                    ml={2}
+                    display="inline"
+                    sx={{
+                        color: 'rgba(255,255,255,.68)',
+                        letterSpacing: '0.16em'
+                    }}
+                >
+                    PAYMENT
+                </Typography>
             </Box>
             <Grid container>
                 <Grid item xs={8} pr={5}>
                     <Grid container mb={2}>
                         <Grid item xs={6}>
-                            <Typography fontSize={20} variant="subtitle1">
+                            <Typography
+                                fontSize={{ md: 20, xs: 18 }}
+                                variant="subtitle1"
+                                sx={{
+                                    color: 'white',
+                                    fontWeight: 600
+                                }}
+                            >
                                 Select Delivery Address
                             </Typography>
                         </Grid>
                         <Grid item xs={6} textAlign="right">
-                            <Button onClick={() => {
-                                setAddAddressDialogOpen(true)
-                            }} startIcon={<IconPlus />} variant="outlined">
+                            <Button
+                                onClick={() => {
+                                    setAddAddressDialogOpen(true)
+                                }}
+                                startIcon={<IconPlus />}
+                                variant="outlined"
+                                sx={{
+                                    border: '1px solid rgba(255,255,255,.15)',
+                                    color: 'white',
+                                    padding: { md: '12px 28px', xs: '10px 24px' },
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.2em',
+                                    fontSize: { md: '0.78rem', xs: '0.72rem' },
+                                    fontWeight: 600,
+                                    transition: 'all 0.35s ease',
+                                    borderRadius: 0,
+                                    '&:hover': {
+                                        borderColor: '#ddb45d',
+                                        color: '#ddb45d',
+                                        background: 'transparent'
+                                    }
+                                }}
+                            >
                                 Add New Address
                             </Button>
                         </Grid>
@@ -801,65 +1081,158 @@ const BrowserAddress = () => {
                     <FormControl fullWidth>
                         <RadioGroup name="address" value={selectedAddress}>
                             {addresses.map(address => (
-                                <Box key={address.id} mb={2}>
-                                    <Paper elevation={2}>
-                                        <Card p={1} variant="outlined">
-                                            <CardContent>
-                                                <FormControlLabel
-                                                    value={address.id} control={<Radio />}
-                                                    sx={{ width: '100%' }}
-                                                    onChange={() => {
-                                                        selectAddress(address.id)
-                                                    }}
-                                                    label={(
-                                                        <Box>
-                                                            <Chip
-                                                                color={address.id === selectedAddress ? 'primary' : 'default'}
-                                                                sx={{ mb: 2 }}
-                                                                label={address.saved_name}></Chip>
-                                                            <Typography>{address.firstname} {address.lastname}</Typography>
-                                                            <Typography>{address.address_1}</Typography>
-                                                            <Typography>{address.address_2}</Typography>
-                                                            <Typography>{address.landmark}</Typography>
-                                                            <Typography>{address.city}</Typography>
-                                                            <Typography>{address.state}</Typography>
-                                                            <Typography>{address.postcode}</Typography>
-                                                            <Typography>{address.phone}</Typography>
-                                                            {address.alt_phone && (
-                                                                <Typography>{address.alt_phone}</Typography>
-                                                            )}
-                                                            {address.id === selectedAddress && (
-                                                                <Stack direction="row" mt={2} spacing={2}>
-                                                                    <Button variant="outlined" color="error"
-                                                                        size="small" onClick={() => {
-                                                                            remove(address.id)
-                                                                        }}>
-                                                                        Remove
-                                                                    </Button>
-                                                                    <Button variant="outlined" color="warning"
-                                                                        size="small" onClick={() => {
-                                                                            setEditAddressId(address.id)
-                                                                            setEditAddressDialogOpen(true)
-                                                                        }}>
-                                                                        Edit
-                                                                    </Button>
-                                                                </Stack>
-                                                            )}
-                                                        </Box>
-                                                    )} />
-                                            </CardContent>
-                                        </Card>
-                                    </Paper>
+                                <Box key={address.id} mb={3}>
+                                    <Card
+                                        variant="outlined"
+                                        sx={{
+                                            background: 'linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01))',
+                                            border: '1px solid rgba(255,255,255,.08)',
+                                            backdropFilter: 'blur(10px)',
+                                            transition: 'all 0.45s cubic-bezier(0.4, 0, 0.2, 1)',
+                                            borderRadius: '4px',
+                                            '&:hover': {
+                                                transform: 'translateY(-8px)',
+                                                borderColor: 'rgba(221,180,93,.2)',
+                                                boxShadow: '0 25px 60px rgba(0,0,0,.45)'
+                                            }
+                                        }}
+                                    >
+                                        <CardContent sx={{ p: { md: 3, xs: 2 } }}>
+                                            <FormControlLabel
+                                                value={address.id}
+                                                control={
+                                                    <Radio
+                                                        sx={{
+                                                            color: 'rgba(255,255,255,.68)',
+                                                            '&.Mui-checked': { color: '#efcb77' }
+                                                        }}
+                                                    />
+                                                }
+                                                sx={{ width: '100%', alignItems: 'flex-start' }}
+                                                onChange={() => {
+                                                    selectAddress(address.id)
+                                                }}
+                                                label={(
+                                                    <Box>
+                                                        <Chip
+                                                            label={address.saved_name}
+                                                            sx={{
+                                                                mb: 2,
+                                                                background: address.id === selectedAddress
+                                                                    ? 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)'
+                                                                    : 'rgba(255,255,255,.08)',
+                                                                color: address.id === selectedAddress ? '#000' : 'rgba(255,255,255,.82)',
+                                                                fontWeight: 600,
+                                                                letterSpacing: '0.05em'
+                                                            }}
+                                                        />
+                                                        <Typography sx={{ color: 'white', fontWeight: 600, mb: 0.5 }}>
+                                                            {address.firstname} {address.lastname}
+                                                        </Typography>
+                                                        <Typography sx={{ color: 'rgba(255,255,255,.82)', fontSize: '0.95rem' }}>
+                                                            {address.address_1}
+                                                        </Typography>
+                                                        <Typography sx={{ color: 'rgba(255,255,255,.82)', fontSize: '0.95rem' }}>
+                                                            {address.address_2}
+                                                        </Typography>
+                                                        {address.landmark && (
+                                                            <Typography sx={{ color: 'rgba(255,255,255,.82)', fontSize: '0.95rem' }}>
+                                                                {address.landmark}
+                                                            </Typography>
+                                                        )}
+                                                        <Typography sx={{ color: 'rgba(255,255,255,.82)', fontSize: '0.95rem' }}>
+                                                            {address.city}, {address.state} - {address.postcode}
+                                                        </Typography>
+                                                        <Typography sx={{ color: 'rgba(255,255,255,.82)', fontSize: '0.95rem', mt: 1 }}>
+                                                            Phone: {address.phone}
+                                                        </Typography>
+                                                        {address.alt_phone && (
+                                                            <Typography sx={{ color: 'rgba(255,255,255,.68)', fontSize: '0.9rem' }}>
+                                                                Alt: {address.alt_phone}
+                                                            </Typography>
+                                                        )}
+                                                        {address.id === selectedAddress && (
+                                                            <Stack direction="row" mt={2} spacing={2}>
+                                                                <Button
+                                                                    variant="outlined"
+                                                                    size="small"
+                                                                    onClick={() => {
+                                                                        remove(address.id)
+                                                                    }}
+                                                                    sx={{
+                                                                        border: '1px solid #ff6b6b',
+                                                                        color: '#ff6b6b',
+                                                                        textTransform: 'uppercase',
+                                                                        letterSpacing: '0.1em',
+                                                                        fontSize: '0.7rem',
+                                                                        fontWeight: 600,
+                                                                        transition: 'all 0.3s ease',
+                                                                        '&:hover': {
+                                                                            background: 'rgba(255,107,107,.1)',
+                                                                            borderColor: '#ff6b6b'
+                                                                        }
+                                                                    }}
+                                                                >
+                                                                    Remove
+                                                                </Button>
+                                                                <Button
+                                                                    variant="outlined"
+                                                                    size="small"
+                                                                    onClick={() => {
+                                                                        setEditAddressId(address.id)
+                                                                        setEditAddressDialogOpen(true)
+                                                                    }}
+                                                                    sx={{
+                                                                        border: '1px solid #ffa94d',
+                                                                        color: '#ffa94d',
+                                                                        textTransform: 'uppercase',
+                                                                        letterSpacing: '0.1em',
+                                                                        fontSize: '0.7rem',
+                                                                        fontWeight: 600,
+                                                                        transition: 'all 0.3s ease',
+                                                                        '&:hover': {
+                                                                            background: 'rgba(255,169,77,.1)',
+                                                                            borderColor: '#ffa94d'
+                                                                        }
+                                                                    }}
+                                                                >
+                                                                    Edit
+                                                                </Button>
+                                                            </Stack>
+                                                        )}
+                                                    </Box>
+                                                )}
+                                            />
+                                        </CardContent>
+                                    </Card>
                                 </Box>
                             ))}
                         </RadioGroup>
                     </FormControl>
                 </Grid>
                 <Grid item xs={4}>
-                    <Typography mb={1} fontSize={18} variant="subtitle1">
-                        Order Details:
-                    </Typography>
-                    {cart.map(item => (
+                    <Box
+                        sx={{
+                            background: 'linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01))',
+                            border: '1px solid rgba(255,255,255,.08)',
+                            backdropFilter: 'blur(10px)',
+                            borderRadius: '4px',
+                            p: { md: 3, xs: 2 }
+                        }}
+                    >
+                        <Typography
+                            mb={2}
+                            fontSize={{ md: 18, xs: 16 }}
+                            variant="subtitle1"
+                            sx={{
+                                color: 'white',
+                                fontWeight: 600,
+                                letterSpacing: '0.05em'
+                            }}
+                        >
+                            Order Details:
+                        </Typography>
+                        {cart.map(item => (
                         <Box key={item.item}>
                             <Grid container>
                                 <Grid item xs={4} p={1}>
@@ -926,37 +1299,116 @@ const BrowserAddress = () => {
                             </Grid>
                         </Box>
                     ))}
-                    <Box mt={2}>
-                        <Typography>Price Details ({findSum(cart, 'quantity')} Items)</Typography>
-                        <Typography>
-                            Total MRP: ₹{round(cart.map(({ mrp, quantity }) => mrp * quantity).reduce((a, b) => a + b, 0))}
-                        </Typography>
-                        <Typography>
-                            Discount on MRP:
-                            ₹{round(cart.map(({ discount, quantity }) => discount * quantity).reduce((a, b) => a + b, 0))}
-                        </Typography>
-                        <Typography>
-                            Total: ₹{round(cart.map(({ price, quantity }) => price * quantity).reduce((a, b) => a + b, 0))}
-                        </Typography>
-                        <Typography>
-                            {config.pvName}: {round(cart.map(({ pv, quantity }) => pv * quantity).reduce((a, b) => a + b, 0))}
-                        </Typography>
-                    </Box>
-                    <Box mt={2}>
-                        {selectedAddress === null && (
-                            <Typography color={orange[700]}>Select or add an Address to Checkout</Typography>
-                        )}
-                        <Button
-                            component={Link}
-                            to="/checkout"
-                            disabled={selectedAddress === null}
-                            startIcon={<IconCash />}
-                            variant="contained"
-                            fullWidth onClick={() => {
-                                sessionStorage.setItem('address', selectedAddress)
-                            }}>
-                            Checkout
-                        </Button>
+                        <Box
+                            mt={3}
+                            pt={3}
+                            sx={{
+                                borderTop: '1px solid rgba(255,255,255,.08)'
+                            }}
+                        >
+                            <Typography
+                                sx={{
+                                    color: 'white',
+                                    fontWeight: 600,
+                                    mb: 2,
+                                    fontSize: '1rem'
+                                }}
+                            >
+                                Price Details ({findSum(cart, 'quantity')} Items)
+                            </Typography>
+                            <Stack spacing={1}>
+                                <Box display="flex" justifyContent="space-between">
+                                    <Typography sx={{ color: 'rgba(255,255,255,.82)', fontSize: '0.95rem' }}>
+                                        Total MRP:
+                                    </Typography>
+                                    <Typography sx={{ color: 'rgba(255,255,255,.82)', fontSize: '0.95rem' }}>
+                                        ₹{round(cart.map(({ mrp, quantity }) => mrp * quantity).reduce((a, b) => a + b, 0))}
+                                    </Typography>
+                                </Box>
+                                <Box display="flex" justifyContent="space-between">
+                                    <Typography sx={{ color: '#51cf66', fontSize: '0.95rem' }}>
+                                        Discount on MRP:
+                                    </Typography>
+                                    <Typography sx={{ color: '#51cf66', fontSize: '0.95rem' }}>
+                                        -₹{round(cart.map(({ discount, quantity }) => discount * quantity).reduce((a, b) => a + b, 0))}
+                                    </Typography>
+                                </Box>
+                                <Box
+                                    display="flex"
+                                    justifyContent="space-between"
+                                    pt={2}
+                                    mt={1}
+                                    sx={{ borderTop: '1px solid rgba(255,255,255,.08)' }}
+                                >
+                                    <Typography sx={{ color: 'white', fontWeight: 700, fontSize: '1.05rem' }}>
+                                        Total:
+                                    </Typography>
+                                    <Typography sx={{ color: '#efcb77', fontWeight: 700, fontSize: '1.05rem' }}>
+                                        ₹{round(cart.map(({ price, quantity }) => price * quantity).reduce((a, b) => a + b, 0))}
+                                    </Typography>
+                                </Box>
+                                <Box display="flex" justifyContent="space-between">
+                                    <Typography sx={{ color: 'rgba(255,255,255,.82)', fontSize: '0.9rem' }}>
+                                        {config.pvName}:
+                                    </Typography>
+                                    <Typography sx={{ color: '#efcb77', fontSize: '0.9rem', fontWeight: 600 }}>
+                                        {round(cart.map(({ pv, quantity }) => pv * quantity).reduce((a, b) => a + b, 0))}
+                                    </Typography>
+                                </Box>
+                            </Stack>
+                        </Box>
+                        <Box mt={3}>
+                            {selectedAddress === null && (
+                                <Typography
+                                    sx={{
+                                        color: '#ffa94d',
+                                        fontSize: '0.9rem',
+                                        mb: 2,
+                                        textAlign: 'center'
+                                    }}
+                                >
+                                    Select or add an Address to Checkout
+                                </Typography>
+                            )}
+                            <Button
+                                component={Link}
+                                to="/checkout"
+                                disabled={selectedAddress === null}
+                                startIcon={<IconCash />}
+                                variant="contained"
+                                fullWidth
+                                onClick={() => {
+                                    sessionStorage.setItem('address', selectedAddress)
+                                }}
+                                sx={{
+                                    background: selectedAddress === null
+                                        ? 'rgba(255,255,255,.1)'
+                                        : 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
+                                    color: selectedAddress === null ? 'rgba(255,255,255,.4)' : '#000',
+                                    padding: { md: '18px 42px', xs: '16px 36px' },
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.22em',
+                                    fontSize: { md: '0.78rem', xs: '0.72rem' },
+                                    fontWeight: 700,
+                                    boxShadow: selectedAddress === null ? 'none' : '0 15px 35px rgba(221,180,93,.15)',
+                                    transition: 'all 0.4s ease',
+                                    borderRadius: 0,
+                                    '&:hover': {
+                                        transform: selectedAddress === null ? 'none' : 'translateY(-5px)',
+                                        boxShadow: selectedAddress === null ? 'none' : '0 20px 50px rgba(221,180,93,.22)',
+                                        background: selectedAddress === null
+                                            ? 'rgba(255,255,255,.1)'
+                                            : 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)'
+                                    },
+                                    '&.Mui-disabled': {
+                                        background: 'rgba(255,255,255,.1)',
+                                        color: 'rgba(255,255,255,.4)'
+                                    }
+                                }}
+                            >
+                                Checkout
+                            </Button>
+                        </Box>
                     </Box>
                 </Grid>
             </Grid>

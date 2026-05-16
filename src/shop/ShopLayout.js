@@ -89,32 +89,45 @@ const ShopLayout = () => {
     return (
         <Box>
             <MobileView>
-                {/* Modern Mobile Header */}
+                {/* Elite Mobile Header - Fixed with Backdrop Blur */}
                 <AppBar
                     position="sticky"
                     elevation={0}
                     sx={{
+                        height: '64px',
                         borderBottom: '1px solid rgba(255,255,255,.08)',
                         background: 'rgba(0,0,0,.7)',
                         backdropFilter: 'blur(16px)',
                         WebkitBackdropFilter: 'blur(16px)',
                     }}
                 >
-                    <Toolbar>
+                    <Toolbar
+                        sx={{
+                            height: '100%',
+                            minHeight: '64px !important',
+                            px: 3,
+                        }}
+                    >
                         <IconButton
                             edge="start"
                             color="inherit"
-                            aria-label="menu"
+                            aria-label="Open navigation menu"
                             sx={{
                                 mr: 2,
                                 color: 'rgba(255,255,255,.82)',
+                                transition: 'all 0.3s ease',
                                 '&:hover': {
                                     color: '#f5dc97',
+                                    transform: 'scale(1.05)',
+                                },
+                                '&:focus-visible': {
+                                    outline: '2px solid #efcb77',
+                                    outlineOffset: '2px',
                                 }
                             }}
                             onClick={() => setOpenDrawer(!openDrawer)}
                         >
-                            {openDrawer ? <IconX /> : <IconMenu2 />}
+                            {openDrawer ? <IconX size={24} /> : <IconMenu2 size={24} />}
                         </IconButton>
 
                         {layout.title !== '' && (
@@ -127,6 +140,7 @@ const ShopLayout = () => {
                                 sx={{
                                     color: 'white',
                                     fontWeight: 700,
+                                    fontSize: '1.2rem',
                                 }}
                             >
                                 {layout.title}
@@ -134,23 +148,43 @@ const ShopLayout = () => {
                         )}
 
                         {(pathname === '/' || layout.title === '') && (
-                            <Box flexGrow={1} textAlign="center">
+                            <Box
+                                flexGrow={1}
+                                textAlign="center"
+                                sx={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    maxHeight: '48px',
+                                    '& img': {
+                                        maxHeight: '48px',
+                                        maxWidth: '120px',
+                                        objectFit: 'contain'
+                                    }
+                                }}
+                            >
                                 <LogoSection />
                             </Box>
                         )}
 
                         {viewCart && (
                             <IconButton
-                                edge="start"
+                                edge="end"
                                 color="inherit"
-                                aria-label="menu"
+                                aria-label="View shopping cart"
                                 component={Link}
                                 to="/cart"
                                 sx={{
                                     ml: 2,
                                     color: 'rgba(255,255,255,.82)',
+                                    transition: 'all 0.3s ease',
                                     '&:hover': {
                                         color: '#f5dc97',
+                                        transform: 'scale(1.05)',
+                                    },
+                                    '&:focus-visible': {
+                                        outline: '2px solid #efcb77',
+                                        outlineOffset: '2px',
                                     }
                                 }}
                             >
@@ -161,10 +195,11 @@ const ShopLayout = () => {
                                             background: 'linear-gradient(135deg, #fff7dc 0%, #efcb77 50%, #d69d45 100%)',
                                             color: '#000',
                                             fontWeight: 700,
+                                            fontSize: '0.7rem',
                                         }
                                     }}
                                 >
-                                    <IconShoppingCart />
+                                    <IconShoppingCart size={24} />
                                 </Badge>
                             </IconButton>
                         )}
@@ -183,31 +218,45 @@ const ShopLayout = () => {
                         }
                     }}
                 >
+                    {/* Drawer Header with Logo */}
                     <Box
                         sx={{
                             background: 'rgba(0,0,0,.7)',
                             borderBottom: '1px solid rgba(255,255,255,.08)',
+                            py: 2,
+                            px: 3,
                         }}
                     >
-                        <Box my={2} mx={4}>
-                            <LogoSection />
-                        </Box>
+                        <LogoSection />
                     </Box>
 
                     <Divider sx={{ borderColor: 'rgba(255,255,255,.08)' }} />
 
+                    {/* User Navigation Menu */}
                     <List
                         sx={{
+                            py: 2,
                             '& .MuiListItemButton-root': {
                                 color: 'rgba(255,255,255,.82)',
+                                py: 1.5,
+                                px: 3,
+                                transition: 'all 0.3s ease',
                                 '&:hover': {
                                     bgcolor: 'rgba(221,180,93,.06)',
                                     color: '#f5dc97',
+                                },
+                                '&:focus-visible': {
+                                    outline: '2px solid #efcb77',
+                                    outlineOffset: '-2px',
                                 }
                             },
                             '& .MuiListItemIcon-root': {
                                 color: 'inherit',
                                 minWidth: '40px',
+                            },
+                            '& .MuiListItemText-primary': {
+                                fontSize: '0.95rem',
+                                fontWeight: 500,
                             }
                         }}
                     >
@@ -305,34 +354,49 @@ const ShopLayout = () => {
                         )}
                     </List>
 
-                    <Divider sx={{ borderColor: 'rgba(255,255,255,.08)' }} />
+                    <Divider sx={{ borderColor: 'rgba(255,255,255,.08)', my: 2 }} />
 
+                    {/* Categories Section Header */}
                     <Typography
                         textAlign="center"
-                        mt={4}
-                        fontWeight="bold"
+                        mt={3}
+                        mb={2}
+                        fontWeight={600}
                         variant="h4"
                         sx={{
                             color: '#efcb77',
                             textTransform: 'uppercase',
-                            letterSpacing: '0.2em',
-                            fontSize: '0.9rem',
+                            letterSpacing: '0.25em',
+                            fontSize: '0.8rem',
                         }}
                     >
                         Categories
                     </Typography>
 
+                    {/* Categories Navigation */}
                     <List
                         sx={{
+                            py: 1,
                             '& .MuiListItemButton-root': {
                                 color: 'rgba(255,255,255,.82)',
+                                py: 1.5,
+                                px: 3,
+                                transition: 'all 0.3s ease',
                                 '&:hover': {
                                     bgcolor: 'rgba(221,180,93,.06)',
                                     color: '#f5dc97',
+                                },
+                                '&:focus-visible': {
+                                    outline: '2px solid #efcb77',
+                                    outlineOffset: '-2px',
                                 }
                             },
                             '& .MuiListItemIcon-root': {
                                 color: 'inherit',
+                            },
+                            '& .MuiListItemText-primary': {
+                                fontSize: '0.95rem',
+                                fontWeight: 500,
                             }
                         }}
                     >
@@ -344,12 +408,17 @@ const ShopLayout = () => {
                                         onClick={() => {
                                             setMobileExpanded({ ...mobileExpanded, [parent.id]: !mobileExpanded[parent.id] });
                                         }}
+                                        aria-expanded={mobileExpanded[parent.id]}
+                                        aria-label={`${parent.category} category menu`}
                                     >
                                         <ListItemText primary={parent.category} />
-                                        {mobileExpanded[parent.id] ? <ExpandLess sx={{ color: '#f5dc97' }} /> : <ExpandMore sx={{ color: '#f5dc97' }} />}
+                                        {mobileExpanded[parent.id] ?
+                                            <ExpandLess sx={{ color: '#f5dc97', transition: 'transform 0.3s ease' }} /> :
+                                            <ExpandMore sx={{ color: '#f5dc97', transition: 'transform 0.3s ease' }} />
+                                        }
                                     </ListItemButton>
                                     <Collapse in={mobileExpanded[parent.id]} timeout="auto" unmountOnExit>
-                                        <List>
+                                        <List sx={{ bgcolor: 'rgba(0,0,0,.3)' }}>
                                             {children.map(({ category, id }, childKey) => (
                                                 <ListItemButton
                                                     key={childKey}
@@ -357,11 +426,20 @@ const ShopLayout = () => {
                                                         setMobileExpanded({});
                                                         setOpenDrawer(false);
                                                     }}
-                                                    sx={{ pl: 4 }}
+                                                    sx={{
+                                                        pl: 6,
+                                                        py: 1.25,
+                                                    }}
                                                     component={Link}
                                                     to={`/c/${id}/${href(parent.category)}/${href(category)}`}
+                                                    aria-label={`View ${category} products`}
                                                 >
-                                                    <ListItemText primary={category} />
+                                                    <ListItemText
+                                                        primary={category}
+                                                        primaryTypographyProps={{
+                                                            fontSize: '0.9rem',
+                                                        }}
+                                                    />
                                                 </ListItemButton>
                                             ))}
                                         </List>
@@ -376,6 +454,7 @@ const ShopLayout = () => {
                                     }}
                                     component={Link}
                                     to={`/c/${parent.id}/${href(parent.category)}`}
+                                    aria-label={`View ${parent.category} products`}
                                 >
                                     <ListItemText primary={parent.category} />
                                 </ListItemButton>
@@ -384,17 +463,18 @@ const ShopLayout = () => {
                     </List>
                 </Drawer>
 
+                {/* Main Content Area */}
                 <Box
                     sx={{
-                        pb: 4,
-                        minHeight: 'calc(100vh - 144px)',
+                        pb: 6,
+                        minHeight: 'calc(100vh - 64px)',
                         background: '#020202',
                     }}
                 >
                     <Outlet context={[setLayout, layout]} />
                 </Box>
 
-                {/* Elite Mobile Footer - Matching sample_code.html exactly */}
+                {/* Elite Mobile Footer - Design System Compliant */}
                 <Box
                     component="footer"
                     sx={{
@@ -405,19 +485,19 @@ const ShopLayout = () => {
                     <Container
                         maxWidth={false}
                         sx={{
-                            px: '24px',
-                            py: '112px',
+                            px: 3,
+                            py: 10,
                         }}
                     >
-                        <Grid container spacing={24}>
-                            {/* LEFT - Brand/Logo Section */}
+                        <Grid container spacing={4}>
+                            {/* Brand/Logo Section */}
                             <Grid item xs={12}>
-                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2.5, mb: 2.5 }}>
+                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
                                     <Box
                                         component="img"
                                         src="/brand_logo/web-app-manifest-192x192.png"
-                                        sx={{ width: '64px' }}
-                                        alt="Victory World"
+                                        sx={{ width: '56px', height: '56px' }}
+                                        alt="Victory World Logo"
                                     />
                                     <Typography
                                         component="h3"
@@ -436,14 +516,14 @@ const ShopLayout = () => {
                                     sx={{
                                         color: 'rgba(255,255,255,.68)',
                                         lineHeight: 2.1,
-                                        fontSize: '1.05rem',
+                                        fontSize: '1rem',
                                     }}
                                 >
                                     We provide a unique business opportunity for individuals to become distributors, purchase products at special prices, and build their own income by selling to others.
                                 </Typography>
                             </Grid>
 
-                            {/* CENTER - Services */}
+                            {/* Services Section */}
                             <Grid item xs={12}>
                                 <Typography
                                     component="h4"
@@ -452,23 +532,29 @@ const ShopLayout = () => {
                                         letterSpacing: '0.25em',
                                         fontSize: '0.8rem',
                                         color: '#efcb77',
-                                        mb: '34px',
+                                        mb: 3,
                                         fontWeight: 600,
                                     }}
                                 >
                                     Services
                                 </Typography>
-                                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
                                     <Typography
                                         component={Link}
                                         to="/"
                                         sx={{
                                             color: 'rgba(255,255,255,.62)',
                                             textDecoration: 'none',
-                                            transition: '0.3s ease',
+                                            transition: 'all 0.3s ease',
                                             display: 'block',
+                                            fontSize: '0.95rem',
                                             '&:hover': {
                                                 color: '#f5dc97',
+                                                transform: 'translateX(4px)',
+                                            },
+                                            '&:focus-visible': {
+                                                outline: '2px solid #efcb77',
+                                                outlineOffset: '2px',
                                             }
                                         }}
                                     >
@@ -480,26 +566,37 @@ const ShopLayout = () => {
                                         sx={{
                                             color: 'rgba(255,255,255,.62)',
                                             textDecoration: 'none',
-                                            transition: '0.3s ease',
+                                            transition: 'all 0.3s ease',
                                             display: 'block',
+                                            fontSize: '0.95rem',
                                             '&:hover': {
                                                 color: '#f5dc97',
+                                                transform: 'translateX(4px)',
+                                            },
+                                            '&:focus-visible': {
+                                                outline: '2px solid #efcb77',
+                                                outlineOffset: '2px',
                                             }
                                         }}
                                     >
                                         Shop
                                     </Typography>
-                                    
                                     <Typography
                                         component={Link}
                                         to="/privacy-policy"
                                         sx={{
                                             color: 'rgba(255,255,255,.62)',
                                             textDecoration: 'none',
-                                            transition: '0.3s ease',
+                                            transition: 'all 0.3s ease',
                                             display: 'block',
+                                            fontSize: '0.95rem',
                                             '&:hover': {
                                                 color: '#f5dc97',
+                                                transform: 'translateX(4px)',
+                                            },
+                                            '&:focus-visible': {
+                                                outline: '2px solid #efcb77',
+                                                outlineOffset: '2px',
                                             }
                                         }}
                                     >
@@ -508,7 +605,7 @@ const ShopLayout = () => {
                                 </Box>
                             </Grid>
 
-                            {/* RIGHT - Contact */}
+                            {/* Contact Section */}
                             <Grid item xs={12}>
                                 <Typography
                                     component="h4"
@@ -517,46 +614,71 @@ const ShopLayout = () => {
                                         letterSpacing: '0.25em',
                                         fontSize: '0.8rem',
                                         color: '#efcb77',
-                                        mb: '34px',
+                                        mb: 3,
                                         fontWeight: 600,
                                     }}
                                 >
                                     Contact
                                 </Typography>
-                                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, color: 'rgba(255,255,255,.62)', lineHeight: 2 }}>
-                                    <Typography>
+                                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, color: 'rgba(255,255,255,.62)', lineHeight: 2 }}>
+                                    <Typography sx={{ fontSize: '0.95rem' }}>
                                         Office Suite B, Second Floor,<br />
                                         21A Brook Street, India
                                     </Typography>
-                                    <Typography>
+                                    <Typography
+                                        component="a"
+                                        href="mailto:enquiries@victoryworld.in"
+                                        sx={{
+                                            color: 'inherit',
+                                            textDecoration: 'none',
+                                            fontSize: '0.95rem',
+                                            transition: 'color 0.3s ease',
+                                            '&:hover': {
+                                                color: '#f5dc97',
+                                            }
+                                        }}
+                                    >
                                         enquiries@victoryworld.in
                                     </Typography>
-                                    <Typography>
+                                    <Typography
+                                        component="a"
+                                        href="tel:+4401943816670"
+                                        sx={{
+                                            color: 'inherit',
+                                            textDecoration: 'none',
+                                            fontSize: '0.95rem',
+                                            transition: 'color 0.3s ease',
+                                            '&:hover': {
+                                                color: '#f5dc97',
+                                            }
+                                        }}
+                                    >
                                         +44 01943 816670
                                     </Typography>
                                 </Box>
                             </Grid>
                         </Grid>
 
-                        {/* BOTTOM */}
+                        {/* Footer Bottom */}
                         <Box
                             sx={{
-                                mt: '96px',
-                                pt: '40px',
+                                mt: 8,
+                                pt: 4,
                                 borderTop: '1px solid rgba(255,255,255,.1)',
                                 display: 'flex',
                                 flexDirection: 'column',
-                                justifyContent: 'space-between',
-                                gap: 3,
+                                alignItems: 'center',
+                                gap: 2,
                                 color: 'rgba(255,255,255,.4)',
                                 fontSize: '0.875rem',
+                                textAlign: 'center',
                             }}
                         >
                             <Typography sx={{ color: 'inherit', fontSize: 'inherit' }}>
-                                © 2026 Victory World. All Rights Reserved.
+                                © 2026 Victory World. 
                             </Typography>
                             <Typography sx={{ color: 'inherit', fontSize: 'inherit' }}>
-                                Crafted With Luxury Precision
+                                All Rights Reserved.
                             </Typography>
                         </Box>
                     </Container>
@@ -581,7 +703,7 @@ const ShopLayout = () => {
                         sx={{
                             maxWidth: '1440px',
                             height: '100%',
-                            px: { md: '80px', xs: '24px' },
+                            px: { md: 10, xs: 3 },
                         }}
                     >
                         <Box
@@ -593,7 +715,18 @@ const ShopLayout = () => {
                             }}
                         >
                             {/* Logo */}
-                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, maxHeight: '50px' }}>
+                            <Box sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: 2,
+                                maxWidth: '110px',
+                                maxHeight: '110px',
+                                '& img': {
+                                    maxWidth: '100%',
+                                    maxHeight: '100%',
+                                    objectFit: 'contain'
+                                }
+                            }}>
                                 <LogoSection />
                             </Box>
 
@@ -816,7 +949,7 @@ const ShopLayout = () => {
                     <Outlet context={[setLayout, layout]} />
                 </Box>
 
-                {/* Elite Desktop Footer - Matching sample_code.html exactly */}
+                {/* Elite Desktop Footer - Design System Compliant */}
                 <Box
                     component="footer"
                     sx={{
@@ -828,19 +961,19 @@ const ShopLayout = () => {
                         maxWidth={false}
                         sx={{
                             maxWidth: '1440px',
-                            px: '80px',
-                            py: '112px',
+                            px: 10,
+                            py: 12,
                         }}
                     >
-                        <Grid container spacing={24}>
-                            {/* LEFT - Brand/Logo Section */}
+                        <Grid container spacing={6}>
+                            {/* Brand/Logo Section */}
                             <Grid item xs={12} lg={4}>
-                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2.5, mb: 2.5 }}>
+                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2.5, mb: 3 }}>
                                     <Box
                                         component="img"
                                         src="/brand_logo/web-app-manifest-192x192.png"
-                                        sx={{ width: '64px' }}
-                                        alt="Victory world"
+                                        sx={{ width: '64px', height: '64px' }}
+                                        alt="Victory World Logo"
                                     />
                                     <Typography
                                         component="h3"
@@ -852,7 +985,7 @@ const ShopLayout = () => {
                                             color: 'white',
                                         }}
                                     >
-                                        Victory world
+                                        Victory World
                                     </Typography>
                                 </Box>
                                 <Typography
@@ -866,7 +999,7 @@ const ShopLayout = () => {
                                 </Typography>
                             </Grid>
 
-                            {/* CENTER - Services */}
+                            {/* Services Section */}
                             <Grid item xs={12} lg={4}>
                                 <Typography
                                     component="h4"
@@ -875,23 +1008,29 @@ const ShopLayout = () => {
                                         letterSpacing: '0.25em',
                                         fontSize: '0.8rem',
                                         color: '#efcb77',
-                                        mb: '34px',
+                                        mb: 4,
                                         fontWeight: 600,
                                     }}
                                 >
                                     Services
                                 </Typography>
-                                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
                                     <Typography
                                         component={Link}
                                         to="/"
                                         sx={{
                                             color: 'rgba(255,255,255,.62)',
                                             textDecoration: 'none',
-                                            transition: '0.3s ease',
+                                            transition: 'all 0.3s ease',
                                             display: 'block',
+                                            fontSize: '1rem',
                                             '&:hover': {
                                                 color: '#f5dc97',
+                                                transform: 'translateX(4px)',
+                                            },
+                                            '&:focus-visible': {
+                                                outline: '2px solid #efcb77',
+                                                outlineOffset: '2px',
                                             }
                                         }}
                                     >
@@ -903,25 +1042,37 @@ const ShopLayout = () => {
                                         sx={{
                                             color: 'rgba(255,255,255,.62)',
                                             textDecoration: 'none',
-                                            transition: '0.3s ease',
+                                            transition: 'all 0.3s ease',
                                             display: 'block',
+                                            fontSize: '1rem',
                                             '&:hover': {
                                                 color: '#f5dc97',
+                                                transform: 'translateX(4px)',
+                                            },
+                                            '&:focus-visible': {
+                                                outline: '2px solid #efcb77',
+                                                outlineOffset: '2px',
                                             }
                                         }}
                                     >
                                         Shop
-                                    </Typography>                                   
+                                    </Typography>
                                     <Typography
                                         component={Link}
                                         to="/privacy-policy"
                                         sx={{
                                             color: 'rgba(255,255,255,.62)',
                                             textDecoration: 'none',
-                                            transition: '0.3s ease',
+                                            transition: 'all 0.3s ease',
                                             display: 'block',
+                                            fontSize: '1rem',
                                             '&:hover': {
                                                 color: '#f5dc97',
+                                                transform: 'translateX(4px)',
+                                            },
+                                            '&:focus-visible': {
+                                                outline: '2px solid #efcb77',
+                                                outlineOffset: '2px',
                                             }
                                         }}
                                     >
@@ -930,7 +1081,7 @@ const ShopLayout = () => {
                                 </Box>
                             </Grid>
 
-                            {/* RIGHT - Contact */}
+                            {/* Contact Section */}
                             <Grid item xs={12} lg={4}>
                                 <Typography
                                     component="h4"
@@ -939,46 +1090,79 @@ const ShopLayout = () => {
                                         letterSpacing: '0.25em',
                                         fontSize: '0.8rem',
                                         color: '#efcb77',
-                                        mb: '34px',
+                                        mb: 4,
                                         fontWeight: 600,
                                     }}
                                 >
                                     Contact
                                 </Typography>
-                                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, color: 'rgba(255,255,255,.62)', lineHeight: 2 }}>
-                                    <Typography>
+                                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, color: 'rgba(255,255,255,.62)', lineHeight: 2 }}>
+                                    <Typography sx={{ fontSize: '1rem' }}>
                                         Office Suite B, Second Floor,<br />
                                         21A Brook Street, India
                                     </Typography>
-                                    <Typography>
+                                    <Typography
+                                        component="a"
+                                        href="mailto:enquiries@victoryworld.in"
+                                        sx={{
+                                            color: 'inherit',
+                                            textDecoration: 'none',
+                                            fontSize: '1rem',
+                                            transition: 'color 0.3s ease',
+                                            '&:hover': {
+                                                color: '#f5dc97',
+                                            },
+                                            '&:focus-visible': {
+                                                outline: '2px solid #efcb77',
+                                                outlineOffset: '2px',
+                                            }
+                                        }}
+                                    >
                                         enquiries@victoryworld.in
                                     </Typography>
-                                    <Typography>
+                                    <Typography
+                                        component="a"
+                                        href="tel:+4401943816670"
+                                        sx={{
+                                            color: 'inherit',
+                                            textDecoration: 'none',
+                                            fontSize: '1rem',
+                                            transition: 'color 0.3s ease',
+                                            '&:hover': {
+                                                color: '#f5dc97',
+                                            },
+                                            '&:focus-visible': {
+                                                outline: '2px solid #efcb77',
+                                                outlineOffset: '2px',
+                                            }
+                                        }}
+                                    >
                                         +44 01943 816670
                                     </Typography>
                                 </Box>
                             </Grid>
                         </Grid>
 
-                        {/* BOTTOM */}
+                        {/* Footer Bottom */}
                         <Box
                             sx={{
-                                mt: '96px',
-                                pt: '40px',
+                                mt: 10,
+                                pt: 4,
                                 borderTop: '1px solid rgba(255,255,255,.1)',
                                 display: 'flex',
                                 flexDirection: 'row',
                                 justifyContent: 'space-between',
+                                alignItems: 'center',
                                 gap: 3,
                                 color: 'rgba(255,255,255,.4)',
                                 fontSize: '0.875rem',
                             }}
                         >
                             <Typography sx={{ color: 'inherit', fontSize: 'inherit' }}>
-                                © 2026 Victory World.
+                                © 2026 Victory World. 
                             </Typography>
                             <Typography sx={{ color: 'inherit', fontSize: 'inherit' }}>
-                                 All Rights Reserved.
+                                All Rights Reserved.
                             </Typography>
                         </Box>
                     </Container>

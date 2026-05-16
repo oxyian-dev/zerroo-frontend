@@ -68,22 +68,78 @@ const BrowserCheckout = () => {
     }
 
     return (
-        <Container sx={{ mb: 4 }}>
+        <Container sx={{ mb: 4, px: { md: 10, xs: 3 } }}>
             <Box my={5} textAlign="center">
                 <Link to="/cart" style={{ textDecoration: 'none' }}>
-                    <Typography color="primary" fontSize={18} mr={2} display="inline">CART</Typography>
+                    <Typography
+                        color="#efcb77"
+                        fontSize={{ md: 18, xs: 16 }}
+                        mr={2}
+                        display="inline"
+                        sx={{
+                            letterSpacing: '0.16em',
+                            transition: 'all 0.3s ease',
+                            '&:hover': { color: '#f5dc97' }
+                        }}
+                    >
+                        CART
+                    </Typography>
                 </Link>
-                ---------------
+                <Typography
+                    fontSize={{ md: 18, xs: 16 }}
+                    display="inline"
+                    sx={{ color: 'rgba(255,255,255,.3)' }}
+                >
+                    ---------------
+                </Typography>
                 <Link to="/address" style={{ textDecoration: 'none' }}>
-                    <Typography color="primary" fontSize={18} mx={2} display="inline">ADDRESS</Typography>
+                    <Typography
+                        color="#efcb77"
+                        fontSize={{ md: 18, xs: 16 }}
+                        mx={2}
+                        display="inline"
+                        sx={{
+                            letterSpacing: '0.16em',
+                            transition: 'all 0.3s ease',
+                            '&:hover': { color: '#f5dc97' }
+                        }}
+                    >
+                        ADDRESS
+                    </Typography>
                 </Link>
-                ---------------
-                <Typography fontWeight="bold" fontSize={18} ml={2} display="inline">PAYMENT</Typography>
+                <Typography
+                    fontSize={{ md: 18, xs: 16 }}
+                    display="inline"
+                    sx={{ color: 'rgba(255,255,255,.3)' }}
+                >
+                    ---------------
+                </Typography>
+                <Typography
+                    fontWeight="bold"
+                    fontSize={{ md: 18, xs: 16 }}
+                    ml={2}
+                    display="inline"
+                    sx={{
+                        color: 'white',
+                        letterSpacing: '0.16em'
+                    }}
+                >
+                    PAYMENT
+                </Typography>
             </Box>
             <Box>
                 <Grid container>
-                    <Grid item xs={8}>
-                        <Typography mb={1} fontSize={18} variant="subtitle1">
+                    <Grid item xs={8} pr={5}>
+                        <Typography
+                            mb={2}
+                            fontSize={{ md: 18, xs: 16 }}
+                            variant="subtitle1"
+                            sx={{
+                                color: 'white',
+                                fontWeight: 600,
+                                letterSpacing: '0.05em'
+                            }}
+                        >
                             Order Details:
                         </Typography>
                         <Grid container>
@@ -156,53 +212,181 @@ const BrowserCheckout = () => {
                         </Grid>
                     </Grid>
                     <Grid item xs={4}>
-                        <Typography fontWeight={700} mb={1} fontSize={18} variant="subtitle1">
-                            Pricing Details:
-                        </Typography>
-                        <Stack spacing={0.5}>
-                            <Typography>Total Items: {findSum(cart, 'quantity')}</Typography>
-                            <Typography>
-                                Total MRP: ₹{inr(round(mrp))}/-
+                        <Box
+                            sx={{
+                                background: 'linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01))',
+                                border: '1px solid rgba(255,255,255,.08)',
+                                backdropFilter: 'blur(10px)',
+                                borderRadius: '4px',
+                                p: { md: 3, xs: 2 }
+                            }}
+                        >
+                            <Typography
+                                fontWeight={700}
+                                mb={2}
+                                fontSize={{ md: 18, xs: 16 }}
+                                variant="subtitle1"
+                                sx={{
+                                    color: 'white',
+                                    letterSpacing: '0.05em'
+                                }}
+                            >
+                                Pricing Details:
                             </Typography>
-                            <Typography>
-                                Discount on MRP:
-                                ₹{round(discount)}
-                            </Typography>
-                            <Typography>
-                                Shipping: ₹{round(shipping)}/-
-                            </Typography>
-                            <Typography>
-                                Total: ₹{round(total)}/-
-                            </Typography>
-                            <Typography>
-                                Wallet Balance: ₹{inr(wallet)}/-
-                            </Typography>
-                            <Typography>
-                                {config.pvName}: {round(cart.map(({ pv, quantity }) => pv * quantity).reduce((a, b) => a + b, 0))}
-                            </Typography>
-                        </Stack>
-                        <Box mt={2}>
-                            {wallet < total && (
-                                <Box mb={2} display="flex" alignItems="center">
-                                    <Typography color="error.main" mr={2}>
-                                        Insufficient Funds
+                            <Stack spacing={1.5}>
+                                <Box display="flex" justifyContent="space-between">
+                                    <Typography sx={{ color: 'rgba(255,255,255,.82)', fontSize: '0.95rem' }}>
+                                        Total Items:
                                     </Typography>
-                                    <Button variant="contained" component={Link} to="/dashboard/wallet-request">
-                                        Raise Wallet Request
-                                    </Button>
+                                    <Typography sx={{ color: 'rgba(255,255,255,.82)', fontSize: '0.95rem' }}>
+                                        {findSum(cart, 'quantity')}
+                                    </Typography>
                                 </Box>
-                            )}
-                            <LoadingButton
-                                disabled={wallet < total}
-                                loading={loading}
-                                startIcon={<IconCash />}
-                                variant="contained"
-                                fullWidth
-                                onClick={() => {
-                                    makePayment()
-                                }}>
-                                Place Order
-                            </LoadingButton>
+                                <Box display="flex" justifyContent="space-between">
+                                    <Typography sx={{ color: 'rgba(255,255,255,.82)', fontSize: '0.95rem' }}>
+                                        Total MRP:
+                                    </Typography>
+                                    <Typography sx={{ color: 'rgba(255,255,255,.82)', fontSize: '0.95rem' }}>
+                                        ₹{inr(round(mrp))}/-
+                                    </Typography>
+                                </Box>
+                                <Box display="flex" justifyContent="space-between">
+                                    <Typography sx={{ color: '#51cf66', fontSize: '0.95rem' }}>
+                                        Discount on MRP:
+                                    </Typography>
+                                    <Typography sx={{ color: '#51cf66', fontSize: '0.95rem' }}>
+                                        -₹{round(discount)}
+                                    </Typography>
+                                </Box>
+                                <Box display="flex" justifyContent="space-between">
+                                    <Typography sx={{ color: 'rgba(255,255,255,.82)', fontSize: '0.95rem' }}>
+                                        Shipping:
+                                    </Typography>
+                                    <Typography sx={{ color: 'rgba(255,255,255,.82)', fontSize: '0.95rem' }}>
+                                        ₹{round(shipping)}/-
+                                    </Typography>
+                                </Box>
+                                <Box
+                                    display="flex"
+                                    justifyContent="space-between"
+                                    pt={1.5}
+                                    mt={1}
+                                    sx={{ borderTop: '1px solid rgba(255,255,255,.08)' }}
+                                >
+                                    <Typography sx={{ color: 'white', fontWeight: 700, fontSize: '1.05rem' }}>
+                                        Total:
+                                    </Typography>
+                                    <Typography sx={{ color: '#efcb77', fontWeight: 700, fontSize: '1.05rem' }}>
+                                        ₹{round(total)}/-
+                                    </Typography>
+                                </Box>
+                                <Box
+                                    display="flex"
+                                    justifyContent="space-between"
+                                    p={2}
+                                    sx={{
+                                        background: wallet >= total ? 'rgba(81,207,102,.1)' : 'rgba(255,107,107,.1)',
+                                        border: wallet >= total ? '1px solid rgba(81,207,102,.3)' : '1px solid rgba(255,107,107,.3)',
+                                        borderRadius: '4px'
+                                    }}
+                                >
+                                    <Typography sx={{ color: 'white', fontWeight: 600, fontSize: '0.95rem' }}>
+                                        Wallet Balance:
+                                    </Typography>
+                                    <Typography sx={{ color: wallet >= total ? '#51cf66' : '#ff6b6b', fontWeight: 700, fontSize: '0.95rem' }}>
+                                        ₹{inr(wallet)}/-
+                                    </Typography>
+                                </Box>
+                                <Box display="flex" justifyContent="space-between">
+                                    <Typography sx={{ color: 'rgba(255,255,255,.82)', fontSize: '0.9rem' }}>
+                                        {config.pvName}:
+                                    </Typography>
+                                    <Typography sx={{ color: '#efcb77', fontSize: '0.9rem', fontWeight: 600 }}>
+                                        {round(cart.map(({ pv, quantity }) => pv * quantity).reduce((a, b) => a + b, 0))}
+                                    </Typography>
+                                </Box>
+                            </Stack>
+                            <Box mt={3}>
+                                {wallet < total && (
+                                    <Box
+                                        mb={2}
+                                        p={2}
+                                        sx={{
+                                            background: 'rgba(255,107,107,.1)',
+                                            border: '1px solid rgba(255,107,107,.3)',
+                                            borderRadius: '4px'
+                                        }}
+                                    >
+                                        <Typography
+                                            sx={{
+                                                color: '#ff6b6b',
+                                                fontWeight: 600,
+                                                mb: 2,
+                                                textAlign: 'center'
+                                            }}
+                                        >
+                                            Insufficient Funds
+                                        </Typography>
+                                        <Button
+                                            variant="outlined"
+                                            component={Link}
+                                            to="/dashboard/wallet-request"
+                                            fullWidth
+                                            sx={{
+                                                border: '1px solid #ff6b6b',
+                                                color: '#ff6b6b',
+                                                textTransform: 'uppercase',
+                                                letterSpacing: '0.1em',
+                                                fontSize: '0.75rem',
+                                                fontWeight: 600,
+                                                '&:hover': {
+                                                    background: 'rgba(255,107,107,.1)',
+                                                    borderColor: '#ff6b6b'
+                                                }
+                                            }}
+                                        >
+                                            Raise Wallet Request
+                                        </Button>
+                                    </Box>
+                                )}
+                                <LoadingButton
+                                    disabled={wallet < total}
+                                    loading={loading}
+                                    startIcon={<IconCash />}
+                                    variant="contained"
+                                    fullWidth
+                                    onClick={() => {
+                                        makePayment()
+                                    }}
+                                    sx={{
+                                        background: wallet < total
+                                            ? 'rgba(255,255,255,.1)'
+                                            : 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
+                                        color: wallet < total ? 'rgba(255,255,255,.4)' : '#000',
+                                        padding: { md: '18px 42px', xs: '16px 36px' },
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '0.22em',
+                                        fontSize: { md: '0.78rem', xs: '0.72rem' },
+                                        fontWeight: 700,
+                                        boxShadow: wallet < total ? 'none' : '0 15px 35px rgba(221,180,93,.15)',
+                                        transition: 'all 0.4s ease',
+                                        borderRadius: 0,
+                                        '&:hover': {
+                                            transform: wallet < total ? 'none' : 'translateY(-5px)',
+                                            boxShadow: wallet < total ? 'none' : '0 20px 50px rgba(221,180,93,.22)',
+                                            background: wallet < total
+                                                ? 'rgba(255,255,255,.1)'
+                                                : 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)'
+                                        },
+                                        '&.Mui-disabled': {
+                                            background: 'rgba(255,255,255,.1)',
+                                            color: 'rgba(255,255,255,.4)'
+                                        }
+                                    }}
+                                >
+                                    Place Order
+                                </LoadingButton>
+                            </Box>
                         </Box>
                     </Grid>
                 </Grid>

@@ -41,15 +41,24 @@ const AddAddress = () => {
                 <Navigate to="/address" />
             </BrowserView>
             <MobileView>
-                <Box p={1}>
+                <Box p={3}>
                     <Typography
-                        borderRadius={2.4}
-                        bgcolor={blue[100]}
                         variant="h3"
                         textAlign="center"
-                        py={1.5}
+                        py={2}
                         mt={1}
-                        mb={2}>
+                        mb={3}
+                        sx={{
+                            color: 'white',
+                            fontSize: 'clamp(1.5rem, 6vw, 2rem)',
+                            fontWeight: 700,
+                            letterSpacing: '-0.02em',
+                            background: 'linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01))',
+                            border: '1px solid rgba(255,255,255,.08)',
+                            backdropFilter: 'blur(10px)',
+                            borderRadius: '4px'
+                        }}
+                    >
                         Add Shipping Address
                     </Typography>
                     <Formik
@@ -130,6 +139,16 @@ const AddAddress = () => {
                                                 onBlur={handleBlur}
                                                 onChange={handleChange}
                                                 label="First Name"
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        color: 'white',
+                                                        '& fieldset': { borderColor: 'rgba(255,255,255,.15)' },
+                                                        '&:hover fieldset': { borderColor: 'rgba(255,255,255,.3)' },
+                                                        '&.Mui-focused fieldset': { borderColor: '#efcb77' }
+                                                    },
+                                                    '& .MuiInputLabel-root': { color: 'rgba(255,255,255,.68)' },
+                                                    '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' }
+                                                }}
                                             />
                                             {touched.firstname && errors.firstname && (
                                                 <FormHelperText error id="error-firstname">
@@ -149,6 +168,16 @@ const AddAddress = () => {
                                                 onBlur={handleBlur}
                                                 onChange={handleChange}
                                                 label="Last Name"
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        color: 'white',
+                                                        '& fieldset': { borderColor: 'rgba(255,255,255,.15)' },
+                                                        '&:hover fieldset': { borderColor: 'rgba(255,255,255,.3)' },
+                                                        '&.Mui-focused fieldset': { borderColor: '#efcb77' }
+                                                    },
+                                                    '& .MuiInputLabel-root': { color: 'rgba(255,255,255,.68)' },
+                                                    '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' }
+                                                }}
                                             />
                                             {touched.lastname && errors.lastname && (
                                                 <FormHelperText error id="error-lastname">
@@ -168,6 +197,16 @@ const AddAddress = () => {
                                                 onBlur={handleBlur}
                                                 onChange={handleChange}
                                                 label="Phone No"
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        color: 'white',
+                                                        '& fieldset': { borderColor: 'rgba(255,255,255,.15)' },
+                                                        '&:hover fieldset': { borderColor: 'rgba(255,255,255,.3)' },
+                                                        '&.Mui-focused fieldset': { borderColor: '#efcb77' }
+                                                    },
+                                                    '& .MuiInputLabel-root': { color: 'rgba(255,255,255,.68)' },
+                                                    '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' }
+                                                }}
                                             />
                                             {touched.phone && errors.phone && (
                                                 <FormHelperText error id="error-phone">
@@ -195,6 +234,16 @@ const AddAddress = () => {
                                                         </InputAdornment>
                                                     )
                                                 }}
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        color: 'white',
+                                                        '& fieldset': { borderColor: 'rgba(255,255,255,.15)' },
+                                                        '&:hover fieldset': { borderColor: 'rgba(255,255,255,.3)' },
+                                                        '&.Mui-focused fieldset': { borderColor: '#efcb77' }
+                                                    },
+                                                    '& .MuiInputLabel-root': { color: 'rgba(255,255,255,.68)' },
+                                                    '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' }
+                                                }}
                                             />
                                             {touched.alt_phone && errors.alt_phone && (
                                                 <FormHelperText error id="error-alt_phone">
@@ -213,6 +262,16 @@ const AddAddress = () => {
                                                 onBlur={handleBlur}
                                                 onChange={handleChange}
                                                 label="Email"
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        color: 'white',
+                                                        '& fieldset': { borderColor: 'rgba(255,255,255,.15)' },
+                                                        '&:hover fieldset': { borderColor: 'rgba(255,255,255,.3)' },
+                                                        '&.Mui-focused fieldset': { borderColor: '#efcb77' }
+                                                    },
+                                                    '& .MuiInputLabel-root': { color: 'rgba(255,255,255,.68)' },
+                                                    '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' }
+                                                }}
                                             />
                                             {touched.email && errors.email && (
                                                 <FormHelperText error id="error-email">
@@ -233,6 +292,16 @@ const AddAddress = () => {
                                                 onBlur={handleBlur}
                                                 onChange={handleChange}
                                                 label="Flat, House no., Building, Company, Apartment"
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        color: 'white',
+                                                        '& fieldset': { borderColor: 'rgba(255,255,255,.15)' },
+                                                        '&:hover fieldset': { borderColor: 'rgba(255,255,255,.3)' },
+                                                        '&.Mui-focused fieldset': { borderColor: '#efcb77' }
+                                                    },
+                                                    '& .MuiInputLabel-root': { color: 'rgba(255,255,255,.68)' },
+                                                    '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' }
+                                                }}
                                             />
                                             {touched.address_1 && errors.address_1 && (
                                                 <FormHelperText error id="error-address_1">
@@ -253,6 +322,16 @@ const AddAddress = () => {
                                                 onBlur={handleBlur}
                                                 onChange={handleChange}
                                                 label="Street Name, Area"
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        color: 'white',
+                                                        '& fieldset': { borderColor: 'rgba(255,255,255,.15)' },
+                                                        '&:hover fieldset': { borderColor: 'rgba(255,255,255,.3)' },
+                                                        '&.Mui-focused fieldset': { borderColor: '#efcb77' }
+                                                    },
+                                                    '& .MuiInputLabel-root': { color: 'rgba(255,255,255,.68)' },
+                                                    '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' }
+                                                }}
                                             />
                                             {touched.address_2 && errors.address_2 && (
                                                 <FormHelperText error id="error-address_2">
@@ -271,6 +350,16 @@ const AddAddress = () => {
                                                 onBlur={handleBlur}
                                                 onChange={handleChange}
                                                 label="Landmark"
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        color: 'white',
+                                                        '& fieldset': { borderColor: 'rgba(255,255,255,.15)' },
+                                                        '&:hover fieldset': { borderColor: 'rgba(255,255,255,.3)' },
+                                                        '&.Mui-focused fieldset': { borderColor: '#efcb77' }
+                                                    },
+                                                    '& .MuiInputLabel-root': { color: 'rgba(255,255,255,.68)' },
+                                                    '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' }
+                                                }}
                                             />
                                             {touched.landmark && errors.landmark && (
                                                 <FormHelperText error id="error-landmark">
@@ -290,6 +379,16 @@ const AddAddress = () => {
                                                 onBlur={handleBlur}
                                                 onChange={handleChange}
                                                 label="Postcode"
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        color: 'white',
+                                                        '& fieldset': { borderColor: 'rgba(255,255,255,.15)' },
+                                                        '&:hover fieldset': { borderColor: 'rgba(255,255,255,.3)' },
+                                                        '&.Mui-focused fieldset': { borderColor: '#efcb77' }
+                                                    },
+                                                    '& .MuiInputLabel-root': { color: 'rgba(255,255,255,.68)' },
+                                                    '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' }
+                                                }}
                                             />
                                             {touched.postcode && errors.postcode && (
                                                 <FormHelperText error id="error-postcode">
@@ -309,6 +408,16 @@ const AddAddress = () => {
                                                 onBlur={handleBlur}
                                                 onChange={handleChange}
                                                 label="City / District"
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        color: 'white',
+                                                        '& fieldset': { borderColor: 'rgba(255,255,255,.15)' },
+                                                        '&:hover fieldset': { borderColor: 'rgba(255,255,255,.3)' },
+                                                        '&.Mui-focused fieldset': { borderColor: '#efcb77' }
+                                                    },
+                                                    '& .MuiInputLabel-root': { color: 'rgba(255,255,255,.68)' },
+                                                    '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' }
+                                                }}
                                             />
                                             {touched.city && errors.city && (
                                                 <FormHelperText error id="error-city">
@@ -348,6 +457,17 @@ const AddAddress = () => {
                                                 onChange={handleChange}
                                                 label="Save this Address as"
                                                 helperText={`Eg: ${getName()}'s Home`}
+                                                sx={{
+                                                    '& .MuiOutlinedInput-root': {
+                                                        color: 'white',
+                                                        '& fieldset': { borderColor: 'rgba(255,255,255,.15)' },
+                                                        '&:hover fieldset': { borderColor: 'rgba(255,255,255,.3)' },
+                                                        '&.Mui-focused fieldset': { borderColor: '#efcb77' }
+                                                    },
+                                                    '& .MuiInputLabel-root': { color: 'rgba(255,255,255,.68)' },
+                                                    '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' },
+                                                    '& .MuiFormHelperText-root': { color: 'rgba(255,255,255,.62)' }
+                                                }}
                                             />
                                             {touched.saved_name && errors.saved_name && (
                                                 <FormHelperText error id="error-name">
@@ -358,11 +478,22 @@ const AddAddress = () => {
                                     </Grid>
                                     <Grid item xs={12}>
                                         <FormGroup>
-                                            <FormControlLabel control={
-                                                <Checkbox name="is_default" value={values.default}
-                                                    onBlur={handleBlur}
-                                                    onChange={handleChange} />
-                                            } label="Make default" />
+                                            <FormControlLabel
+                                                control={
+                                                    <Checkbox
+                                                        name="is_default"
+                                                        value={values.default}
+                                                        onBlur={handleBlur}
+                                                        onChange={handleChange}
+                                                        sx={{
+                                                            color: 'rgba(255,255,255,.68)',
+                                                            '&.Mui-checked': { color: '#efcb77' }
+                                                        }}
+                                                    />
+                                                }
+                                                label="Make default"
+                                                sx={{ '& .MuiFormControlLabel-label': { color: 'rgba(255,255,255,.82)' } }}
+                                            />
                                         </FormGroup>
                                     </Grid>
                                 </Grid>
@@ -378,6 +509,24 @@ const AddAddress = () => {
                                         size="large"
                                         type="submit"
                                         variant="contained"
+                                        sx={{
+                                            background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
+                                            color: '#000',
+                                            padding: '16px 36px',
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '0.22em',
+                                            fontSize: '0.72rem',
+                                            fontWeight: 700,
+                                            boxShadow: '0 15px 35px rgba(221,180,93,.15)',
+                                            transition: 'all 0.4s ease',
+                                            borderRadius: 0,
+                                            minHeight: '44px',
+                                            '&:hover': {
+                                                transform: 'translateY(-5px)',
+                                                boxShadow: '0 20px 50px rgba(221,180,93,.22)',
+                                                background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)'
+                                            }
+                                        }}
                                     >
                                         Add Address
                                     </LoadingButton>

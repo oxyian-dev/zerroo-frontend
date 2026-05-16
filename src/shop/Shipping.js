@@ -1,17 +1,50 @@
-import { Container, Typography } from '@mui/material'
+import { Container, Typography, Box, Divider } from '@mui/material'
 import React from 'react'
 import Faq from '../components/Faq'
 
 export default function Shipping() {
     return (
-        <Container sx={{ my: 4 }}>
-            <Typography variant="h1" mb={4}>
-                Shipping
-            </Typography>
+        <Container 
+            maxWidth="lg"
+            sx={{ 
+                py: { md: 14, xs: 10 }, 
+                px: { md: 10, xs: 3 }
+            }}
+        >
+            {/* Page Header */}
+            <Box mb={6}>
+                <Typography 
+                    variant="h1" 
+                    sx={{
+                        color: '#efcb77',
+                        fontSize: { xs: '2rem', md: '2.5rem' },
+                        fontWeight: 600,
+                        letterSpacing: '0.02em',
+                        mb: 2
+                    }}
+                >
+                    Shipping Information
+                </Typography>
+                <Divider sx={{ 
+                    borderColor: 'rgba(255,255,255,.08)',
+                    mb: 4
+                }} />
+                <Typography 
+                    sx={{ 
+                        color: 'rgba(255,255,255,.68)',
+                        lineHeight: 2.1,
+                        fontSize: { xs: '0.95rem', md: '1rem' }
+                    }}
+                >
+                    Find answers to all your shipping-related questions. We're committed to delivering your orders safely and on time.
+                </Typography>
+            </Box>
+
+            {/* FAQ Section */}
             <Faq faqs={[
                 {
                     question: "Why does the delivery date not correspond to the delivery timeline of X-Y business days?",
-                    answer: `It is possible that the Seller or our courier partners have a holiday between the day you’re placed your order and the date of delivery, which is based on the timelines shown on the product page. In this case, we add a day to the estimated date. Some courier partners and Sellers do not work on Sundays and this is factored in to the delivery dates.`
+                    answer: `It is possible that the Seller or our courier partners have a holiday between the day you're placed your order and the date of delivery, which is based on the timelines shown on the product page. In this case, we add a day to the estimated date. Some courier partners and Sellers do not work on Sundays and this is factored in to the delivery dates.`
                 },
                 {
                     question: "Why does the estimated delivery time vary for each seller?",
@@ -21,10 +54,10 @@ Please enter your default pin code on the product page (you don't have to enter 
                 },
                 {
                     question: "What are the delivery charges?",
-                    answer: `Delivery charge varies with each Seller. Sellers incur relatively higher shipping costs on low value items. In such cases, charging a nominal delivery charge helps them offset logistics costs. The delivery charge may be waived off by some Sellers, if you shop with them for a minimum predefined value. For example, seller WS Retail, which generally charges ₹100 for delivery, provides free delivery on orders valued at ₹ 10,000 or more. Please check with individual Sellers to understand what the delivery charges are. `
+                    answer: `Delivery charge varies with each Seller. Sellers incur relatively higher shipping costs on low value items. In such cases, charging a nominal delivery charge helps them offset logistics costs. The delivery charge may be waived off by some Sellers, if you shop with them for a minimum predefined value. For example, seller WS Retail, which generally charges ₹100 for delivery, provides free delivery on orders valued at ₹ 10,000 or more. Please check with individual Sellers to understand what the delivery charges are.`
                 },
                 {
-                    question: "Are there any hidden costs ( Sales tax, octroi etc) on items sold by Sellers on Zerabiz Ecom LLP?",
+                    question: "Are there any hidden costs (Sales tax, octroi etc) on items sold by Sellers on Zerabiz Ecom LLP?",
                     answer: `There are NO hidden charges when you make a purchase on Zerabiz. List prices are final and delivery charges are all exclusive. The price you see on the product page is exactly what you would pay. Delivery charges are not hidden charges and are charged (if at all) extra depending on the Seller's shipping policy.`
                 },
                 {
@@ -63,17 +96,17 @@ The product is currently out of stock and is not available for purchase. The pro
 
 This product is no longer available because it is obsolete and/or its production has been discontinued.<br><br>
 
-<span><b>‘Out of Print’</b></span><br><br>
+<span><b>'Out of Print'</b></span><br><br>
 
 This product is not available because it is no longer being published and has been permanently discontinued.<br><br>
 
 <span><b>Does Zerabiz deliver internationally?</b></span><br><br>
 
-As of now, Zerabiz doesn’t deliver items internationally. You will be able to make your purchases on our site from anywhere in the world with credit/debit cards issued in India , but please ensure the delivery address is in India.`
+As of now, Zerabiz doesn't deliver items internationally. You will be able to make your purchases on our site from anywhere in the world with credit/debit cards issued in India, but please ensure the delivery address is in India.`
                 },
                 {
                     question: "Seller does not/cannot ship to my area. Why?",
-                    answer: `Please enter your pincode on the product page (you don't have to enter it every single time) to know whether the product can be delivered to your location.If you haven't provided your pincode until the checkout stage, the pincode in your shipping address will be used to check for serviceability.<br><br>
+                    answer: `Please enter your pincode on the product page (you don't have to enter it every single time) to know whether the product can be delivered to your location. If you haven't provided your pincode until the checkout stage, the pincode in your shipping address will be used to check for serviceability.<br><br>
 
 Whether your location can be serviced or not depends on<br><br>
 
@@ -111,3 +144,5 @@ The Seller might not have the item in stock but can procure it when an order is 
         </Container>
     )
 }
+
+// Made with Bob

@@ -1,6 +1,5 @@
 import { LoadingButton } from "@mui/lab";
-import { Box, Button, IconButton, Stack, Typography } from "@mui/material";
-import { orange } from "@mui/material/colors";
+import { Box, Button, CircularProgress, IconButton, Stack, Typography } from "@mui/material";
 import {
     IconArrowRight,
     IconBrandFacebook,
@@ -15,7 +14,6 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Link, useOutletContext, useParams } from "react-router-dom";
 import { isLoggedIn, isOrgUser } from "../auth/AuthProvider";
-import Loader from "../components/Loader";
 import config from "../config";
 import { addToCart, getCart, getCartCount } from "../utils/CartUtil";
 import { facebook, link, twitter, whatsapp } from "../utils/SocialShareUtil";
@@ -81,12 +79,12 @@ const MobileShopDetails = () => {
                 .then(r => r.json())
                 .then(res => {
                     if (res.status === 'success') {
-                        enqueueSnackbar('Item added to MobileCart', { variant: 'success' })
+                        enqueueSnackbar('Item added to Cart', { variant: 'success' })
                         setLayout({ ...layout, cart_count: layout.cart_count + 1 })
                     }
                 })
                 .finally(() => {
-                    setSubmitting(true)
+                    setSubmitting(false)
                     setAddedToCart(true)
                 })
         } else {
@@ -117,68 +115,194 @@ const MobileShopDetails = () => {
     }
 
     return loading ? (
-        <Loader />
+        <Box 
+            sx={{ 
+                background: '#020202', 
+                minHeight: '100vh',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+            }}
+        >
+            <CircularProgress sx={{ color: '#efcb77' }} size={60} />
+        </Box>
     ) : (
-        <Box minHeight="100vh">
-            {item.images?.length > 1 ? (
-                <Carousel
-                    infiniteLoop={true}
-                    autoPlay={true}
-                    showArrows={true}
-                    swipeable={true}
-                    showStatus={false}
-                    showThumbs={false}
-                >
-                    {item.images?.map(image => (
-                        <WorkDriveImage image={image} alt={`${item.title} ${item.description}`} key={image} />
-                    ))}
-                </Carousel>
-            ) : (
-                <WorkDriveImage image={item.images?.[0]} alt={`${item.title} ${item.description}`} />
-            )}
+        <Box sx={{ background: '#020202', minHeight: '100vh', pb: 10 }}>
+            {/* Product Images Carousel */}
+            <Box
+                sx={{
+                    position: 'relative',
+                    '& .carousel .slide img': {
+                        transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
+                    },
+                    '& .carousel .control-arrow': {
+                        background: 'rgba(0,0,0,.6)',
+                        backdropFilter: 'blur(8px)',
+                        '&:hover': {
+                            background: 'rgba(0,0,0,.8)',
+                        }
+                    },
+                    '& .carousel .control-dots .dot': {
+                        background: 'rgba(255,255,255,.3)',
+                        boxShadow: 'none',
+                        '&.selected': {
+                            background: '#efcb77',
+                        }
+                    }
+                }}
+            >
+                {item.images?.length > 1 ? (
+                    <Carousel
+                        infiniteLoop={true}
+                        autoPlay={true}
+                        showArrows={true}
+                        swipeable={true}
+                        showStatus={false}
+                        showThumbs={false}
+                        interval={5000}
+                        transitionTime={600}
+                    >
+                        {item.images?.map(image => (
+                            <WorkDriveImage 
+                                image={image} 
+                                alt={`${item.title} ${item.description}`} 
+                                key={image} 
+                            />
+                        ))}
+                    </Carousel>
+                ) : (
+                    <WorkDriveImage 
+                        image={item.images?.[0]} 
+                        alt={`${item.title} ${item.description}`} 
+                    />
+                )}
+            </Box>
 
-            <Box p={1}>
-                <Box p={1}>
-                    <Typography mb={1} noWrap variant='h5'>{item.brand}</Typography>
-                    <Typography variant='h2' mb={2}>{item.title}</Typography>
-                    <Typography mb={2} variant='subtitle1'>{item.description}</Typography>
+            {/* Product Info */}
+            <Box sx={{ px: 3, pt: 4 }}>
+                {/* Brand */}
+                <Typography
+                    sx={{
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.25em',
+                        fontSize: '0.7rem',
+                        fontWeight: 700,
+                        color: '#efcb77',
+                        mb: 1.5
+                    }}
+                >
+                    {item.brand}
+                </Typography>
+
+                {/* Title */}
+                <Typography
+                    sx={{
+                        fontSize: 'clamp(1.5rem, 6vw, 2rem)',
+                        lineHeight: 1.2,
+                        fontWeight: 700,
+                        color: 'white',
+                        mb: 2,
+                        letterSpacing: '-0.02em'
+                    }}
+                >
+                    {item.title}
+                </Typography>
+
+                {/* Description */}
+                <Typography
+                    sx={{
+                        fontSize: '0.95rem',
+                        lineHeight: 1.8,
+                        color: 'rgba(255,255,255,.68)',
+                        mb: 3
+                    }}
+                >
+                    {item.description}
+                </Typography>
+
+                {/* Price Section */}
+                <Box
+                    sx={{
+                        mb: 3,
+                        pb: 3,
+                        borderBottom: '1px solid rgba(255,255,255,.08)'
+                    }}
+                >
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 1, flexWrap: 'wrap' }}>
+                        <Typography
+                            sx={{
+                                fontSize: '2rem',
+                                fontWeight: 700,
+                                color: 'white'
+                            }}
+                        >
+                            ₹{item.price}
+                        </Typography>
+                        {item.discount > 0 && (
+                            <>
+                                <Typography
+                                    sx={{
+                                        fontSize: '1.2rem',
+                                        color: 'rgba(255,255,255,.5)',
+                                        textDecoration: 'line-through'
+                                    }}
+                                >
+                                    ₹{item.mrp}
+                                </Typography>
+                                <Box
+                                    sx={{
+                                        background: 'linear-gradient(135deg, #fff7dc 0%, #efcb77 50%, #d69d45 100%)',
+                                        color: '#000',
+                                        px: 1.5,
+                                        py: 0.5,
+                                        fontSize: '0.75rem',
+                                        fontWeight: 700,
+                                        letterSpacing: '0.1em',
+                                        borderRadius: '2px'
+                                    }}
+                                >
+                                    {item.discount}% OFF
+                                </Box>
+                            </>
+                        )}
+                    </Box>
                     <Typography
-                        color="primary.main"
-                        mb={2}
-                        noWrap
-                        overflow='hidden'
-                        display='inline'
-                        variant="subtitle1">
-                        ₹{item.price}
+                        sx={{
+                            fontSize: '0.8rem',
+                            color: '#51cf66',
+                            fontWeight: 600,
+                            mb: 0.5
+                        }}
+                    >
+                        Inclusive of all taxes
                     </Typography>
-                    {item.discount !== 0 && (
+                    {isLoggedIn() && (
                         <Typography
-                            noWrap
-                            overflow='hidden'
-                            ml={0.5}
-                            display='inline'
-                            variant='subtitle1'
-                            sx={{ textDecoration: 'line-through' }}>₹{item.mrp}</Typography>
-                    )}
-                    {item.discount !== 0 && (
-                        <Typography
-                            noWrap
-                            display='inline'
-                            ml={0.5}
-                            variant="subtitle1"
-                            color={orange[700]}>
-                            ({item.discount}% OFF)
+                            sx={{
+                                fontSize: '0.9rem',
+                                color: '#efcb77',
+                                fontWeight: 600
+                            }}
+                        >
+                            {config.pvName}: {item.pv}
                         </Typography>
                     )}
-                    <Typography variant="subtitle1" color="success.dark">Inclusive of all taxes</Typography>
-                    {isLoggedIn() && (
-                        <Typography variant="subtitle1">{config.pvName}: {item.pv}</Typography>
-                    )}
                 </Box>
+
+                {/* Colors */}
                 {colors.length > 0 && (
-                    <Box p={1}>
-                        <Typography variant="body1" mb={1}>Colour</Typography>
-                        <Stack direction="row" spacing={1}>
+                    <Box sx={{ mb: 3 }}>
+                        <Typography
+                            sx={{
+                                fontSize: '0.95rem',
+                                fontWeight: 600,
+                                color: 'white',
+                                mb: 1.5
+                            }}
+                        >
+                            Colour:
+                        </Typography>
+                        <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap>
                             {colors.map(({ color_id, hex, id, title }) => (
                                 color_id === item['color_id'] ? (
                                     <ColorButton
@@ -200,10 +324,21 @@ const MobileShopDetails = () => {
                         </Stack>
                     </Box>
                 )}
+
+                {/* Sizes */}
                 {sizes.length > 0 && (
-                    <Box p={1}>
-                        <Typography variant="body1" mb={1}>Select Size:</Typography>
-                        <Stack direction="row" spacing={1}>
+                    <Box sx={{ mb: 3 }}>
+                        <Typography
+                            sx={{
+                                fontSize: '0.95rem',
+                                fontWeight: 600,
+                                color: 'white',
+                                mb: 1.5
+                            }}
+                        >
+                            Select Size:
+                        </Typography>
+                        <Stack direction="row" spacing={1.5} flexWrap="wrap" useFlexGap>
                             {sizes.map(({ id, size_id, size, title }) => (
                                 size_id === item['size_id'] ? (
                                     <SizeButton
@@ -227,90 +362,260 @@ const MobileShopDetails = () => {
                         </Stack>
                     </Box>
                 )}
-                <Box p={1}>
-                    <Stack direction="row">
-                        <Box alignItems="center" display="flex" justifyContent="center">
-                            <Typography>Share:</Typography>
-                        </Box>
+
+                {/* Stock Warning */}
+                {item.quantity <= 5 && item.quantity !== 0 && (
+                    <Typography
+                        sx={{
+                            fontSize: '0.85rem',
+                            color: '#ff6b6b',
+                            fontWeight: 600,
+                            mb: 3
+                        }}
+                    >
+                        Only {item.quantity} available
+                    </Typography>
+                )}
+
+                {/* Share Section */}
+                <Box
+                    sx={{
+                        mb: 3,
+                        pb: 3,
+                        borderBottom: '1px solid rgba(255,255,255,.08)'
+                    }}
+                >
+                    <Stack direction="row" alignItems="center" spacing={1}>
+                        <Typography
+                            sx={{
+                                fontSize: '0.9rem',
+                                color: 'rgba(255,255,255,.82)',
+                                fontWeight: 600
+                            }}
+                        >
+                            Share:
+                        </Typography>
                         <a target="_blank" rel="nofollow noopener noreferrer" href={whatsapp(item)}>
-                            <IconButton>
-                                <IconBrandWhatsapp />
+                            <IconButton
+                                sx={{
+                                    color: 'rgba(255,255,255,.68)',
+                                    minWidth: '44px',
+                                    minHeight: '44px',
+                                    '&:hover': {
+                                        color: '#efcb77',
+                                        background: 'rgba(221,180,93,.1)'
+                                    }
+                                }}
+                            >
+                                <IconBrandWhatsapp size={20} />
                             </IconButton>
                         </a>
                         <a target="_blank" rel="nofollow noopener noreferrer" href={facebook(item)}>
-                            <IconButton>
-                                <IconBrandFacebook />
+                            <IconButton
+                                sx={{
+                                    color: 'rgba(255,255,255,.68)',
+                                    minWidth: '44px',
+                                    minHeight: '44px',
+                                    '&:hover': {
+                                        color: '#efcb77',
+                                        background: 'rgba(221,180,93,.1)'
+                                    }
+                                }}
+                            >
+                                <IconBrandFacebook size={20} />
                             </IconButton>
                         </a>
                         <a target="_blank" rel="nofollow noopener noreferrer" href={twitter(item)}>
-                            <IconButton>
-                                <IconBrandTwitter />
+                            <IconButton
+                                sx={{
+                                    color: 'rgba(255,255,255,.68)',
+                                    minWidth: '44px',
+                                    minHeight: '44px',
+                                    '&:hover': {
+                                        color: '#efcb77',
+                                        background: 'rgba(221,180,93,.1)'
+                                    }
+                                }}
+                            >
+                                <IconBrandTwitter size={20} />
                             </IconButton>
                         </a>
-                        <IconButton onClick={() => {
-                            navigator.clipboard.writeText(link(item)).then(() => {
-                                enqueueSnackbar('Link copied to clipboard', { variant: 'success' })
-                            })
-                        }}>
-                            <IconCopy />
+                        <IconButton
+                            onClick={() => {
+                                navigator.clipboard.writeText(link(item)).then(() => {
+                                    enqueueSnackbar('Link copied to clipboard', { variant: 'success' })
+                                })
+                            }}
+                            sx={{
+                                color: 'rgba(255,255,255,.68)',
+                                minWidth: '44px',
+                                minHeight: '44px',
+                                '&:hover': {
+                                    color: '#efcb77',
+                                    background: 'rgba(221,180,93,.1)'
+                                }
+                            }}
+                        >
+                            <IconCopy size={20} />
                         </IconButton>
                     </Stack>
                 </Box>
-                {item.quantity <= 5 && item.quantity !== 0 && (
-                            <Typography variant="subtitle1" color="error.dark">
-                                Only {item.quantity} available
-                            </Typography>
-                )}
+
+                {/* Specifications */}
                 {specifications.length > 0 && (
-                    <Box p={1}>
-                        <Typography variant="h5">Specifications:</Typography>
-                        {specifications.map(({ id, specification, value }) => (
-                            <Box key={id}>
-                                <Stack direction="row" spacing={1}>
-                                    <Typography variant="body2">{specification}: </Typography>
-                                    <Typography variant="subtitle1">{value}</Typography>
-                                </Stack>
-                            </Box>
-                        ))}
+                    <Box sx={{ mb: 3 }}>
+                        <Typography
+                            sx={{
+                                fontSize: '1.1rem',
+                                fontWeight: 700,
+                                color: 'white',
+                                mb: 2
+                            }}
+                        >
+                            Specifications:
+                        </Typography>
+                        <Stack spacing={1.5}>
+                            {specifications.map(({ id, specification, value }) => (
+                                <Box
+                                    key={id}
+                                    sx={{
+                                        display: 'flex',
+                                        gap: 2,
+                                        py: 1,
+                                        borderBottom: '1px solid rgba(255,255,255,.08)'
+                                    }}
+                                >
+                                    <Typography
+                                        sx={{
+                                            fontSize: '0.85rem',
+                                            color: 'rgba(255,255,255,.68)',
+                                            minWidth: '120px'
+                                        }}
+                                    >
+                                        {specification}:
+                                    </Typography>
+                                    <Typography
+                                        sx={{
+                                            fontSize: '0.85rem',
+                                            color: 'white',
+                                            fontWeight: 600
+                                        }}
+                                    >
+                                        {value}
+                                    </Typography>
+                                </Box>
+                            ))}
+                        </Stack>
                     </Box>
                 )}
-                <Box sx={{
+            </Box>
+
+            {/* Fixed Bottom Action Bar */}
+            <Box
+                sx={{
                     position: 'fixed',
                     bottom: 0,
                     left: 0,
                     right: 0,
-                    backgroundColor: 'white',
-                    padding: '.5rem'
-                }}>
-                    {item.quantity === 0 ? (
+                    background: 'rgba(0,0,0,.85)',
+                    backdropFilter: 'blur(16px)',
+                    WebkitBackdropFilter: 'blur(16px)',
+                    borderTop: '1px solid rgba(255,255,255,.08)',
+                    p: 2,
+                    zIndex: 1000
+                }}
+            >
+                {item.quantity === 0 ? (
+                    <Box
+                        sx={{
+                            textAlign: 'center',
+                            py: 2,
+                            background: 'linear-gradient(180deg, rgba(255,107,107,.1), rgba(255,107,107,.05))',
+                            border: '1px solid rgba(255,107,107,.3)',
+                            borderRadius: '4px'
+                        }}
+                    >
                         <Typography
-                            color="error.main"
-                            variant="h3"
-                            textAlign="center"
+                            sx={{
+                                color: '#ff6b6b',
+                                fontSize: '1.2rem',
+                                fontWeight: 700,
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.1em'
+                            }}
                         >
                             Out of Stock
                         </Typography>
-                    ) : addedToCart ? (
-                        <Button color="primary" variant="contained" size="large" fullWidth component={Link}
-                            to="/cart" endIcon={<IconArrowRight />}>
-                            Goto Cart
-                        </Button>
-                    ) : (
-                        <LoadingButton
-                            disabled={isOrgUser()}
-                            startIcon={<IconShoppingCartPlus />}
-                            color="primary"
-                            variant="contained"
-                            size="large"
-                            fullWidth
-                            loading={submitting}
-                            onClick={() => add()}>
-                            Add to Cart
-                        </LoadingButton>
-                    )}
-                </Box>
+                    </Box>
+                ) : addedToCart ? (
+                    <Button
+                        variant="contained"
+                        size="large"
+                        fullWidth
+                        component={Link}
+                        to="/cart"
+                        endIcon={<IconArrowRight />}
+                        sx={{
+                            background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
+                            color: '#000',
+                            padding: '16px 36px',
+                            fontSize: '0.72rem',
+                            fontWeight: 700,
+                            letterSpacing: '0.22em',
+                            textTransform: 'uppercase',
+                            boxShadow: '0 15px 35px rgba(221,180,93,.15)',
+                            transition: 'all 0.4s ease',
+                            borderRadius: 0,
+                            minHeight: '56px',
+                            '&:hover': {
+                                transform: 'translateY(-3px)',
+                                boxShadow: '0 20px 50px rgba(221,180,93,.22)',
+                                background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
+                            }
+                        }}
+                    >
+                        Go to Cart
+                    </Button>
+                ) : (
+                    <LoadingButton
+                        disabled={isOrgUser()}
+                        startIcon={<IconShoppingCartPlus />}
+                        variant="contained"
+                        size="large"
+                        fullWidth
+                        loading={submitting}
+                        onClick={() => add()}
+                        sx={{
+                            background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
+                            color: '#000',
+                            padding: '16px 36px',
+                            fontSize: '0.72rem',
+                            fontWeight: 700,
+                            letterSpacing: '0.22em',
+                            textTransform: 'uppercase',
+                            boxShadow: '0 15px 35px rgba(221,180,93,.15)',
+                            transition: 'all 0.4s ease',
+                            borderRadius: 0,
+                            minHeight: '56px',
+                            '&:hover': {
+                                transform: 'translateY(-3px)',
+                                boxShadow: '0 20px 50px rgba(221,180,93,.22)',
+                                background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
+                            },
+                            '&.Mui-disabled': {
+                                background: 'rgba(255,255,255,.1)',
+                                color: 'rgba(255,255,255,.4)'
+                            }
+                        }}
+                    >
+                        Add to Cart
+                    </LoadingButton>
+                )}
             </Box>
         </Box>
     )
 }
+
 export default MobileShopDetails;
+
+// Made with Bob
