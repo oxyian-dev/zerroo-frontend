@@ -80,6 +80,13 @@ const ShopLayout = () => {
 
     const login = isLoggedIn();
     const [mobileExpanded, setMobileExpanded] = useState({})
+    const [scrolled, setScrolled] = useState(false)
+
+    useEffect(() => {
+        const handleScroll = () => setScrolled(window.scrollY > 10)
+        window.addEventListener('scroll', handleScroll, { passive: true })
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
 
     const findXs = count => {
         if (count > 3) return 3;
@@ -95,10 +102,11 @@ const ShopLayout = () => {
                     elevation={0}
                     sx={{
                         height: '64px',
-                        borderBottom: '1px solid rgba(255,255,255,.08)',
-                        background: 'rgba(0,0,0,.7)',
+                        borderBottom: scrolled ? '1px solid rgba(255,255,255,.08)' : '1px solid rgba(255,255,255,0)',
+                        background: scrolled ? 'rgba(0,0,0,.7)' : 'rgba(0,0,0,.15)',
                         backdropFilter: 'blur(16px)',
                         WebkitBackdropFilter: 'blur(16px)',
+                        transition: 'background 0.3s ease, border-bottom 0.3s ease',
                     }}
                 >
                     <Toolbar
@@ -538,20 +546,22 @@ const ShopLayout = () => {
                                 >
                                     Services
                                 </Typography>
-                                <Grid container spacing={2}>
-                                    <Grid item xs={6}><Typography component={Link} to="/shop" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Shop</Typography></Grid>
-                                    <Grid item xs={6}><Typography component={Link} to="/products" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Products</Typography></Grid>
-                                    <Grid item xs={6}><Typography component={Link} to="/shipping" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Shipping</Typography></Grid>
-                                    <Grid item xs={6}><Typography component={Link} to="/privacy-policy" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Privacy Policy</Typography></Grid>
-                                    <Grid item xs={6}><Typography component={Link} to="/terms-of-service" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Terms of Service</Typography></Grid>
-                                    <Grid item xs={6}><Typography component={Link} to="/commonly-terms-directselling" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Commonly Used Terms</Typography></Grid>
-                                    <Grid item xs={6}><Typography component={Link} to="/comphensation-plan" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Compensation Plan</Typography></Grid>
-                                    <Grid item xs={6}><Typography component={Link} to="/transactions" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Transactions</Typography></Grid>
-                                    <Grid item xs={6}><Typography component={Link} to="/rights-and-duties" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Rights and Duties</Typography></Grid>
-                                    <Grid item xs={6}><Typography component={Link} to="/business-informtion-kit" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Business Information Kit</Typography></Grid>
-                                    <Grid item xs={6}><Typography component={Link} to="/termination-directselling" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Termination</Typography></Grid>
-                                    <Grid item xs={6}><Typography component={Link} to="/legal-documents" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Legal Documents</Typography></Grid>
-                                </Grid>
+                                <Box>
+                                    <Grid container spacing={2}>
+                                        <Grid item xs={6}><Typography component={Link} to="/shop" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Shop</Typography></Grid>
+                                        <Grid item xs={6}><Typography component={Link} to="/products" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Products</Typography></Grid>
+                                        <Grid item xs={6}><Typography component={Link} to="/shipping" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Shipping</Typography></Grid>
+                                        <Grid item xs={6}><Typography component={Link} to="/privacy-policy" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Privacy Policy</Typography></Grid>
+                                        <Grid item xs={6}><Typography component={Link} to="/terms-of-service" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Terms of Service</Typography></Grid>
+                                        <Grid item xs={6}><Typography component={Link} to="/commonly-terms-directselling" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Commonly Used Terms</Typography></Grid>
+                                        <Grid item xs={6}><Typography component={Link} to="/comphensation-plan" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Compensation Plan</Typography></Grid>
+                                        <Grid item xs={6}><Typography component={Link} to="/transactions" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Transactions</Typography></Grid>
+                                        <Grid item xs={6}><Typography component={Link} to="/rights-and-duties" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Rights and Duties</Typography></Grid>
+                                        <Grid item xs={6}><Typography component={Link} to="/business-informtion-kit" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Business Information Kit</Typography></Grid>
+                                        <Grid item xs={6}><Typography component={Link} to="/termination-directselling" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Termination</Typography></Grid>
+                                        <Grid item xs={6}><Typography component={Link} to="/legal-documents" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Legal Documents</Typography></Grid>
+                                    </Grid>
+                                </Box>
                             </Grid>
 
                             {/* Contact Section */}
@@ -641,10 +651,11 @@ const ShopLayout = () => {
                     elevation={0}
                     sx={{
                         height: '110px',
-                        borderBottom: '1px solid rgba(255,255,255,.08)',
-                        background: 'rgba(0,0,0,.7)',
+                        borderBottom: scrolled ? '1px solid rgba(255,255,255,.08)' : '1px solid rgba(255,255,255,0)',
+                        background: scrolled ? 'rgba(0,0,0,.7)' : 'rgba(0,0,0,.15)',
                         backdropFilter: 'blur(16px)',
                         WebkitBackdropFilter: 'blur(16px)',
+                        transition: 'background 0.3s ease, border-bottom 0.3s ease',
                     }}
                 >
                     <Container
@@ -670,6 +681,7 @@ const ShopLayout = () => {
                                 gap: 2,
                                 maxWidth: '110px',
                                 maxHeight: '110px',
+                                flex: { lg: 1 },
                                 '& img': {
                                     maxWidth: '100%',
                                     maxHeight: '100%',
@@ -680,7 +692,7 @@ const ShopLayout = () => {
                             </Box>
 
                             {/* Navigation Links */}
-                            <Box sx={{ display: { xs: 'none', lg: 'flex' }, alignItems: 'center', gap: 7 }}>
+                            <Box sx={{ display: { xs: 'none', lg: 'flex' }, alignItems: 'center', justifyContent: 'center', gap: 7, flex: 1 }}>
                                 <Typography
                                     component={Link}
                                     to="/"
@@ -746,7 +758,7 @@ const ShopLayout = () => {
                             </Box>
 
                             {/* Right Side Actions */}
-                            <Stack direction="row" spacing={2} alignItems="center">
+                            <Stack direction="row" spacing={2} alignItems="center" justifyContent="flex-end" sx={{ flex: 1 }}>
                                 {login ? (
                                     <Box>
                                         <IconButton
@@ -894,7 +906,7 @@ const ShopLayout = () => {
                 </AppBar>
 
                 {/* Main Content with proper spacing for fixed header */}
-                <Box sx={{ pt: '110px', minHeight: 'calc(100vh - 110px)', background: '#020202' }}>
+                <Box sx={{ pt: pathname === '/' ? 0 : '110px', minHeight: pathname === '/' ? '100vh' : 'calc(100vh - 110px)', background: '#020202' }}>
                     <Outlet context={[setLayout, layout]} />
                 </Box>
 
@@ -910,7 +922,7 @@ const ShopLayout = () => {
                         maxWidth={false}
                         sx={{
                             maxWidth: '1440px',
-                            px: 10,
+                            px: { md: 10, xs: 3 },
                             py: 12,
                         }}
                     >
@@ -963,20 +975,22 @@ const ShopLayout = () => {
                                 >
                                     Services
                                 </Typography>
-                                <Grid container spacing={2}>
-                                    <Grid item xs={6}><Typography component={Link} to="/shop" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Shop</Typography></Grid>
-                                    <Grid item xs={6}><Typography component={Link} to="/products" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Products</Typography></Grid>
-                                    <Grid item xs={6}><Typography component={Link} to="/shipping" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Shipping</Typography></Grid>
-                                    <Grid item xs={6}><Typography component={Link} to="/privacy-policy" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Privacy Policy</Typography></Grid>
-                                    <Grid item xs={6}><Typography component={Link} to="/terms-of-service" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Terms of Service</Typography></Grid>
-                                    <Grid item xs={6}><Typography component={Link} to="/commonly-terms-directselling" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Commonly Used Terms</Typography></Grid>
-                                    <Grid item xs={6}><Typography component={Link} to="/comphensation-plan" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Compensation Plan</Typography></Grid>
-                                    <Grid item xs={6}><Typography component={Link} to="/transactions" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Transactions</Typography></Grid>
-                                    <Grid item xs={6}><Typography component={Link} to="/rights-and-duties" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Rights and Duties</Typography></Grid>
-                                    <Grid item xs={6}><Typography component={Link} to="/business-informtion-kit" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Business Information Kit</Typography></Grid>
-                                    <Grid item xs={6}><Typography component={Link} to="/termination-directselling" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Termination</Typography></Grid>
-                                    <Grid item xs={6}><Typography component={Link} to="/legal-documents" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Legal Documents</Typography></Grid>
-                                </Grid>
+                                <Box>
+                                    <Grid container spacing={2}>
+                                        <Grid item xs={6}><Typography component={Link} to="/shop" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Shop</Typography></Grid>
+                                        <Grid item xs={6}><Typography component={Link} to="/products" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Products</Typography></Grid>
+                                        <Grid item xs={6}><Typography component={Link} to="/shipping" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Shipping</Typography></Grid>
+                                        <Grid item xs={6}><Typography component={Link} to="/privacy-policy" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Privacy Policy</Typography></Grid>
+                                        <Grid item xs={6}><Typography component={Link} to="/terms-of-service" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Terms of Service</Typography></Grid>
+                                        <Grid item xs={6}><Typography component={Link} to="/commonly-terms-directselling" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Commonly Used Terms</Typography></Grid>
+                                        <Grid item xs={6}><Typography component={Link} to="/comphensation-plan" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Compensation Plan</Typography></Grid>
+                                        <Grid item xs={6}><Typography component={Link} to="/transactions" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Transactions</Typography></Grid>
+                                        <Grid item xs={6}><Typography component={Link} to="/rights-and-duties" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Rights and Duties</Typography></Grid>
+                                        <Grid item xs={6}><Typography component={Link} to="/business-informtion-kit" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Business Information Kit</Typography></Grid>
+                                        <Grid item xs={6}><Typography component={Link} to="/termination-directselling" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Termination</Typography></Grid>
+                                        <Grid item xs={6}><Typography component={Link} to="/legal-documents" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Legal Documents</Typography></Grid>
+                                    </Grid>
+                                </Box>
                             </Grid>
 
                             {/* Contact Section */}

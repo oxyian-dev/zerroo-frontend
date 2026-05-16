@@ -230,6 +230,8 @@ const ShopHome = () => {
                     position: 'relative',
                     minHeight: '100vh',
                     overflow: 'hidden',
+                    marginTop: 0,
+                    pt: { xs: 0, md: '170px' },
                 }}
             >
                 {heroSlides.map((slide, index) => (
