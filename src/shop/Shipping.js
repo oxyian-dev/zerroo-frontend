@@ -57,8 +57,8 @@ Please enter your default pin code on the product page (you don't have to enter 
                     answer: `Delivery charge varies with each Seller. Sellers incur relatively higher shipping costs on low value items. In such cases, charging a nominal delivery charge helps them offset logistics costs. The delivery charge may be waived off by some Sellers, if you shop with them for a minimum predefined value. For example, seller WS Retail, which generally charges ₹100 for delivery, provides free delivery on orders valued at ₹ 10,000 or more. Please check with individual Sellers to understand what the delivery charges are.`
                 },
                 {
-                    question: "Are there any hidden costs (Sales tax, octroi etc) on items sold by Sellers on Zerabiz Ecom LLP?",
-                    answer: `There are NO hidden charges when you make a purchase on Zerabiz. List prices are final and delivery charges are all exclusive. The price you see on the product page is exactly what you would pay. Delivery charges are not hidden charges and are charged (if at all) extra depending on the Seller's shipping policy.`
+                    question: "Are there any hidden costs (Sales tax, octroi etc) on items sold by Sellers on Victory World?",
+                    answer: `There are NO hidden charges when you make a purchase on Victory World. List prices are final and delivery charges are all exclusive. The price you see on the product page is exactly what you would pay. Delivery charges are not hidden charges and are charged (if at all) extra depending on the Seller's shipping policy.`
                 },
                 {
                     question: "What is the estimated delivery time?",
@@ -100,9 +100,9 @@ This product is no longer available because it is obsolete and/or its production
 
 This product is not available because it is no longer being published and has been permanently discontinued.<br><br>
 
-<span><b>Does Zerabiz deliver internationally?</b></span><br><br>
+<span><b>Does Victory World deliver internationally?</b></span><br><br>
 
-As of now, Zerabiz doesn't deliver items internationally. You will be able to make your purchases on our site from anywhere in the world with credit/debit cards issued in India, but please ensure the delivery address is in India.`
+As of now, Victory World doesn't deliver items internationally. You will be able to make your purchases on our site from anywhere in the world with credit/debit cards issued in India, but please ensure the delivery address is in India.`
                 },
                 {
                     question: "Seller does not/cannot ship to my area. Why?",

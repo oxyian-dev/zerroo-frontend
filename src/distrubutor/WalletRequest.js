@@ -38,7 +38,7 @@ export default function WalletRequests() {
                   <ListItemIcon>
                     <IconUser />
                   </ListItemIcon>
-                  <ListItemText primary="Account Name" secondary="ZERABIZ ECOM LLP" />
+                  <ListItemText primary="Account Name" secondary="Victory World" />
                 </ListItem>
               </Grid>
               <Grid item md={6} xs={12}>

@@ -41,7 +41,7 @@ export default function PrivacyPolicy() {
                             fontSize: { xs: '0.95rem', md: '1rem' }
                         }}
                     >
-                        The purpose of this Privacy Policy is to inform you about the type of information we may collect when you visit <Box component="a" href="http://www.zerroo.in" target="_blank" rel="noopener noreferrer" sx={{ color: '#efcb77', textDecoration: 'none', '&:hover': { color: '#f5dc97' } }}>www.zerroo.in</Box>, how we may use the information and the choices you have regarding our use of your information and your ability to correct the information or its use at any point.
+                        The purpose of this Privacy Policy is to inform you about the type of information we may collect when you visit <Box component="a" href="http://www.victoryworld.in" target="_blank" rel="noopener noreferrer" sx={{ color: '#efcb77', textDecoration: 'none', '&:hover': { color: '#f5dc97' } }}>www.victoryworld.in</Box>, how we may use the information and the choices you have regarding our use of your information and your ability to correct the information or its use at any point.
                     </Typography>
                     
                     <Typography 
@@ -51,7 +51,7 @@ export default function PrivacyPolicy() {
                             fontSize: { xs: '0.95rem', md: '1rem' }
                         }}
                     >
-                        We, ZERABIZ ECOM LLP (<Box component="a" href="http://www.zerroo.in" target="_blank" rel="noopener noreferrer" sx={{ color: '#efcb77', textDecoration: 'none', '&:hover': { color: '#f5dc97' } }}>www.zerroo.in</Box>), consider your privacy as very important to us. Our relationship with you is our most valuable asset and is the very basis of our name and reputation. We understand the importance you place on the privacy and security of information that personally identifies you or your account information. We refer to and treat this information as "personal information".
+                        We, Victory World (<Box component="a" href="http://www.victoryworld.in" target="_blank" rel="noopener noreferrer" sx={{ color: '#efcb77', textDecoration: 'none', '&:hover': { color: '#f5dc97' } }}>www.victoryworld.in</Box>), consider your privacy as very important to us. Our relationship with you is our most valuable asset and is the very basis of our name and reputation. We understand the importance you place on the privacy and security of information that personally identifies you or your account information. We refer to and treat this information as "personal information".
                     </Typography>
                     
                     <Typography 
@@ -156,7 +156,7 @@ export default function PrivacyPolicy() {
                                 }
                             }}
                         >
-                            You also consent to Zerabiz Ecom LLP disclosing information about you to actual or potential parties to a lawsuit that Zerabiz Ecom LLP is or may become involved in (a) if it required to do so, (b) if it reasonably believes that such disclosures will potentially mitigate its liability, or (c) to enforce its rights.
+                            You also consent to Victory World disclosing information about you to actual or potential parties to a lawsuit that Victory World is or may become involved in (a) if it required to do so, (b) if it reasonably believes that such disclosures will potentially mitigate its liability, or (c) to enforce its rights.
                         </Typography>
                         
                         <Typography 
@@ -175,7 +175,7 @@ export default function PrivacyPolicy() {
                                 }
                             }}
                         >
-                            On occasions we may assist a company that is not affiliated with Zerabiz Ecom LLP in providing or offering a product or service to you. In such circumstances, marketing materials will include instructions on how you can request not to receive those communications in the future. In all cases your personal information is protected by a strict confidentiality agreement. We do not allow any non-affiliated company to retain your personal information longer than necessary to provide the product, service, or information, unless you affirmatively grant us permission to do so.
+                            On occasions we may assist a company that is not affiliated with Victory World in providing or offering a product or service to you. In such circumstances, marketing materials will include instructions on how you can request not to receive those communications in the future. In all cases your personal information is protected by a strict confidentiality agreement. We do not allow any non-affiliated company to retain your personal information longer than necessary to provide the product, service, or information, unless you affirmatively grant us permission to do so.
                         </Typography>
                         
                         <Typography 
@@ -194,7 +194,7 @@ export default function PrivacyPolicy() {
                                 }
                             }}
                         >
-                            In the case that Zerabiz Ecom LLP sold substantially all of its assets or was acquired (or went out of business or entered bankruptcy), customer information is typically one of the business assets that is transferred in connection with such a transaction. You acknowledge that such transfers may occur and that any acquirer of Zerabiz Ecom LLP may continue to use your personal information as set forth in this policy.
+                            In the case that Victory World sold substantially all of its assets or was acquired (or went out of business or entered bankruptcy), customer information is typically one of the business assets that is transferred in connection with such a transaction. You acknowledge that such transfers may occur and that any acquirer of Victory World may continue to use your personal information as set forth in this policy.
                         </Typography>
                         
                         <Typography 
@@ -213,7 +213,7 @@ export default function PrivacyPolicy() {
                                 }
                             }}
                         >
-                            Zerabiz Ecom LLP corporate policies require that employees with access to confidential customer information may not use or disclose the information except for business use. All employees are required to safeguard such information, as specified in their confidentiality agreements with Zerabiz Ecom LLP.
+                            Victory World corporate policies require that employees with access to confidential customer information may not use or disclose the information except for business use. All employees are required to safeguard such information, as specified in their confidentiality agreements with Victory World.
                         </Typography>
                         
                         <Typography 
@@ -273,8 +273,8 @@ export default function PrivacyPolicy() {
                         },
                         {
                             question: "Cookies",
-                            answer: `To personalize your experience on our Website or with one of our promotions, we may assign your computer browser a unique random number, called a "cookie." Cookies enhance the Zerabiz Ecom LLP (www.zerroo.in) website performance in several important ways: they personalize your experience on our site, and they make your visit to our site more convenient for you.<br></br>
-                            Your privacy and security are not compromised when you accept a cookie from our Website. We do not use cookies to collect personal information. Cookies can't read data from your computer's hard disk or read cookie files from other Websites. In addition, companies we may hire to evaluate our Web promotions may set cookies to assist with such an evaluation. Again, neither Zerabiz Ecom LLP nor companies acting on our behalf use cookies to collect personal information.`
+                            answer: `To personalize your experience on our Website or with one of our promotions, we may assign your computer browser a unique random number, called a "cookie." Cookies enhance the Victory World (www.victoryworld.in) website performance in several important ways: they personalize your experience on our site, and they make your visit to our site more convenient for you.<br></br>
+                            Your privacy and security are not compromised when you accept a cookie from our Website. We do not use cookies to collect personal information. Cookies can't read data from your computer's hard disk or read cookie files from other Websites. In addition, companies we may hire to evaluate our Web promotions may set cookies to assist with such an evaluation. Again, neither Victory World nor companies acting on our behalf use cookies to collect personal information.`
                         },
                         {
                             question: "Use of Third-Party Media and Research Companies",
@@ -283,21 +283,21 @@ export default function PrivacyPolicy() {
                         {
                             question: "Links To Other Web Sites",
                             answer: `Links to third party Websites may be provided solely for your information and convenience. If you use these links, you will leave our Site. This Privacy Policy does not cover the information practices of those Web sites linked to our Site, nor do we control their content or privacy policies. We suggest that you carefully review the privacy policies of each site you visit.<br>
-                            Currently we do not provide any links to other Web Sites from our Web <a href="http://www.zerroo.in" target="_blank" rel="noopener noreferrer">www.zerroo.in</a>`
+                            Currently we do not provide any links to other Web Sites from our Web <a href="http://www.victoryworld.in" target="_blank" rel="noopener noreferrer">www.victoryworld.in</a>`
                         },
                         {
                             question: "Changes To This Policy",
-                            answer: `This site has security measures in place to protect the loss, misuse, and/or alteration of information under our control. The data resides behind a firewall, with access restricted to authorized Zerabiz Ecom LLP (<a href="http://www.zerroo.in" target="_blank" rel="noopener noreferrer">www.zerroo.in</a>)`
+                            answer: `This site has security measures in place to protect the loss, misuse, and/or alteration of information under our control. The data resides behind a firewall, with access restricted to authorized Victory World (<a href="http://www.victoryworld.in" target="_blank" rel="noopener noreferrer">www.victoryworld.in</a>)`
                         },
                         {
                             question: "Security",
-                            answer: `This site has security measures in place to protect the loss, misuse, and/or alteration of information under our control. The data resides behind a firewall, with access restricted to authorized Zerabiz Ecom LLP (<a href="http://www.zerroo.in" target="_blank" rel="noopener noreferrer">www.zerroo.in</a>)`
+                            answer: `This site has security measures in place to protect the loss, misuse, and/or alteration of information under our control. The data resides behind a firewall, with access restricted to authorized Victory World (<a href="http://www.victoryworld.in" target="_blank" rel="noopener noreferrer">www.victoryworld.in</a>)`
                         },
                         {
-                            question: "Contacting the Web (http://www.zerroo.in)",
+                            question: "Contacting the Web (http://www.victoryworld.in)",
                             answer: `If you have any questions or concerns about this privacy statement, the practices of this site, or your dealings with this Web site, you can contact:<br>
-                        Zerabiz Ecom LLP (<a href="http://www.zerroo.in" target="_blank" rel="noopener noreferrer">www.zerroo.in</a>)<br>
-                            Mail ID : support@zerroo.in`
+                        Victory World (<a href="http://www.victoryworld.in" target="_blank" rel="noopener noreferrer">www.victoryworld.in</a>)<br>
+                            Mail ID : info@victoryworld.in`
                         },
                     ]} />
                 </Box>

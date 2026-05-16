@@ -11,7 +11,7 @@ export default function Footer() {
                     <LogoSection />
                 </Box>
                 <Typography variant="h4" textAlign="center" mb={4} color="white">
-                    Join us for your second income by selling premium products. Zerroo provides the chance to open the franchise and promote the quality of its goods through minimal investments.
+                    Join us for your second income by selling premium products. Victory World provides the chance to open the franchise and promote the quality of its goods through minimal investments.
                 </Typography>
                 <Box
                     display="flex"
@@ -110,19 +110,19 @@ export default function Footer() {
                             </Typography>
                             <Stack spacing={1} pl={{md:0,xs:8}}>
                                 <Box display="flex" alignItems="center">
-                                    <IconButton component={Link} href="mailto:zerrooofficial2024@gmail.com" target='_blank'>
+                                    <IconButton component={Link} href="mailto:info@victoryworld.in" target='_blank'>
                                         <IconMail color="#FFF" size={20} />
                                     </IconButton>
-                                    <Typography component={Link} color="white" href="mailto:zerrooofficial2024@gmail.com" ml={1}>
-                                        zerrooofficial2024@gmail.com
+                                    <Typography component={Link} color="white" href="mailto:info@victoryworld.in" ml={1}>
+                                        info@victoryworld.in
                                     </Typography>
                                 </Box>
                                 <Box display="flex" alignItems="center">
-                                    <IconButton component={Link} href="mailto:support@zerroo.in" target='_blank'>
+                                    <IconButton component={Link} href="mailto:info@victoryworld.in" target='_blank'>
                                         <IconUserCheck color="#FFF" size={20} />
                                     </IconButton>
-                                    <Typography component={Link} color="white" href="mailto:support@zerroo.in" ml={1}>
-                                        support@zerroo.in
+                                    <Typography component={Link} color="white" href="mailto:info@victoryworld.in" ml={1}>
+                                        info@victoryworld.in
                                     </Typography>
                                 </Box>
                                 <Box display="flex" alignItems="center">
@@ -143,7 +143,7 @@ export default function Footer() {
                                 </Box>
                             </Stack>
                             <Stack  direction="row" spacing={2} px={{md:0,xs:8}}>
-                                <IconButton component={Link} href="https://www.instagram.com/zerroo_official_?igsh=MTE1YnQ2MDd6MWdiZw==" target='_blank'>
+                                <IconButton component={Link} href="https://www.instagram.com/victoryworld_official" target='_blank'>
                                     <IconBrandInstagram color="#FFF" size={24} />
                                 </IconButton>
                                 <IconButton component={Link} href="https://www.facebook.com/profile.php?id=61572047320496&mibextid=rS40aB7S9Ucbxw6v" target='_blank'>
@@ -152,7 +152,7 @@ export default function Footer() {
                                 <IconButton component={Link} href="https://chat.whatsapp.com/GjzJy6U8qkh1njxgywvTg8" target='_blank'>
                                     <IconBrandWhatsapp color="#FFF" size={24} />
                                 </IconButton>
-                                <IconButton component={Link} href="https://www.linkedin.com/in/zerabiz-ecom-llp-883966348/" target='_blank'>
+                                <IconButton component={Link} href="https://www.linkedin.com/company/victoryworld" target='_blank'>
                                     <IconBrandLinkedin color="#FFF" size={24} />
                                 </IconButton>
                             </Stack>

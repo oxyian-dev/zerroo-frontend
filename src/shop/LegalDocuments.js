@@ -74,8 +74,8 @@ export default function LegalDocuments() {
                         <Button
                             variant="contained"
                             startIcon={<DownloadIcon />}
-                            href="/pdf/Incorporation_Certificate_Zerabiz.pdf"
-                            download="Incorporation_Certificate_Zerabiz.pdf"
+                            href="/pdf/Incorporation_Certificate_VictoryWorld.pdf"
+                            download="Incorporation_Certificate_VictoryWorld.pdf"
                             sx={{
                                 mt: 'auto',
                                 background: 'linear-gradient(135deg, #efcb77 0%, #ddb45d 100%)',
@@ -131,8 +131,8 @@ export default function LegalDocuments() {
                         <Button
                             variant="contained"
                             startIcon={<DownloadIcon />}
-                            href="/pdf/GST_CERTIFICATE_ZERABIZ.pdf"
-                            download="GST_CERTIFICATE_ZERABIZ.pdf"
+                            href="/pdf/GST_CERTIFICATE_VictoryWorld.pdf"
+                            download="GST_CERTIFICATE_VictoryWorld.pdf"
                             sx={{
                                 mt: 'auto',
                                 background: 'linear-gradient(135deg, #efcb77 0%, #ddb45d 100%)',
@@ -188,8 +188,8 @@ export default function LegalDocuments() {
                         <Button
                             variant="contained"
                             startIcon={<DownloadIcon />}
-                            href="/pdf/TAN_Zerabiz.pdf"
-                            download="TAN_Zerabiz.pdf"
+                            href="/pdf/TAN_VictoryWorld.pdf"
+                            download="TAN_VictoryWorld.pdf"
                             sx={{
                                 mt: 'auto',
                                 background: 'linear-gradient(135deg, #efcb77 0%, #ddb45d 100%)',
@@ -245,8 +245,8 @@ export default function LegalDocuments() {
                         <Button
                             variant="contained"
                             startIcon={<DownloadIcon />}
-                            href="/pdf/e-PAN_Zerabiz.pdf"
-                            download="e-pan_Zerabiz.pdf"
+                            href="/pdf/e-PAN_VictoryWorld.pdf"
+                            download="e-pan_VictoryWorld.pdf"
                             sx={{
                                 mt: 'auto',
                                 background: 'linear-gradient(135deg, #efcb77 0%, #ddb45d 100%)',

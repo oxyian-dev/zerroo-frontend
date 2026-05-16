@@ -50,7 +50,7 @@ export default function TermsOfService() {
                             }
                         }}
                     >
-                        Please read these terms carefully before using this website i.e. <Box component="a" href="http://www.zerroo.in" target="_blank" rel="noopener noreferrer" sx={{ color: '#efcb77', textDecoration: 'none', '&:hover': { color: '#f5dc97' } }}>www.zerroo.in</Box>. Using this website <Box component="a" href="http://www.zerroo.in" target="_blank" rel="noopener noreferrer" sx={{ color: '#efcb77', textDecoration: 'none', '&:hover': { color: '#f5dc97' } }}>www.zerroo.in</Box> indicates that you accept these terms. Please note that this is a business/commercial site and can be accessed only by a valid account holder. Your access and use of the Site is subject to the following terms and conditions ("Website Terms and Conditions") and all applicable laws. By accessing and browsing this Site, you accept, without limitation or qualification, the Website Terms and Conditions. If you do not agree with any of the below Terms and Conditions, do not use this Site. We reserve the right, in our sole discretion, to modify, alter or otherwise update these Website Terms and Conditions at any time and you agree to be bound by such modifications, alterations or updates. This website (operated by us from our office located in Dindigul, India) is intended as a service to the above mentioned categories of people located in India. Therefore any person who accesses this website from outside India shall do so at his/her own risk and is responsible for compliance with the laws of his/her respective jurisdiction.
+                        Please read these terms carefully before using this website i.e. <Box component="a" href="http://www.victoryworld.in" target="_blank" rel="noopener noreferrer" sx={{ color: '#efcb77', textDecoration: 'none', '&:hover': { color: '#f5dc97' } }}>www.victoryworld.in</Box>. Using this website <Box component="a" href="http://www.victoryworld.in" target="_blank" rel="noopener noreferrer" sx={{ color: '#efcb77', textDecoration: 'none', '&:hover': { color: '#f5dc97' } }}>www.victoryworld.in</Box> indicates that you accept these terms. Please note that this is a business/commercial site and can be accessed only by a valid account holder. Your access and use of the Site is subject to the following terms and conditions ("Website Terms and Conditions") and all applicable laws. By accessing and browsing this Site, you accept, without limitation or qualification, the Website Terms and Conditions. If you do not agree with any of the below Terms and Conditions, do not use this Site. We reserve the right, in our sole discretion, to modify, alter or otherwise update these Website Terms and Conditions at any time and you agree to be bound by such modifications, alterations or updates. This website (operated by us from our office located in Dindigul, India) is intended as a service to the above mentioned categories of people located in India. Therefore any person who accesses this website from outside India shall do so at his/her own risk and is responsible for compliance with the laws of his/her respective jurisdiction.
                     </Typography>
                     
                     <Typography 
@@ -69,7 +69,7 @@ export default function TermsOfService() {
                             }
                         }}
                     >
-                        <Box component="a" href="http://www.zerroo.in" target="_blank" rel="noopener noreferrer" sx={{ color: '#efcb77', textDecoration: 'none', '&:hover': { color: '#f5dc97' } }}>www.zerroo.in</Box> (the "Site") is owned and operated by Zerabiz Ecom LLP ("we" or "us" or Zerabiz Ecom LLP), a company incorporated under the laws of India and having its Registered Office at 5/837, Naal road, Thennampatti, Vedasandur (Taluk), Dindigul -624802, India. By using this Site, you agree to the terms and conditions which constitute the entire agreement between Zerabiz Ecom LLP and you. These Terms supersede all prior and contemporaneous representations, warranties and understandings, whether oral or written with respect to the Site, its contents and any services provided on the site. In the event of any conflict between these Terms and any agreement or understanding related to the Site, the Terms shall control.
+                        <Box component="a" href="http://www.victoryworld.in" target="_blank" rel="noopener noreferrer" sx={{ color: '#efcb77', textDecoration: 'none', '&:hover': { color: '#f5dc97' } }}>www.victoryworld.in</Box> (the "Site") is owned and operated by Victory World ("we" or "us" or Victory World), a company incorporated under the laws of India and having its Registered Office at 5/837, Naal road, Thennampatti, Vedasandur (Taluk), Dindigul -624802, India. By using this Site, you agree to the terms and conditions which constitute the entire agreement between Victory World and you. These Terms supersede all prior and contemporaneous representations, warranties and understandings, whether oral or written with respect to the Site, its contents and any services provided on the site. In the event of any conflict between these Terms and any agreement or understanding related to the Site, the Terms shall control.
                     </Typography>
                     
                     <Typography 
@@ -88,7 +88,7 @@ export default function TermsOfService() {
                             }
                         }}
                     >
-                        Users agree not to use the site <Box component="a" href="http://www.zerroo.in" target="_blank" rel="noopener noreferrer" sx={{ color: '#efcb77', textDecoration: 'none', '&:hover': { color: '#f5dc97' } }}>www.zerroo.in</Box> for sale, trade or other commercial purposes. Users may not use language that is threatening, abusive, vulgar, discourteous or criminal. Users also may not post or transmit information or materials that would violate rights of any third party or which contains a virus or other harmful component. Zerabiz Ecom LLP reserves the right to remove or edit any messages or material submitted by users.
+                        Users agree not to use the site <Box component="a" href="http://www.victoryworld.in" target="_blank" rel="noopener noreferrer" sx={{ color: '#efcb77', textDecoration: 'none', '&:hover': { color: '#f5dc97' } }}>www.victoryworld.in</Box> for sale, trade or other commercial purposes. Users may not use language that is threatening, abusive, vulgar, discourteous or criminal. Users also may not post or transmit information or materials that would violate rights of any third party or which contains a virus or other harmful component. Victory World reserves the right to remove or edit any messages or material submitted by users.
                     </Typography>
                     
                     <Typography 
@@ -107,7 +107,7 @@ export default function TermsOfService() {
                             }
                         }}
                     >
-                        This site is provided by Zerabiz Ecom LLP on an "as is" and "as available" basis. Zerabiz Ecom LLP makes no representations or warranties of any kind express or implied, as to the operation of this site or the information, content, materials, or products included on this site. You expressly agree that your use of this site is at your sole risk. To the full extent permissible by applicable law, Zerabiz Ecom LLP disclaims all warranties, express or implied, including, but not limited to, implied warranties of merchantability and fitness for a particular purpose.
+                        This site is provided by Victory World on an "as is" and "as available" basis. Victory World makes no representations or warranties of any kind express or implied, as to the operation of this site or the information, content, materials, or products included on this site. You expressly agree that your use of this site is at your sole risk. To the full extent permissible by applicable law, Victory World disclaims all warranties, express or implied, including, but not limited to, implied warranties of merchantability and fitness for a particular purpose.
                     </Typography>
                     
                     <Typography 
@@ -117,7 +117,7 @@ export default function TermsOfService() {
                             fontSize: { xs: '0.95rem', md: '1rem' }
                         }}
                     >
-                        Zerabiz Ecom LLP does not warrant that this site, its servers, or e-mail sent from Zerabiz Ecom LLP are free of viruses or other harmful components. Zerabiz Ecom LLP will not be liable for any damages of any kind arising from the use of this site, including, but not limited to direct, indirect, incidental, punitive, and consequential damages.
+                        Victory World does not warrant that this site, its servers, or e-mail sent from Victory World are free of viruses or other harmful components. Victory World will not be liable for any damages of any kind arising from the use of this site, including, but not limited to direct, indirect, incidental, punitive, and consequential damages.
                     </Typography>
                     
                     <Typography 
@@ -136,7 +136,7 @@ export default function TermsOfService() {
                             }
                         }}
                     >
-                        The User understands and acknowledges that any links which takes the User to third party sites is not maintained by Zerabiz Ecom LLP and Zerabiz Ecom LLP privacy policy does not apply. This link is provided to you for convenience and does not serve as an endorsement by Zerabiz Ecom LLP of any information or contacts that you may find on this non-Zerabiz Ecom LLP site. Under no circumstances, including but not limited to negligence, will Zerabiz Ecom LLP be liable for special or consequential damages that result from the use or inability to use the materials in this site.
+                        The User understands and acknowledges that any links which takes the User to third party sites is not maintained by Victory World and Victory World privacy policy does not apply. This link is provided to you for convenience and does not serve as an endorsement by Victory World of any information or contacts that you may find on this non-Victory World site. Under no circumstances, including but not limited to negligence, will Victory World be liable for special or consequential damages that result from the use or inability to use the materials in this site.
                     </Typography>
                     
                     <Typography 
@@ -218,12 +218,12 @@ export default function TermsOfService() {
                     <Faq faqs={[
                         {
                             question: "COPYRIGHTS",
-                            answer: `Material on this website, including but not limited to text, images, illustrations, etc. are protected by copyrights which are owned and controlled by us and is the property of the Zerabiz Ecom LLP. All rights in this material are reserved. The information and images presented here may not under any circumstances be reproduced or used without prior written permission. Users may view and download material from this site only for personal, non-commercial home use. Any act to copied, reproduced, republished, uploaded, posted, transmitted, or distributed in any way or publicly display material from this website without the written permission of Zerabiz Ecom LLP will constitute an infringement of the Copyright.<br>
-                               You may not use any Zerabiz Ecom LLP logo or other proprietary graphic or trademark as part of the link without express written permission.`
+                            answer: `Material on this website, including but not limited to text, images, illustrations, etc. are protected by copyrights which are owned and controlled by us and is the property of the Victory World. All rights in this material are reserved. The information and images presented here may not under any circumstances be reproduced or used without prior written permission. Users may view and download material from this site only for personal, non-commercial home use. Any act to copied, reproduced, republished, uploaded, posted, transmitted, or distributed in any way or publicly display material from this website without the written permission of Victory World will constitute an infringement of the Copyright.<br>
+                               You may not use any Victory World logo or other proprietary graphic or trademark as part of the link without express written permission.`
                         },
                         {
                             question: "INFORMATION/IDEAS SUBMISSION BY THE NW IBO's/NLA's",
-                            answer: `Any information or material submitted by you to Zerabiz Ecom LLP website [www.zerroo.in] (whether through e-mail, written letter or otherwise) will be deemed non-proprietary and non-confidential, and may be used by Zerabiz Ecom LLP without restriction. Not with standing the foregoing, all personal data (e.g., name, address and telephone number) provided to Zerabiz Ecom LLP will be handled in accordance with Zerabiz Ecom LLP Policy.`
+                            answer: `Any information or material submitted by you to Victory World website [www.victoryworld.in] (whether through e-mail, written letter or otherwise) will be deemed non-proprietary and non-confidential, and may be used by Victory World without restriction. Not with standing the foregoing, all personal data (e.g., name, address and telephone number) provided to Victory World will be handled in accordance with Victory World Policy.`
                         },
                         {
                             question: "LIMITATIONS",
@@ -239,7 +239,7 @@ We may provide links and pointers to Internet sites maintained by others ("Third
 <br><br>
 Refunds Terms & Conditions:<br><br>
 
-1. If refund requested after delivery then we refund within 5 working days of product returned back to us and received by the Dispatch team of Zerabiz Ecom LLP.
+1. If refund requested after delivery then we refund within 5 working days of product returned back to us and received by the Dispatch team of Victory World.
 <br><br>
 2. Refund only possible if, the product is delivered back & shipment cost to be borne by the customer.<br><br>
 3. If the goods are delivered in the damaged condition to the customer, then the shipping cost is to be borne by the company. And we will reship the product.<br><br>
