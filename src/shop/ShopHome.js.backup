@@ -202,7 +202,7 @@ const ShopHome = () => {
                                         }
                                     }}
                                     component="a"
-                                    href="https://surveyheart.com/form/65b39e08cdb9323f78e24041"
+                                    href="#"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -775,7 +775,7 @@ const ShopHome = () => {
                         >
                             <Button
                                 component="a"
-                                href="https://surveyheart.com/form/65b39e08cdb9323f78e24041"
+                                href="#"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 size="large"

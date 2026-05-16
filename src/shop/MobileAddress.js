@@ -58,6 +58,16 @@ const MobileAddress = () => {
                             sessionStorage.setItem('address', id)
                             navigate('/checkout')
                         }}
+                        role="button"
+                        tabIndex={0}
+                        aria-label={`Select ${saved_name} address for delivery`}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault()
+                                sessionStorage.setItem('address', id)
+                                navigate('/checkout')
+                            }
+                        }}
                         sx={{
                             background: 'linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01))',
                             border: '1px solid rgba(255,255,255,.08)',
@@ -72,6 +82,10 @@ const MobileAddress = () => {
                             },
                             '&:active': {
                                 transform: 'translateY(-4px)'
+                            },
+                            '&:focus-visible': {
+                                outline: '2px solid #efcb77',
+                                outlineOffset: '2px'
                             }
                         }}
                     >

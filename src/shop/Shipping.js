@@ -4,10 +4,11 @@ import Faq from '../components/Faq'
 
 export default function Shipping() {
     return (
-        <Container 
-            maxWidth="lg"
-            sx={{ 
-                py: { md: 14, xs: 10 }, 
+        <Container
+            maxWidth={false}
+            sx={{
+                maxWidth: '1440px',
+                py: { md: '190px', xs: '100px' },
                 px: { md: 10, xs: 3 }
             }}
         >

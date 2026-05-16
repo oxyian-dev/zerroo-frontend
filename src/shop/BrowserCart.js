@@ -207,8 +207,8 @@ const BrowserCart = () => {
                                             sx={{
                                                 color: '#efcb77',
                                                 fontWeight: 700,
-                                                fontSize: '0.85rem',
-                                                letterSpacing: '0.1em',
+                                                fontSize: '1.05rem',
+                                                letterSpacing: '0.16em',
                                                 textTransform: 'uppercase',
                                                 borderBottom: '1px solid rgba(255,255,255,.08)',
                                                 py: 3
@@ -221,8 +221,8 @@ const BrowserCart = () => {
                                             sx={{
                                                 color: '#efcb77',
                                                 fontWeight: 700,
-                                                fontSize: '0.85rem',
-                                                letterSpacing: '0.1em',
+                                                fontSize: '1.05rem',
+                                                letterSpacing: '0.16em',
                                                 textTransform: 'uppercase',
                                                 borderBottom: '1px solid rgba(255,255,255,.08)'
                                             }}
@@ -233,8 +233,8 @@ const BrowserCart = () => {
                                             sx={{
                                                 color: '#efcb77',
                                                 fontWeight: 700,
-                                                fontSize: '0.85rem',
-                                                letterSpacing: '0.1em',
+                                                fontSize: '1.05rem',
+                                                letterSpacing: '0.16em',
                                                 textTransform: 'uppercase',
                                                 borderBottom: '1px solid rgba(255,255,255,.08)'
                                             }}
@@ -245,8 +245,8 @@ const BrowserCart = () => {
                                             sx={{
                                                 color: '#efcb77',
                                                 fontWeight: 700,
-                                                fontSize: '0.85rem',
-                                                letterSpacing: '0.1em',
+                                                fontSize: '1.05rem',
+                                                letterSpacing: '0.16em',
                                                 textTransform: 'uppercase',
                                                 borderBottom: '1px solid rgba(255,255,255,.08)'
                                             }}
@@ -257,8 +257,8 @@ const BrowserCart = () => {
                                             sx={{
                                                 color: '#efcb77',
                                                 fontWeight: 700,
-                                                fontSize: '0.85rem',
-                                                letterSpacing: '0.1em',
+                                                fontSize: '1.05rem',
+                                                letterSpacing: '0.16em',
                                                 textTransform: 'uppercase',
                                                 borderBottom: '1px solid rgba(255,255,255,.08)'
                                             }}
@@ -269,8 +269,8 @@ const BrowserCart = () => {
                                             sx={{
                                                 color: '#efcb77',
                                                 fontWeight: 700,
-                                                fontSize: '0.85rem',
-                                                letterSpacing: '0.1em',
+                                                fontSize: '1.05rem',
+                                                letterSpacing: '0.16em',
                                                 textTransform: 'uppercase',
                                                 borderBottom: '1px solid rgba(255,255,255,.08)'
                                             }}
@@ -281,8 +281,8 @@ const BrowserCart = () => {
                                             sx={{
                                                 color: '#efcb77',
                                                 fontWeight: 700,
-                                                fontSize: '0.85rem',
-                                                letterSpacing: '0.1em',
+                                                fontSize: '1.05rem',
+                                                letterSpacing: '0.16em',
                                                 textTransform: 'uppercase',
                                                 borderBottom: '1px solid rgba(255,255,255,.08)'
                                             }}
@@ -346,7 +346,7 @@ const BrowserCart = () => {
                                                 {item.combo_id ? (
                                                     <Typography
                                                         sx={{
-                                                            fontSize: '1.1rem',
+                                                            fontSize: '1rem',
                                                             fontWeight: 600,
                                                             color: 'white',
                                                             mb: 0.5
@@ -361,7 +361,7 @@ const BrowserCart = () => {
                                                     >
                                                         <Typography
                                                             sx={{
-                                                                fontSize: '1.1rem',
+                                                                fontSize: '1rem',
                                                                 fontWeight: 600,
                                                                 color: 'white',
                                                                 mb: 0.5,
@@ -376,7 +376,7 @@ const BrowserCart = () => {
                                                         {isLoggedIn() && (
                                                             <Typography
                                                                 sx={{
-                                                                    fontSize: '0.85rem',
+                                                                    fontSize: '0.78rem',
                                                                     color: '#efcb77',
                                                                     fontWeight: 600
                                                                 }}
@@ -394,7 +394,7 @@ const BrowserCart = () => {
                                             >
                                                 <Typography
                                                     sx={{
-                                                        fontSize: '0.95rem',
+                                                        fontSize: '1rem',
                                                         color: 'rgba(255,255,255,.82)'
                                                     }}
                                                 >
@@ -409,7 +409,7 @@ const BrowserCart = () => {
                                                 <Box>
                                                     <Typography
                                                         sx={{
-                                                            fontSize: '1.1rem',
+                                                            fontSize: '1rem',
                                                             fontWeight: 700,
                                                             color: 'white',
                                                             display: 'inline',
@@ -422,7 +422,7 @@ const BrowserCart = () => {
                                                         <>
                                                             <Typography
                                                                 sx={{
-                                                                    fontSize: '0.9rem',
+                                                                    fontSize: '0.78rem',
                                                                     color: 'rgba(255,255,255,.5)',
                                                                     textDecoration: 'line-through',
                                                                     display: 'inline',
@@ -466,7 +466,7 @@ const BrowserCart = () => {
                                                     {item.combo_id && (
                                                         <Typography
                                                             sx={{
-                                                                fontSize: '0.75rem',
+                                                                fontSize: '0.78rem',
                                                                 color: 'rgba(255,255,255,.5)',
                                                                 mt: 1
                                                             }}
@@ -483,7 +483,7 @@ const BrowserCart = () => {
                                             >
                                                 <Typography
                                                     sx={{
-                                                        fontSize: '1.2rem',
+                                                        fontSize: '1.05rem',
                                                         fontWeight: 700,
                                                         color: 'white'
                                                     }}
@@ -503,9 +503,9 @@ const BrowserCart = () => {
                                                     onClick={removeItem}
                                                     sx={{
                                                         color: '#ff6b6b',
-                                                        fontSize: '0.8rem',
+                                                        fontSize: '0.78rem',
                                                         fontWeight: 600,
-                                                        letterSpacing: '0.1em',
+                                                        letterSpacing: '0.22em',
                                                         textTransform: 'uppercase',
                                                         '&:hover': {
                                                             background: 'rgba(255,107,107,.1)',
@@ -518,7 +518,7 @@ const BrowserCart = () => {
                                                 {item.combo_id && (
                                                     <Typography
                                                         sx={{
-                                                            fontSize: '0.75rem',
+                                                            fontSize: '0.78rem',
                                                             color: 'rgba(255,255,255,.5)',
                                                             mt: 1
                                                         }}
@@ -542,7 +542,7 @@ const BrowserCart = () => {
                                             sx={{
                                                 borderBottom: '1px solid rgba(255,255,255,.08)',
                                                 color: 'rgba(255,255,255,.82)',
-                                                fontSize: '0.95rem',
+                                                fontSize: '1rem',
                                                 fontWeight: 600,
                                                 py: 2
                                             }}
@@ -553,7 +553,7 @@ const BrowserCart = () => {
                                             sx={{
                                                 borderBottom: '1px solid rgba(255,255,255,.08)',
                                                 color: 'white',
-                                                fontSize: '1.1rem',
+                                                fontSize: '1.05rem',
                                                 fontWeight: 700
                                             }}
                                         >
@@ -566,7 +566,7 @@ const BrowserCart = () => {
                                             sx={{
                                                 borderBottom: '1px solid rgba(255,255,255,.08)',
                                                 color: 'rgba(255,255,255,.82)',
-                                                fontSize: '0.95rem',
+                                                fontSize: '1rem',
                                                 fontWeight: 600,
                                                 py: 2
                                             }}
@@ -577,7 +577,7 @@ const BrowserCart = () => {
                                             sx={{
                                                 borderBottom: '1px solid rgba(255,255,255,.08)',
                                                 color: '#51cf66',
-                                                fontSize: '1.1rem',
+                                                fontSize: '1.05rem',
                                                 fontWeight: 700
                                             }}
                                         >
@@ -590,9 +590,9 @@ const BrowserCart = () => {
                                             sx={{
                                                 borderBottom: 'none',
                                                 color: '#efcb77',
-                                                fontSize: '1.1rem',
+                                                fontSize: '1.05rem',
                                                 fontWeight: 700,
-                                                letterSpacing: '0.1em',
+                                                letterSpacing: '0.16em',
                                                 textTransform: 'uppercase',
                                                 py: 3
                                             }}
@@ -603,7 +603,7 @@ const BrowserCart = () => {
                                             sx={{
                                                 borderBottom: 'none',
                                                 color: '#efcb77',
-                                                fontSize: '1.5rem',
+                                                fontSize: '1.25rem',
                                                 fontWeight: 700
                                             }}
                                         >

@@ -104,23 +104,31 @@ const MobileShopList = () => {
 
     useEffect(() => {
         setLoading(true)
-        fetcher(`/api/listing/items/category/${id}?${toQueryString(params)}`)
+        const apiUrl = id
+            ? `/api/listing/items/category/${id}?${toQueryString(params)}`
+            : `/api/listing/items?${toQueryString(params)}`;
+        
+        fetcher(apiUrl)
             .then(r => r.json())
             .then(({ listing, category }) => {
                 const finalListing = []
                 const unique = [];
-                for (let i = 0; i < listing.length; i++) {
-                    const u = listing[i].group_id + '-' + listing[i].color;
+                // Add null check for listing array
+                const items = listing || [];
+                for (let i = 0; i < items.length; i++) {
+                    const u = items[i].group_id + '-' + items[i].color;
                     if (unique.indexOf(u) <= -1) {
                         unique.push(u);
-                        finalListing.push(listing[i])
+                        finalListing.push(items[i])
                     }
                 }
                 setData(finalListing)
-                setLayout({ ...layout, title: category.category, back: '/' })
+                setLayout({ ...layout, title: category?.category || 'All Products', back: '/' })
             })
-            .catch((e) => {
-                alert(e)
+            .catch((error) => {
+                console.error('Error fetching items:', error)
+                setData([])
+                setLayout({ ...layout, title: 'All Products', back: '/' })
             })
             .finally(() => {
                 setLoading(false)
@@ -129,10 +137,32 @@ const MobileShopList = () => {
     }, [id, params])
 
     useEffect(() => {
-        fetcher(`/api/listing/filter?category=${id}`)
+        const filterUrl = id
+            ? `/api/listing/filter?category=${id}`
+            : `/api/listing/filter`;
+        
+        fetcher(filterUrl)
             .then(r => r.json())
             .then(filters => {
-                setFilters(filters)
+                // Ensure all filter properties are arrays
+                setFilters({
+                    brands: filters?.brands || [],
+                    sizes: filters?.sizes || [],
+                    discount: filters?.discount || [],
+                    categories: filters?.categories || [],
+                    colors: filters?.colors || []
+                })
+            })
+            .catch((error) => {
+                console.error('Error fetching filters:', error)
+                // Set empty filters on error
+                setFilters({
+                    brands: [],
+                    sizes: [],
+                    discount: [],
+                    categories: [],
+                    colors: []
+                })
             })
     }, [id])
 
@@ -626,7 +656,7 @@ const MobileShopList = () => {
                                             </Badge>
                                         }
                                     />
-                                    {filters.colors.length > 0 && (
+                                    {(filters.colors?.length || 0) > 0 && (
                                         <Tab
                                             value={2}
                                             label={
@@ -640,7 +670,7 @@ const MobileShopList = () => {
                                             }
                                         />
                                     )}
-                                    {filters.sizes.length > 0 && (
+                                    {(filters.sizes?.length || 0) > 0 && (
                                         <Tab
                                             value={3}
                                             label={

@@ -305,7 +305,7 @@ export default function ComboDetails() {
                                             },
                                             '& .MuiStepLabel-label': {
                                                 color: 'rgba(255,255,255,.68)',
-                                                fontSize: { md: '0.95rem', xs: '0.85rem' },
+                                                fontSize: { md: '1rem', xs: '0.78rem' },
                                                 fontWeight: 500
                                             },
                                             '& .MuiStepLabel-label.Mui-active': {
@@ -339,7 +339,7 @@ export default function ComboDetails() {
                                                         variant="caption"
                                                         sx={{
                                                             color: '#ff6b6b',
-                                                            fontSize: '0.7rem',
+                                                            fontSize: '0.78rem',
                                                             fontWeight: 600
                                                         }}
                                                     >
@@ -402,8 +402,9 @@ export default function ComboDetails() {
                                     color: 'white',
                                     fontWeight: 600,
                                     textTransform: 'uppercase',
-                                    letterSpacing: '0.1em',
-                                    fontSize: { md: '0.85rem', xs: '0.75rem' },
+                                    letterSpacing: '0.2em',
+                                    fontSize: { md: '0.78rem', xs: '0.72rem' },
+                                    py: { md: 2.25, xs: 2 },
                                     transition: 'all 0.3s ease',
                                     '&:hover': {
                                         borderColor: '#ddb45d',
@@ -438,8 +439,10 @@ export default function ComboDetails() {
                                         color: '#000',
                                         fontWeight: 700,
                                         textTransform: 'uppercase',
-                                        letterSpacing: '0.1em',
-                                        fontSize: { md: '0.85rem', xs: '0.75rem' },
+                                        letterSpacing: '0.22em',
+                                        fontSize: { md: '0.78rem', xs: '0.72rem' },
+                                        py: { md: 2.25, xs: 2 },
+                                        px: { md: 5.25, xs: 4.5 },
                                         transition: 'all 0.3s ease',
                                         '&:hover': {
                                             background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
@@ -496,7 +499,7 @@ export default function ComboDetails() {
                                         background: 'rgba(255,193,7,.1)',
                                         borderColor: 'rgba(255,193,7,.3)',
                                         color: '#efcb77',
-                                        fontSize: { md: '0.95rem', xs: '0.85rem' },
+                                        fontSize: { md: '1rem', xs: '0.78rem' },
                                         '& .MuiAlert-icon': {
                                             color: '#efcb77'
                                         },
@@ -514,8 +517,8 @@ export default function ComboDetails() {
                                                 color: '#efcb77',
                                                 fontWeight: 600,
                                                 textTransform: 'uppercase',
-                                                letterSpacing: '0.1em',
-                                                fontSize: { md: '0.85rem', xs: '0.75rem' },
+                                                letterSpacing: '0.22em',
+                                                fontSize: { md: '0.78rem', xs: '0.72rem' },
                                                 transition: 'all 0.3s ease',
                                                 '&:hover': {
                                                     background: 'rgba(255,193,7,.1)',
@@ -547,8 +550,9 @@ export default function ComboDetails() {
                                     color: 'white',
                                     fontWeight: 600,
                                     textTransform: 'uppercase',
-                                    letterSpacing: '0.1em',
-                                    fontSize: { md: '0.85rem', xs: '0.75rem' },
+                                    letterSpacing: '0.2em',
+                                    fontSize: { md: '0.78rem', xs: '0.72rem' },
+                                    py: { md: 2.25, xs: 2 },
                                     transition: 'all 0.3s ease',
                                     '&:hover': {
                                         borderColor: '#ddb45d',
@@ -664,10 +668,10 @@ export default function ComboDetails() {
                                 <Typography
                                     sx={{
                                         color: '#efcb77',
-                                        fontSize: { md: '1.2rem', xs: '1rem' },
+                                        fontSize: { md: '1.05rem', xs: '1rem' },
                                         fontWeight: 600,
                                         textTransform: 'uppercase',
-                                        letterSpacing: '0.1em',
+                                        letterSpacing: '0.16em',
                                         mb: 1
                                     }}
                                 >
@@ -682,7 +686,7 @@ export default function ComboDetails() {
                                     <Typography
                                         component="h2"
                                         sx={{
-                                            fontSize: { md: '1.8rem', xs: '1.4rem' },
+                                            fontSize: { md: '1.75rem', xs: '1.35rem' },
                                             fontWeight: 800,
                                             color: 'white',
                                             lineHeight: 1.2,
@@ -714,7 +718,7 @@ export default function ComboDetails() {
                                     <Box mb={3}>
                                         <Typography
                                             sx={{
-                                                fontSize: { md: '1rem', xs: '0.95rem' },
+                                                fontSize: { md: '1rem', xs: '1rem' },
                                                 fontWeight: 600,
                                                 color: 'white',
                                                 mb: 1.5
@@ -764,7 +768,7 @@ export default function ComboDetails() {
                                 {item?.quantity <= 5 && item?.quantity !== 0 && (
                                     <Typography
                                         sx={{
-                                            fontSize: { md: '0.95rem', xs: '0.9rem' },
+                                            fontSize: { md: '1rem', xs: '0.78rem' },
                                             color: '#ff6b6b',
                                             fontWeight: 600,
                                             mb: 2
@@ -779,7 +783,7 @@ export default function ComboDetails() {
                                     <Box mb={3}>
                                         <Typography
                                             sx={{
-                                                fontSize: { md: '1.1rem', xs: '1rem' },
+                                                fontSize: { md: '1.05rem', xs: '1rem' },
                                                 fontWeight: 700,
                                                 color: 'white',
                                                 mb: 2
@@ -798,7 +802,7 @@ export default function ComboDetails() {
                                             >
                                                 <Typography
                                                     sx={{
-                                                        fontSize: { md: '0.95rem', xs: '0.9rem' },
+                                                        fontSize: { md: '1rem', xs: '0.78rem' },
                                                         color: 'rgba(255,255,255,.68)',
                                                         minWidth: '140px'
                                                     }}
@@ -807,7 +811,7 @@ export default function ComboDetails() {
                                                 </Typography>
                                                 <Typography
                                                     sx={{
-                                                        fontSize: { md: '0.95rem', xs: '0.9rem' },
+                                                        fontSize: { md: '1rem', xs: '0.78rem' },
                                                         color: 'white',
                                                         fontWeight: 600
                                                     }}
@@ -824,7 +828,7 @@ export default function ComboDetails() {
                                     {item?.quantity === 0 ? (
                                         <Typography
                                             sx={{
-                                                fontSize: { md: '1.5rem', xs: '1.2rem' },
+                                                fontSize: { md: '1.25rem', xs: '1.05rem' },
                                                 fontWeight: 700,
                                                 color: '#ff6b6b',
                                                 textAlign: 'center',
@@ -845,9 +849,10 @@ export default function ComboDetails() {
                                                 color: '#000',
                                                 fontWeight: 700,
                                                 textTransform: 'uppercase',
-                                                letterSpacing: '0.1em',
-                                                fontSize: { md: '0.95rem', xs: '0.85rem' },
-                                                py: { md: 2, xs: 1.5 },
+                                                letterSpacing: '0.22em',
+                                                fontSize: { md: '0.78rem', xs: '0.72rem' },
+                                                py: { md: 2.25, xs: 2 },
+                                                px: { md: 5.25, xs: 4.5 },
                                                 transition: 'all 0.3s ease',
                                                 '&:hover': {
                                                     background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',

@@ -364,12 +364,13 @@ const MobileCart = () => {
                                                     )}
                                                 </Grid>
                                                 <Grid item xs={6}>
-                                                    <Button 
-                                                        value={index} 
-                                                        startIcon={<IconX size={18} />} 
+                                                    <Button
+                                                        value={index}
+                                                        startIcon={<IconX size={18} />}
                                                         variant="text"
                                                         onClick={removeItem}
                                                         fullWidth
+                                                        aria-label={`Remove ${item.title} from cart`}
                                                         sx={{
                                                             color: '#ff6b6b',
                                                             fontSize: '0.75rem',
@@ -380,6 +381,10 @@ const MobileCart = () => {
                                                             '&:hover': {
                                                                 background: 'rgba(255,107,107,.1)',
                                                                 color: '#ff6b6b'
+                                                            },
+                                                            '&:focus-visible': {
+                                                                outline: '2px solid #efcb77',
+                                                                outlineOffset: '2px'
                                                             }
                                                         }}
                                                     >

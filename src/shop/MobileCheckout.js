@@ -88,10 +88,10 @@ const MobileCheckout = () => {
                 <Typography
                     fontWeight={700}
                     mb={2}
-                    fontSize={16}
                     variant="subtitle1"
                     sx={{
                         color: 'white',
+                        fontSize: '1rem',
                         letterSpacing: '0.05em'
                     }}
                 >
@@ -203,7 +203,7 @@ const MobileCheckout = () => {
                                 color: '#ff6b6b',
                                 textTransform: 'uppercase',
                                 letterSpacing: '0.1em',
-                                fontSize: '0.7rem',
+                                fontSize: '0.72rem',
                                 fontWeight: 600,
                                 minHeight: '44px',
                                 '&:hover': {

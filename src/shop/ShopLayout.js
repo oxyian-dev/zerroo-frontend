@@ -94,7 +94,7 @@ const ShopLayout = () => {
     }
 
     return (
-        <Box>
+        <Box sx={{ background: '#020202' }}>
             <MobileView>
                 {/* Elite Mobile Header - Fixed with Backdrop Blur */}
                 <AppBar
@@ -102,11 +102,11 @@ const ShopLayout = () => {
                     elevation={0}
                     sx={{
                         height: '64px',
-                        borderBottom: scrolled ? '1px solid rgba(255,255,255,.08)' : '1px solid rgba(255,255,255,0)',
-                        background: scrolled ? 'rgba(0,0,0,.7)' : 'rgba(0,0,0,.15)',
-                        backdropFilter: 'blur(16px)',
-                        WebkitBackdropFilter: 'blur(16px)',
-                        transition: 'background 0.3s ease, border-bottom 0.3s ease',
+                        borderBottom: '1px solid rgba(255,255,255,.08)',
+                        background: scrolled ? 'rgba(0,0,0,.5)' : 'transparent',
+                        backdropFilter: 'blur(24px)',
+                        WebkitBackdropFilter: 'blur(24px)',
+                        transition: 'background 0.3s ease',
                     }}
                 >
                     <Toolbar
@@ -155,7 +155,7 @@ const ShopLayout = () => {
                             </Typography>
                         )}
 
-                        {(pathname === '/' || layout.title === '') && (
+                        {((pathname === '/' || pathname === '/shop') || layout.title === '') && (
                             <Box
                                 flexGrow={1}
                                 textAlign="center"
@@ -268,6 +268,20 @@ const ShopLayout = () => {
                             }
                         }}
                     >
+                        <ListItemButton
+                            component={Link}
+                            to="/shop"
+                            onClick={() => {
+                                setMobileExpanded({});
+                                setOpenDrawer(false);
+                            }}
+                        >
+                            <ListItemIcon>
+                                <IconShoppingCart size={20} />
+                            </ListItemIcon>
+                            <ListItemText primary="Shop" />
+                        </ListItemButton>
+
                         {isOrgUser() && (
                             <ListItemButton
                                 component={Link}
@@ -548,7 +562,7 @@ const ShopLayout = () => {
                                 </Typography>
                                 <Box>
                                     <Grid container spacing={2}>
-                                        <Grid item xs={6}><Typography component={Link} to="/shop" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Shop</Typography></Grid>
+                                        <Grid item xs={6}><Typography component={Link} to="/" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Home</Typography></Grid>
                                         <Grid item xs={6}><Typography component={Link} to="/products" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Products</Typography></Grid>
                                         <Grid item xs={6}><Typography component={Link} to="/shipping" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Shipping</Typography></Grid>
                                         <Grid item xs={6}><Typography component={Link} to="/privacy-policy" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Privacy Policy</Typography></Grid>
@@ -653,9 +667,10 @@ const ShopLayout = () => {
                         height: '110px',
                         borderBottom: scrolled ? '1px solid rgba(255,255,255,.08)' : '1px solid rgba(255,255,255,0)',
                         background: scrolled ? 'rgba(0,0,0,.7)' : 'rgba(0,0,0,.15)',
-                        backdropFilter: 'blur(16px)',
-                        WebkitBackdropFilter: 'blur(16px)',
+                        backdropFilter: 'blur(24px)',
+                        WebkitBackdropFilter: 'blur(24px)',
                         transition: 'background 0.3s ease, border-bottom 0.3s ease',
+                        zIndex: 1200,
                     }}
                 >
                     <Container
@@ -754,7 +769,7 @@ const ShopLayout = () => {
                                     }}
                                 >
                                     Shop
-                                </Typography>                                
+                                </Typography>
                             </Box>
 
                             {/* Right Side Actions */}
@@ -906,7 +921,7 @@ const ShopLayout = () => {
                 </AppBar>
 
                 {/* Main Content with proper spacing for fixed header */}
-                <Box sx={{ pt: pathname === '/' ? 0 : '110px', minHeight: pathname === '/' ? '100vh' : 'calc(100vh - 110px)', background: '#020202' }}>
+                <Box sx={{ pt: (pathname === '/' || pathname === '/shop') ? 0 : '110px', minHeight: (pathname === '/' || pathname === '/shop') ? '100vh' : 'calc(100vh - 110px)', background: '#020202' }}>
                     <Outlet context={[setLayout, layout]} />
                 </Box>
 
@@ -977,7 +992,7 @@ const ShopLayout = () => {
                                 </Typography>
                                 <Box>
                                     <Grid container spacing={2}>
-                                        <Grid item xs={6}><Typography component={Link} to="/shop" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Shop</Typography></Grid>
+                                        <Grid item xs={6}><Typography component={Link} to="/" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Home</Typography></Grid>
                                         <Grid item xs={6}><Typography component={Link} to="/products" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Products</Typography></Grid>
                                         <Grid item xs={6}><Typography component={Link} to="/shipping" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Shipping</Typography></Grid>
                                         <Grid item xs={6}><Typography component={Link} to="/privacy-policy" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Privacy Policy</Typography></Grid>

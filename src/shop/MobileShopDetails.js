@@ -397,6 +397,7 @@ const MobileShopDetails = () => {
                         </Typography>
                         <a target="_blank" rel="nofollow noopener noreferrer" href={whatsapp(item)}>
                             <IconButton
+                                aria-label="Share on WhatsApp"
                                 sx={{
                                     color: 'rgba(255,255,255,.68)',
                                     minWidth: '44px',
@@ -404,6 +405,10 @@ const MobileShopDetails = () => {
                                     '&:hover': {
                                         color: '#efcb77',
                                         background: 'rgba(221,180,93,.1)'
+                                    },
+                                    '&:focus-visible': {
+                                        outline: '2px solid #efcb77',
+                                        outlineOffset: '2px'
                                     }
                                 }}
                             >
@@ -412,6 +417,7 @@ const MobileShopDetails = () => {
                         </a>
                         <a target="_blank" rel="nofollow noopener noreferrer" href={facebook(item)}>
                             <IconButton
+                                aria-label="Share on Facebook"
                                 sx={{
                                     color: 'rgba(255,255,255,.68)',
                                     minWidth: '44px',
@@ -419,6 +425,10 @@ const MobileShopDetails = () => {
                                     '&:hover': {
                                         color: '#efcb77',
                                         background: 'rgba(221,180,93,.1)'
+                                    },
+                                    '&:focus-visible': {
+                                        outline: '2px solid #efcb77',
+                                        outlineOffset: '2px'
                                     }
                                 }}
                             >
@@ -427,6 +437,7 @@ const MobileShopDetails = () => {
                         </a>
                         <a target="_blank" rel="nofollow noopener noreferrer" href={twitter(item)}>
                             <IconButton
+                                aria-label="Share on Twitter"
                                 sx={{
                                     color: 'rgba(255,255,255,.68)',
                                     minWidth: '44px',
@@ -434,6 +445,10 @@ const MobileShopDetails = () => {
                                     '&:hover': {
                                         color: '#efcb77',
                                         background: 'rgba(221,180,93,.1)'
+                                    },
+                                    '&:focus-visible': {
+                                        outline: '2px solid #efcb77',
+                                        outlineOffset: '2px'
                                     }
                                 }}
                             >
@@ -441,6 +456,7 @@ const MobileShopDetails = () => {
                             </IconButton>
                         </a>
                         <IconButton
+                            aria-label="Copy product link"
                             onClick={() => {
                                 navigator.clipboard.writeText(link(item)).then(() => {
                                     enqueueSnackbar('Link copied to clipboard', { variant: 'success' })
@@ -453,6 +469,10 @@ const MobileShopDetails = () => {
                                 '&:hover': {
                                     color: '#efcb77',
                                     background: 'rgba(221,180,93,.1)'
+                                },
+                                '&:focus-visible': {
+                                    outline: '2px solid #efcb77',
+                                    outlineOffset: '2px'
                                 }
                             }}
                         >

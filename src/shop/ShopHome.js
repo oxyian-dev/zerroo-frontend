@@ -260,7 +260,7 @@ const ShopHome = () => {
                                 objectFit: 'cover',
                             }}
                         />
-                        <Box sx={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(0,0,0,.84), rgba(0,0,0,.92))' }} />
+                        <Box sx={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.65) 30%, rgba(0,0,0,.85) 70%, rgba(0,0,0,.92) 100%)' }} />
                         
                         {/* Golden Wave Animation */}
                         <GoldenWave />
@@ -270,29 +270,51 @@ const ShopHome = () => {
                         
                         <Container maxWidth={false} sx={{ maxWidth: '1440px', px: { md: 10, xs: 3 }, position: 'relative', zIndex: 4, py: { md: 6, xs: 4 }, width: '100%' }}>
                             <Grid container spacing={{ md: 15, xs: 8 }} alignItems="center">
-                                <Grid item xs={12} md={slide.showLogo || slide.rightImage ? 6 : 12}>
+                                <Grid item xs={12} md={slide.showLogo || slide.rightImage ? 6 : 12} sx={{ order: { xs: 1, md: 1 } }}>
                                     <Typography sx={{ textTransform: 'uppercase', letterSpacing: '0.45em', fontSize: { md: '0.78rem', xs: '0.7rem' }, fontWeight: 700, color: '#efcb77', mb: { md: 4, xs: 3 } }}>{slide.label}</Typography>
                                     <Typography sx={{ fontSize: { xs: 'clamp(2rem, 7vw, 3rem)', md: 'clamp(3rem, 7vw, 5rem)' }, lineHeight: 0.95, fontWeight: 900, textTransform: 'uppercase', letterSpacing: '-0.05em', background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', mb: { md: 5, xs: 4 }, maxWidth: slide.showLogo ? '100%' : '800px' }}>{slide.title}</Typography>
                                     <Typography sx={{ color: 'rgba(255,255,255,.68)', lineHeight: 2.1, fontSize: { md: '1.05rem', xs: '1rem' }, mb: { md: 6, xs: 5 }, maxWidth: slide.showLogo ? '100%' : '720px' }}>{slide.description}</Typography>
                                     {index === 0 && (
-                                        <Stack direction={{ md: 'row', xs: 'column' }} spacing={3}>
+                                        <Stack direction={{ md: 'row', xs: 'column' }} spacing={3} sx={{ display: { xs: 'none', md: 'flex' } }}>
                                             <Button component={Link} to={isLoggedIn() ? (isOrgUser() ? "/admin" : "/dashboard") : "/login"} size="large" sx={{ background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)', color: '#000', padding: { md: '18px 42px', xs: '16px 36px' }, textTransform: 'uppercase', letterSpacing: '0.22em', fontSize: { md: '0.78rem', xs: '0.72rem' }, fontWeight: 700, boxShadow: '0 15px 35px rgba(221,180,93,.15)', transition: 'all 0.4s ease', borderRadius: 0, '&:hover': { transform: 'translateY(-5px)', boxShadow: '0 20px 50px rgba(221,180,93,.22)' } }}>Explore Services</Button>
                                             <Button size="large" sx={{ border: '1px solid rgba(255,255,255,.15)', color: 'white', padding: { md: '18px 42px', xs: '16px 36px' }, textTransform: 'uppercase', letterSpacing: '0.2em', fontSize: { md: '0.78rem', xs: '0.72rem' }, fontWeight: 600, transition: 'all 0.35s ease', borderRadius: 0, '&:hover': { borderColor: '#ddb45d', color: '#ddb45d', background: 'transparent' } }} component="a" href="#" target="_blank" rel="noopener noreferrer">Contact Us</Button>
                                         </Stack>
                                     )}
+                                    {index === 1 && (
+                                        <Stack direction={{ md: 'row', xs: 'column' }} spacing={3} sx={{ display: { xs: 'none', md: 'flex' } }}>
+                                            <Button component={Link} to="/products" size="large" sx={{ background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)', color: '#000', padding: { md: '18px 42px', xs: '16px 36px' }, textTransform: 'uppercase', letterSpacing: '0.22em', fontSize: { md: '0.78rem', xs: '0.72rem' }, fontWeight: 700, boxShadow: '0 15px 35px rgba(221,180,93,.15)', transition: 'all 0.4s ease', borderRadius: 0, '&:hover': { transform: 'translateY(-5px)', boxShadow: '0 20px 50px rgba(221,180,93,.22)' } }}>Buy Now</Button>
+                                            <Button component={Link} to="/login" size="large" sx={{ border: '1px solid rgba(255,255,255,.15)', color: 'white', padding: { md: '18px 42px', xs: '16px 36px' }, textTransform: 'uppercase', letterSpacing: '0.2em', fontSize: { md: '0.78rem', xs: '0.72rem' }, fontWeight: 600, transition: 'all 0.35s ease', borderRadius: 0, '&:hover': { borderColor: '#ddb45d', color: '#ddb45d', background: 'transparent' } }}>Login</Button>
+                                        </Stack>
+                                    )}
                                 </Grid>
                                 {slide.showLogo && (
-                                    <Grid item xs={12} md={6}>
+                                    <Grid item xs={12} md={6} sx={{ order: { xs: 2, md: 2 } }}>
                                         <Box sx={{ width: { md: '500px', xs: '300px' }, height: { md: '500px', xs: '300px' }, borderRadius: '50%', border: '1px solid rgba(255,255,255,.12)', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: 'auto', background: 'radial-gradient(circle, rgba(221,180,93,.08), transparent 70%)', '&::before': { content: '""', position: 'absolute', inset: '30px', borderRadius: '50%', border: '1px solid rgba(221,180,93,.2)' }, '&::after': { content: '""', position: 'absolute', width: { md: '640px', xs: '400px' }, height: { md: '640px', xs: '400px' }, borderRadius: '50%', border: '1px solid rgba(255,255,255,.04)' } }}>
                                             <Box component="img" src="brand_logo/web-app-manifest-512x512.png" alt="Victory World" sx={{ width: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 40px rgba(221,180,93,.22))' }} />
                                         </Box>
                                     </Grid>
                                 )}
                                 {slide.rightImage && !slide.showLogo && (
-                                    <Grid item xs={12} md={6}>
+                                    <Grid item xs={12} md={6} sx={{ order: { xs: 2, md: 2 } }}>
                                         <Box sx={{ width: { md: '500px', xs: '300px' }, height: { md: '500px', xs: '300px' }, borderRadius: '50%', border: '1px solid rgba(255,255,255,.12)', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: 'auto', background: 'radial-gradient(circle, rgba(221,180,93,.08), transparent 70%)', '&::before': { content: '""', position: 'absolute', inset: '30px', borderRadius: '50%', border: '1px solid rgba(221,180,93,.2)' }, '&::after': { content: '""', position: 'absolute', width: { md: '640px', xs: '400px' }, height: { md: '640px', xs: '400px' }, borderRadius: '50%', border: '1px solid rgba(255,255,255,.04)' } }}>
                                             <Box component="img" src={slide.rightImage} alt="Transform Lives" sx={{ width: '120%', height: 'auto', objectFit: 'contain', position: 'relative', zIndex: 2, filter: 'drop-shadow(0 0 40px rgba(221,180,93,.22))' }} />
                                         </Box>
+                                    </Grid>
+                                )}
+                                {index === 0 && (
+                                    <Grid item xs={12} sx={{ order: { xs: 3, md: 0 }, display: { xs: 'block', md: 'none' } }}>
+                                        <Stack direction="column" spacing={3}>
+                                            <Button component={Link} to={isLoggedIn() ? (isOrgUser() ? "/admin" : "/dashboard") : "/login"} size="large" sx={{ background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)', color: '#000', padding: '16px 36px', textTransform: 'uppercase', letterSpacing: '0.22em', fontSize: '0.72rem', fontWeight: 700, boxShadow: '0 15px 35px rgba(221,180,93,.15)', transition: 'all 0.4s ease', borderRadius: 0, '&:hover': { transform: 'translateY(-5px)', boxShadow: '0 20px 50px rgba(221,180,93,.22)' } }}>Explore Services</Button>
+                                            <Button size="large" sx={{ border: '1px solid rgba(255,255,255,.15)', color: 'white', padding: '16px 36px', textTransform: 'uppercase', letterSpacing: '0.2em', fontSize: '0.72rem', fontWeight: 600, transition: 'all 0.35s ease', borderRadius: 0, '&:hover': { borderColor: '#ddb45d', color: '#ddb45d', background: 'transparent' } }} component="a" href="#" target="_blank" rel="noopener noreferrer">Contact Us</Button>
+                                        </Stack>
+                                    </Grid>
+                                )}
+                                {index === 1 && (
+                                    <Grid item xs={12} sx={{ order: { xs: 3, md: 0 }, display: { xs: 'block', md: 'none' } }}>
+                                        <Stack direction="column" spacing={3}>
+                                            <Button component={Link} to="/products" size="large" sx={{ background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)', color: '#000', padding: '16px 36px', textTransform: 'uppercase', letterSpacing: '0.22em', fontSize: '0.72rem', fontWeight: 700, boxShadow: '0 15px 35px rgba(221,180,93,.15)', transition: 'all 0.4s ease', borderRadius: 0, '&:hover': { transform: 'translateY(-5px)', boxShadow: '0 20px 50px rgba(221,180,93,.22)' } }}>Buy Now</Button>
+                                            <Button component={Link} to="/login" size="large" sx={{ border: '1px solid rgba(255,255,255,.15)', color: 'white', padding: '16px 36px', textTransform: 'uppercase', letterSpacing: '0.2em', fontSize: '0.72rem', fontWeight: 600, transition: 'all 0.35s ease', borderRadius: 0, '&:hover': { borderColor: '#ddb45d', color: '#ddb45d', background: 'transparent' } }}>Login</Button>
+                                        </Stack>
                                     </Grid>
                                 )}
                             </Grid>
@@ -322,7 +344,7 @@ const ShopHome = () => {
                             <Box
                                 key={index}
                                 component={Link}
-                                to="/shop"
+                                to="/"
                                 sx={{
                                     padding: { md: 4.5, xs: 3 },
                                     borderRight: '1px solid rgba(255,255,255,.08)',
@@ -464,7 +486,7 @@ const ShopHome = () => {
                             <Typography sx={{ textTransform: 'uppercase', letterSpacing: '0.45em', fontSize: { md: '0.78rem', xs: '0.7rem' }, fontWeight: 700, color: '#efcb77', mb: { md: 4, xs: 3 } }}>Latest Collection</Typography>
                             <Typography sx={{ fontSize: { xs: 'clamp(2rem, 8vw, 2.8rem)', md: 'clamp(2.8rem, 5vw, 5rem)' }, lineHeight: 1, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '-0.04em', color: 'white' }}>Featured Products</Typography>
                         </Box>
-                        <Button component={Link} to="/shop" sx={{ border: '1px solid rgba(255,255,255,.15)', color: 'white', padding: '18px 42px', textTransform: 'uppercase', letterSpacing: '0.2em', fontSize: '0.78rem', fontWeight: 600, transition: 'all 0.35s ease', borderRadius: 0, '&:hover': { borderColor: '#ddb45d', color: '#ddb45d', background: 'transparent' } }}>View All Products</Button>
+                        <Button component={Link} to="/products" sx={{ border: '1px solid rgba(255,255,255,.15)', color: 'white', padding: '18px 42px', textTransform: 'uppercase', letterSpacing: '0.2em', fontSize: '0.78rem', fontWeight: 600, transition: 'all 0.35s ease', borderRadius: 0, '&:hover': { borderColor: '#ddb45d', color: '#ddb45d', background: 'transparent' } }}>View All Products</Button>
                     </Box>
                     {loading ? (
                         <Box sx={{ textAlign: 'center', py: 8 }}><Typography sx={{ color: 'rgba(255,255,255,.68)', fontSize: '1.1rem' }}>Loading featured products...</Typography></Box>
@@ -519,8 +541,8 @@ const ShopHome = () => {
                     </Grid>
 
                     <Stack direction={{ md: 'row', xs: 'column' }} spacing={3} justifyContent="center" sx={{ '& .MuiButton-root': { borderRadius: 0 } }}>
-                        <Button component="a" href="https://surveyheart.com/form/65b39e08cdb9323f78e24041" target="_blank" rel="noopener noreferrer" size="large" sx={{ background: 'white', color: '#000', padding: { md: '18px 42px', xs: '16px 36px' }, textTransform: 'uppercase', letterSpacing: '0.22em', fontSize: { md: '0.78rem', xs: '0.72rem' }, fontWeight: 700, boxShadow: '0 15px 35px rgba(0,0,0,.25)', transition: 'all 0.4s ease', '&:hover': { transform: 'translateY(-5px)', boxShadow: '0 20px 50px rgba(0,0,0,.35)', background: 'white' } }}>Become a Distributor</Button>
-                        <Button component={Link} to="/shop" size="large" sx={{ border: '2px solid white', color: 'white', padding: { md: '18px 42px', xs: '16px 36px' }, textTransform: 'uppercase', letterSpacing: '0.2em', fontSize: { md: '0.78rem', xs: '0.72rem' }, fontWeight: 700, transition: 'all 0.35s ease', '&:hover': { background: 'white', color: '#000', transform: 'translateY(-3px)' } }}>Browse Products</Button>
+                        <Button component="a" href="#" target="_blank" rel="noopener noreferrer" size="large" sx={{ background: 'white', color: '#000', padding: { md: '18px 42px', xs: '16px 36px' }, textTransform: 'uppercase', letterSpacing: '0.22em', fontSize: { md: '0.78rem', xs: '0.72rem' }, fontWeight: 700, boxShadow: '0 15px 35px rgba(0,0,0,.25)', transition: 'all 0.4s ease', '&:hover': { transform: 'translateY(-5px)', boxShadow: '0 20px 50px rgba(0,0,0,.35)', background: 'white' } }}>Become a Distributor</Button>
+                        <Button component={Link} to="/products" size="large" sx={{ border: '2px solid white', color: 'white', padding: { md: '18px 42px', xs: '16px 36px' }, textTransform: 'uppercase', letterSpacing: '0.2em', fontSize: { md: '0.78rem', xs: '0.72rem' }, fontWeight: 700, transition: 'all 0.35s ease', '&:hover': { background: 'white', color: '#000', transform: 'translateY(-3px)' } }}>Browse Products</Button>
                     </Stack>
                 </Container>
             </Box>

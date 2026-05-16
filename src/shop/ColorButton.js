@@ -14,6 +14,10 @@ const StyledButton = styled(Button)(({ hex }) => ({
         backgroundColor: `#${hex}`,
         transform: 'scale(1.05)',
     },
+    '&:focus-visible': {
+        outline: '2px solid #efcb77',
+        outlineOffset: '2px'
+    },
     transition: 'all 0.3s ease',
 }))
 
@@ -41,7 +45,11 @@ const ColorButton = ({ selected, hex, color, ...props }) => {
                         justifyContent: 'center',
                     }}
                 >
-                    <StyledButton hex={hex} {...props} />
+                    <StyledButton
+                        hex={hex}
+                        aria-label={`Select ${color} color`}
+                        {...props}
+                    />
                 </Box>
             </Box>
             <Typography

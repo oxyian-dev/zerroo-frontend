@@ -33,6 +33,10 @@ const ShopRoutes = {
             element: <ShopHome />
         },
         {
+            path: '/shop',
+            element: <ShopList />
+        },
+        {
             path: '/c/:id/*',
             element: <ShopList />
         },

@@ -47,31 +47,65 @@ const BrowserShopList = () => {
     
     useEffect(() => {
         setItemLoading(true)
-        fetcher(`/api/listing/items/category/${id}?${toQueryString(params)}`)
+        const apiUrl = id
+            ? `/api/listing/items/category/${id}?${toQueryString(params)}`
+            : `/api/listing/items?${toQueryString(params)}`;
+        
+        fetcher(apiUrl)
             .then(r => r.json())
             .then(({ listing, category }) => {
                 const finalListing = []
                 const unique = [];
-                for (let i = 0; i < listing.length; i++) {
-                    const u = listing[i].group_id + '-' + listing[i].color;
+                // Add null check for listing array
+                const items = listing || [];
+                for (let i = 0; i < items.length; i++) {
+                    const u = items[i].group_id + '-' + items[i].color;
                     if (unique.indexOf(u) <= -1) {
                         unique.push(u);
-                        finalListing.push(listing[i])
+                        finalListing.push(items[i])
                     }
                 }
-                setMeta(category)
+                setMeta(category || { category: 'All Products' })
                 setItemLoading(false)
                 setData(finalListing)
             })
-            .catch(console.log)
+            .catch((error) => {
+                console.error('Error fetching items:', error)
+                setItemLoading(false)
+                setData([])
+                setMeta({ category: 'All Products' })
+            })
     }, [id, params])
 
     useEffect(() => {
-        fetcher(`/api/listing/filter?category=${id}`)
+        const filterUrl = id
+            ? `/api/listing/filter?category=${id}`
+            : `/api/listing/filter`;
+        
+        fetcher(filterUrl)
             .then(r => r.json())
             .then(filters => {
-                setFilters(filters)
+                // Ensure all filter properties are arrays
+                setFilters({
+                    brands: filters?.brands || [],
+                    sizes: filters?.sizes || [],
+                    discount: filters?.discount || [],
+                    categories: filters?.categories || [],
+                    colors: filters?.colors || []
+                })
                 setFilterLoading(false)
+            })
+            .catch((error) => {
+                console.error('Error fetching filters:', error)
+                setFilterLoading(false)
+                // Set empty filters on error
+                setFilters({
+                    brands: [],
+                    sizes: [],
+                    discount: [],
+                    categories: [],
+                    colors: []
+                })
             })
     }, [id])
 
@@ -127,7 +161,7 @@ const BrowserShopList = () => {
                     >
                         Product Category
                     </Typography>
-                    <Typography
+                    {/* <Typography
                         sx={{
                             fontSize: { xs: 'clamp(2rem, 8vw, 2.8rem)', md: 'clamp(2.8rem, 5vw, 5rem)' },
                             lineHeight: 1,
@@ -138,7 +172,7 @@ const BrowserShopList = () => {
                         }}
                     >
                         {meta.category}
-                    </Typography>
+                    </Typography> */}
                 </Box>
 
                 <Grid container spacing={{ md: 6, xs: 4 }}>
@@ -147,7 +181,7 @@ const BrowserShopList = () => {
                         <Box
                             sx={{
                                 position: 'sticky',
-                                top: '130px',
+                                top: '110px',
                                 background: 'linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01))',
                                 border: '1px solid rgba(255,255,255,.08)',
                                 backdropFilter: 'blur(10px)',
@@ -176,7 +210,7 @@ const BrowserShopList = () => {
                             ) : (
                                 <Box>
                                     {/* Categories Filter */}
-                                    {filters.categories.length > 0 && (
+                                    {filters.categories?.length > 0 && (
                                         <Box sx={{ mb: 4 }}>
                                             <Typography
                                                 sx={{
@@ -231,7 +265,7 @@ const BrowserShopList = () => {
                                     )}
 
                                     {/* Brands Filter */}
-                                    {filters.brands?.length > 0 && (
+                                    {(filters.brands?.length || 0) > 0 && (
                                         <Box sx={{ mb: 4 }}>
                                             <Typography
                                                 sx={{
@@ -286,7 +320,7 @@ const BrowserShopList = () => {
                                     )}
 
                                     {/* Colors Filter */}
-                                    {filters.colors?.length > 0 && (
+                                    {(filters.colors?.length || 0) > 0 && (
                                         <Box sx={{ mb: 4 }}>
                                             <Typography
                                                 sx={{
@@ -359,7 +393,7 @@ const BrowserShopList = () => {
                                     )}
 
                                     {/* Sizes Filter */}
-                                    {filters.sizes?.length > 0 && (
+                                    {(filters.sizes?.length || 0) > 0 && (
                                         <Box sx={{ mb: 4 }}>
                                             <Typography
                                                 sx={{
@@ -414,7 +448,7 @@ const BrowserShopList = () => {
                                     )}
 
                                     {/* Discount Filter */}
-                                    {filters.discount?.length > 0 && (
+                                    {(filters.discount?.length || 0) > 0 && (
                                         <Box>
                                             <Typography
                                                 sx={{
@@ -500,7 +534,7 @@ const BrowserShopList = () => {
                                     fontSize: '0.95rem'
                                 }}
                             >
-                                {data.length} Products
+                                {data?.length || 0} Products
                             </Typography>
                             <FormControl
                                 variant="outlined"
@@ -535,8 +569,46 @@ const BrowserShopList = () => {
                                     value={params.sort || ''}
                                     onChange={({ target }) => handleSort(target.value)}
                                     sx={{
-                                        '& .MuiSelect-icon': {
+                                        color: 'white',
+                                        backgroundColor: '#1a1a1a',
+                                        '& .MuiSelect-select': {
+                                            backgroundColor: '#1a1a1a'
+                                        },
+                                        '& .MuiOutlinedInput-input': {
+                                            backgroundColor: '#1a1a1a'
+                                        },
+                                        '& .MuiOutlinedInput-notchedOutline': {
+                                            borderColor: 'rgba(255,255,255,.15)'
+                                        },
+                                        '&:hover .MuiOutlinedInput-notchedOutline': {
+                                            borderColor: 'rgba(255,255,255,.3)'
+                                        },
+                                        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                            borderColor: '#efcb77'
+                                        },
+                                        '& .MuiSvgIcon-root': {
                                             color: 'rgba(255,255,255,.68)'
+                                        }
+                                    }}
+                                    MenuProps={{
+                                        PaperProps: {
+                                            sx: {
+                                                bgcolor: '#1a1a1a',
+                                                border: '1px solid rgba(255,255,255,.08)',
+                                                '& .MuiMenuItem-root': {
+                                                    color: 'rgba(255,255,255,.82)',
+                                                    '&:hover': {
+                                                        backgroundColor: 'rgba(239,203,119,.1)',
+                                                    },
+                                                    '&.Mui-selected': {
+                                                        backgroundColor: 'rgba(239,203,119,.15)',
+                                                        color: '#efcb77',
+                                                        '&:hover': {
+                                                            backgroundColor: 'rgba(239,203,119,.2)',
+                                                        }
+                                                    }
+                                                }
+                                            }
                                         }
                                     }}
                                 >
