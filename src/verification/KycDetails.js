@@ -79,8 +79,12 @@ const KycDetails = () => {
                     isSubmitting
                 }) => (
                     <form noValidate onSubmit={handleSubmit}>
-                        <Paper sx={{ p: 2 }} elevation={2}>
-                            <Typography textAlign="center" mb={2} variant="h2">Aadhaar Section</Typography>
+                        <Paper sx={{
+                            p: { md: 3, xs: 2 },
+                            background: 'linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01))',
+                            border: '1px solid rgba(255,255,255,.08)',
+                        }} elevation={2}>
+                            <Typography textAlign="center" mb={2} variant="h2" sx={{ textTransform: 'uppercase' }}>Aadhaar Section</Typography>
                             <Grid container spacing={2}>
                                 <Grid item xs={12} md={6}>
                                     <Typography variant="h5">Aadhaar Front</Typography>
@@ -135,8 +139,13 @@ const KycDetails = () => {
                                 </Grid>
                             </Grid>
                         </Paper>
-                        <Paper sx={{ p: 2, mt: 2 }} elevation={2}>
-                            <Typography textAlign="center" mb={2} variant="h2">PAN Section</Typography>
+                        <Paper sx={{
+                            p: { md: 3, xs: 2 },
+                            mt: 2,
+                            background: 'linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01))',
+                            border: '1px solid rgba(255,255,255,.08)',
+                        }} elevation={2}>
+                            <Typography textAlign="center" mb={2} variant="h2" sx={{ textTransform: 'uppercase' }}>PAN Section</Typography>
                             <Grid container spacing={2}>
                                 <Grid item xs={12} md={6}>
                                     <Typography variant="h5">PAN Image</Typography>
@@ -181,15 +190,58 @@ const KycDetails = () => {
                             </Grid>
                         </Paper>
                         {data.status === 1 && (
-                            <Paper sx={{ p: 2, mt: 2 }} elevation={2}>
-                                <Typography textAlign="center" mb={2} variant="h2">Additional Reject reason</Typography>
-                                <TextField fullWidth label="Reason" onChange={handleChange} name="custom_reason" />
+                            <Paper sx={{
+                                p: { md: 3, xs: 2 },
+                                mt: 2,
+                                background: 'linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01))',
+                                border: '1px solid rgba(255,255,255,.08)',
+                            }} elevation={2}>
+                                <Typography textAlign="center" mb={2} variant="h2" sx={{ textTransform: 'uppercase' }}>Additional Reject reason</Typography>
+                                <TextField
+                                    fullWidth
+                                    label="Reason"
+                                    onChange={handleChange}
+                                    name="custom_reason"
+                                    inputProps={{
+                                        'aria-label': 'Additional rejection reason',
+                                    }}
+                                    sx={{
+                                        '& .MuiOutlinedInput-root': {
+                                            backgroundColor: 'rgba(255,255,255,.02)',
+                                            transition: 'all 0.3s ease',
+                                            '& fieldset': {
+                                                borderColor: 'rgba(255,255,255,0.1)',
+                                            },
+                                            '&:hover fieldset': {
+                                                borderColor: 'rgba(239,203,119,0.5)',
+                                            },
+                                            '&.Mui-focused fieldset': {
+                                                borderColor: '#efcb77',
+                                            },
+                                        },
+                                        '& .MuiInputBase-input': {
+                                            color: '#fff !important',
+                                            WebkitTextFillColor: '#fff !important',
+                                            '&:-webkit-autofill': {
+                                                WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                                WebkitTextFillColor: '#fff !important',
+                                                transition: 'background-color 5000s ease-in-out 0s',
+                                            },
+                                        },
+                                        '& .MuiInputLabel-root': {
+                                            color: 'rgba(255,255,255,0.7)',
+                                            '&.Mui-focused': {
+                                                color: '#efcb77',
+                                            },
+                                        },
+                                    }}
+                                />
                             </Paper>
                         )}
                         {data.status === 1 && (
                             <Box sx={{ mt: 2 }}>
-                                <Grid container spacing={1}>
-                                    <Grid item xs={6}>
+                                <Grid container spacing={2}>
+                                    <Grid item xs={12} md={6}>
                                         <LoadingButton
                                             onClick={handleChange}
                                             name="status"
@@ -200,11 +252,33 @@ const KycDetails = () => {
                                             type="submit"
                                             variant="contained"
                                             color="error"
+                                            aria-label="Reject KYC verification"
+                                            sx={{
+                                                background: '#ff6b6b',
+                                                color: '#fff',
+                                                padding: { md: '18px 42px', xs: '16px 36px' },
+                                                textTransform: 'uppercase',
+                                                letterSpacing: '0.22em',
+                                                fontSize: { md: '0.78rem', xs: '0.72rem' },
+                                                fontWeight: 700,
+                                                boxShadow: '0 15px 35px rgba(255,107,107,.15)',
+                                                transition: 'all 0.4s ease',
+                                                borderRadius: 0,
+                                                '&:hover': {
+                                                    transform: 'translateY(-5px)',
+                                                    boxShadow: '0 20px 50px rgba(255,107,107,.22)',
+                                                    background: '#ff5252',
+                                                },
+                                                '&.Mui-disabled': {
+                                                    background: 'rgba(255,255,255,.1)',
+                                                    color: 'rgba(255,255,255,.4)',
+                                                },
+                                            }}
                                         >
                                             Reject
                                         </LoadingButton>
                                     </Grid>
-                                    <Grid item xs={6}>
+                                    <Grid item xs={12} md={6}>
                                         <LoadingButton
                                             onClick={handleChange}
                                             name="status"
@@ -215,6 +289,28 @@ const KycDetails = () => {
                                             type="submit"
                                             variant="contained"
                                             color="success"
+                                            aria-label="Verify KYC"
+                                            sx={{
+                                                background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
+                                                color: '#000',
+                                                padding: { md: '18px 42px', xs: '16px 36px' },
+                                                textTransform: 'uppercase',
+                                                letterSpacing: '0.22em',
+                                                fontSize: { md: '0.78rem', xs: '0.72rem' },
+                                                fontWeight: 700,
+                                                boxShadow: '0 15px 35px rgba(221,180,93,.15)',
+                                                transition: 'all 0.4s ease',
+                                                borderRadius: 0,
+                                                '&:hover': {
+                                                    transform: 'translateY(-5px)',
+                                                    boxShadow: '0 20px 50px rgba(221,180,93,.22)',
+                                                    background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
+                                                },
+                                                '&.Mui-disabled': {
+                                                    background: 'rgba(255,255,255,.1)',
+                                                    color: 'rgba(255,255,255,.4)',
+                                                },
+                                            }}
                                         >
                                             Verify
                                         </LoadingButton>

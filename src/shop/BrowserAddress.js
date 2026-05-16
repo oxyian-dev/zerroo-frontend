@@ -160,15 +160,33 @@ const BrowserAddress = () => {
                                                     onBlur={handleBlur}
                                                     onChange={handleChange}
                                                     label="First Name"
+                                                    inputProps={{
+                                                        'aria-label': 'First Name',
+                                                        'aria-required': 'true'
+                                                    }}
                                                     sx={{
                                                         '& .MuiOutlinedInput-root': {
-                                                            color: 'white',
+                                                            color: 'white !important',
+                                                            background: 'rgba(255,255,255,.02)',
                                                             '& fieldset': { borderColor: 'rgba(255,255,255,.15)' },
                                                             '&:hover fieldset': { borderColor: 'rgba(255,255,255,.3)' },
                                                             '&.Mui-focused fieldset': { borderColor: '#efcb77' }
                                                         },
                                                         '& .MuiInputLabel-root': { color: 'rgba(255,255,255,.68)' },
-                                                        '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' }
+                                                        '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' },
+                                                        '& input': {
+                                                            color: 'white !important',
+                                                            '&:-webkit-autofill': {
+                                                                WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                                                WebkitTextFillColor: 'white !important',
+                                                                caretColor: 'white !important',
+                                                                transition: 'background-color 5000s ease-in-out 0s'
+                                                            },
+                                                            '&:-webkit-autofill:hover, &:-webkit-autofill:focus, &:-webkit-autofill:active': {
+                                                                WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                                                WebkitTextFillColor: 'white !important'
+                                                            }
+                                                        }
                                                     }}
                                                 />
                                                 {touched.firstname && errors.firstname && (
@@ -189,15 +207,33 @@ const BrowserAddress = () => {
                                                     onBlur={handleBlur}
                                                     onChange={handleChange}
                                                     label="Last Name"
+                                                    inputProps={{
+                                                        'aria-label': 'Last Name',
+                                                        'aria-required': 'true'
+                                                    }}
                                                     sx={{
                                                         '& .MuiOutlinedInput-root': {
-                                                            color: 'white',
+                                                            color: 'white !important',
+                                                            background: 'rgba(255,255,255,.02)',
                                                             '& fieldset': { borderColor: 'rgba(255,255,255,.15)' },
                                                             '&:hover fieldset': { borderColor: 'rgba(255,255,255,.3)' },
                                                             '&.Mui-focused fieldset': { borderColor: '#efcb77' }
                                                         },
                                                         '& .MuiInputLabel-root': { color: 'rgba(255,255,255,.68)' },
-                                                        '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' }
+                                                        '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' },
+                                                        '& input': {
+                                                            color: 'white !important',
+                                                            '&:-webkit-autofill': {
+                                                                WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                                                WebkitTextFillColor: 'white !important',
+                                                                caretColor: 'white !important',
+                                                                transition: 'background-color 5000s ease-in-out 0s'
+                                                            },
+                                                            '&:-webkit-autofill:hover, &:-webkit-autofill:focus, &:-webkit-autofill:active': {
+                                                                WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                                                WebkitTextFillColor: 'white !important'
+                                                            }
+                                                        }
                                                     }}
                                                 />
                                                 {touched.lastname && errors.lastname && (
@@ -218,15 +254,33 @@ const BrowserAddress = () => {
                                                     onBlur={handleBlur}
                                                     onChange={handleChange}
                                                     label="Phone No"
+                                                    inputProps={{
+                                                        'aria-label': 'Phone Number',
+                                                        'aria-required': 'true'
+                                                    }}
                                                     sx={{
                                                         '& .MuiOutlinedInput-root': {
-                                                            color: 'white',
+                                                            color: 'white !important',
+                                                            background: 'rgba(255,255,255,.02)',
                                                             '& fieldset': { borderColor: 'rgba(255,255,255,.15)' },
                                                             '&:hover fieldset': { borderColor: 'rgba(255,255,255,.3)' },
                                                             '&.Mui-focused fieldset': { borderColor: '#efcb77' }
                                                         },
                                                         '& .MuiInputLabel-root': { color: 'rgba(255,255,255,.68)' },
-                                                        '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' }
+                                                        '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' },
+                                                        '& input': {
+                                                            color: 'white !important',
+                                                            '&:-webkit-autofill': {
+                                                                WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                                                WebkitTextFillColor: 'white !important',
+                                                                caretColor: 'white !important',
+                                                                transition: 'background-color 5000s ease-in-out 0s'
+                                                            },
+                                                            '&:-webkit-autofill:hover, &:-webkit-autofill:focus, &:-webkit-autofill:active': {
+                                                                WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                                                WebkitTextFillColor: 'white !important'
+                                                            }
+                                                        }
                                                     }}
                                                 />
                                                 {touched.phone && errors.phone && (
@@ -246,19 +300,36 @@ const BrowserAddress = () => {
                                                     onBlur={handleBlur}
                                                     onChange={handleChange}
                                                     label="Alternate Phone No"
+                                                    inputProps={{
+                                                        'aria-label': 'Alternate Phone Number'
+                                                    }}
                                                     InputProps={{
                                                         endAdornment: <PopoverAdornment
                                                             content="Maybe used if the main Phone Number is not available" />
                                                     }}
                                                     sx={{
                                                         '& .MuiOutlinedInput-root': {
-                                                            color: 'white',
+                                                            color: 'white !important',
+                                                            background: 'rgba(255,255,255,.02)',
                                                             '& fieldset': { borderColor: 'rgba(255,255,255,.15)' },
                                                             '&:hover fieldset': { borderColor: 'rgba(255,255,255,.3)' },
                                                             '&.Mui-focused fieldset': { borderColor: '#efcb77' }
                                                         },
                                                         '& .MuiInputLabel-root': { color: 'rgba(255,255,255,.68)' },
-                                                        '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' }
+                                                        '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' },
+                                                        '& input': {
+                                                            color: 'white !important',
+                                                            '&:-webkit-autofill': {
+                                                                WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                                                WebkitTextFillColor: 'white !important',
+                                                                caretColor: 'white !important',
+                                                                transition: 'background-color 5000s ease-in-out 0s'
+                                                            },
+                                                            '&:-webkit-autofill:hover, &:-webkit-autofill:focus, &:-webkit-autofill:active': {
+                                                                WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                                                WebkitTextFillColor: 'white !important'
+                                                            }
+                                                        }
                                                     }}
                                                 />
                                                 {touched.alt_phone && errors.alt_phone && (
@@ -278,15 +349,33 @@ const BrowserAddress = () => {
                                                     onBlur={handleBlur}
                                                     onChange={handleChange}
                                                     label="Email"
+                                                    inputProps={{
+                                                        'aria-label': 'Email Address',
+                                                        'aria-required': 'true'
+                                                    }}
                                                     sx={{
                                                         '& .MuiOutlinedInput-root': {
-                                                            color: 'white',
+                                                            color: 'white !important',
+                                                            background: 'rgba(255,255,255,.02)',
                                                             '& fieldset': { borderColor: 'rgba(255,255,255,.15)' },
                                                             '&:hover fieldset': { borderColor: 'rgba(255,255,255,.3)' },
                                                             '&.Mui-focused fieldset': { borderColor: '#efcb77' }
                                                         },
                                                         '& .MuiInputLabel-root': { color: 'rgba(255,255,255,.68)' },
-                                                        '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' }
+                                                        '& .MuiInputLabel-root.Mui-focused': { color: '#efcb77' },
+                                                        '& input': {
+                                                            color: 'white !important',
+                                                            '&:-webkit-autofill': {
+                                                                WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                                                WebkitTextFillColor: 'white !important',
+                                                                caretColor: 'white !important',
+                                                                transition: 'background-color 5000s ease-in-out 0s'
+                                                            },
+                                                            '&:-webkit-autofill:hover, &:-webkit-autofill:focus, &:-webkit-autofill:active': {
+                                                                WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                                                WebkitTextFillColor: 'white !important'
+                                                            }
+                                                        }
                                                     }}
                                                 />
                                                 {touched.email && errors.email && (

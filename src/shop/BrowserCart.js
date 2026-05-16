@@ -94,24 +94,33 @@ const BrowserCart = () => {
     }
 
     return loading ? (
-        <Box 
-            sx={{ 
-                background: '#020202', 
+        <Box
+            sx={{
+                background: '#020202',
                 minHeight: '100vh',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center'
             }}
+            role="status"
+            aria-live="polite"
+            aria-label="Loading cart"
         >
             <CircularProgress sx={{ color: '#efcb77' }} size={60} />
         </Box>
     ) : (
-        <Box sx={{ background: '#020202', minHeight: '100vh', py: { md: 10, xs: 6 } }}>
+        <Box
+            sx={{ background: '#020202', minHeight: '100vh', py: { md: 10, xs: 6 } }}
+            role="main"
+            aria-label="Shopping cart"
+        >
             <Container maxWidth={false} sx={{ maxWidth: '1440px', px: { md: 10, xs: 3 } }}>
                 {/* Progress Indicator */}
-                <Box 
-                    sx={{ 
-                        mb: { md: 8, xs: 6 }, 
+                <Box
+                    component="nav"
+                    aria-label="Checkout progress"
+                    sx={{
+                        mb: { md: 8, xs: 6 },
                         textAlign: 'center',
                         display: 'flex',
                         alignItems: 'center',
@@ -120,6 +129,8 @@ const BrowserCart = () => {
                     }}
                 >
                     <Typography
+                        component="span"
+                        aria-current="page"
                         sx={{
                             fontSize: { md: '0.9rem', xs: '0.8rem' },
                             fontWeight: 700,
@@ -131,6 +142,7 @@ const BrowserCart = () => {
                         Cart
                     </Typography>
                     <Box
+                        aria-hidden="true"
                         sx={{
                             width: { md: '60px', xs: '40px' },
                             height: '2px',
@@ -138,6 +150,7 @@ const BrowserCart = () => {
                         }}
                     />
                     <Typography
+                        component="span"
                         sx={{
                             fontSize: { md: '0.9rem', xs: '0.8rem' },
                             fontWeight: 600,
@@ -149,6 +162,7 @@ const BrowserCart = () => {
                         Address
                     </Typography>
                     <Box
+                        aria-hidden="true"
                         sx={{
                             width: { md: '60px', xs: '40px' },
                             height: '2px',
@@ -156,6 +170,7 @@ const BrowserCart = () => {
                         }}
                     />
                     <Typography
+                        component="span"
                         sx={{
                             fontSize: { md: '0.9rem', xs: '0.8rem' },
                             fontWeight: 600,
@@ -170,6 +185,7 @@ const BrowserCart = () => {
 
                 {/* Page Title */}
                 <Typography
+                    component="h1"
                     sx={{
                         fontSize: { md: 'clamp(2rem, 4vw, 3.5rem)', xs: 'clamp(1.5rem, 6vw, 2rem)' },
                         lineHeight: 1.1,
@@ -204,10 +220,12 @@ const BrowserCart = () => {
                                         }}
                                     >
                                         <TableCell
+                                            component="th"
+                                            scope="col"
                                             sx={{
                                                 color: '#efcb77',
                                                 fontWeight: 700,
-                                                fontSize: '1.05rem',
+                                                fontSize: '0.85rem',
                                                 letterSpacing: '0.16em',
                                                 textTransform: 'uppercase',
                                                 borderBottom: '1px solid rgba(255,255,255,.08)',
@@ -217,11 +235,13 @@ const BrowserCart = () => {
                                             Image
                                         </TableCell>
                                         <TableCell
+                                            component="th"
+                                            scope="col"
                                             width={350}
                                             sx={{
                                                 color: '#efcb77',
                                                 fontWeight: 700,
-                                                fontSize: '1.05rem',
+                                                fontSize: '0.85rem',
                                                 letterSpacing: '0.16em',
                                                 textTransform: 'uppercase',
                                                 borderBottom: '1px solid rgba(255,255,255,.08)'
@@ -230,10 +250,12 @@ const BrowserCart = () => {
                                             Item Name
                                         </TableCell>
                                         <TableCell
+                                            component="th"
+                                            scope="col"
                                             sx={{
                                                 color: '#efcb77',
                                                 fontWeight: 700,
-                                                fontSize: '1.05rem',
+                                                fontSize: '0.85rem',
                                                 letterSpacing: '0.16em',
                                                 textTransform: 'uppercase',
                                                 borderBottom: '1px solid rgba(255,255,255,.08)'
@@ -242,10 +264,12 @@ const BrowserCart = () => {
                                             Size
                                         </TableCell>
                                         <TableCell
+                                            component="th"
+                                            scope="col"
                                             sx={{
                                                 color: '#efcb77',
                                                 fontWeight: 700,
-                                                fontSize: '1.05rem',
+                                                fontSize: '0.85rem',
                                                 letterSpacing: '0.16em',
                                                 textTransform: 'uppercase',
                                                 borderBottom: '1px solid rgba(255,255,255,.08)'
@@ -254,10 +278,12 @@ const BrowserCart = () => {
                                             Price
                                         </TableCell>
                                         <TableCell
+                                            component="th"
+                                            scope="col"
                                             sx={{
                                                 color: '#efcb77',
                                                 fontWeight: 700,
-                                                fontSize: '1.05rem',
+                                                fontSize: '0.85rem',
                                                 letterSpacing: '0.16em',
                                                 textTransform: 'uppercase',
                                                 borderBottom: '1px solid rgba(255,255,255,.08)'
@@ -266,10 +292,12 @@ const BrowserCart = () => {
                                             Quantity
                                         </TableCell>
                                         <TableCell
+                                            component="th"
+                                            scope="col"
                                             sx={{
                                                 color: '#efcb77',
                                                 fontWeight: 700,
-                                                fontSize: '1.05rem',
+                                                fontSize: '0.85rem',
                                                 letterSpacing: '0.16em',
                                                 textTransform: 'uppercase',
                                                 borderBottom: '1px solid rgba(255,255,255,.08)'
@@ -278,10 +306,12 @@ const BrowserCart = () => {
                                             Subtotal
                                         </TableCell>
                                         <TableCell
+                                            component="th"
+                                            scope="col"
                                             sx={{
                                                 color: '#efcb77',
                                                 fontWeight: 700,
-                                                fontSize: '1.05rem',
+                                                fontSize: '0.85rem',
                                                 letterSpacing: '0.16em',
                                                 textTransform: 'uppercase',
                                                 borderBottom: '1px solid rgba(255,255,255,.08)'
@@ -322,17 +352,20 @@ const BrowserCart = () => {
                                                     }}
                                                 >
                                                     {item.combo_id ? (
-                                                        <WorkDriveImage 
-                                                            width={100} 
+                                                        <WorkDriveImage
+                                                            width={100}
                                                             image={item.images[0]}
-                                                            alt={`${item.category} ${item.title} ${item.description}`} 
+                                                            alt={`${item.brand} ${item.title} - ${item.description}`}
                                                         />
                                                     ) : (
-                                                        <Link to={`/p/${item.item}/${href(item.category)}/${href(item.title)}`}>
-                                                            <WorkDriveImage 
-                                                                width={100} 
+                                                        <Link
+                                                            to={`/p/${item.item}/${href(item.category)}/${href(item.title)}`}
+                                                            aria-label={`View ${item.title} product details`}
+                                                        >
+                                                            <WorkDriveImage
+                                                                width={100}
                                                                 image={item.images[0]}
-                                                                alt={`${item.category} ${item.title} ${item.description}`} 
+                                                                alt={`${item.brand} ${item.title} - ${item.description}`}
                                                             />
                                                         </Link>
                                                     )}
@@ -457,18 +490,20 @@ const BrowserCart = () => {
                                                 }}
                                             >
                                                 <FormControl size="medium" fullWidth>
-                                                    <Counter 
-                                                        disabled={Boolean(item.combo_id)} 
-                                                        name={index} 
-                                                        value={item.quantity} 
-                                                        onChange={changeQuantity} 
+                                                    <Counter
+                                                        disabled={Boolean(item.combo_id)}
+                                                        name={index}
+                                                        value={item.quantity}
+                                                        onChange={changeQuantity}
+                                                        aria-label={`Quantity for ${item.title}`}
                                                     />
                                                     {item.combo_id && (
                                                         <Typography
                                                             sx={{
                                                                 fontSize: '0.78rem',
                                                                 color: 'rgba(255,255,255,.5)',
-                                                                mt: 1
+                                                                mt: 1,
+                                                                lineHeight: 1.4
                                                             }}
                                                         >
                                                             Combo quantity cannot be changed
@@ -496,20 +531,26 @@ const BrowserCart = () => {
                                                     borderBottom: '1px solid rgba(255,255,255,.08)'
                                                 }}
                                             >
-                                                <Button 
-                                                    value={index} 
-                                                    startIcon={<IconX />} 
+                                                <Button
+                                                    value={index}
+                                                    startIcon={<IconX aria-hidden="true" />}
                                                     variant="text"
                                                     onClick={removeItem}
+                                                    aria-label={`Remove ${item.title} from cart`}
                                                     sx={{
                                                         color: '#ff6b6b',
                                                         fontSize: '0.78rem',
                                                         fontWeight: 600,
                                                         letterSpacing: '0.22em',
                                                         textTransform: 'uppercase',
+                                                        transition: 'all 0.3s ease',
                                                         '&:hover': {
                                                             background: 'rgba(255,107,107,.1)',
                                                             color: '#ff6b6b'
+                                                        },
+                                                        '&:focus-visible': {
+                                                            outline: '2px solid #efcb77',
+                                                            outlineOffset: '2px'
                                                         }
                                                     }}
                                                 >
@@ -520,7 +561,8 @@ const BrowserCart = () => {
                                                         sx={{
                                                             fontSize: '0.78rem',
                                                             color: 'rgba(255,255,255,.5)',
-                                                            mt: 1
+                                                            mt: 1,
+                                                            lineHeight: 1.4
                                                         }}
                                                     >
                                                         Removing this will remove all combo items
@@ -623,7 +665,8 @@ const BrowserCart = () => {
                                 variant="contained"
                                 size="large"
                                 fullWidth
-                                endIcon={<IconArrowRight />}
+                                endIcon={<IconArrowRight aria-hidden="true" />}
+                                aria-label={`Proceed to address selection with ${cart.length} item${cart.length !== 1 ? 's' : ''} in cart`}
                                 sx={{
                                     background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
                                     color: '#000',
@@ -640,6 +683,10 @@ const BrowserCart = () => {
                                         boxShadow: '0 20px 50px rgba(221,180,93,.22)',
                                         background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
                                     },
+                                    '&:focus-visible': {
+                                        outline: '3px solid #efcb77',
+                                        outlineOffset: '4px'
+                                    },
                                     '&.Mui-disabled': {
                                         background: 'rgba(255,255,255,.1)',
                                         color: 'rgba(255,255,255,.4)'
@@ -655,7 +702,8 @@ const BrowserCart = () => {
                                 variant="contained"
                                 size="large"
                                 fullWidth
-                                endIcon={<IconArrowRight />}
+                                endIcon={<IconArrowRight aria-hidden="true" />}
+                                aria-label="Login to continue with checkout"
                                 sx={{
                                     background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
                                     color: '#000',
@@ -671,6 +719,10 @@ const BrowserCart = () => {
                                         transform: 'translateY(-5px)',
                                         boxShadow: '0 20px 50px rgba(221,180,93,.22)',
                                         background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
+                                    },
+                                    '&:focus-visible': {
+                                        outline: '3px solid #efcb77',
+                                        outlineOffset: '4px'
                                     }
                                 }}
                             >
@@ -681,6 +733,8 @@ const BrowserCart = () => {
                 ) : (
                     /* Empty Cart State */
                     <Box
+                        role="status"
+                        aria-live="polite"
                         sx={{
                             textAlign: 'center',
                             py: 12,
@@ -689,19 +743,22 @@ const BrowserCart = () => {
                             borderRadius: '4px'
                         }}
                     >
-                        <IconShoppingCart 
-                            size={80} 
-                            style={{ 
+                        <IconShoppingCart
+                            size={80}
+                            style={{
                                 color: 'rgba(255,255,255,.3)',
                                 marginBottom: '24px'
-                            }} 
+                            }}
+                            aria-hidden="true"
                         />
                         <Typography
+                            component="h2"
                             sx={{
                                 fontSize: '1.5rem',
                                 fontWeight: 700,
                                 color: 'white',
-                                mb: 2
+                                mb: 2,
+                                letterSpacing: '-0.02em'
                             }}
                         >
                             Your cart is empty
@@ -710,7 +767,8 @@ const BrowserCart = () => {
                             sx={{
                                 fontSize: '1rem',
                                 color: 'rgba(255,255,255,.68)',
-                                mb: 4
+                                mb: 4,
+                                lineHeight: 1.5
                             }}
                         >
                             Add items to get started
@@ -720,7 +778,8 @@ const BrowserCart = () => {
                             to="/"
                             variant="contained"
                             size="large"
-                            endIcon={<IconShoppingCart />}
+                            endIcon={<IconShoppingCart aria-hidden="true" />}
+                            aria-label="Continue shopping and browse products"
                             sx={{
                                 background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
                                 color: '#000',
@@ -736,6 +795,10 @@ const BrowserCart = () => {
                                     transform: 'translateY(-5px)',
                                     boxShadow: '0 20px 50px rgba(221,180,93,.22)',
                                     background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
+                                },
+                                '&:focus-visible': {
+                                    outline: '3px solid #efcb77',
+                                    outlineOffset: '4px'
                                 }
                             }}
                         >

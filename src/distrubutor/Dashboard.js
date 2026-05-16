@@ -1,5 +1,4 @@
 import { Box, Card, CardActionArea, CardContent, Grid, IconButton, Paper, Skeleton, Stack, Tooltip, Typography } from '@mui/material';
-import { amber, blue, green, orange, pink, purple, red, teal, yellow } from '@mui/material/colors';
 import { IconQuestionCircle } from '@tabler/icons';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -10,6 +9,49 @@ import DeclarationForm from './DeclarationForm';
 import Loader from '../components/Loader';
 import CutoffGraph from './CutoffGraph';
 import MonthlyGraph from './MonthlyGraph';
+
+// Design System Styles
+const cardStyles = {
+  background: 'linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01))',
+  border: '1px solid rgba(255,255,255,.08)',
+  backdropFilter: 'blur(10px)',
+  borderRadius: '4px',
+  transition: 'all 0.45s cubic-bezier(0.4, 0, 0.2, 1)',
+  position: 'relative',
+  overflow: 'hidden',
+  '&:hover': {
+    transform: 'translateY(-8px)',
+    borderColor: 'rgba(221,180,93,.3)',
+    boxShadow: '0 20px 50px rgba(0,0,0,.5)'
+  }
+};
+
+const statCardStyles = {
+  ...cardStyles,
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: '-80px',
+    right: '-80px',
+    width: '160px',
+    height: '160px',
+    borderRadius: '50%',
+    background: 'radial-gradient(circle, rgba(221,180,93,.12), transparent 70%)',
+    transition: 'all 0.45s ease'
+  },
+  '&:hover::before': {
+    transform: 'scale(1.2)',
+    opacity: 0.8
+  }
+};
+
+const welcomeCardStyles = {
+  background: 'linear-gradient(135deg, rgba(239,203,119,.15) 0%, rgba(239,203,119,.05) 100%)',
+  border: '2px solid rgba(239,203,119,.3)',
+  backdropFilter: 'blur(10px)',
+  borderRadius: '8px',
+  mb: 3
+};
 
 
 
@@ -54,19 +96,20 @@ export default function Dashboard() {
         <>
           {showWelcome && (
             <Paper
-              elevation={4}
-              sx={{
-                position: 'relative',
-                padding: 4,
-                textAlign: 'center',
-                backgroundColor: '#fff7e0',
-                border: '2px solid #FFD700',
-                borderRadius: '12px',
-              }}
+              elevation={0}
+              sx={welcomeCardStyles}
             >
-              <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 3, padding: 2 }}>
+              <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 3, padding: { md: 4, xs: 3 } }}>
                 <div className="party-pop" />
-                <Typography variant="h4" sx={{ fontWeight: 'bold', color: '#FF5733' }}>
+                <Typography
+                  variant="h4"
+                  sx={{
+                    fontWeight: 700,
+                    color: '#efcb77',
+                    fontSize: { md: '2rem', xs: '1.5rem' },
+                    letterSpacing: '-0.02em'
+                  }}
+                >
                   🎉 Welcome to the Distributor Dashboard! 🎉
                 </Typography>
                 <div className="party-pop" />
@@ -75,10 +118,10 @@ export default function Dashboard() {
                 .party-pop {
                   width: 24px;
                   height: 24px;
-                  background-color: #FF5733;
+                  background: linear-gradient(135deg, #efcb77, #ddb45d);
                   border-radius: 50%;
                   animation: pop 0.5s alternate infinite;
-                  box-shadow: 0px 0px 10px rgba(255, 87, 51, 0.5);
+                  box-shadow: 0px 0px 15px rgba(239,203,119, 0.5);
                 }
                 @keyframes pop {
                   0% { transform: translateY(0); }
@@ -88,40 +131,114 @@ export default function Dashboard() {
               `}</style>
             </Paper>
           )}
-          <Grid container spacing={{ md: 2, xs: 1.5 }}>
+          <Grid container spacing={{ md: 3, xs: 2 }}>
             <Grid item md={6} xs={12}>
-              <Typography variant="caption" fontSize={{ md: 24, xs: 16 }}>Welcome</Typography>
-              <Typography fontWeight={700} fontSize={{ md: 32, xs: 18 }}>{getName()}</Typography>
+              <Typography
+                variant="caption"
+                sx={{
+                  fontSize: { md: '1.5rem', xs: '1rem' },
+                  color: 'rgba(255,255,255,.68)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.2em',
+                  fontWeight: 600
+                }}
+              >
+                Welcome
+              </Typography>
+              <Typography
+                sx={{
+                  fontWeight: 700,
+                  fontSize: { md: '2.5rem', xs: '1.5rem' },
+                  color: 'white',
+                  letterSpacing: '-0.02em',
+                  mt: 0.5
+                }}
+              >
+                {getName()}
+              </Typography>
               {data ? (
-                <Typography fontWeight={700} fontSize={{ md: 22, xs: 14 }}>{data.rank}</Typography>
+                <Typography
+                  sx={{
+                    fontWeight: 600,
+                    fontSize: { md: '1.25rem', xs: '1rem' },
+                    color: '#efcb77',
+                    mt: 0.5
+                  }}
+                >
+                  {data.rank}
+                </Typography>
               ) : (
-                <Skeleton fontSize={{ md: 22, xs: 14 }}></Skeleton>
+                <Skeleton
+                  sx={{
+                    bgcolor: 'rgba(255,255,255,.1)',
+                    fontSize: { md: '1.25rem', xs: '1rem' }
+                  }}
+                />
               )}
             </Grid>
             <Grid item md={6} xs={12}>
               {data ? (
                 data.created_time && (
-                  <Typography textAlign={{ md: "right" }} fontSize={{ md: 18, xs: 14 }}>Member Since: {toDateTime(data.created_time)}</Typography>
+                  <Typography
+                    textAlign={{ md: "right" }}
+                    sx={{
+                      fontSize: { md: '1.125rem', xs: '0.95rem' },
+                      color: 'rgba(255,255,255,.82)',
+                      fontWeight: 500
+                    }}
+                  >
+                    Member Since: <Box component="span" sx={{ color: '#efcb77', fontWeight: 600 }}>{toDateTime(data.created_time)}</Box>
+                  </Typography>
                 )
               ) : (
-                <Skeleton fontSize={{ md: 22, xs: 14 }}></Skeleton>
+                <Skeleton
+                  sx={{
+                    bgcolor: 'rgba(255,255,255,.1)',
+                    fontSize: { md: '1.125rem', xs: '0.95rem' }
+                  }}
+                />
               )}
             </Grid>
 
             <Grid item xs={6} md={4}>
-              <Card elevation={2} sx={{ bgcolor: yellow[100], position: "relative" }}>
+              <Card elevation={0} sx={statCardStyles}>
                 <Box p={{ md: 4, xs: 2 }}>
-                  <Typography mb={1}>Total Purchase Amount</Typography>
+                  <Typography
+                    mb={1}
+                    sx={{
+                      color: 'rgba(255,255,255,.68)',
+                      fontSize: { md: '0.95rem', xs: '0.85rem' },
+                      fontWeight: 600,
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em'
+                    }}
+                  >
+                    Total Purchase Amount
+                  </Typography>
                   {data ? (
-                    <Typography fontSize={{ md: 22, xs: 18 }} variant="h2">₹{inr(data.total_purchase)}</Typography>
+                    <Typography
+                      sx={{
+                        fontSize: { md: '1.75rem', xs: '1.25rem' },
+                        fontWeight: 700,
+                        color: '#efcb77'
+                      }}
+                    >
+                      ₹{inr(data.total_purchase)}
+                    </Typography>
                   ) : (
-                    <Skeleton fontSize={{ md: 22, xs: 18 }} variant="text"></Skeleton>
+                    <Skeleton sx={{ bgcolor: 'rgba(255,255,255,.1)', fontSize: { md: '1.75rem', xs: '1.25rem' } }} />
                   )}
                 </Box>
-                <Box position="absolute" top={0} right={0}>
-                  <Tooltip title="Total amount you've purchased so far">
-                    <IconButton>
-                      <IconQuestionCircle />
+                <Box position="absolute" top={8} right={8}>
+                  <Tooltip title="Total amount you've purchased so far" arrow>
+                    <IconButton
+                      size="small"
+                      sx={{
+                        color: 'rgba(255,255,255,.68)',
+                        '&:hover': { color: '#efcb77' }
+                      }}
+                    >
+                      <IconQuestionCircle size={20} />
                     </IconButton>
                   </Tooltip>
                 </Box>
@@ -129,19 +246,44 @@ export default function Dashboard() {
             </Grid>
 
             <Grid item xs={6} md={4}>
-              <Card elevation={2} sx={{ bgcolor: pink[200], position: "relative" }}>
+              <Card elevation={0} sx={statCardStyles}>
                 <Box p={{ md: 4, xs: 2 }}>
-                  <Typography mb={1}>Self PV</Typography>
+                  <Typography
+                    mb={1}
+                    sx={{
+                      color: 'rgba(255,255,255,.68)',
+                      fontSize: { md: '0.95rem', xs: '0.85rem' },
+                      fontWeight: 600,
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em'
+                    }}
+                  >
+                    Self PV
+                  </Typography>
                   {data ? (
-                    <Typography fontSize={{ md: 22, xs: 18 }} variant="h2">{inr(data.self_pv)} PV</Typography>
+                    <Typography
+                      sx={{
+                        fontSize: { md: '1.75rem', xs: '1.25rem' },
+                        fontWeight: 700,
+                        color: '#efcb77'
+                      }}
+                    >
+                      {inr(data.self_pv)} PV
+                    </Typography>
                   ) : (
-                    <Skeleton fontSize={{ md: 22, xs: 18 }} variant="text"></Skeleton>
+                    <Skeleton sx={{ bgcolor: 'rgba(255,255,255,.1)', fontSize: { md: '1.75rem', xs: '1.25rem' } }} />
                   )}
                 </Box>
-                <Box position="absolute" top={0} right={0}>
-                  <Tooltip title="Self Purchased product's PV">
-                    <IconButton>
-                      <IconQuestionCircle />
+                <Box position="absolute" top={8} right={8}>
+                  <Tooltip title="Self Purchased product's PV" arrow>
+                    <IconButton
+                      size="small"
+                      sx={{
+                        color: 'rgba(255,255,255,.68)',
+                        '&:hover': { color: '#efcb77' }
+                      }}
+                    >
+                      <IconQuestionCircle size={20} />
                     </IconButton>
                   </Tooltip>
                 </Box>
@@ -149,60 +291,44 @@ export default function Dashboard() {
             </Grid>
 
             <Grid item xs={6} md={4}>
-              <Card elevation={2} sx={{ bgcolor: purple[200], position: "relative" }}>
+              <Card elevation={0} sx={statCardStyles}>
                 <Box p={{ md: 4, xs: 2 }}>
-                  <Typography mb={1}>Self Purchase Sp</Typography>
+                  <Typography
+                    mb={1}
+                    sx={{
+                      color: 'rgba(255,255,255,.68)',
+                      fontSize: { md: '0.95rem', xs: '0.85rem' },
+                      fontWeight: 600,
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em'
+                    }}
+                  >
+                    Self Purchase SP
+                  </Typography>
                   {data ? (
-                    <Typography fontSize={{ md: 22, xs: 18 }} variant="h2">{inr(data.sp_pv)} SP</Typography>
+                    <Typography
+                      sx={{
+                        fontSize: { md: '1.75rem', xs: '1.25rem' },
+                        fontWeight: 700,
+                        color: '#efcb77'
+                      }}
+                    >
+                      {inr(data.sp_pv)} SP
+                    </Typography>
                   ) : (
-                    <Skeleton fontSize={{ md: 22, xs: 18 }} variant="text"></Skeleton>
+                    <Skeleton sx={{ bgcolor: 'rgba(255,255,255,.1)', fontSize: { md: '1.75rem', xs: '1.25rem' } }} />
                   )}
                 </Box>
-                <Box position="absolute" top={0} right={0}>
-                  <Tooltip title="Self Purchased product's SP">
-                    <IconButton>
-                      <IconQuestionCircle />
-                    </IconButton>
-                  </Tooltip>
-                </Box>
-              </Card>
-            </Grid>
-
-
-            <Grid item xs={6} md={4}>
-              <Card elevation={2} sx={{ bgcolor: teal[100], position: "relative" }}>
-                <Box p={{ md: 4, xs: 2 }}>
-                  <Typography mb={1}>Total Earnings</Typography>
-                  {data ? (
-                    <Typography fontSize={{ md: 22, xs: 18 }} variant="h2">₹{inr(data.total_income)}</Typography>
-                  ) : (
-                    <Skeleton fontSize={{ md: 22, xs: 18 }} variant="text"></Skeleton>
-                  )}
-                </Box>
-                <Box position="absolute" top={0} right={0}>
-                  <Tooltip title="The amount credited in your account so far!">
-                    <IconButton>
-                      <IconQuestionCircle />
-                    </IconButton>
-                  </Tooltip>
-                </Box>
-              </Card>
-            </Grid>
-
-            <Grid item xs={6} md={4}>
-              <Card elevation={2} sx={{ bgcolor: "grey.300" , position: "relative" }}>
-                <Box p={{ md: 4, xs: 2 }}>
-                  <Typography mb={1}>Pair Match Income</Typography>
-                  {data ? (
-                    <Typography fontSize={{ md: 22, xs: 18 }} variant="h2">₹{inr(data.pair_match_income)}</Typography>
-                  ) : (
-                    <Skeleton fontSize={{ md: 22, xs: 18 }} variant="text"></Skeleton>
-                  )}
-                </Box>
-                <Box position="absolute" top={0} right={0}>
-                  <Tooltip title="Binary compensation plan 1:1 ratio">
-                    <IconButton>
-                      <IconQuestionCircle />
+                <Box position="absolute" top={8} right={8}>
+                  <Tooltip title="Self Purchased product's SP" arrow>
+                    <IconButton
+                      size="small"
+                      sx={{
+                        color: 'rgba(255,255,255,.68)',
+                        '&:hover': { color: '#efcb77' }
+                      }}
+                    >
+                      <IconQuestionCircle size={20} />
                     </IconButton>
                   </Tooltip>
                 </Box>
@@ -210,42 +336,192 @@ export default function Dashboard() {
             </Grid>
 
             <Grid item xs={6} md={4}>
-              <Card elevation={2} sx={{ bgcolor: blue[200], position: "relative" }}>
+              <Card elevation={0} sx={statCardStyles}>
                 <Box p={{ md: 4, xs: 2 }}>
-                  <Typography mb={1}>Self Purchase Income</Typography>
+                  <Typography
+                    mb={1}
+                    sx={{
+                      color: 'rgba(255,255,255,.68)',
+                      fontSize: { md: '0.95rem', xs: '0.85rem' },
+                      fontWeight: 600,
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em'
+                    }}
+                  >
+                    Total Earnings
+                  </Typography>
                   {data ? (
-                    <Typography fontSize={{ md: 22, xs: 18 }} variant="h2">₹{inr(data.sp_income)}</Typography>
+                    <Typography
+                      sx={{
+                        fontSize: { md: '1.75rem', xs: '1.25rem' },
+                        fontWeight: 700,
+                        color: '#efcb77'
+                      }}
+                    >
+                      ₹{inr(data.total_income)}
+                    </Typography>
                   ) : (
-                    <Skeleton fontSize={{ md: 22, xs: 18 }} variant="text"></Skeleton>
+                    <Skeleton sx={{ bgcolor: 'rgba(255,255,255,.1)', fontSize: { md: '1.75rem', xs: '1.25rem' } }} />
                   )}
                 </Box>
-                <Box position="absolute" top={0} right={0}>
-                  <Tooltip title="Self Purchased retail income">
-                    <IconButton>
-                      <IconQuestionCircle />
+                <Box position="absolute" top={8} right={8}>
+                  <Tooltip title="The amount credited in your account so far!" arrow>
+                    <IconButton
+                      size="small"
+                      sx={{
+                        color: 'rgba(255,255,255,.68)',
+                        '&:hover': { color: '#efcb77' }
+                      }}
+                    >
+                      <IconQuestionCircle size={20} />
                     </IconButton>
                   </Tooltip>
                 </Box>
               </Card>
             </Grid>
 
-
+            <Grid item xs={6} md={4}>
+              <Card elevation={0} sx={statCardStyles}>
+                <Box p={{ md: 4, xs: 2 }}>
+                  <Typography
+                    mb={1}
+                    sx={{
+                      color: 'rgba(255,255,255,.68)',
+                      fontSize: { md: '0.95rem', xs: '0.85rem' },
+                      fontWeight: 600,
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em'
+                    }}
+                  >
+                    Pair Match Income
+                  </Typography>
+                  {data ? (
+                    <Typography
+                      sx={{
+                        fontSize: { md: '1.75rem', xs: '1.25rem' },
+                        fontWeight: 700,
+                        color: '#efcb77'
+                      }}
+                    >
+                      ₹{inr(data.pair_match_income)}
+                    </Typography>
+                  ) : (
+                    <Skeleton sx={{ bgcolor: 'rgba(255,255,255,.1)', fontSize: { md: '1.75rem', xs: '1.25rem' } }} />
+                  )}
+                </Box>
+                <Box position="absolute" top={8} right={8}>
+                  <Tooltip title="Binary compensation plan 1:1 ratio" arrow>
+                    <IconButton
+                      size="small"
+                      sx={{
+                        color: 'rgba(255,255,255,.68)',
+                        '&:hover': { color: '#efcb77' }
+                      }}
+                    >
+                      <IconQuestionCircle size={20} />
+                    </IconButton>
+                  </Tooltip>
+                </Box>
+              </Card>
+            </Grid>
 
             <Grid item xs={6} md={4}>
-              <Card elevation={2} sx={{ bgcolor: green[100], position: "relative" }}>
-                <CardActionArea component={Link} to="transactions/income">
+              <Card elevation={0} sx={statCardStyles}>
+                <Box p={{ md: 4, xs: 2 }}>
+                  <Typography
+                    mb={1}
+                    sx={{
+                      color: 'rgba(255,255,255,.68)',
+                      fontSize: { md: '0.95rem', xs: '0.85rem' },
+                      fontWeight: 600,
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em'
+                    }}
+                  >
+                    Self Purchase Income
+                  </Typography>
+                  {data ? (
+                    <Typography
+                      sx={{
+                        fontSize: { md: '1.75rem', xs: '1.25rem' },
+                        fontWeight: 700,
+                        color: '#efcb77'
+                      }}
+                    >
+                      ₹{inr(data.sp_income)}
+                    </Typography>
+                  ) : (
+                    <Skeleton sx={{ bgcolor: 'rgba(255,255,255,.1)', fontSize: { md: '1.75rem', xs: '1.25rem' } }} />
+                  )}
+                </Box>
+                <Box position="absolute" top={8} right={8}>
+                  <Tooltip title="Self Purchased retail income" arrow>
+                    <IconButton
+                      size="small"
+                      sx={{
+                        color: 'rgba(255,255,255,.68)',
+                        '&:hover': { color: '#efcb77' }
+                      }}
+                    >
+                      <IconQuestionCircle size={20} />
+                    </IconButton>
+                  </Tooltip>
+                </Box>
+              </Card>
+            </Grid>
+
+            <Grid item xs={6} md={4}>
+              <Card elevation={0} sx={statCardStyles}>
+                <CardActionArea
+                  component={Link}
+                  to="transactions/income"
+                  sx={{
+                    '&:hover': {
+                      '& .MuiTypography-root': {
+                        color: '#efcb77'
+                      }
+                    }
+                  }}
+                >
                   <Box p={{ md: 4, xs: 2 }}>
-                    <Typography mb={1}>Income Wallet</Typography>
+                    <Typography
+                      mb={1}
+                      sx={{
+                        color: 'rgba(255,255,255,.68)',
+                        fontSize: { md: '0.95rem', xs: '0.85rem' },
+                        fontWeight: 600,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.05em',
+                        transition: 'color 0.3s ease'
+                      }}
+                    >
+                      Income Wallet
+                    </Typography>
                     {data ? (
-                      <Typography fontSize={{ md: 22, xs: 18 }} variant="h2">₹{inr(data.income_wallet)}</Typography>
+                      <Typography
+                        sx={{
+                          fontSize: { md: '1.75rem', xs: '1.25rem' },
+                          fontWeight: 700,
+                          color: '#efcb77',
+                          transition: 'color 0.3s ease'
+                        }}
+                      >
+                        ₹{inr(data.income_wallet)}
+                      </Typography>
                     ) : (
-                      <Skeleton fontSize={{ md: 22, xs: 18 }}></Skeleton>
+                      <Skeleton sx={{ bgcolor: 'rgba(255,255,255,.1)', fontSize: { md: '1.75rem', xs: '1.25rem' } }} />
                     )}
                   </Box>
-                  <Box position="absolute" top={0} right={0}>
-                    <Tooltip title="The amount will be in your bank account asap!">
-                      <IconButton>
-                        <IconQuestionCircle />
+                  <Box position="absolute" top={8} right={8}>
+                    <Tooltip title="The amount will be in your bank account asap!" arrow>
+                      <IconButton
+                        size="small"
+                        sx={{
+                          color: 'rgba(255,255,255,.68)',
+                          '&:hover': { color: '#efcb77' }
+                        }}
+                      >
+                        <IconQuestionCircle size={20} />
                       </IconButton>
                     </Tooltip>
                   </Box>
@@ -254,20 +530,57 @@ export default function Dashboard() {
             </Grid>
 
             <Grid item xs={6} md={4}>
-              <Card elevation={2} sx={{ bgcolor: orange[100], position: "relative" }}>
-                <CardActionArea component={Link} to="transactions/purchase">
+              <Card elevation={0} sx={statCardStyles}>
+                <CardActionArea
+                  component={Link}
+                  to="transactions/purchase"
+                  sx={{
+                    '&:hover': {
+                      '& .MuiTypography-root': {
+                        color: '#efcb77'
+                      }
+                    }
+                  }}
+                >
                   <Box p={{ md: 4, xs: 2 }}>
-                    <Typography mb={1}>Purchase Wallet</Typography>
+                    <Typography
+                      mb={1}
+                      sx={{
+                        color: 'rgba(255,255,255,.68)',
+                        fontSize: { md: '0.95rem', xs: '0.85rem' },
+                        fontWeight: 600,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.05em',
+                        transition: 'color 0.3s ease'
+                      }}
+                    >
+                      Purchase Wallet
+                    </Typography>
                     {data ? (
-                      <Typography fontSize={{ md: 22, xs: 18 }} variant="h2">₹{inr(data.purchase_wallet)}</Typography>
+                      <Typography
+                        sx={{
+                          fontSize: { md: '1.75rem', xs: '1.25rem' },
+                          fontWeight: 700,
+                          color: '#efcb77',
+                          transition: 'color 0.3s ease'
+                        }}
+                      >
+                        ₹{inr(data.purchase_wallet)}
+                      </Typography>
                     ) : (
-                      <Skeleton fontSize={{ md: 22, xs: 18 }}></Skeleton>
+                      <Skeleton sx={{ bgcolor: 'rgba(255,255,255,.1)', fontSize: { md: '1.75rem', xs: '1.25rem' } }} />
                     )}
                   </Box>
-                  <Box position="absolute" top={0} right={0}>
-                    <Tooltip title="Use this amount to purchase from the Store">
-                      <IconButton>
-                        <IconQuestionCircle />
+                  <Box position="absolute" top={8} right={8}>
+                    <Tooltip title="Use this amount to purchase from the Store" arrow>
+                      <IconButton
+                        size="small"
+                        sx={{
+                          color: 'rgba(255,255,255,.68)',
+                          '&:hover': { color: '#efcb77' }
+                        }}
+                      >
+                        <IconQuestionCircle size={20} />
                       </IconButton>
                     </Tooltip>
                   </Box>
@@ -276,14 +589,45 @@ export default function Dashboard() {
             </Grid>
 
             <Grid item xs={6} md={4}>
-              <Card elevation={2} sx={{ bgcolor: red[100] }}>
-                <CardActionArea component={Link} to="my-referrals">
+              <Card elevation={0} sx={statCardStyles}>
+                <CardActionArea
+                  component={Link}
+                  to="my-referrals"
+                  sx={{
+                    '&:hover': {
+                      '& .MuiTypography-root': {
+                        color: '#efcb77'
+                      }
+                    }
+                  }}
+                >
                   <Box p={{ md: 4, xs: 2 }}>
-                    <Typography mb={1}>Direct Members</Typography>
+                    <Typography
+                      mb={1}
+                      sx={{
+                        color: 'rgba(255,255,255,.68)',
+                        fontSize: { md: '0.95rem', xs: '0.85rem' },
+                        fontWeight: 600,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.05em',
+                        transition: 'color 0.3s ease'
+                      }}
+                    >
+                      Direct Members
+                    </Typography>
                     {data ? (
-                      <Typography fontSize={{ md: 22, xs: 18 }} variant="h2">{data.direct_members}</Typography>
+                      <Typography
+                        sx={{
+                          fontSize: { md: '1.75rem', xs: '1.25rem' },
+                          fontWeight: 700,
+                          color: '#efcb77',
+                          transition: 'color 0.3s ease'
+                        }}
+                      >
+                        {data.direct_members}
+                      </Typography>
                     ) : (
-                      <Skeleton fontSize={{ md: 22, xs: 18 }}></Skeleton>
+                      <Skeleton sx={{ bgcolor: 'rgba(255,255,255,.1)', fontSize: { md: '1.75rem', xs: '1.25rem' } }} />
                     )}
                   </Box>
                 </CardActionArea>
@@ -291,46 +635,99 @@ export default function Dashboard() {
             </Grid>
 
             <Grid item xs={12} md={4}>
-              <Card elevation={2} sx={{
-                border: "1px solid #C4C4C4",
-              }}>
-                <Box p={4} display="flex" justifyContent="space-between">
-                  <Stack spacing={1}>
-                    <Typography fontSize={{ md: 14, xs: 12 }} fontWeight={700}>&nbsp;</Typography>
-                    <Typography fontSize={{ md: 14, xs: 12 }} fontWeight={700}>CUTOFF</Typography>
-                    <Typography fontSize={{ md: 14, xs: 12 }} fontWeight={700}>BALANCE</Typography>
-                    <Typography fontSize={{ md: 14, xs: 12 }} fontWeight={700}>TOTAL</Typography>
+              <Card elevation={0} sx={cardStyles}>
+                <Box p={{ md: 4, xs: 3 }} display="flex" justifyContent="space-between">
+                  <Stack spacing={1.5}>
+                    <Typography
+                      fontSize={{ md: '0.875rem', xs: '0.75rem' }}
+                      fontWeight={700}
+                      sx={{ color: 'rgba(255,255,255,.68)' }}
+                    >
+                      &nbsp;
+                    </Typography>
+                    <Typography
+                      fontSize={{ md: '0.875rem', xs: '0.75rem' }}
+                      fontWeight={700}
+                      sx={{
+                        color: 'rgba(255,255,255,.82)',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.05em'
+                      }}
+                    >
+                      CUTOFF
+                    </Typography>
+                    <Typography
+                      fontSize={{ md: '0.875rem', xs: '0.75rem' }}
+                      fontWeight={700}
+                      sx={{
+                        color: 'rgba(255,255,255,.82)',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.05em'
+                      }}
+                    >
+                      BALANCE
+                    </Typography>
+                    <Typography
+                      fontSize={{ md: '0.875rem', xs: '0.75rem' }}
+                      fontWeight={700}
+                      sx={{
+                        color: 'rgba(255,255,255,.82)',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.05em'
+                      }}
+                    >
+                      TOTAL
+                    </Typography>
                   </Stack>
-                  <Stack spacing={1}>
-                    <Typography fontSize={{ md: 14, xs: 12 }} fontWeight={700}>LEFT</Typography>
+                  <Stack spacing={1.5}>
+                    <Typography
+                      fontSize={{ md: '0.875rem', xs: '0.75rem' }}
+                      fontWeight={700}
+                      sx={{
+                        color: '#efcb77',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.05em'
+                      }}
+                    >
+                      LEFT
+                    </Typography>
                     {data ? (
                       <React.Fragment>
-                        <Typography>{inr(data.cutoff_left_pv)}</Typography>
-                        <Typography>{inr(data.carry_left_pv)}</Typography>
-                        <Typography>{inr(data.total_left_pv)}</Typography>
+                        <Typography sx={{ color: 'white', fontWeight: 600 }}>{inr(data.cutoff_left_pv)}</Typography>
+                        <Typography sx={{ color: 'white', fontWeight: 600 }}>{inr(data.carry_left_pv)}</Typography>
+                        <Typography sx={{ color: 'white', fontWeight: 600 }}>{inr(data.total_left_pv)}</Typography>
                       </React.Fragment>
                     ) : (
                       <React.Fragment>
-                        <Skeleton></Skeleton>
-                        <Skeleton></Skeleton>
-                        <Skeleton></Skeleton>
+                        <Skeleton sx={{ bgcolor: 'rgba(255,255,255,.1)' }} />
+                        <Skeleton sx={{ bgcolor: 'rgba(255,255,255,.1)' }} />
+                        <Skeleton sx={{ bgcolor: 'rgba(255,255,255,.1)' }} />
                       </React.Fragment>
                     )}
-
                   </Stack>
-                  <Stack spacing={1}>
-                    <Typography fontSize={{ md: 14, xs: 12 }} fontWeight={700}>RIGHT</Typography>
+                  <Stack spacing={1.5}>
+                    <Typography
+                      fontSize={{ md: '0.875rem', xs: '0.75rem' }}
+                      fontWeight={700}
+                      sx={{
+                        color: '#efcb77',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.05em'
+                      }}
+                    >
+                      RIGHT
+                    </Typography>
                     {data ? (
                       <React.Fragment>
-                        <Typography>{inr(data.cutoff_right_pv)}</Typography>
-                        <Typography>{inr(data.carry_right_pv)}</Typography>
-                        <Typography>{inr(data.total_right_pv)}</Typography>
+                        <Typography sx={{ color: 'white', fontWeight: 600 }}>{inr(data.cutoff_right_pv)}</Typography>
+                        <Typography sx={{ color: 'white', fontWeight: 600 }}>{inr(data.carry_right_pv)}</Typography>
+                        <Typography sx={{ color: 'white', fontWeight: 600 }}>{inr(data.total_right_pv)}</Typography>
                       </React.Fragment>
                     ) : (
                       <React.Fragment>
-                        <Skeleton></Skeleton>
-                        <Skeleton></Skeleton>
-                        <Skeleton></Skeleton>
+                        <Skeleton sx={{ bgcolor: 'rgba(255,255,255,.1)' }} />
+                        <Skeleton sx={{ bgcolor: 'rgba(255,255,255,.1)' }} />
+                        <Skeleton sx={{ bgcolor: 'rgba(255,255,255,.1)' }} />
                       </React.Fragment>
                     )}
                   </Stack>
@@ -338,16 +735,16 @@ export default function Dashboard() {
               </Card>
             </Grid>
             <Grid item xs={12} md={8}>
-              <Card elevation={2} sx={{ flex: 1, bgcolor: "white" }}>
-                <CardContent>
+              <Card elevation={0} sx={{ ...cardStyles, flex: 1 }}>
+                <CardContent sx={{ p: { md: 3, xs: 2 } }}>
                   <CutoffGraph />
                 </CardContent>
               </Card>
             </Grid>
             {false && (
-              <Grid item xs={12} md={6} >
-                <Card elevation={2} sx={{ flex: 1, bgcolor: "white" }}>
-                  <CardContent>
+              <Grid item xs={12} md={6}>
+                <Card elevation={0} sx={{ ...cardStyles, flex: 1 }}>
+                  <CardContent sx={{ p: { md: 3, xs: 2 } }}>
                     <MonthlyGraph />
                   </CardContent>
                 </Card>

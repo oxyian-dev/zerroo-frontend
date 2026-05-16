@@ -1,48 +1,84 @@
 import { Container, Typography, Box, Divider } from '@mui/material'
 import React from 'react'
 import Faq from '../components/Faq'
+import { Helmet } from 'react-helmet-async'
 
 export default function Shipping() {
     return (
-        <Container
-            maxWidth={false}
-            sx={{
-                maxWidth: '1440px',
-                py: { md: '190px', xs: '100px' },
-                px: { md: 10, xs: 3 }
-            }}
-        >
-            {/* Page Header */}
-            <Box mb={6}>
-                <Typography 
-                    variant="h1" 
-                    sx={{
-                        color: '#efcb77',
-                        fontSize: { xs: '2rem', md: '2.5rem' },
-                        fontWeight: 600,
-                        letterSpacing: '0.02em',
-                        mb: 2
-                    }}
-                >
-                    Shipping Information
-                </Typography>
-                <Divider sx={{ 
-                    borderColor: 'rgba(255,255,255,.08)',
-                    mb: 4
-                }} />
-                <Typography 
-                    sx={{ 
-                        color: 'rgba(255,255,255,.68)',
-                        lineHeight: 2.1,
-                        fontSize: { xs: '0.95rem', md: '1rem' }
-                    }}
-                >
-                    Find answers to all your shipping-related questions. We're committed to delivering your orders safely and on time.
-                </Typography>
-            </Box>
+        <>
+            <Helmet>
+                <title>Shipping Information | Victory World</title>
+                <meta
+                    name="description"
+                    content="Find answers to all your shipping-related questions. Learn about delivery times, charges, and policies at Victory World."
+                />
+            </Helmet>
 
-            {/* FAQ Section */}
-            <Faq faqs={[
+            <Container
+                component="main"
+                maxWidth={false}
+                sx={{
+                    maxWidth: '1440px',
+                    py: { md: '190px', xs: '100px' },
+                    px: { md: '80px', xs: '24px' },
+                    background: '#020202',
+                }}
+            >
+                {/* Page Header */}
+                <Box
+                    component="header"
+                    mb={{ md: 8, xs: 6 }}
+                    sx={{
+                        textAlign: 'center',
+                        maxWidth: '900px',
+                        mx: 'auto',
+                    }}
+                >
+                    <Typography
+                        component="h1"
+                        sx={{
+                            color: '#efcb77',
+                            fontSize: { xs: '2.5rem', md: '3.5rem' },
+                            fontWeight: 700,
+                            letterSpacing: '-0.02em',
+                            mb: 3,
+                            lineHeight: 1.1,
+                        }}
+                    >
+                        Shipping Information
+                    </Typography>
+                    <Divider
+                        sx={{
+                            borderColor: 'rgba(255,255,255,.08)',
+                            mb: 4,
+                            maxWidth: '120px',
+                            mx: 'auto',
+                            borderWidth: '1px',
+                        }}
+                    />
+                    <Typography
+                        sx={{
+                            color: 'rgba(255,255,255,.68)',
+                            lineHeight: 1.9,
+                            fontSize: { xs: '0.95rem', md: '1.05rem' },
+                            maxWidth: '700px',
+                            mx: 'auto',
+                        }}
+                    >
+                        Find answers to all your shipping-related questions. We're committed to delivering your orders safely and on time.
+                    </Typography>
+                </Box>
+
+                {/* FAQ Section */}
+                <Box
+                    component="section"
+                    aria-label="Shipping FAQs"
+                    sx={{
+                        maxWidth: '1000px',
+                        mx: 'auto',
+                    }}
+                >
+                    <Faq faqs={[
                 {
                     question: "Why does the delivery date not correspond to the delivery timeline of X-Y business days?",
                     answer: `It is possible that the Seller or our courier partners have a holiday between the day you're placed your order and the date of delivery, which is based on the timelines shown on the product page. In this case, we add a day to the estimated date. Some courier partners and Sellers do not work on Sundays and this is factored in to the delivery dates.`
@@ -141,8 +177,10 @@ For items listed as "In Stock", Sellers will mention the delivery time based on 
 
 The Seller might not have the item in stock but can procure it when an order is placed for the item. The delivery time will depend on the estimated procurement time and the estimated shipping time to your location.`
                 },
-            ]} />
-        </Container>
+                    ]} />
+                </Box>
+            </Container>
+        </>
     )
 }
 

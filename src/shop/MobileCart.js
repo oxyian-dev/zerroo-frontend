@@ -161,10 +161,15 @@ const MobileCart = () => {
                     </Box>
                 ) : (
                     /* Cart Items */
-                    <Stack spacing={3}>
+                    <Stack
+                        spacing={3}
+                        role="list"
+                        aria-label={`Shopping cart with ${cart.length} item${cart.length !== 1 ? 's' : ''}`}
+                    >
                         {cart.map((item, index) => (
                             <Box
                                 key={index}
+                                role="listitem"
                                 sx={{
                                     background: 'linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01))',
                                     border: '1px solid rgba(255,255,255,.08)',
@@ -188,15 +193,18 @@ const MobileCart = () => {
                                             }}
                                         >
                                             {item.combo_id ? (
-                                                <WorkDriveImage 
+                                                <WorkDriveImage
                                                     image={item.images[0]}
-                                                    alt={`${item.category} ${item.title} ${item.description}`} 
+                                                    alt={`${item.brand} ${item.title} - ${item.description}`}
                                                 />
                                             ) : (
-                                                <Link to={`/p/${item.item}/${href(item.category)}/${href(item.title)}`}>
+                                                <Link
+                                                    to={`/p/${item.item}/${href(item.category)}/${href(item.title)}`}
+                                                    aria-label={`View ${item.title} product details`}
+                                                >
                                                     <WorkDriveImage
                                                         image={item.images[0]}
-                                                        alt={`${item.category} ${item.title} ${item.description}`} 
+                                                        alt={`${item.brand} ${item.title} - ${item.description}`}
                                                     />
                                                 </Link>
                                             )}
@@ -365,23 +373,25 @@ const MobileCart = () => {
                                                 <Grid item xs={6}>
                                                     {!item.combo_id ? (
                                                         <FormControl size="small" fullWidth>
-                                                            <Counter 
-                                                                name={index} 
-                                                                value={item.quantity} 
-                                                                onChange={changeQuantity} 
+                                                            <Counter
+                                                                name={index}
+                                                                value={item.quantity}
+                                                                onChange={changeQuantity}
+                                                                aria-label={`Quantity for ${item.title}`}
                                                             />
                                                         </FormControl>
                                                     ) : (
                                                         <PopoverAdornment
                                                             Icon={IconInfoCircle}
-                                                            content="This is a combo item, removing this will remove all the items in the combo" 
+                                                            content="This is a combo item, removing this will remove all the items in the combo"
+                                                            aria-label="Combo item information"
                                                         />
                                                     )}
                                                 </Grid>
                                                 <Grid item xs={6}>
                                                     <Button
                                                         value={index}
-                                                        startIcon={<IconX size={18} />}
+                                                        startIcon={<IconX size={18} aria-hidden="true" />}
                                                         variant="text"
                                                         onClick={removeItem}
                                                         fullWidth
@@ -393,6 +403,7 @@ const MobileCart = () => {
                                                             letterSpacing: '0.1em',
                                                             textTransform: 'uppercase',
                                                             minHeight: '44px',
+                                                            transition: 'all 0.3s ease',
                                                             '&:hover': {
                                                                 background: 'rgba(255,107,107,.1)',
                                                                 color: '#ff6b6b'
@@ -419,6 +430,8 @@ const MobileCart = () => {
             {/* Fixed Bottom Checkout Bar */}
             {cart.length > 0 && (
                 <Box
+                    component="nav"
+                    aria-label="Checkout navigation"
                     sx={{
                         position: 'fixed',
                         bottom: 0,
@@ -432,14 +445,15 @@ const MobileCart = () => {
                         zIndex: 1000
                     }}
                 >
-                    <Button 
-                        disabled={cart.length === 0} 
-                        component={Link} 
-                        to="/address" 
-                        variant="contained" 
+                    <Button
+                        disabled={cart.length === 0}
+                        component={Link}
+                        to="/address"
+                        variant="contained"
                         size="large"
-                        fullWidth 
-                        endIcon={<IconArrowRight />}
+                        fullWidth
+                        endIcon={<IconArrowRight aria-hidden="true" />}
+                        aria-label={`Proceed to address selection with ${cart.length} item${cart.length !== 1 ? 's' : ''} in cart`}
                         sx={{
                             background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
                             color: '#000',
@@ -456,6 +470,10 @@ const MobileCart = () => {
                                 transform: 'translateY(-3px)',
                                 boxShadow: '0 20px 50px rgba(221,180,93,.22)',
                                 background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
+                            },
+                            '&:focus-visible': {
+                                outline: '3px solid #efcb77',
+                                outlineOffset: '4px'
                             },
                             '&.Mui-disabled': {
                                 background: 'rgba(255,255,255,.1)',

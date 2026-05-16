@@ -205,17 +205,35 @@ const Account = () => {
                 </CardContent>
             </Card>
             <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 2, mt: 1 }}>
-                <Tabs value={tab}
+                <Tabs
+                    value={tab}
                     onChange={(_, v) => {
                         setTab(v)
-                    }}>
-                    <Tab label="Profile" id="profile" value={0} />
-                    <Tab label="Password" id="password" value={1} />
+                    }}
+                    sx={{
+                        '& .MuiTab-root': {
+                            color: 'rgba(255,255,255,0.7)',
+                            transition: 'all 0.3s ease',
+                            '&:hover': {
+                                color: '#efcb77',
+                            },
+                            '&.Mui-selected': {
+                                color: '#efcb77',
+                            },
+                        },
+                        '& .MuiTabs-indicator': {
+                            backgroundColor: '#efcb77',
+                            height: 3,
+                        },
+                    }}
+                >
+                    <Tab label="Profile" id="profile" value={0} aria-label="Profile tab" />
+                    <Tab label="Password" id="password" value={1} aria-label="Password tab" />
                     {distributor && (
-                        <Tab label="KYC" id="kyc" value={2} />
+                        <Tab label="KYC" id="kyc" value={2} aria-label="KYC verification tab" />
                     )}
                     {distributor && (
-                        <Tab label="Bank" id="bank" value={3} />
+                        <Tab label="Bank" id="bank" value={3} aria-label="Bank details tab" />
                     )}
                 </Tabs>
             </Box>
@@ -321,8 +339,27 @@ const Account = () => {
                                                                         md: 150
                                                                     },
                                                                     borderRadius: '50%',
+                                                                    position: 'relative',
+                                                                    transition: 'all 0.3s ease',
+                                                                    '&:hover': {
+                                                                        transform: 'scale(1.05)',
+                                                                        '&::after': {
+                                                                            content: '"Change"',
+                                                                            position: 'absolute',
+                                                                            top: '50%',
+                                                                            left: '50%',
+                                                                            transform: 'translate(-50%, -50%)',
+                                                                            backgroundColor: 'rgba(0,0,0,0.7)',
+                                                                            color: '#efcb77',
+                                                                            padding: '8px 16px',
+                                                                            borderRadius: '4px',
+                                                                            fontSize: '14px',
+                                                                            fontWeight: 600,
+                                                                        },
+                                                                    },
                                                                 }}
                                                                 component="label"
+                                                                aria-label="Upload profile picture"
                                                             >
                                                                 <input
                                                                     ref={avatarRef}
@@ -332,23 +369,27 @@ const Account = () => {
                                                                     onChange={() => {
                                                                         handleUploadImage()
                                                                     }}
+                                                                    aria-label="Profile picture file input"
                                                                 />
                                                                 {profile.avatar ? (
                                                                     <img
                                                                         ref={imageRef}
                                                                         src={toImage(profile.avatar)}
-                                                                        alt=""
+                                                                        alt="Profile avatar"
                                                                         style={{
                                                                             width: '100%',
                                                                             height: 'auto',
-                                                                            borderRadius: '50%'
+                                                                            borderRadius: '50%',
+                                                                            border: '3px solid #efcb77',
                                                                         }} />
                                                                 ) : (
                                                                     <Avatar sx={{
                                                                         height: { xs: 100, md: 150 },
                                                                         width: { xs: 100, md: 150 },
-                                                                        bgcolor: 'primary.main',
-                                                                        color: 'primary.light',
+                                                                        bgcolor: 'rgba(239,203,119,0.1)',
+                                                                        color: '#efcb77',
+                                                                        border: '3px solid #efcb77',
+                                                                        fontSize: { xs: '2rem', md: '3rem' },
                                                                     }} />
                                                                 )}
                                                             </ButtonBase>
@@ -366,8 +407,47 @@ const Account = () => {
                                                                 onBlur={handleBlur}
                                                                 onChange={handleChange}
                                                                 label="Firstname"
+                                                                inputProps={{
+                                                                    'aria-label': 'Firstname',
+                                                                }}
                                                                 InputProps={{ readOnly: distributor && Boolean(values.firstname && values.lastname) }}
                                                                 helperText={distributor && values.firstname && values.lastname ? "Once set, Name cannot be changed" : ""}
+                                                                sx={{
+                                                                    '& .MuiOutlinedInput-root': {
+                                                                        backgroundColor: 'rgba(255,255,255,.02)',
+                                                                        transition: 'all 0.3s ease',
+                                                                        '& fieldset': {
+                                                                            borderColor: 'rgba(255,255,255,0.1)',
+                                                                        },
+                                                                        '&:hover fieldset': {
+                                                                            borderColor: 'rgba(239,203,119,0.5)',
+                                                                        },
+                                                                        '&.Mui-focused fieldset': {
+                                                                            borderColor: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error fieldset': {
+                                                                            borderColor: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputBase-input': {
+                                                                        color: '#fff !important',
+                                                                        WebkitTextFillColor: '#fff !important',
+                                                                        '&:-webkit-autofill': {
+                                                                            WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                                                            WebkitTextFillColor: '#fff !important',
+                                                                            transition: 'background-color 5000s ease-in-out 0s',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputLabel-root': {
+                                                                        color: 'rgba(255,255,255,0.7)',
+                                                                        '&.Mui-focused': {
+                                                                            color: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error': {
+                                                                            color: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                }}
                                                             />
                                                             {touched.firstname && errors.firstname && (
                                                                 <FormHelperText error id="error-firstname">
@@ -388,8 +468,47 @@ const Account = () => {
                                                                 onBlur={handleBlur}
                                                                 onChange={handleChange}
                                                                 label="Lastname"
+                                                                inputProps={{
+                                                                    'aria-label': 'Lastname',
+                                                                }}
                                                                 InputProps={{ readOnly: distributor && Boolean(values.firstname && values.lastname) }}
                                                                 helperText={distributor && values.firstname && values.lastname ? "Once set, Name cannot be changed" : ""}
+                                                                sx={{
+                                                                    '& .MuiOutlinedInput-root': {
+                                                                        backgroundColor: 'rgba(255,255,255,.02)',
+                                                                        transition: 'all 0.3s ease',
+                                                                        '& fieldset': {
+                                                                            borderColor: 'rgba(255,255,255,0.1)',
+                                                                        },
+                                                                        '&:hover fieldset': {
+                                                                            borderColor: 'rgba(239,203,119,0.5)',
+                                                                        },
+                                                                        '&.Mui-focused fieldset': {
+                                                                            borderColor: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error fieldset': {
+                                                                            borderColor: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputBase-input': {
+                                                                        color: '#fff !important',
+                                                                        WebkitTextFillColor: '#fff !important',
+                                                                        '&:-webkit-autofill': {
+                                                                            WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                                                            WebkitTextFillColor: '#fff !important',
+                                                                            transition: 'background-color 5000s ease-in-out 0s',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputLabel-root': {
+                                                                        color: 'rgba(255,255,255,0.7)',
+                                                                        '&.Mui-focused': {
+                                                                            color: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error': {
+                                                                            color: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                }}
                                                             />
                                                             {touched.lastname && errors.lastname && (
                                                                 <FormHelperText error id="error-lastname">
@@ -410,6 +529,45 @@ const Account = () => {
                                                                 onBlur={handleBlur}
                                                                 onChange={handleChange}
                                                                 label="Date of Birth"
+                                                                inputProps={{
+                                                                    'aria-label': 'Date of Birth',
+                                                                }}
+                                                                sx={{
+                                                                    '& .MuiOutlinedInput-root': {
+                                                                        backgroundColor: 'rgba(255,255,255,.02)',
+                                                                        transition: 'all 0.3s ease',
+                                                                        '& fieldset': {
+                                                                            borderColor: 'rgba(255,255,255,0.1)',
+                                                                        },
+                                                                        '&:hover fieldset': {
+                                                                            borderColor: 'rgba(239,203,119,0.5)',
+                                                                        },
+                                                                        '&.Mui-focused fieldset': {
+                                                                            borderColor: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error fieldset': {
+                                                                            borderColor: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputBase-input': {
+                                                                        color: '#fff !important',
+                                                                        WebkitTextFillColor: '#fff !important',
+                                                                        '&:-webkit-autofill': {
+                                                                            WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                                                            WebkitTextFillColor: '#fff !important',
+                                                                            transition: 'background-color 5000s ease-in-out 0s',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputLabel-root': {
+                                                                        color: 'rgba(255,255,255,0.7)',
+                                                                        '&.Mui-focused': {
+                                                                            color: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error': {
+                                                                            color: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                }}
                                                             />
                                                             {touched.dob && errors.dob && (
                                                                 <FormHelperText error id="error-dob">
@@ -450,8 +608,47 @@ const Account = () => {
                                                                 onBlur={handleBlur}
                                                                 onChange={handleChange}
                                                                 label="Phone"
+                                                                inputProps={{
+                                                                    'aria-label': 'Phone number',
+                                                                }}
                                                                 InputProps={{ readOnly: true }}
                                                                 helperText={distributor ? "Once set, Phone number cannot be changed" : ""}
+                                                                sx={{
+                                                                    '& .MuiOutlinedInput-root': {
+                                                                        backgroundColor: 'rgba(255,255,255,.02)',
+                                                                        transition: 'all 0.3s ease',
+                                                                        '& fieldset': {
+                                                                            borderColor: 'rgba(255,255,255,0.1)',
+                                                                        },
+                                                                        '&:hover fieldset': {
+                                                                            borderColor: 'rgba(239,203,119,0.5)',
+                                                                        },
+                                                                        '&.Mui-focused fieldset': {
+                                                                            borderColor: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error fieldset': {
+                                                                            borderColor: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputBase-input': {
+                                                                        color: '#fff !important',
+                                                                        WebkitTextFillColor: '#fff !important',
+                                                                        '&:-webkit-autofill': {
+                                                                            WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                                                            WebkitTextFillColor: '#fff !important',
+                                                                            transition: 'background-color 5000s ease-in-out 0s',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputLabel-root': {
+                                                                        color: 'rgba(255,255,255,0.7)',
+                                                                        '&.Mui-focused': {
+                                                                            color: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error': {
+                                                                            color: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                }}
                                                             />
                                                             {touched.phone && errors.phone && (
                                                                 <FormHelperText error id="error-phone">
@@ -476,11 +673,16 @@ const Account = () => {
                                                         )}
                                                         {set && phoneVerificationRequested && !phoneVerified && (
                                                             <Box mt={2}>
-                                                                <TextField fullWidth label="Enter OTP"
+                                                                <TextField
+                                                                    fullWidth
+                                                                    label="Enter OTP"
                                                                     helperText="Enter the OTP sent to your Phone Number"
                                                                     value={phoneOtp}
                                                                     onChange={({ target }) => {
                                                                         setPhoneOtp(target.value)
+                                                                    }}
+                                                                    inputProps={{
+                                                                        'aria-label': 'Phone OTP',
                                                                     }}
                                                                     InputProps={{
                                                                         endAdornment: (
@@ -488,8 +690,42 @@ const Account = () => {
                                                                                 loading={verifyPhoneLoading}
                                                                                 onClick={() => {
                                                                                     verifyPhone()
-                                                                                }}>Verify</LoadingButton>
+                                                                                }}
+                                                                                sx={{
+                                                                                    background: 'linear-gradient(135deg, #efcb77 0%, #d4af37 100%)',
+                                                                                    color: '#000',
+                                                                                    fontWeight: 600,
+                                                                                    '&:hover': {
+                                                                                        background: 'linear-gradient(135deg, #d4af37 0%, #efcb77 100%)',
+                                                                                    },
+                                                                                }}
+                                                                            >Verify</LoadingButton>
                                                                         )
+                                                                    }}
+                                                                    sx={{
+                                                                        '& .MuiOutlinedInput-root': {
+                                                                            backgroundColor: 'rgba(255,255,255,.02)',
+                                                                            transition: 'all 0.3s ease',
+                                                                            '& fieldset': {
+                                                                                borderColor: 'rgba(255,255,255,0.1)',
+                                                                            },
+                                                                            '&:hover fieldset': {
+                                                                                borderColor: 'rgba(239,203,119,0.5)',
+                                                                            },
+                                                                            '&.Mui-focused fieldset': {
+                                                                                borderColor: '#efcb77',
+                                                                            },
+                                                                        },
+                                                                        '& .MuiInputBase-input': {
+                                                                            color: '#fff !important',
+                                                                            WebkitTextFillColor: '#fff !important',
+                                                                        },
+                                                                        '& .MuiInputLabel-root': {
+                                                                            color: 'rgba(255,255,255,0.7)',
+                                                                            '&.Mui-focused': {
+                                                                                color: '#efcb77',
+                                                                            },
+                                                                        },
                                                                     }}
                                                                 />
                                                             </Box>
@@ -507,8 +743,47 @@ const Account = () => {
                                                                 onBlur={handleBlur}
                                                                 onChange={handleChange}
                                                                 label="Email"
+                                                                inputProps={{
+                                                                    'aria-label': 'Email address',
+                                                                }}
                                                                 InputProps={{ readOnly: Boolean(!distributor || (distributor && set)) }}
                                                                 helperText={distributor ? "Once set, Email cannot be changed" : ""}
+                                                                sx={{
+                                                                    '& .MuiOutlinedInput-root': {
+                                                                        backgroundColor: 'rgba(255,255,255,.02)',
+                                                                        transition: 'all 0.3s ease',
+                                                                        '& fieldset': {
+                                                                            borderColor: 'rgba(255,255,255,0.1)',
+                                                                        },
+                                                                        '&:hover fieldset': {
+                                                                            borderColor: 'rgba(239,203,119,0.5)',
+                                                                        },
+                                                                        '&.Mui-focused fieldset': {
+                                                                            borderColor: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error fieldset': {
+                                                                            borderColor: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputBase-input': {
+                                                                        color: '#fff !important',
+                                                                        WebkitTextFillColor: '#fff !important',
+                                                                        '&:-webkit-autofill': {
+                                                                            WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                                                            WebkitTextFillColor: '#fff !important',
+                                                                            transition: 'background-color 5000s ease-in-out 0s',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputLabel-root': {
+                                                                        color: 'rgba(255,255,255,0.7)',
+                                                                        '&.Mui-focused': {
+                                                                            color: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error': {
+                                                                            color: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                }}
                                                             />
                                                             {touched.email && errors.email && (
                                                                 <FormHelperText error id="error-email">
@@ -534,18 +809,58 @@ const Account = () => {
                                                         )}
                                                         {emailVerificationRequested && !emailVerified && (
                                                             <Box mt={2}>
-                                                                <TextField fullWidth label="Enter OTP"
+                                                                <TextField
+                                                                    fullWidth
+                                                                    label="Enter OTP"
                                                                     helperText="Enter the OTP sent to your Email"
                                                                     value={emailOtp}
                                                                     onChange={({ target }) => {
                                                                         setEmailOtp(target.value)
                                                                     }}
+                                                                    inputProps={{
+                                                                        'aria-label': 'Email OTP',
+                                                                    }}
                                                                     InputProps={{
                                                                         endAdornment: (
-                                                                            <LoadingButton onClick={() => {
-                                                                                verifyEmail()
-                                                                            }}>Verify</LoadingButton>
+                                                                            <LoadingButton
+                                                                                onClick={() => {
+                                                                                    verifyEmail()
+                                                                                }}
+                                                                                sx={{
+                                                                                    background: 'linear-gradient(135deg, #efcb77 0%, #d4af37 100%)',
+                                                                                    color: '#000',
+                                                                                    fontWeight: 600,
+                                                                                    '&:hover': {
+                                                                                        background: 'linear-gradient(135deg, #d4af37 0%, #efcb77 100%)',
+                                                                                    },
+                                                                                }}
+                                                                            >Verify</LoadingButton>
                                                                         )
+                                                                    }}
+                                                                    sx={{
+                                                                        '& .MuiOutlinedInput-root': {
+                                                                            backgroundColor: 'rgba(255,255,255,.02)',
+                                                                            transition: 'all 0.3s ease',
+                                                                            '& fieldset': {
+                                                                                borderColor: 'rgba(255,255,255,0.1)',
+                                                                            },
+                                                                            '&:hover fieldset': {
+                                                                                borderColor: 'rgba(239,203,119,0.5)',
+                                                                            },
+                                                                            '&.Mui-focused fieldset': {
+                                                                                borderColor: '#efcb77',
+                                                                            },
+                                                                        },
+                                                                        '& .MuiInputBase-input': {
+                                                                            color: '#fff !important',
+                                                                            WebkitTextFillColor: '#fff !important',
+                                                                        },
+                                                                        '& .MuiInputLabel-root': {
+                                                                            color: 'rgba(255,255,255,0.7)',
+                                                                            '&.Mui-focused': {
+                                                                                color: '#efcb77',
+                                                                            },
+                                                                        },
                                                                     }}
                                                                 />
                                                             </Box>
@@ -563,8 +878,45 @@ const Account = () => {
                                                                 onBlur={handleBlur}
                                                                 onChange={handleChange}
                                                                 label="Flat, House no., Building, Company, Apartment"
-
-
+                                                                inputProps={{
+                                                                    'aria-label': 'Address line 1',
+                                                                }}
+                                                                sx={{
+                                                                    '& .MuiOutlinedInput-root': {
+                                                                        backgroundColor: 'rgba(255,255,255,.02)',
+                                                                        transition: 'all 0.3s ease',
+                                                                        '& fieldset': {
+                                                                            borderColor: 'rgba(255,255,255,0.1)',
+                                                                        },
+                                                                        '&:hover fieldset': {
+                                                                            borderColor: 'rgba(239,203,119,0.5)',
+                                                                        },
+                                                                        '&.Mui-focused fieldset': {
+                                                                            borderColor: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error fieldset': {
+                                                                            borderColor: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputBase-input': {
+                                                                        color: '#fff !important',
+                                                                        WebkitTextFillColor: '#fff !important',
+                                                                        '&:-webkit-autofill': {
+                                                                            WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                                                            WebkitTextFillColor: '#fff !important',
+                                                                            transition: 'background-color 5000s ease-in-out 0s',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputLabel-root': {
+                                                                        color: 'rgba(255,255,255,0.7)',
+                                                                        '&.Mui-focused': {
+                                                                            color: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error': {
+                                                                            color: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                }}
                                                             />
                                                             {touched.address_1 && errors.address_1 && (
                                                                 <FormHelperText error id="error-address_1">
@@ -585,6 +937,45 @@ const Account = () => {
                                                                 onBlur={handleBlur}
                                                                 onChange={handleChange}
                                                                 label="Street Name, Area"
+                                                                inputProps={{
+                                                                    'aria-label': 'Address line 2',
+                                                                }}
+                                                                sx={{
+                                                                    '& .MuiOutlinedInput-root': {
+                                                                        backgroundColor: 'rgba(255,255,255,.02)',
+                                                                        transition: 'all 0.3s ease',
+                                                                        '& fieldset': {
+                                                                            borderColor: 'rgba(255,255,255,0.1)',
+                                                                        },
+                                                                        '&:hover fieldset': {
+                                                                            borderColor: 'rgba(239,203,119,0.5)',
+                                                                        },
+                                                                        '&.Mui-focused fieldset': {
+                                                                            borderColor: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error fieldset': {
+                                                                            borderColor: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputBase-input': {
+                                                                        color: '#fff !important',
+                                                                        WebkitTextFillColor: '#fff !important',
+                                                                        '&:-webkit-autofill': {
+                                                                            WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                                                            WebkitTextFillColor: '#fff !important',
+                                                                            transition: 'background-color 5000s ease-in-out 0s',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputLabel-root': {
+                                                                        color: 'rgba(255,255,255,0.7)',
+                                                                        '&.Mui-focused': {
+                                                                            color: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error': {
+                                                                            color: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                }}
                                                             />
                                                             {touched.address_2 && errors.address_2 && (
                                                                 <FormHelperText error id="error-address_2">
@@ -603,6 +994,45 @@ const Account = () => {
                                                                 onBlur={handleBlur}
                                                                 onChange={handleChange}
                                                                 label="Landmark"
+                                                                inputProps={{
+                                                                    'aria-label': 'Landmark',
+                                                                }}
+                                                                sx={{
+                                                                    '& .MuiOutlinedInput-root': {
+                                                                        backgroundColor: 'rgba(255,255,255,.02)',
+                                                                        transition: 'all 0.3s ease',
+                                                                        '& fieldset': {
+                                                                            borderColor: 'rgba(255,255,255,0.1)',
+                                                                        },
+                                                                        '&:hover fieldset': {
+                                                                            borderColor: 'rgba(239,203,119,0.5)',
+                                                                        },
+                                                                        '&.Mui-focused fieldset': {
+                                                                            borderColor: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error fieldset': {
+                                                                            borderColor: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputBase-input': {
+                                                                        color: '#fff !important',
+                                                                        WebkitTextFillColor: '#fff !important',
+                                                                        '&:-webkit-autofill': {
+                                                                            WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                                                            WebkitTextFillColor: '#fff !important',
+                                                                            transition: 'background-color 5000s ease-in-out 0s',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputLabel-root': {
+                                                                        color: 'rgba(255,255,255,0.7)',
+                                                                        '&.Mui-focused': {
+                                                                            color: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error': {
+                                                                            color: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                }}
                                                             />
                                                             {touched.landmark && errors.landmark && (
                                                                 <FormHelperText error id="error-landmark">
@@ -622,6 +1052,45 @@ const Account = () => {
                                                                 onBlur={handleBlur}
                                                                 onChange={handleChange}
                                                                 label="Postcode"
+                                                                inputProps={{
+                                                                    'aria-label': 'Postcode',
+                                                                }}
+                                                                sx={{
+                                                                    '& .MuiOutlinedInput-root': {
+                                                                        backgroundColor: 'rgba(255,255,255,.02)',
+                                                                        transition: 'all 0.3s ease',
+                                                                        '& fieldset': {
+                                                                            borderColor: 'rgba(255,255,255,0.1)',
+                                                                        },
+                                                                        '&:hover fieldset': {
+                                                                            borderColor: 'rgba(239,203,119,0.5)',
+                                                                        },
+                                                                        '&.Mui-focused fieldset': {
+                                                                            borderColor: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error fieldset': {
+                                                                            borderColor: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputBase-input': {
+                                                                        color: '#fff !important',
+                                                                        WebkitTextFillColor: '#fff !important',
+                                                                        '&:-webkit-autofill': {
+                                                                            WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                                                            WebkitTextFillColor: '#fff !important',
+                                                                            transition: 'background-color 5000s ease-in-out 0s',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputLabel-root': {
+                                                                        color: 'rgba(255,255,255,0.7)',
+                                                                        '&.Mui-focused': {
+                                                                            color: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error': {
+                                                                            color: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                }}
                                                             />
                                                             {touched.postcode && errors.postcode && (
                                                                 <FormHelperText error id="error-postcode">
@@ -641,6 +1110,45 @@ const Account = () => {
                                                                 onBlur={handleBlur}
                                                                 onChange={handleChange}
                                                                 label="City / District"
+                                                                inputProps={{
+                                                                    'aria-label': 'City or District',
+                                                                }}
+                                                                sx={{
+                                                                    '& .MuiOutlinedInput-root': {
+                                                                        backgroundColor: 'rgba(255,255,255,.02)',
+                                                                        transition: 'all 0.3s ease',
+                                                                        '& fieldset': {
+                                                                            borderColor: 'rgba(255,255,255,0.1)',
+                                                                        },
+                                                                        '&:hover fieldset': {
+                                                                            borderColor: 'rgba(239,203,119,0.5)',
+                                                                        },
+                                                                        '&.Mui-focused fieldset': {
+                                                                            borderColor: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error fieldset': {
+                                                                            borderColor: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputBase-input': {
+                                                                        color: '#fff !important',
+                                                                        WebkitTextFillColor: '#fff !important',
+                                                                        '&:-webkit-autofill': {
+                                                                            WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                                                            WebkitTextFillColor: '#fff !important',
+                                                                            transition: 'background-color 5000s ease-in-out 0s',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputLabel-root': {
+                                                                        color: 'rgba(255,255,255,0.7)',
+                                                                        '&.Mui-focused': {
+                                                                            color: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error': {
+                                                                            color: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                }}
                                                             />
                                                             {touched.city && errors.city && (
                                                                 <FormHelperText error id="error-city">
@@ -679,7 +1187,45 @@ const Account = () => {
                                                                 onBlur={handleBlur}
                                                                 onChange={handleChange}
                                                                 label="Nominee Name"
-
+                                                                inputProps={{
+                                                                    'aria-label': 'Nominee name',
+                                                                }}
+                                                                sx={{
+                                                                    '& .MuiOutlinedInput-root': {
+                                                                        backgroundColor: 'rgba(255,255,255,.02)',
+                                                                        transition: 'all 0.3s ease',
+                                                                        '& fieldset': {
+                                                                            borderColor: 'rgba(255,255,255,0.1)',
+                                                                        },
+                                                                        '&:hover fieldset': {
+                                                                            borderColor: 'rgba(239,203,119,0.5)',
+                                                                        },
+                                                                        '&.Mui-focused fieldset': {
+                                                                            borderColor: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error fieldset': {
+                                                                            borderColor: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputBase-input': {
+                                                                        color: '#fff !important',
+                                                                        WebkitTextFillColor: '#fff !important',
+                                                                        '&:-webkit-autofill': {
+                                                                            WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                                                            WebkitTextFillColor: '#fff !important',
+                                                                            transition: 'background-color 5000s ease-in-out 0s',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputLabel-root': {
+                                                                        color: 'rgba(255,255,255,0.7)',
+                                                                        '&.Mui-focused': {
+                                                                            color: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error': {
+                                                                            color: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                }}
                                                             />
                                                             {touched.nominee_name && errors.nominee_name && (
                                                                 <FormHelperText error id="error-nominee_name">
@@ -717,6 +1263,23 @@ const Account = () => {
                                                             size="large"
                                                             type="submit"
                                                             variant="contained"
+                                                            aria-label="Update profile"
+                                                            sx={{
+                                                                background: 'linear-gradient(135deg, #efcb77 0%, #d4af37 100%)',
+                                                                color: '#000',
+                                                                fontWeight: 600,
+                                                                padding: '12px',
+                                                                '&:hover': {
+                                                                    background: 'linear-gradient(135deg, #d4af37 0%, #efcb77 100%)',
+                                                                    transform: 'translateY(-2px)',
+                                                                    boxShadow: '0 8px 16px rgba(239,203,119,0.3)',
+                                                                },
+                                                                '&:disabled': {
+                                                                    background: 'rgba(255,255,255,0.1)',
+                                                                    color: 'rgba(255,255,255,0.3)',
+                                                                },
+                                                                transition: 'all 0.3s ease',
+                                                            }}
                                                         >
                                                             Edit
                                                         </LoadingButton>
@@ -843,6 +1406,23 @@ const Account = () => {
                                                         size="large"
                                                         type="submit"
                                                         variant="contained"
+                                                        aria-label="Update password"
+                                                        sx={{
+                                                            background: 'linear-gradient(135deg, #efcb77 0%, #d4af37 100%)',
+                                                            color: '#000',
+                                                            fontWeight: 600,
+                                                            padding: '12px',
+                                                            '&:hover': {
+                                                                background: 'linear-gradient(135deg, #d4af37 0%, #efcb77 100%)',
+                                                                transform: 'translateY(-2px)',
+                                                                boxShadow: '0 8px 16px rgba(239,203,119,0.3)',
+                                                            },
+                                                            '&:disabled': {
+                                                                background: 'rgba(255,255,255,0.1)',
+                                                                color: 'rgba(255,255,255,0.3)',
+                                                            },
+                                                            transition: 'all 0.3s ease',
+                                                        }}
                                                     >
                                                         Update Password
                                                     </LoadingButton>
@@ -1057,6 +1637,45 @@ const Account = () => {
                                                                     onBlur={handleBlur}
                                                                     onChange={handleChange}
                                                                     label="Firstname as per PAN"
+                                                                    inputProps={{
+                                                                        'aria-label': 'Firstname as per PAN',
+                                                                    }}
+                                                                    sx={{
+                                                                        '& .MuiOutlinedInput-root': {
+                                                                            backgroundColor: 'rgba(255,255,255,.02)',
+                                                                            transition: 'all 0.3s ease',
+                                                                            '& fieldset': {
+                                                                                borderColor: 'rgba(255,255,255,0.1)',
+                                                                            },
+                                                                            '&:hover fieldset': {
+                                                                                borderColor: 'rgba(239,203,119,0.5)',
+                                                                            },
+                                                                            '&.Mui-focused fieldset': {
+                                                                                borderColor: '#efcb77',
+                                                                            },
+                                                                            '&.Mui-error fieldset': {
+                                                                                borderColor: '#ff6b6b',
+                                                                            },
+                                                                        },
+                                                                        '& .MuiInputBase-input': {
+                                                                            color: '#fff !important',
+                                                                            WebkitTextFillColor: '#fff !important',
+                                                                            '&:-webkit-autofill': {
+                                                                                WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                                                                WebkitTextFillColor: '#fff !important',
+                                                                                transition: 'background-color 5000s ease-in-out 0s',
+                                                                            },
+                                                                        },
+                                                                        '& .MuiInputLabel-root': {
+                                                                            color: 'rgba(255,255,255,0.7)',
+                                                                            '&.Mui-focused': {
+                                                                                color: '#efcb77',
+                                                                            },
+                                                                            '&.Mui-error': {
+                                                                                color: '#ff6b6b',
+                                                                            },
+                                                                        },
+                                                                    }}
                                                                 />
                                                                 {touched.pan_firstname && errors.pan_firstname && (
                                                                     <FormHelperText error id="error-pan_firstname">
@@ -1077,6 +1696,45 @@ const Account = () => {
                                                                     onBlur={handleBlur}
                                                                     onChange={handleChange}
                                                                     label="Lastname as per PAN"
+                                                                    inputProps={{
+                                                                        'aria-label': 'Lastname as per PAN',
+                                                                    }}
+                                                                    sx={{
+                                                                        '& .MuiOutlinedInput-root': {
+                                                                            backgroundColor: 'rgba(255,255,255,.02)',
+                                                                            transition: 'all 0.3s ease',
+                                                                            '& fieldset': {
+                                                                                borderColor: 'rgba(255,255,255,0.1)',
+                                                                            },
+                                                                            '&:hover fieldset': {
+                                                                                borderColor: 'rgba(239,203,119,0.5)',
+                                                                            },
+                                                                            '&.Mui-focused fieldset': {
+                                                                                borderColor: '#efcb77',
+                                                                            },
+                                                                            '&.Mui-error fieldset': {
+                                                                                borderColor: '#ff6b6b',
+                                                                            },
+                                                                        },
+                                                                        '& .MuiInputBase-input': {
+                                                                            color: '#fff !important',
+                                                                            WebkitTextFillColor: '#fff !important',
+                                                                            '&:-webkit-autofill': {
+                                                                                WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                                                                WebkitTextFillColor: '#fff !important',
+                                                                                transition: 'background-color 5000s ease-in-out 0s',
+                                                                            },
+                                                                        },
+                                                                        '& .MuiInputLabel-root': {
+                                                                            color: 'rgba(255,255,255,0.7)',
+                                                                            '&.Mui-focused': {
+                                                                                color: '#efcb77',
+                                                                            },
+                                                                            '&.Mui-error': {
+                                                                                color: '#ff6b6b',
+                                                                            },
+                                                                        },
+                                                                    }}
                                                                 />
                                                                 {touched.pan_lastname && errors.pan_lastname && (
                                                                     <FormHelperText error id="error-pan_lastname">
@@ -1110,6 +1768,23 @@ const Account = () => {
                                                 size="large"
                                                 type="submit"
                                                 variant="contained"
+                                                aria-label="Update KYC details"
+                                                sx={{
+                                                    background: 'linear-gradient(135deg, #efcb77 0%, #d4af37 100%)',
+                                                    color: '#000',
+                                                    fontWeight: 600,
+                                                    padding: '12px',
+                                                    '&:hover': {
+                                                        background: 'linear-gradient(135deg, #d4af37 0%, #efcb77 100%)',
+                                                        transform: 'translateY(-2px)',
+                                                        boxShadow: '0 8px 16px rgba(239,203,119,0.3)',
+                                                    },
+                                                    '&:disabled': {
+                                                        background: 'rgba(255,255,255,0.1)',
+                                                        color: 'rgba(255,255,255,0.3)',
+                                                    },
+                                                    transition: 'all 0.3s ease',
+                                                }}
                                             >
                                                 Update KYC
                                             </LoadingButton>
@@ -1218,6 +1893,45 @@ const Account = () => {
                                                                 }}
                                                                 onChange={handleChange}
                                                                 label="IFSC Code"
+                                                                inputProps={{
+                                                                    'aria-label': 'IFSC code',
+                                                                }}
+                                                                sx={{
+                                                                    '& .MuiOutlinedInput-root': {
+                                                                        backgroundColor: 'rgba(255,255,255,.02)',
+                                                                        transition: 'all 0.3s ease',
+                                                                        '& fieldset': {
+                                                                            borderColor: 'rgba(255,255,255,0.1)',
+                                                                        },
+                                                                        '&:hover fieldset': {
+                                                                            borderColor: 'rgba(239,203,119,0.5)',
+                                                                        },
+                                                                        '&.Mui-focused fieldset': {
+                                                                            borderColor: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error fieldset': {
+                                                                            borderColor: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputBase-input': {
+                                                                        color: '#fff !important',
+                                                                        WebkitTextFillColor: '#fff !important',
+                                                                        '&:-webkit-autofill': {
+                                                                            WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                                                            WebkitTextFillColor: '#fff !important',
+                                                                            transition: 'background-color 5000s ease-in-out 0s',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputLabel-root': {
+                                                                        color: 'rgba(255,255,255,0.7)',
+                                                                        '&.Mui-focused': {
+                                                                            color: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error': {
+                                                                            color: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                }}
                                                             />
                                                             {touched.ifsc && errors.ifsc && (
                                                                 <FormHelperText error id="error-ifsc">
@@ -1237,7 +1951,46 @@ const Account = () => {
                                                                 onBlur={handleBlur}
                                                                 onChange={handleChange}
                                                                 label="Bank Name"
+                                                                inputProps={{
+                                                                    'aria-label': 'Bank name',
+                                                                }}
                                                                 InputProps={{ readOnly: true }}
+                                                                sx={{
+                                                                    '& .MuiOutlinedInput-root': {
+                                                                        backgroundColor: 'rgba(255,255,255,.02)',
+                                                                        transition: 'all 0.3s ease',
+                                                                        '& fieldset': {
+                                                                            borderColor: 'rgba(255,255,255,0.1)',
+                                                                        },
+                                                                        '&:hover fieldset': {
+                                                                            borderColor: 'rgba(239,203,119,0.5)',
+                                                                        },
+                                                                        '&.Mui-focused fieldset': {
+                                                                            borderColor: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error fieldset': {
+                                                                            borderColor: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputBase-input': {
+                                                                        color: '#fff !important',
+                                                                        WebkitTextFillColor: '#fff !important',
+                                                                        '&:-webkit-autofill': {
+                                                                            WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                                                            WebkitTextFillColor: '#fff !important',
+                                                                            transition: 'background-color 5000s ease-in-out 0s',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputLabel-root': {
+                                                                        color: 'rgba(255,255,255,0.7)',
+                                                                        '&.Mui-focused': {
+                                                                            color: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error': {
+                                                                            color: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                }}
                                                             />
                                                             {touched.bank && errors.bank && (
                                                                 <FormHelperText error id="error-bank">
@@ -1257,7 +2010,46 @@ const Account = () => {
                                                                 onBlur={handleBlur}
                                                                 onChange={handleChange}
                                                                 label="Branch"
+                                                                inputProps={{
+                                                                    'aria-label': 'Branch name',
+                                                                }}
                                                                 InputProps={{ readOnly: true }}
+                                                                sx={{
+                                                                    '& .MuiOutlinedInput-root': {
+                                                                        backgroundColor: 'rgba(255,255,255,.02)',
+                                                                        transition: 'all 0.3s ease',
+                                                                        '& fieldset': {
+                                                                            borderColor: 'rgba(255,255,255,0.1)',
+                                                                        },
+                                                                        '&:hover fieldset': {
+                                                                            borderColor: 'rgba(239,203,119,0.5)',
+                                                                        },
+                                                                        '&.Mui-focused fieldset': {
+                                                                            borderColor: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error fieldset': {
+                                                                            borderColor: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputBase-input': {
+                                                                        color: '#fff !important',
+                                                                        WebkitTextFillColor: '#fff !important',
+                                                                        '&:-webkit-autofill': {
+                                                                            WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                                                            WebkitTextFillColor: '#fff !important',
+                                                                            transition: 'background-color 5000s ease-in-out 0s',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputLabel-root': {
+                                                                        color: 'rgba(255,255,255,0.7)',
+                                                                        '&.Mui-focused': {
+                                                                            color: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error': {
+                                                                            color: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                }}
                                                             />
                                                             {touched.branch && errors.branch && (
                                                                 <FormHelperText error id="error-branch">
@@ -1276,6 +2068,45 @@ const Account = () => {
                                                                 onBlur={handleBlur}
                                                                 onChange={handleChange}
                                                                 label="Account Number"
+                                                                inputProps={{
+                                                                    'aria-label': 'Account number',
+                                                                }}
+                                                                sx={{
+                                                                    '& .MuiOutlinedInput-root': {
+                                                                        backgroundColor: 'rgba(255,255,255,.02)',
+                                                                        transition: 'all 0.3s ease',
+                                                                        '& fieldset': {
+                                                                            borderColor: 'rgba(255,255,255,0.1)',
+                                                                        },
+                                                                        '&:hover fieldset': {
+                                                                            borderColor: 'rgba(239,203,119,0.5)',
+                                                                        },
+                                                                        '&.Mui-focused fieldset': {
+                                                                            borderColor: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error fieldset': {
+                                                                            borderColor: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputBase-input': {
+                                                                        color: '#fff !important',
+                                                                        WebkitTextFillColor: '#fff !important',
+                                                                        '&:-webkit-autofill': {
+                                                                            WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
+                                                                            WebkitTextFillColor: '#fff !important',
+                                                                            transition: 'background-color 5000s ease-in-out 0s',
+                                                                        },
+                                                                    },
+                                                                    '& .MuiInputLabel-root': {
+                                                                        color: 'rgba(255,255,255,0.7)',
+                                                                        '&.Mui-focused': {
+                                                                            color: '#efcb77',
+                                                                        },
+                                                                        '&.Mui-error': {
+                                                                            color: '#ff6b6b',
+                                                                        },
+                                                                    },
+                                                                }}
                                                             />
                                                             {touched.acc && errors.acc && (
                                                                 <FormHelperText error id="error-acc">
@@ -1306,6 +2137,23 @@ const Account = () => {
                                                             size="large"
                                                             type="submit"
                                                             variant="contained"
+                                                            aria-label="Update bank details"
+                                                            sx={{
+                                                                background: 'linear-gradient(135deg, #efcb77 0%, #d4af37 100%)',
+                                                                color: '#000',
+                                                                fontWeight: 600,
+                                                                padding: '12px',
+                                                                '&:hover': {
+                                                                    background: 'linear-gradient(135deg, #d4af37 0%, #efcb77 100%)',
+                                                                    transform: 'translateY(-2px)',
+                                                                    boxShadow: '0 8px 16px rgba(239,203,119,0.3)',
+                                                                },
+                                                                '&:disabled': {
+                                                                    background: 'rgba(255,255,255,0.1)',
+                                                                    color: 'rgba(255,255,255,0.3)',
+                                                                },
+                                                                transition: 'all 0.3s ease',
+                                                            }}
                                                         >
                                                             Update Bank Details
                                                         </LoadingButton>

@@ -198,6 +198,7 @@ const MobileCheckout = () => {
                             component={Link}
                             to="/dashboard/wallet-request"
                             fullWidth
+                            aria-label="Raise Wallet Request"
                             sx={{
                                 border: '1px solid #ff6b6b',
                                 color: '#ff6b6b',
@@ -226,6 +227,7 @@ const MobileCheckout = () => {
                         onClick={() => {
                             makePayment()
                         }}
+                        aria-label="Make Payment"
                         sx={{
                             background: wallet < total
                                 ? 'rgba(255,255,255,.1)'
