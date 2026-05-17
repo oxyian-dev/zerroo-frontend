@@ -9,14 +9,14 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 
 const Main = styled('main', { shouldForwardProp: prop => prop !== 'open' })(({ theme, open }) => ({
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: '#020202',
     width: '100%',
-    minHeight: 'calc(100vh - 109px)',
+    minHeight: 'calc(100vh - 101px)',
     flexGrow: 1,
-    padding: '20px',
-    marginTop: '109px',
-    marginRight: '20px',
-    borderRadius: `${config.borderRadius}px`,
+    padding: '24px',
+    marginTop: '101px',
+    marginRight: '24px',
+    borderRadius: '4px',
     ...(!open && {
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0,
@@ -25,19 +25,19 @@ const Main = styled('main', { shouldForwardProp: prop => prop !== 'open' })(({ t
             duration: theme.transitions.duration.leavingScreen
         }),
         [theme.breakpoints.up('md')]: {
-            marginLeft: -(config.drawerWidth - 20),
+            marginLeft: -(config.drawerWidth - 24),
             width: `calc(100% - ${config.drawerWidth}px)`
         },
         [theme.breakpoints.down('md')]: {
-            marginLeft: '20px',
+            marginLeft: '24px',
             width: `calc(100% - ${config.drawerWidth}px)`,
             padding: '16px'
         },
         [theme.breakpoints.down('sm')]: {
-            marginLeft: '10px',
+            marginLeft: '12px',
             width: `calc(100% - ${config.drawerWidth}px)`,
-            padding: '8px',
-            marginRight: '10px'
+            padding: '12px',
+            marginRight: '12px'
         }
     }),
     ...(open && {
@@ -50,10 +50,10 @@ const Main = styled('main', { shouldForwardProp: prop => prop !== 'open' })(({ t
         borderBottomRightRadius: 0,
         width: `calc(100% - ${config.drawerWidth}px)`,
         [theme.breakpoints.down('md')]: {
-            marginLeft: '20px'
+            marginLeft: '24px'
         },
         [theme.breakpoints.down('sm')]: {
-            marginLeft: '10px'
+            marginLeft: '12px'
         }
     })
 }));
@@ -78,7 +78,6 @@ const MainLayout = ({ menuItems }) => {
                 color="inherit"
                 elevation={0}
                 sx={{
-                    bgcolor: 'primary.main',
                     transition: leftDrawerOpened ? theme.transitions.create('width') : 'none'
                 }}
             >

@@ -13,11 +13,11 @@ const Header = ({ handleLeftDrawerToggle }) => {
                 width={{ md: 228, xs: "auto" }}
             >
                 <Box display={{ xs: 'none', md: 'block' }} flexGrow={1}>
-                    <LogoSection />
+                    <Box sx={{ fontSize:'20px', marginTop:'10px', fontWeight:'600', color:'#efcb77', textTransform: 'uppercase'  }}>Victory World</Box>
                 </Box>
                 <Box alignSelf="center">
-                    <IconButton onClick={handleLeftDrawerToggle}>
-                        <IconMenu2 size={28} color='#FFF' />
+                    <IconButton onClick={handleLeftDrawerToggle} sx={{ color: 'rgba(255,255,255,.82)' }}>
+                        <IconMenu2 size={28} />
                     </IconButton>
                 </Box>
             </Box>

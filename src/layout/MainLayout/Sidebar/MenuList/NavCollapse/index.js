@@ -102,7 +102,7 @@ const NavCollapse = ({ menu, level, setLeftDrawerOpened, isOpen, setIsOpen }) =>
                             height: '100%',
                             width: '1px',
                             opacity: 1,
-                            background: theme.palette.primary.light
+                            background: 'rgba(255,255,255,.08)'
                         }
                     }}
                 >

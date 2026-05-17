@@ -12,9 +12,8 @@ const LoaderWrapper = styled('div')({
 const Loader = () => (
     <LoaderWrapper>
         <LinearProgress
-            value={100}
             sx={{
-                backgroundColor: 'rgba(239,203,119,.2)',
+                backgroundColor: 'rgba(255,255,255,.08)',
                 '& .MuiLinearProgress-bar': {
                     backgroundColor: '#efcb77'
                 }

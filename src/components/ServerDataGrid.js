@@ -214,7 +214,7 @@ const ServerDataGrid = ({
                 initialState={initialState}
                 sortModel={sortModel}
                 filterModel={filterModel}
-                sx={{ bgcolor: 'white' }}
+                sx={{ bgcolor: 'transparent' }}
                 disableVirtualization
                 disableSelectionOnClick
                 rowCount={data.rowCount || 0}

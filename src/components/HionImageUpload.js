@@ -1,5 +1,4 @@
 import { Box, Button, Card, CardContent, Grid, IconButton, Typography } from "@mui/material";
-import { grey } from "@mui/material/colors";
 import { IconPhotoUp, IconX } from "@tabler/icons";
 import { useState } from "react";
 import ImageUploading from "react-images-uploading";
@@ -49,7 +48,7 @@ export default function HionImageUpload({
                     elevation={paperElevation}
                     sx={{
                         textAlign: 'center',
-                        border: isDragging ? "2px solid #054192" : "none",
+                        border: isDragging ? "2px solid rgba(221,180,93,.5)" : "none",
                     }}
                 >
                     <CardContent>
@@ -70,7 +69,7 @@ export default function HionImageUpload({
                                                 alt="" />
                                             <Box position="absolute" top={0} left={0}>
                                                 <IconButton
-                                                    sx={{ bgcolor: grey[300] }}
+                                                    sx={{ bgcolor: 'rgba(0,0,0,.5)' }}
                                                     onClick={() => {
                                                         setDefaultImage(defaultImage => defaultImage.splice(0, i))
                                                         handleRemove && handleRemove(i)
@@ -87,7 +86,7 @@ export default function HionImageUpload({
                                             <img style={{ maxWidth: '100%', height: 'auto' }} src={dataURL} alt="" />
                                             <Box position="absolute" top={0} left={0}>
                                                 <IconButton
-                                                    sx={{ bgcolor: grey[300] }}
+                                                    sx={{ bgcolor: 'rgba(0,0,0,.5)' }}
                                                     onClick={() => {
                                                         handleRemove && handleRemove(i)
                                                         return onImageRemove(i)

@@ -69,7 +69,8 @@ const ProfileSection = () => {
                         sx={{
                             width: 50,
                             height: 50,
-                            bgcolor: 'primary.light'
+                            bgcolor: 'rgba(221,180,93,.2)',
+                            color: '#efcb77'
                         }}
                     />
                 </ButtonBase>

@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkzerroo=self.webpackChunkzerroo||[]).push([[1920],{71920:(e,s,l)=>{l.r(s),l.d(s,{default:()=>o});var r=l(16029),n=l(60173),a=l(23981),h=l(72791),i=l(80184);const c=(0,a.Z)((0,h.lazy)((()=>Promise.all([l.e(5021),l.e(837)]).then(l.bind(l,90837))))),d=(0,a.Z)((0,h.lazy)((()=>Promise.all([l.e(5021),l.e(1665),l.e(1316),l.e(8517)]).then(l.bind(l,8517))))),o=()=>(0,i.jsxs)(r.Z,{children:[(0,i.jsx)(n.I3,{children:(0,i.jsx)(c,{})}),(0,i.jsx)(n.$,{children:(0,i.jsx)(d,{})})]})}}]);
-//# sourceMappingURL=1920.8943ba46.chunk.js.map

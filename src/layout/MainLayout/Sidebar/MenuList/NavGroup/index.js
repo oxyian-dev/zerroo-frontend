@@ -37,21 +37,23 @@ const NavGroup = ({ item, isOpen, setIsOpen, setLeftDrawerOpened }) => {
                     subheader={
                         item.title && (
                             <Typography variant="caption" sx={{
-                                fontSize: '0.875rem',
-                                fontWeight: 500,
-                                color: theme.palette.grey[900],
-                                padding: '6px',
-                                textTransform: 'capitalize',
+                                fontSize: '0.78rem',
+                                fontWeight: 700,
+                                color: '#efcb77',
+                                padding: '6px 6px 2px',
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.15em',
                                 marginTop: '10px'
                             }} display="block"
                                 gutterBottom>
                                 {item.title}
                                 {item.caption && (
                                     <Typography variant="caption" sx={{
-                                        fontSize: '0.6875rem',
+                                        fontSize: '0.68rem',
                                         fontWeight: 500,
-                                        color: theme.palette.grey[500],
-                                        textTransform: 'capitalize'
+                                        color: 'rgba(255,255,255,.4)',
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '0.1em',
                                     }} display="block"
                                         gutterBottom>
                                         {item.caption}

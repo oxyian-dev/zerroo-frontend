@@ -68,7 +68,7 @@ const ClientDataGrid = ({
     return (
         <Box width="100%">
             <DataGridPremium
-                sx={{ bgcolor: 'white' }}
+                sx={{ bgcolor: 'transparent' }}
                 loading={loading}
                 disableSelectionOnClick
                 pagination={true}
