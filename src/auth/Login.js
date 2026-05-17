@@ -150,14 +150,12 @@ const Login = () => {
                                                             .then(r => r.json())
                                                             .then(() => {
                                                                 clearCart()
-                                                                setTimeout(() => {
-                                                                    window.location.href = params.ref || getHomePage()
-                                                                }, 100)
+                                                                // Use navigate instead of window.location.href to avoid page reload
+                                                                navigate(params.ref || getHomePage())
                                                             })
                                                     } else {
-                                                        setTimeout(() => {
-                                                            window.location.href = params.ref || getHomePage()
-                                                        }, 100)
+                                                        // Use navigate instead of window.location.href to avoid page reload
+                                                        navigate(params.ref || getHomePage())
                                                     }
                                                 });
                                             } else {
