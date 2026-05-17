@@ -150,10 +150,14 @@ const Login = () => {
                                                             .then(r => r.json())
                                                             .then(() => {
                                                                 clearCart()
-                                                                navigate(params.ref || getHomePage())
+                                                                setTimeout(() => {
+                                                                    navigate(params.ref || getHomePage())
+                                                                }, 100)
                                                             })
                                                     } else {
-                                                        navigate(params.ref || getHomePage())
+                                                        setTimeout(() => {
+                                                            navigate(params.ref || getHomePage())
+                                                        }, 100)
                                                     }
                                                 });
                                             } else {
