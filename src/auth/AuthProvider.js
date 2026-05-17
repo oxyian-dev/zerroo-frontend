@@ -1,7 +1,25 @@
 import Cookies from 'js-cookie';
 export const hasRole = (userRoles, roles) => userRoles.filter(role => roles.indexOf(role) > -1).length > 0
 export const roleCheck = (userRoles, roles) => !roles || hasRole(userRoles, roles)
-export const getAuth = () => Cookies.get('auth')
+
+// Get auth token with localStorage fallback for mobile browsers
+export const getAuth = () => {
+    // Try to get from cookie first (preferred method)
+    const cookieAuth = Cookies.get('auth')
+    if (cookieAuth) {
+        return cookieAuth
+    }
+    // Fallback to localStorage if cookie is not available (mobile browsers)
+    return localStorage.getItem('auth')
+}
+
+// Store auth token in localStorage as fallback
+export const setAuthToken = (token) => {
+    if (token) {
+        localStorage.setItem('auth', token)
+    }
+}
+
 export const getRoles = () => JSON.parse(localStorage.roles)
 export const logout = () => {
     clearAuth()
@@ -16,6 +34,7 @@ export const clearAuthLocalStorage = () => {
     localStorage.removeItem('roles')
     localStorage.removeItem('avatar')
     localStorage.removeItem('username')
+    localStorage.removeItem('auth')
 }
 export const isLoggedIn = () => Boolean(getAuth())
 export const getUserType = () => localStorage.type;

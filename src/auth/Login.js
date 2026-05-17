@@ -16,7 +16,7 @@ import LogoSection from "../layout/MainLayout/LogoSection";
 import { clearCart, getCart } from "../utils/CartUtil";
 import fetcher from "../utils/fetcher";
 import { useQuery } from "../utils/useQuery";
-import { clearAuthLocalStorage, getHomePage, isLoggedIn } from "./AuthProvider";
+import { clearAuthLocalStorage, getHomePage, isLoggedIn, setAuthToken } from "./AuthProvider";
 
 const Login = () => {
     const { enqueueSnackbar } = useSnackbar();
@@ -130,6 +130,12 @@ const Login = () => {
                                                         localStorage.setItem("avatar", res.avatar);
                                                     }
                                                     localStorage.setItem("username", res.username);
+                                                    
+                                                    // Store auth token in localStorage as fallback for mobile browsers
+                                                    if (res.token) {
+                                                        setAuthToken(res.token);
+                                                    }
+                                                    
                                                     enqueueSnackbar('Login Success', { variant: 'success' });
 
                                                     const cart = getCart();
