@@ -5,8 +5,8 @@ import Logo from '../../../components/Logo';
 
 
 const LogoSection = () => (
-    <ButtonBase disableRipple component={Link} to={config.defaultPath}>
-        <Box sx={{ maxWidth: '80px' }}><Logo /></Box>
+    <ButtonBase disableRipple component={Link} to={config.defaultPath} sx={{ display: 'inline-flex', justifyContent: 'center' }}>
+        <Box sx={{ maxWidth: '180px', width: '100%' }}><Logo /></Box>
     </ButtonBase>
 );
 

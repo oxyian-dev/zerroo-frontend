@@ -83,7 +83,7 @@ const Dashboard = () => {
         <Box>
             <Box mb={4}>
                 <Typography variant="caption" sx={{ fontSize: { md: '1.05rem', xs: '0.95rem' }, color: 'rgba(255,255,255,.5)', letterSpacing: '0.2em', textTransform: 'uppercase', fontWeight: 600 }}>Welcome</Typography>
-                <Typography sx={{ fontWeight: 900, fontSize: { md: '2.5rem', xs: '1.5rem' }, color: '#fff', letterSpacing: '-0.02em' }}>Zerroo Admin</Typography>
+                <Typography sx={{ fontWeight: 900, fontSize: { md: '2.5rem', xs: '1.5rem' }, color: '#fff', letterSpacing: '-0.02em' }}>Victory Admin</Typography>
             </Box>
             <Grid container spacing={2.5}>
                 {cards.map(({ key, label, accent, link, isCurrency }) => {

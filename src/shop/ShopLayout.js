@@ -595,9 +595,12 @@ const ShopLayout = () => {
                                 </Typography>
                                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, color: 'rgba(255,255,255,.62)', lineHeight: 2 }}>
                                     <Typography sx={{ fontSize: '0.95rem' }}>
-                                        Office Suite B, Second Floor,<br />
-                                        21A Brook Street, India
-                                    </Typography>
+    18BC4, PKS Complex,<br />
+    Cutchery Road,<br />
+    Mayiladuthurai Rural,<br />
+    Mayiladuthurai - 609001,<br />
+    Tamil Nadu
+</Typography>
                                     <Typography
                                         component="a"
                                         href="mailto:info@victoryworld.in"
@@ -626,7 +629,7 @@ const ShopLayout = () => {
                                             }
                                         }}
                                     >
-                                        +44 01943 816670
+                                         +91 8220607081 <br/> +91 9025642753
                                     </Typography>
                                 </Box>
                             </Grid>
@@ -1024,10 +1027,13 @@ const ShopLayout = () => {
                                     Contact
                                 </Typography>
                                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, color: 'rgba(255,255,255,.62)', lineHeight: 2 }}>
-                                    <Typography sx={{ fontSize: '1rem' }}>
-                                        Office Suite B, Second Floor,<br />
-                                        21A Brook Street, India
-                                    </Typography>
+                                   <Typography sx={{ fontSize: '0.95rem' }}>
+    18BC4, PKS Complex,<br />
+    Cutchery Road,<br />
+    Mayiladuthurai Rural,<br />
+    Mayiladuthurai - 609001,<br />
+    Tamil Nadu
+</Typography>
                                     <Typography
                                         component="a"
                                         href="mailto:info@victoryworld.in"
@@ -1064,7 +1070,7 @@ const ShopLayout = () => {
                                             }
                                         }}
                                     >
-                                        +44 01943 816670
+                                        +91 8220607081 <br/> +91 9025642753
                                     </Typography>
                                 </Box>
                             </Grid>

@@ -3,7 +3,7 @@ import { href } from "./util";
 
 export const link = ({ title, id, category }) => `${config.url}/p/${id}/${href(category)}/${href(title)}`
 export const generateLink = ({ title, id, category }) => {
-    let text = encodeURIComponent(`Find this amazing product ${title} at Zerroo`)
+    let text = encodeURIComponent(`Find this amazing product ${title} at Victory`)
     let link = encodeURIComponent(`${config.url}/p/${id}/${href(category)}/${href(title)}`)
     let line = encodeURIComponent('\r\n\r\n')
     return { text, link, line }
