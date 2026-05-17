@@ -150,12 +150,16 @@ const Login = () => {
                                                             .then(r => r.json())
                                                             .then(() => {
                                                                 clearCart()
-                                                                // Use navigate instead of window.location.href to avoid page reload
-                                                                navigate(params.ref || getHomePage())
+                                                                // Delay navigation to ensure localStorage is fully written
+                                                                setTimeout(() => {
+                                                                    navigate(params.ref || getHomePage())
+                                                                }, 0)
                                                             })
                                                     } else {
-                                                        // Use navigate instead of window.location.href to avoid page reload
-                                                        navigate(params.ref || getHomePage())
+                                                        // Delay navigation to ensure localStorage is fully written
+                                                        setTimeout(() => {
+                                                            navigate(params.ref || getHomePage())
+                                                        }, 0)
                                                     }
                                                 });
                                             } else {
