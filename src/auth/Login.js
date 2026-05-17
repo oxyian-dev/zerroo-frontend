@@ -151,12 +151,12 @@ const Login = () => {
                                                             .then(() => {
                                                                 clearCart()
                                                                 setTimeout(() => {
-                                                                    navigate(params.ref || getHomePage())
+                                                                    window.location.href = params.ref || getHomePage()
                                                                 }, 100)
                                                             })
                                                     } else {
                                                         setTimeout(() => {
-                                                            navigate(params.ref || getHomePage())
+                                                            window.location.href = params.ref || getHomePage()
                                                         }, 100)
                                                     }
                                                 });
