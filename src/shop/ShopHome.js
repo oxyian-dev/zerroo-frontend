@@ -141,14 +141,14 @@ const ShopHome = () => {
             showLogo: true,
             rightImage: null  // Logo circle for first slide
         },
-        {
-            image: "/main_bg.jpg",
-            label: "Business Opportunity",
-            title: "Transform Lives Through Wellness",
-            description: "Empower yourself and others with quality products across personal care, health care, body care, home care, and nutrition.",
-            showLogo: false,
-            rightImage: "/product.png"  // Use product image for second slide
-        }
+        // {
+        //     image: "/main_bg.jpg",
+        //     label: "Business Opportunity",
+        //     title: "Transform Lives Through Wellness",
+        //     description: "Empower yourself and others with quality products across personal care, health care, body care, home care, and nutrition.",
+        //     showLogo: false,
+        //     rightImage: "/product.png"  // Use product image for second slide
+        // }
     ];
 
     // Auto-advance hero slider
@@ -379,7 +379,7 @@ const ShopHome = () => {
             </Box>
 
             {/* ABOUT SECTION */}
-            <Box component="section" sx={{ background: '#020202', py: { md: '190px', xs: '100px' }, overflow: 'hidden' }}>
+            {/* <Box component="section" sx={{ background: '#020202', py: { md: '190px', xs: '100px' }, overflow: 'hidden' }}>
                 <Container maxWidth={false} sx={{ maxWidth: '1440px', px: { md: 10, xs: 3 } }}>
                     <Grid container spacing={{ md: 12, xs: 8 }} alignItems="center">
                         <Grid item xs={12} lg={6}>
@@ -400,7 +400,7 @@ const ShopHome = () => {
                         </Grid>
                     </Grid>
                 </Container>
-            </Box>
+            </Box> */}
 
             {/* PRODUCT CATEGORIES SECTION */}
             <Box component="section" sx={{ background: '#020202', py: { md: '190px', xs: '100px' }, borderTop: '1px solid rgba(255,255,255,.08)', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
@@ -450,7 +450,7 @@ const ShopHome = () => {
             </Box>
 
             {/* TESTIMONIALS */}
-            <Box component="section" sx={{ background: '#020202', py: { md: '190px', xs: '100px' }, overflow: 'hidden' }}>
+            {/* <Box component="section" sx={{ background: '#020202', py: { md: '190px', xs: '100px' }, overflow: 'hidden' }}>
                 <Container maxWidth={false} sx={{ maxWidth: '1440px', px: { md: 10, xs: 3 } }}>
                     <Box sx={{ display: 'flex', flexDirection: { xs: 'column', lg: 'row' }, alignItems: { lg: 'flex-end' }, justifyContent: 'space-between', gap: { md: 7, xs: 4 }, mb: { md: 12, xs: 7 } }}>
                         <Box>
@@ -476,7 +476,7 @@ const ShopHome = () => {
                         ))}
                     </Grid>
                 </Container>
-            </Box>
+            </Box> */}
 
             {/* FEATURED PRODUCTS */}
             <Box component="section" sx={{ background: '#020202', py: { md: '190px', xs: '100px' }, borderTop: '1px solid rgba(255,255,255,.08)', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
@@ -527,8 +527,8 @@ const ShopHome = () => {
                     <Grid container spacing={{ md: 5, xs: 4 }} sx={{ mb: { md: 8, xs: 6 } }}>
                         {[
                             { step: '01', title: 'Register Yourself as a Distributor', description: 'Sign up and become part of the Victory World family. Get instant access to our complete product catalog and business tools.' },
-                            { step: '02', title: 'Buy Products at Distributor Prices', description: 'Enjoy exclusive distributor pricing on all premium products. Stock up and save while building your inventory.' },
-                            { step: '03', title: 'Sell Products and Earn Extra Income', description: 'Share quality products with others and earn attractive commissions. Build your network and grow your income unlimited.' }
+                            { step: '02', title: 'Buy Combo kit Product', description: 'Enjoy exclusive distributor pricing on all premium products. Stock up and save while building your inventory.' },
+                            { step: '03', title: 'Follow our victory building system & start building money', description: 'Share quality products with others and earn attractive commissions. Build your network and grow your income unlimited.' }
                         ].map((item, index) => (
                             <Grid item xs={12} md={4} key={index}>
                                 <Box sx={{ background: 'rgba(255,255,255,.1)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,.2)', p: { md: 6, xs: 4 }, minHeight: { md: '320px', xs: '280px' }, display: 'flex', flexDirection: 'column', transition: 'all 0.4s ease', '&:hover': { transform: 'translateY(-8px)', background: 'rgba(255,255,255,.15)', boxShadow: '0 20px 50px rgba(0,0,0,.3)' } }}>
