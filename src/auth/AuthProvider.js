@@ -20,7 +20,18 @@ export const setAuthToken = (token) => {
     }
 }
 
-export const getRoles = () => JSON.parse(localStorage.roles)
+export const getRoles = () => {
+    const raw = localStorage.getItem('roles')
+    if (!raw) {
+        return []
+    }
+    try {
+        const parsed = JSON.parse(raw)
+        return Array.isArray(parsed) ? parsed : []
+    } catch (e) {
+        return []
+    }
+}
 export const logout = () => {
     clearAuth()
     clearAuthLocalStorage()
@@ -36,14 +47,22 @@ export const clearAuthLocalStorage = () => {
     localStorage.removeItem('username')
     localStorage.removeItem('auth')
 }
-export const isLoggedIn = () => Boolean(getAuth())
 export const getUserType = () => localStorage.type;
 export const isOrgUser = () => getUserType() === 'Organisation User'
 export const isDistributor = () => getUserType() === 'Distributor'
 export const clearAuth = () => {
     Cookies.remove('auth')
 }
-export const getHomePage = type => type || getUserType() === "Distributor" ? "/dashboard" : "/admin"
+export const isLoggedIn = () => {
+    const token = getAuth()
+    if (token) {
+        return true
+    }
+    // HttpOnly auth cookies are not readable in JS.
+    // Use persisted profile fields as a client-side login indicator.
+    return Boolean(localStorage.getItem('type') && localStorage.getItem('username'))
+}
+export const getHomePage = (type = getUserType()) => type === "Distributor" ? "/dashboard" : "/admin"
 export const getName = () => {
     const firstname = localStorage.getItem('firstname')
     const lastname = localStorage.getItem('lastname')
