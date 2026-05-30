@@ -532,7 +532,7 @@ const ShopHome = () => {
                         {[
                             { step: '01', title: 'Register Yourself as a Distributor', description: 'Sign up and become part of the Victory World family. Get instant access to our complete product catalog and business tools.' },
                             { step: '02', title: 'Buy Combo kit Product', description: 'Enjoy exclusive distributor pricing on all premium products. Stock up and save while building your inventory.' },
-                            { step: '03', title: 'Follow our victory building system & start building money', description: 'Share quality products with others and earn attractive commissions. Build your network and grow your income unlimited.' }
+                            { step: '03', title: 'Follow our victory Business system & start building money', description: 'Share quality products with others and earn attractive commissions. Build your network and grow your income unlimited.' }
                         ].map((item, index) => (
                             <Grid item xs={12} md={4} key={index}>
                                 <Box sx={{ background: 'rgba(255,255,255,.1)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,.2)', p: { md: 6, xs: 4 }, minHeight: { md: '320px', xs: '280px' }, display: 'flex', flexDirection: 'column', transition: 'all 0.4s ease', '&:hover': { transform: 'translateY(-8px)', background: 'rgba(255,255,255,.15)', boxShadow: '0 20px 50px rgba(0,0,0,.3)' } }}>

@@ -1,20 +1,58 @@
 import { Container, Stack, Typography, Box, Divider } from '@mui/material'
 import React from 'react'
 
+const sections = [
+    {
+        title: 'Direct Selling Compensation',
+        text: 'Direct Sellers will receive commissions, offers, or other benefits only from the profits earned through the sale of products or services. The Company does not collect any entry fee, registration fee, recruitment charge, membership fee, or subscription fee to become a customer, member, Direct Seller, Independent Distributor, Business Associate, or Business Promoter of the Company. Any person who wishes to join the Direct Selling business of the Company may do so voluntarily, based entirely on their own free will and consent.'
+    },
+    {
+        title: 'Fast Track Weekly Income',
+        text: 'We are currently providing Fast Track Weekly Income. In future, we will introduce Monthly Income also. Eligible MPV, limited to 6,000 MPV in a week after reducing any MPV allotted to Super Discount Vouchers, will be considered for the Weekly Income. One MPV is equal to Rs.10 at present and may vary from time to time; direct sellers will be informed accordingly. The eligible MPV will be multiplied by Rs.10 and credited as commission to the respective direct seller’s bank account after deduction of TDS.'
+    },
+    {
+        title: 'Participation Rule',
+        text: 'To participate in the Fast Track Weekly Cycle, each business center has to purchase at least any one of the available special or combo product packs. This purchase is not compulsory and is optional only.'
+    },
+    {
+        title: 'Weekly Cycle Illustration',
+        text: 'Matched PV of BC1 = 6,000 PV. In that case, 6,000 PV will be accounted as commission.'
+    },
+    {
+        title: 'Fast Track Weekly Conditions',
+        text: 'Matched PV is limited to 6,000 PV. Unmatched PV will be carried forward to the next week. Trimming is applicable. Tail is applicable.'
+    },
+    {
+        title: 'Definitions',
+        text: 'PV means Point Value. MPV means Matched Point Value. BV means Business Value, and in general it is approximately equal to the invoice value of a product less GST and other costs, if any. MPV to INR conversion may vary from time to time, and direct sellers will be informed accordingly. Current value of 1 MPV is equal to Rs.10 only.'
+    },
+    {
+        title: 'Carry Forward',
+        text: 'Carry Forwards means that in the Fast Track Weekly Cycle, unmatched PV will be carried forward to the next week. In the Solid Monthly Cycle, unmatched PV will not be carried forward to the next month.'
+    },
+    {
+        title: 'Trimming',
+        text: 'Trimming is applicable when the total benefit to all the direct sellers of the company exceeds the allotted 80% share of profit from the sale of products and services. This is applicable in both the Solid Monthly and Fast Track Weekly Cycles.'
+    },
+    {
+        title: 'Tail',
+        text: 'Tail means the first-time MPV qualifier needs a minimum of 120 PV from any one of the team. It is applicable only in the Fast Track Weekly Cycle and not applicable in the Solid Monthly Cycle.'
+    }
+]
+
 export default function ComphensationPlan() {
     return (
-        <Container 
+        <Container
             maxWidth="lg"
-            sx={{ 
-                py: { md: 14, xs: 10 }, 
+            sx={{
+                py: { md: 14, xs: 10 },
                 px: { md: 10, xs: 3 }
             }}
         >
             <Stack spacing={6}>
-                {/* Page Header */}
                 <Box>
-                    <Typography 
-                        variant="h1" 
+                    <Typography
+                        variant="h1"
                         sx={{
                             color: '#efcb77',
                             fontSize: { xs: '2rem', md: '2.5rem' },
@@ -25,18 +63,20 @@ export default function ComphensationPlan() {
                     >
                         Compensation Plan
                     </Typography>
-                    <Divider sx={{ 
-                        borderColor: 'rgba(255,255,255,.08)',
-                        mb: 4
-                    }} />
-                    <Typography 
-                        sx={{ 
+                    <Divider
+                        sx={{
+                            borderColor: 'rgba(255,255,255,.08)',
+                            mb: 4
+                        }}
+                    />
+                    <Typography
+                        sx={{
                             color: 'rgba(255,255,255,.68)',
                             lineHeight: 2.1,
                             fontSize: { xs: '0.95rem', md: '1rem' }
                         }}
                     >
-                        Our compensation plan is designed to reward your efforts fairly and transparently. Learn about the guidelines and policies that govern our compensation structure.
+                        This page explains the current Fast Track Weekly Income policy and the planned Monthly Income structure for direct sellers. It also defines MPV, PV, BV, carry forward, trimming, and tail so the compensation logic is clear and transparent.
                     </Typography>
                 </Box>
 
@@ -56,47 +96,60 @@ export default function ComphensationPlan() {
                             fontWeight: 500
                         }}
                     >
-                        Binary pair match rule: 80 PV on the left and 80 PV on the right completes one pair and earns ₹800. Unmatched PV carries forward until the opposite side is matched.
+                        Current Value of 1 MPV is equal to Rs.10 only. Eligible MPV in a week, after excluding any MPV allotted to Super Discount Vouchers, will be considered for Weekly Income and credited after deduction of TDS.
                     </Typography>
                 </Box>
 
-                {/* Content Section */}
                 <Stack spacing={3}>
-                    <Box
-                        sx={{
-                            p: 3,
-                            borderRadius: 2,
-                            bgcolor: 'rgba(239, 203, 119, 0.05)',
-                            border: '1px solid rgba(239, 203, 119, 0.1)'
-                        }}
-                    >
-                        <Typography 
-                            sx={{ 
-                                color: 'rgba(255,255,255,.68)',
-                                lineHeight: 2.1,
-                                fontSize: { xs: '0.95rem', md: '1rem' },
-                                pl: 3,
-                                position: 'relative',
-                                '&::before': {
-                                    content: '"1"',
-                                    position: 'absolute',
-                                    left: 0,
-                                    color: '#efcb77',
-                                    fontWeight: 'bold',
-                                    width: '24px',
-                                    height: '24px',
-                                    borderRadius: '50%',
-                                    border: '2px solid #efcb77',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    fontSize: '0.875rem'
-                                }
+                    {sections.map((section, index) => (
+                        <Box
+                            key={section.title}
+                            sx={{
+                                p: 3,
+                                borderRadius: 2,
+                                bgcolor: 'rgba(239, 203, 119, 0.05)',
+                                border: '1px solid rgba(239, 203, 119, 0.1)'
                             }}
                         >
-                            The commissions/incentives should only be paid out on the retail of product/s.
-                        </Typography>
-                    </Box>
+                            <Typography
+                                sx={{
+                                    color: '#efcb77',
+                                    fontSize: '1rem',
+                                    fontWeight: 600,
+                                    mb: 1.5,
+                                    pl: 3,
+                                    position: 'relative',
+                                    '&::before': {
+                                        content: `"${index + 1}"`,
+                                        position: 'absolute',
+                                        left: 0,
+                                        color: '#efcb77',
+                                        fontWeight: 'bold',
+                                        width: '24px',
+                                        height: '24px',
+                                        borderRadius: '50%',
+                                        border: '2px solid #efcb77',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        fontSize: '0.875rem'
+                                    }
+                                }}
+                            >
+                                {section.title}
+                            </Typography>
+                            <Typography
+                                sx={{
+                                    color: 'rgba(255,255,255,.68)',
+                                    lineHeight: 2.1,
+                                    fontSize: { xs: '0.95rem', md: '1rem' },
+                                    pl: 3
+                                }}
+                            >
+                                {section.text}
+                            </Typography>
+                        </Box>
+                    ))}
 
                     <Box
                         sx={{
@@ -106,299 +159,12 @@ export default function ComphensationPlan() {
                             border: '1px solid rgba(239, 203, 119, 0.1)'
                         }}
                     >
-                        <Typography 
-                            sx={{ 
-                                color: 'rgba(255,255,255,.68)',
-                                lineHeight: 2.1,
-                                fontSize: { xs: '0.95rem', md: '1rem' },
-                                pl: 3,
-                                position: 'relative',
-                                '&::before': {
-                                    content: '"2"',
-                                    position: 'absolute',
-                                    left: 0,
-                                    color: '#efcb77',
-                                    fontWeight: 'bold',
-                                    width: '24px',
-                                    height: '24px',
-                                    borderRadius: '50%',
-                                    border: '2px solid #efcb77',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    fontSize: '0.875rem'
-                                }
-                            }}
-                        >
-                            The direct seller should have the opportunity to earn by retailing of products even though he may not have introduced any direct sellers in his/her tree structure/marketing organization.
-                        </Typography>
-                    </Box>
-
-                    <Box
-                        sx={{
-                            p: 3,
-                            borderRadius: 2,
-                            bgcolor: 'rgba(239, 203, 119, 0.05)',
-                            border: '1px solid rgba(239, 203, 119, 0.1)'
-                        }}
-                    >
-                        <Typography 
-                            sx={{ 
-                                color: 'rgba(255,255,255,.68)',
-                                lineHeight: 2.1,
-                                fontSize: { xs: '0.95rem', md: '1rem' },
-                                pl: 3,
-                                position: 'relative',
-                                '&::before': {
-                                    content: '"3"',
-                                    position: 'absolute',
-                                    left: 0,
-                                    color: '#efcb77',
-                                    fontWeight: 'bold',
-                                    width: '24px',
-                                    height: '24px',
-                                    borderRadius: '50%',
-                                    border: '2px solid #efcb77',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    fontSize: '0.875rem'
-                                }
-                            }}
-                        >
-                            The direct seller should purchase the qualifying 80 PV product to activate and start earning income from the compensation plan. There is no compulsory purchase beyond this qualifying product, and any additional self-consumption or retail should be done only to support business growth and income qualification.
-                        </Typography>
-                    </Box>
-
-                    <Box
-                        sx={{
-                            p: 3,
-                            borderRadius: 2,
-                            bgcolor: 'rgba(239, 203, 119, 0.05)',
-                            border: '1px solid rgba(239, 203, 119, 0.1)'
-                        }}
-                    >
-                        <Typography 
-                            sx={{ 
-                                color: 'rgba(255,255,255,.68)',
-                                lineHeight: 2.1,
-                                fontSize: { xs: '0.95rem', md: '1rem' },
-                                pl: 3,
-                                position: 'relative',
-                                '&::before': {
-                                    content: '"4"',
-                                    position: 'absolute',
-                                    left: 0,
-                                    color: '#efcb77',
-                                    fontWeight: 'bold',
-                                    width: '24px',
-                                    height: '24px',
-                                    borderRadius: '50%',
-                                    border: '2px solid #efcb77',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    fontSize: '0.875rem'
-                                }
-                            }}
-                        >
-                            No charge/fees for enrolment.
-                        </Typography>
-                    </Box>
-
-                    <Box
-                        sx={{
-                            p: 3,
-                            borderRadius: 2,
-                            bgcolor: 'rgba(239, 203, 119, 0.05)',
-                            border: '1px solid rgba(239, 203, 119, 0.1)'
-                        }}
-                    >
-                        <Typography 
-                            sx={{ 
-                                color: 'rgba(255,255,255,.68)',
-                                lineHeight: 2.1,
-                                fontSize: { xs: '0.95rem', md: '1rem' },
-                                pl: 3,
-                                position: 'relative',
-                                '&::before': {
-                                    content: '"5"',
-                                    position: 'absolute',
-                                    left: 0,
-                                    color: '#efcb77',
-                                    fontWeight: 'bold',
-                                    width: '24px',
-                                    height: '24px',
-                                    borderRadius: '50%',
-                                    border: '2px solid #efcb77',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    fontSize: '0.875rem'
-                                }
-                            }}
-                        >
-                            No commissions/incentives or rewards should be given/offered to the direct sellers for enrolment of new direct sellers.
-                        </Typography>
-                    </Box>
-
-                    <Box
-                        sx={{
-                            p: 3,
-                            borderRadius: 2,
-                            bgcolor: 'rgba(239, 203, 119, 0.05)',
-                            border: '1px solid rgba(239, 203, 119, 0.1)'
-                        }}
-                    >
-                        <Typography 
-                            sx={{ 
-                                color: 'rgba(255,255,255,.68)',
-                                lineHeight: 2.1,
-                                fontSize: { xs: '0.95rem', md: '1rem' },
-                                pl: 3,
-                                position: 'relative',
-                                '&::before': {
-                                    content: '"6"',
-                                    position: 'absolute',
-                                    left: 0,
-                                    color: '#efcb77',
-                                    fontWeight: 'bold',
-                                    width: '24px',
-                                    height: '24px',
-                                    borderRadius: '50%',
-                                    border: '2px solid #efcb77',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    fontSize: '0.875rem'
-                                }
-                            }}
-                        >
-                            Payment of Incentives/Commission – The payment of commissions/incentives should be made without fail and delay as per the commitments of the compensation plan followed by the company.
-                        </Typography>
-                    </Box>
-
-                    <Box
-                        sx={{
-                            p: 3,
-                            borderRadius: 2,
-                            bgcolor: 'rgba(239, 203, 119, 0.05)',
-                            border: '1px solid rgba(239, 203, 119, 0.1)'
-                        }}
-                    >
-                        <Typography 
-                            sx={{ 
-                                color: 'rgba(255,255,255,.68)',
-                                lineHeight: 2.1,
-                                fontSize: { xs: '0.95rem', md: '1rem' },
-                                pl: 3,
-                                position: 'relative',
-                                '&::before': {
-                                    content: '"7"',
-                                    position: 'absolute',
-                                    left: 0,
-                                    color: '#efcb77',
-                                    fontWeight: 'bold',
-                                    width: '24px',
-                                    height: '24px',
-                                    borderRadius: '50%',
-                                    border: '2px solid #efcb77',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    fontSize: '0.875rem'
-                                }
-                            }}
-                        >
-                            Calculations for all the illustrations used for explaining the compensation plan (online and offline) should be done and shown in Indian rupees only.
-                        </Typography>
-                    </Box>
-
-                    <Box
-                        sx={{
-                            p: 3,
-                            borderRadius: 2,
-                            bgcolor: 'rgba(239, 203, 119, 0.05)',
-                            border: '1px solid rgba(239, 203, 119, 0.1)'
-                        }}
-                    >
-                        <Typography 
-                            sx={{ 
-                                color: 'rgba(255,255,255,.68)',
-                                lineHeight: 2.1,
-                                fontSize: { xs: '0.95rem', md: '1rem' },
-                                pl: 3,
-                                position: 'relative',
-                                '&::before': {
-                                    content: '"8"',
-                                    position: 'absolute',
-                                    left: 0,
-                                    color: '#efcb77',
-                                    fontWeight: 'bold',
-                                    width: '24px',
-                                    height: '24px',
-                                    borderRadius: '50%',
-                                    border: '2px solid #efcb77',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    fontSize: '0.875rem'
-                                }
-                            }}
-                        >
-                            Equal Opportunity – The company should follow a single ID per individual policy and not promote and/or offer multiple IDs to people while not encouraging direct sellers to offer/provide power legs/existing network of direct sellers or additional incentives to prospects or other direct sellers. The company should also not offer additional incentives other than those mentioned in the compensation plan. The promotions launched by the company in public domain from time to time is however allowed.
-                        </Typography>
-                    </Box>
-
-                    <Box
-                        sx={{
-                            p: 3,
-                            borderRadius: 2,
-                            bgcolor: 'rgba(239, 203, 119, 0.05)',
-                            border: '1px solid rgba(239, 203, 119, 0.1)'
-                        }}
-                    >
-                        <Typography 
-                            sx={{ 
-                                color: 'rgba(255,255,255,.68)',
-                                lineHeight: 2.1,
-                                fontSize: { xs: '0.95rem', md: '1rem' },
-                                pl: 3,
-                                position: 'relative',
-                                '&::before': {
-                                    content: '"9"',
-                                    position: 'absolute',
-                                    left: 0,
-                                    color: '#efcb77',
-                                    fontWeight: 'bold',
-                                    width: '24px',
-                                    height: '24px',
-                                    borderRadius: '50%',
-                                    border: '2px solid #efcb77',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    fontSize: '0.875rem'
-                                }
-                            }}
-                        >
-                            The company should not provide commitments of returns on investment/s (on purchase of product/s or without the purchase of product/s) in the form of interest, salary, loan, help, donation, market development fees and support fund to/through the direct sellers, to any individual/s.
-                        </Typography>
-                    </Box>
-
-                    <Box
-                        sx={{
-                            p: 3,
-                            borderRadius: 2,
-                            bgcolor: 'rgba(239, 203, 119, 0.05)',
-                            border: '1px solid rgba(239, 203, 119, 0.1)'
-                        }}
-                    >
-                        <Typography 
-                            sx={{ 
-                                color: 'rgba(255,255,255,.68)',
-                                lineHeight: 2.1,
-                                fontSize: { xs: '0.95rem', md: '1rem' },
+                        <Typography
+                            sx={{
+                                color: '#efcb77',
+                                fontSize: '1rem',
+                                fontWeight: 600,
+                                mb: 1.5,
                                 pl: 3,
                                 position: 'relative',
                                 '&::before': {
@@ -418,119 +184,17 @@ export default function ComphensationPlan() {
                                 }
                             }}
                         >
-                            The company should not generate or pay-out or commit commissions/incentives against part payment or advance received against the sale or future commitment to sell any product/s.
+                            Summary
                         </Typography>
-                    </Box>
-
-                    <Box
-                        sx={{
-                            p: 3,
-                            borderRadius: 2,
-                            bgcolor: 'rgba(239, 203, 119, 0.05)',
-                            border: '1px solid rgba(239, 203, 119, 0.1)'
-                        }}
-                    >
-                        <Typography 
-                            sx={{ 
+                        <Typography
+                            sx={{
                                 color: 'rgba(255,255,255,.68)',
                                 lineHeight: 2.1,
                                 fontSize: { xs: '0.95rem', md: '1rem' },
-                                pl: 3,
-                                position: 'relative',
-                                '&::before': {
-                                    content: '"11"',
-                                    position: 'absolute',
-                                    left: 0,
-                                    color: '#efcb77',
-                                    fontWeight: 'bold',
-                                    width: '28px',
-                                    height: '24px',
-                                    borderRadius: '50%',
-                                    border: '2px solid #efcb77',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    fontSize: '0.75rem'
-                                }
+                                pl: 3
                             }}
                         >
-                            The company should not deduct any charges (except Tax deducted at source & Admin charges) from pay-outs of the direct sellers.
-                        </Typography>
-                    </Box>
-
-                    <Box
-                        sx={{
-                            p: 3,
-                            borderRadius: 2,
-                            bgcolor: 'rgba(239, 203, 119, 0.05)',
-                            border: '1px solid rgba(239, 203, 119, 0.1)'
-                        }}
-                    >
-                        <Typography 
-                            sx={{ 
-                                color: 'rgba(255,255,255,.68)',
-                                lineHeight: 2.1,
-                                fontSize: { xs: '0.95rem', md: '1rem' },
-                                pl: 3,
-                                position: 'relative',
-                                '&::before': {
-                                    content: '"12"',
-                                    position: 'absolute',
-                                    left: 0,
-                                    color: '#efcb77',
-                                    fontWeight: 'bold',
-                                    width: '28px',
-                                    height: '24px',
-                                    borderRadius: '50%',
-                                    border: '2px solid #efcb77',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    fontSize: '0.75rem'
-                                }
-                            }}
-                        >
-                            The company should deduct (Tax deducted at source) from the pay-outs to the direct sellers
-                            <br /><br />
-                            TDS @ 10% in case of availability of the PAN details of the direct sellers.
-                            <br /><br />
-                            TDS @ 20% in the event of non-availability of PAN details
-                        </Typography>
-                    </Box>
-
-                    <Box
-                        sx={{
-                            p: 3,
-                            borderRadius: 2,
-                            bgcolor: 'rgba(239, 203, 119, 0.05)',
-                            border: '1px solid rgba(239, 203, 119, 0.1)'
-                        }}
-                    >
-                        <Typography 
-                            sx={{ 
-                                color: 'rgba(255,255,255,.68)',
-                                lineHeight: 2.1,
-                                fontSize: { xs: '0.95rem', md: '1rem' },
-                                pl: 3,
-                                position: 'relative',
-                                '&::before': {
-                                    content: '"13"',
-                                    position: 'absolute',
-                                    left: 0,
-                                    color: '#efcb77',
-                                    fontWeight: 'bold',
-                                    width: '28px',
-                                    height: '24px',
-                                    borderRadius: '50%',
-                                    border: '2px solid #efcb77',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    fontSize: '0.75rem'
-                                }
-                            }}
-                        >
-                            Income/opportunity disclaimer to be the part of the compensation plan literature and should be displayed prominently before or after the presentation of the compensation plan every time.
+                            This compensation plan is based on direct selling, fast track weekly cycle income, and future monthly income. Unmatched PV carries forward in the weekly cycle, trimming applies where required, and tail applies only in the Fast Track Weekly Cycle.
                         </Typography>
                     </Box>
                 </Stack>
@@ -539,4 +203,3 @@ export default function ComphensationPlan() {
     )
 }
 
-// Made with Bob
