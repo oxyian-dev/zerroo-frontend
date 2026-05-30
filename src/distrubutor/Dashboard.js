@@ -268,14 +268,14 @@ export default function Dashboard() {
                         color: '#efcb77'
                       }}
                     >
-                      ₹{inr(data.total_purchase)}
+                      ₹{inr(data.total_purchase ?? 0)}
                     </Typography>
                   ) : (
                     <Skeleton sx={{ bgcolor: 'rgba(255,255,255,.1)', fontSize: { md: '1.75rem', xs: '1.25rem' } }} />
                   )}
                 </Box>
                 <Box position="absolute" top={8} right={8}>
-                  <Tooltip title="Total amount you've purchased so far" arrow>
+                  <Tooltip title="Total amount from your completed purchase orders" arrow>
                     <IconButton
                       size="small"
                       sx={{
