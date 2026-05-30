@@ -71,7 +71,7 @@ export default function Footer() {
                                     link: "/login"
                                 },
                                 {
-                                    text: "Shipping",
+                                    text: "Delivery Charges",
                                     link: "/shipping"
                                 },
                                 {

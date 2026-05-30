@@ -151,7 +151,7 @@ export default function Products() {
                                 fontSize: { xs: '0.95rem', md: '1rem' }
                             }}
                         >
-                            Money back guarantee within 30 days from invoicing of the product. This policy would apply to all the goods returned in marketable condition. The direct sellers should be refunded 100% (minus the taxes) of the invoiced amount, however the shipping charges will be borne by the user.
+                            Money back guarantee within 30 days from invoicing of the product. This policy would apply to all the goods returned in marketable condition. The direct sellers should be refunded 100% (minus the taxes) of the invoiced amount. There are no delivery charges on Victory World orders.
                         </Typography>
                     </Box>
 

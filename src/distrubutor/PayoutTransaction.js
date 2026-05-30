@@ -22,11 +22,11 @@ export default function PayoutTransaction() {
 
     return (
         <Stack spacing={2}>
-            <Card variant="outlined">
-                <CardContent>
-                    <Typography variant="h2" textAlign="center">Payouts</Typography>
-                </CardContent>
-            </Card>
+                <Card variant="outlined">
+                    <CardContent>
+                    <Typography variant="h2" textAlign="center">Net Wallet Payouts</Typography>
+                    </CardContent>
+                </Card>
 
             <ServerDataGrid
                 width={width}

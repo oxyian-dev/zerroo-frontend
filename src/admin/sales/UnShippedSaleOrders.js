@@ -72,7 +72,6 @@ const UnShippedSaleOrders = () => {
         130,
         150,
         null,
-        100,
         120
     ]
 
@@ -102,14 +101,12 @@ const UnShippedSaleOrders = () => {
                     { "headerName": "ZID", "field": "ZID", "width": "150", "id": "ZID" },
                     { "headerName": "Customer", "field": "Customer", "width": "200", "id": "Customer" },
                     { "headerName": "Price", "field": "Price", "width": "100", "id": "Price", "type": "number" },
-                    { "headerName": "Shipping Fee", "field": "Shipping Fee", "width": "100", "id": "Shipping Fee", "type": "number" },
                     { "headerName": "PV", "field": "PV", "width": "120", "id": "PV", "type": "number" }
                 ]}
                 experimentalFeatures={{ aggregation: true }}
                 aggregation={{
                     model: {
                         "Price": "sum",
-                        "Shipping Fee": "sum",
                         "PV" :"sum"
                     },
                 }}

@@ -10,7 +10,7 @@ export default function PayoutEntries({ id = useParams()['id'] }) {
             <Card variant="outlined">
                 <CardContent>
                     <Typography variant="h2" textAlign="center" textTransform="uppercase">
-                        Axis Bank Payout Entries
+                        Axis Bank Net Payout Entries
                     </Typography>
                 </CardContent>
             </Card>
@@ -45,7 +45,7 @@ export default function PayoutEntries({ id = useParams()['id'] }) {
             <Card variant="outlined">
                 <CardContent>
                     <Typography variant="h2" textAlign="center" textTransform="uppercase">
-                        Non Axis Bank Payout Entries
+                        Non Axis Bank Net Payout Entries
                     </Typography>
                 </CardContent>
             </Card>

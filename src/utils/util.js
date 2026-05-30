@@ -6,7 +6,7 @@ export const toImage = id => `https://download-accl.zoho.in/public/workdrive/pre
 export const WorkDriveImage = ({ image, alt, auto, width = '100%', sx }) => (
     <Image
         style={auto === 'width' ? { width: 'auto', height: '100%' } : { width, height: 'auto' }}
-        src={toImage(image)}
+        src={image ? toImage(image) : undefined}
         alt={alt}
         sx={sx}
         duration={0} />
@@ -16,10 +16,14 @@ export const toDateTime = time => time ? moment(new Date(time)).format('DD MMM Y
 export const todayStart = () => moment().startOf('day').format('YYYY-MM-DDTHH:mm')
 export const todayEnd = () => moment().endOf('day').format('YYYY-MM-DDTHH:mm')
 export const addDays = days => moment().add(days, 'days').endOf('day').format('YYYY-MM-DDTHH:mm')
-export const round = (value, precision = 2) => parseFloat(new Decimal(value).toFixed(precision))
+export const round = (value, precision = 2) => {
+    const safeValue = Number.isFinite(Number(value)) ? Number(value) : 0
+    return parseFloat(new Decimal(safeValue).toFixed(precision))
+}
 export const discount = (mrp, price) => round((mrp - price) / mrp * 100);
 export const isNumber = number => number.match(/^\d+$/)
 export const href = string => {
+    string = String(string ?? '')
     const chars = { "-": "", " ": "-", "&": "and", "[": "", "]": "", "?": "", "#": "", "(": "", ")": "", "'": "" }
     for (let key in chars) {
         if (chars.hasOwnProperty(key)) {

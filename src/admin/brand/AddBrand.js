@@ -19,7 +19,7 @@ export default function AddBrand() {
             })}
             onSubmit={async (values, { setSubmitting }) => {
                 setSubmitting(true)
-                return await fetcher('/api/brands/view', {
+                return await fetcher('/api/brands', {
                     method: 'post',
                     body: constructFormData(values)
                 })

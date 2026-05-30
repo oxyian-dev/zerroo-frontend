@@ -52,7 +52,7 @@ export default function CommonlyUsedTerms() {
                 {
                     question: "Explanation – for this clause",
                     answer: `a."commercial purpose" does not include use by a person who purchases the goods or services to use/consumes them, but the goods or services are purchased exclusively to earn his livelihood using self-employment.
-<br></br> b.The expressions "buys any goods" and hires or avails any services include offline and/online transactions through electronic means or by teleshopping or direct selling deploying direct, single-level or multi-level marketing compensation plan.
+<br></br> b.The expressions "buys any goods" and hires or avails any services include offline and/online transactions through electronic means or by teleshopping or direct selling deploying direct selling compensation plan.
 <br></br>The "customer" may or may not be a direct seller.
 <br></br>A customer may or may not be a consumer.
 (with inputs from the Consumer Protection Act, 2019)
@@ -62,7 +62,7 @@ export default function CommonlyUsedTerms() {
                     question: "Direct Selling",
                     answer: `"Direct selling" means marketing, distribution, and sale of goods or provision of services through a network of persons (registered with the company as independent contractors), other than through a permanent retail location/s.
 <br></br>It Is primarily a B2C (Business to Customer) model with some exceptions (where the agreement is entered into between the Direct selling entity and an Entity / Organisation- Proprietary, Partnership, Limited liability Partnership, One-person company / Private limited company, Trust, Public limited company, etc.)
-<br></br>Also known as Direct Sales, Network marketing, Referral marketing, Affiliate marketing, etc.
+<br></br>Also known as Direct Sales, Referral marketing, Affiliate marketing, etc.
  `
                 },
                 {
@@ -74,7 +74,7 @@ export default function CommonlyUsedTerms() {
                     answer: `"Direct Selling Entity", means a body corporate which may be a One-person company or a Limited liability partnership or a private limited company engaged in the business of Direct Selling.
 <br></br>The organisation may be a manufacturer or a trader of the product/s and/or services.
 <br></br>It utilises the services of persons who are independent contractors, also known as direct sellers, to recommend and retail product/s and /or services.
-<br></br>The company may commit, calculate and pay incentives/commissions to the direct sellers by deploying Direct, Single level or a Multi-level marketing compensation plan/s.`
+<br></br>The company may commit, calculate and pay incentives/commissions to the direct sellers by deploying direct selling compensation plan/s.`
                 },
                 {
                     question: "Independent Contractor",
@@ -168,7 +168,7 @@ This policy is to address the concerns of the overstocking of products by the pe
 
 <br></br>A company may choose to have the participants (independent contractors) structured in a  Multi-level structure/s. It is completely influenced by the compensation plan of the company.
 <br>Generation is commonly referred to as a level.
-<br></br>1.<b>Multi-level</b> – The participants are connected to the company via another participant/s arranged in more than a single level all having existing contractual relationships with the company`
+<br></br>1.<b>Direct Selling</b> – The participants are connected to the company via another participant/s arranged in more than a single level all having existing contractual relationships with the company`
                 },
                 {
                     question: "Compensation Plan",
@@ -180,7 +180,7 @@ This policy is to address the concerns of the overstocking of products by the pe
                 {
                     question: "Types of compensation plans",
                     answer: `<b>a.Paid on Generation/s:</b>
-<br></br><b>Multiple</b> – The participants using/consuming or selling the goods get an opportunity to be compensated on their purchases/retail and the purchases/retail by persons in more than the first generation. This type of compensation plan is usually deployed by companies having persons arranged in multiple levels or Multi-level marketing organisation structure.
+<br></br><b>Multiple</b> – The participants using/consuming or selling the goods get an opportunity to be compensated on their purchases/retail and the purchases/retail by persons in more than the first generation. This type of compensation plan is usually deployed by companies having persons arranged in multiple levels or direct selling organisation structure.
 
                     <br></br><b>b.Rank/ Title achievement:</b>
 <br></b><b>Non-cumulative</b> – Participants, regardless of their ranks/titles in the previous month, start a new calendar month with the same levels/ranks/ titles. The sales counter starts with zero every month.

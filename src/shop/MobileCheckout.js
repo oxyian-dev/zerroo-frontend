@@ -12,7 +12,6 @@ const MobileCheckout = () => {
     const { enqueueSnackbar } = useSnackbar();
     const [cart, setCart] = useState([])
     const [loading, setLoading] = useState(false);
-    const [shipping, setShipping] = useState(0);
     const [total, setTotal] = useState(0);
     const [wallet, setWallet] = useState(0)
     const navigate = useNavigate()
@@ -20,9 +19,14 @@ const MobileCheckout = () => {
     const makePayment = () => {
         setLoading(true)
         const address = sessionStorage.getItem('address');
+        if (!address || address === 'null') {
+            enqueueSnackbar('Please select a delivery address', { variant: 'error' })
+            setLoading(false)
+            return
+        }
         const body = new FormData();
         body.set('address', address)
-        body.set('shipping', true)
+        body.set('shipping', false)
         fetcher('/api/purchases', { method: 'POST', body })
             .then(r => r.json())
             .then(({ status, message = "Exception occurred" }) => {
@@ -30,7 +34,7 @@ const MobileCheckout = () => {
                     enqueueSnackbar("Your order is placed", { variant: 'success' })
                     navigate('/dashboard/your-orders')
                 } else {
-                    enqueueSnackbar(message, { variant: 'error' })
+                    enqueueSnackbar(message?.trim() || "Exception occurred", { variant: 'error' })
                     setLoading(false)
                 }
             })
@@ -59,18 +63,7 @@ const MobileCheckout = () => {
     }, [cart])
 
     useEffect(() => {
-        const params = new URLSearchParams();
-        params.set('price', total)
-        params.set('address', sessionStorage.getItem('address'))
-        fetcher(`/api/purchases/shipping?${params.toString()}`)
-            .then(r => r.json())
-            .then(({ shipping_charge }) => {
-                setShipping(shipping_charge)
-            })
-    }, [cart])
-
-    useEffect(() => {
-        const total = cart.map(({ price, quantity }) => price * quantity).reduce((a, b) => a + b, 0) + (shipping);
+        const total = cart.map(({ price, quantity }) => price * quantity).reduce((a, b) => a + b, 0);
         setTotal(total)
     }, [cart])
 
@@ -124,14 +117,6 @@ const MobileCheckout = () => {
                             </Typography>
                         </Box>
                     )}
-                    <Box display="flex" justifyContent="space-between">
-                        <Typography sx={{ color: 'rgba(255,255,255,.82)', fontSize: '0.95rem' }}>
-                            Shipping:
-                        </Typography>
-                        <Typography sx={{ color: 'rgba(255,255,255,.82)', fontSize: '0.95rem' }}>
-                            ₹{shipping}/-
-                        </Typography>
-                    </Box>
                     <Box
                         display="flex"
                         justifyContent="space-between"

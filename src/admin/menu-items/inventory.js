@@ -343,9 +343,42 @@ const inventory = {
         {
             id: 'inventories',
             title: 'Inventories',
-            type: 'item',
+            type: 'collapse',
             icon: IconBuildingWarehouse,
-            url: '/admin/inventories'
+            children: [
+                {
+                    id: 'view-inventories',
+                    title: 'View Inventories',
+                    type: 'item',
+                    url: '/admin/inventories'
+                },
+                {
+                    id: 'add-inventory',
+                    title: 'Add Inventory',
+                    type: 'item',
+                    url: '/admin/add-inventory'
+                }
+            ]
+        },
+        {
+            id: 'branches',
+            title: 'Branches',
+            type: 'collapse',
+            icon: IconBuildingWarehouse,
+            children: [
+                {
+                    id: 'view-branches',
+                    title: 'View Branches',
+                    type: 'item',
+                    url: '/admin/branches'
+                },
+                {
+                    id: 'add-branch',
+                    title: 'Add Branch',
+                    type: 'item',
+                    url: '/admin/branches/add'
+                }
+            ]
         },
         {
             id: 'brands',

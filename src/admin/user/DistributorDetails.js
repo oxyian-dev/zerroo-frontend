@@ -433,7 +433,7 @@ export default function DistributorDetails({ id = useParams()['id'] }) {
                     <Grid item xs={12}>
                         <Paper sx={{ p: 2 }} elevation={2}>
                             <Typography mb={2} textAlign="center" variant='h2'>
-                                Payout History
+                                Net Payout History
                             </Typography>
                             <Divider sx={{ mb: 2 }} />
                             <ClientDataGrid
@@ -455,10 +455,10 @@ export default function DistributorDetails({ id = useParams()['id'] }) {
                                     { "headerName": "IFSC", "field": "IFSC", "width": "200", "id": "IFSC" },
                                     { "headerName": "Bank", "field": "Bank", "width": "200", "id": "Bank" },
                                     { "headerName": "Branch", "field": "Branch", "width": "200", "id": "Branch" },
-                                    { "headerName": "Full Amount", "field": "Full Amount", "width": "200", "id": "Full Amount", "type": "number" },
+                                    { "headerName": "Gross Amount", "field": "Full Amount", "width": "200", "id": "Full Amount", "type": "number" },
                                     { "headerName": "TDS Amount", "field": "TDS Amount", "width": "200", "id": "TDS Amount", "type": "number" },
                                     { "headerName": "Admin Amount", "field": "Admin Amount", "width": "200", "id": "Admin Amount", "type": "number" },
-                                    { "headerName": "Actual Amount", "field": "Actual Amount", "width": "200", "id": "Actual Amount", "type": "number" }
+                                    { "headerName": "Net Amount", "field": "Actual Amount", "width": "200", "id": "Actual Amount", "type": "number" }
                                 ]}
                             />
                         </Paper>
@@ -466,7 +466,7 @@ export default function DistributorDetails({ id = useParams()['id'] }) {
                     <Grid item xs={12}>
                         <Paper sx={{ p: 2 }} elevation={2}>
                             <Typography mb={2} textAlign="center" variant='h2'>
-                                Purchase Wallet Transaction
+                                Purchase Wallet Transactions
                             </Typography>
                             <Divider sx={{ mb: 2 }} />
                             <ClientDataGrid
@@ -491,7 +491,7 @@ export default function DistributorDetails({ id = useParams()['id'] }) {
                     <Grid item xs={12}>
                         <Paper sx={{ p: 2 }} elevation={2}>
                             <Typography mb={2} textAlign="center" variant='h2'>
-                                Income Wallet Transaction
+                                Income Wallet Transactions (Net)
                             </Typography>
                             <Divider sx={{ mb: 2 }} />
                             <ClientDataGrid

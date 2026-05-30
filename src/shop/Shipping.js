@@ -36,7 +36,7 @@ export default function Shipping() {
                             lineHeight: 1.1,
                         }}
                     >
-                        Shipping Information
+                        Delivery Charges
                     </Typography>
                     <Divider
                         sx={{
@@ -56,14 +56,14 @@ export default function Shipping() {
                             mx: 'auto',
                         }}
                     >
-                        Find answers to all your shipping-related questions. We're committed to delivering your orders safely and on time.
+                        We do not charge any delivery fees on Victory World orders. Delivery timings may vary by location and product availability, but the delivery charge is currently zero for all orders.
                     </Typography>
                 </Box>
 
                 {/* FAQ Section */}
                 <Box
                     component="section"
-                    aria-label="Shipping FAQs"
+                    aria-label="Delivery Charges FAQs"
                     sx={{
                         maxWidth: '1000px',
                         mx: 'auto',
@@ -82,11 +82,11 @@ Please enter your default pin code on the product page (you don't have to enter 
                 },
                 {
                     question: "What are the delivery charges?",
-                    answer: `Delivery charge varies with each Seller. Sellers incur relatively higher shipping costs on low value items. In such cases, charging a nominal delivery charge helps them offset logistics costs. The delivery charge may be waived off by some Sellers, if you shop with them for a minimum predefined value. For example, seller WS Retail, which generally charges ₹100 for delivery, provides free delivery on orders valued at ₹ 10,000 or more. Please check with individual Sellers to understand what the delivery charges are.`
+                    answer: `There are no delivery charges on Victory World orders. The delivery charge is currently zero for all purchases, so the price shown on the product page is the amount you pay.`
                 },
                 {
                     question: "Are there any hidden costs (Sales tax, octroi etc) on items sold by Sellers on Victory World?",
-                    answer: `There are NO hidden charges when you make a purchase on Victory World. List prices are final and delivery charges are all exclusive. The price you see on the product page is exactly what you would pay. Delivery charges are not hidden charges and are charged (if at all) extra depending on the Seller's shipping policy.`
+                    answer: `There are NO hidden charges when you make a purchase on Victory World. List prices are final and there are no delivery charges. The price you see on the product page is exactly what you would pay.`
                 },
                 {
                     question: "What is the estimated delivery time?",

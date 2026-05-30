@@ -52,6 +52,9 @@ export const isOrgUser = () => getUserType() === 'Organisation User'
 export const isDistributor = () => getUserType() === 'Distributor'
 export const clearAuth = () => {
     Cookies.remove('auth')
+    Cookies.remove('auth', { path: '/', domain: '.victoryworld.in' })
+    Cookies.remove('auth', { path: '/', domain: 'victoryworld.in' })
+    Cookies.remove('auth', { path: '/', domain: 'www.victoryworld.in' })
 }
 export const isLoggedIn = () => {
     const token = getAuth()

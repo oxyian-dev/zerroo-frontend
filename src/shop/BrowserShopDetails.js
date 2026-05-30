@@ -22,19 +22,24 @@ const BrowserShopDetails = () => {
     const [loading, setLoading] = useState(true)
     const [submitting, setSubmitting] = useState(false)
     const [addedToCart, setAddedToCart] = useState(false)
+    const [itemError, setItemError] = useState(null)
     const { enqueueSnackbar } = useSnackbar();
     const [specifications, setSpecifications] = useState([])
     const [setLayout, layout] = useOutletContext()
 
     useEffect(() => {
         setLoading(true)
+        setItemError(null)
         fetcher(`/api/listing/items/${id}`)
             .then(r => r.json())
-            .then(item => {
-                setItem(item.item)
-                setSizes(item.sizes)
-                setColors(item.colors)
-                setSpecifications(item.specifications)
+            .then(data => {
+                if (!data || !data.item || !data.item.id) {
+                    throw new Error('Item details are unavailable')
+                }
+                setItem(data.item)
+                setSizes(Array.isArray(data.sizes) ? data.sizes : [])
+                setColors(Array.isArray(data.colors) ? data.colors : [])
+                setSpecifications(Array.isArray(data.specifications) ? data.specifications : [])
                 if (isLoggedIn()) {
                     fetcher('/api/carts')
                         .then(r => r.json())
@@ -45,13 +50,24 @@ const BrowserShopDetails = () => {
                     setAddedToCart(getCart().map(({ item }) => item).indexOf(parseInt(id)) > -1)
                 }
             })
-            .catch(console.log)
+            .catch((error) => {
+                console.log(error)
+                setItem({})
+                setSizes([])
+                setColors([])
+                setSpecifications([])
+                setItemError('This product is unavailable right now.')
+            })
             .finally(() => {
                 setLoading(false)
             })
     }, [id])
 
     function add() {
+        if (!item?.id) {
+            enqueueSnackbar('This product is unavailable right now.', { variant: 'error' })
+            return
+        }
         setSubmitting(true)
         if (isLoggedIn()) {
             const body = new FormData()
@@ -185,6 +201,30 @@ const BrowserShopDetails = () => {
                         </Box>
                     </Grid>
                 </Grid>
+            </Container>
+        </Box>
+    ) : itemError ? (
+        <Box sx={{ background: '#020202', minHeight: '100vh', py: { md: 10, xs: 6 } }}>
+            <Container maxWidth={false} sx={{ maxWidth: '900px', px: { md: 10, xs: 3 } }}>
+                <Box
+                    sx={{
+                        background: 'linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01))',
+                        border: '1px solid rgba(255,255,255,.08)',
+                        borderRadius: '4px',
+                        p: { md: 6, xs: 4 },
+                        textAlign: 'center'
+                    }}
+                >
+                    <Typography sx={{ color: 'white', fontSize: { md: '1.4rem', xs: '1.2rem' }, mb: 1.5, fontWeight: 700 }}>
+                        Product Not Available
+                    </Typography>
+                    <Typography sx={{ color: 'rgba(255,255,255,.68)', mb: 3 }}>
+                        {itemError}
+                    </Typography>
+                    <Button component={Link} to="/shop" variant="outlined" sx={{ color: '#efcb77', borderColor: 'rgba(239,203,119,.4)' }}>
+                        Back to Shop
+                    </Button>
+                </Box>
             </Container>
         </Box>
     ) : (

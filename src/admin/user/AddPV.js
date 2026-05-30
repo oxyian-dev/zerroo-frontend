@@ -29,7 +29,7 @@ export default function AddPV() {
         ) : (
             <Formik
                 validationSchema={Yup.object().shape({
-                    pv: Yup.number().required("Enter PV"),
+                    pv: Yup.number().moreThan(0, "PV should be greater than 0").required("Enter PV"),
                     recursive: Yup.string().required("Select Recursive Type")
                 })}
                 onSubmit={async (values, { setSubmitting }) => {
@@ -167,7 +167,7 @@ export default function AddPV() {
                             <Grid item md={6} xs={12}>
                                 <FormControl fullWidth error={Boolean(touched.recursive && errors.recursive)}>
                                     <FormControl>
-                                        <FormLabel id="recursive">Recursive</FormLabel>
+                                        <FormLabel id="recursive">PV Scope</FormLabel>
                                         <RadioGroup
                                             row
                                             aria-labelledby="recursive"
@@ -176,8 +176,8 @@ export default function AddPV() {
                                             onBlur={handleBlur}
                                             onChange={handleChange}
                                         >
-                                            <FormControlLabel value="true" control={<Radio />} label="Entire Upline Genealogy" />
-                                            <FormControlLabel value="false" control={<Radio />} label="Only His/Her" />
+                                            <FormControlLabel value="true" control={<Radio />} label="Entire Upline Genealogy (left/right by side)" />
+                                            <FormControlLabel value="false" control={<Radio />} label="Only This Distributor" />
                                         </RadioGroup>
                                     </FormControl>
                                     {touched.recursive && errors.recursive && (

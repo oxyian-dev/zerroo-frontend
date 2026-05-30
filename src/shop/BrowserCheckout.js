@@ -15,7 +15,6 @@ const BrowserCheckout = () => {
     const [cart, setCart] = useState([])
     const [wallet, setWallet] = useState(0)
     const [loading, setLoading] = useState(false);
-    const [shipping, setShipping] = useState(0);
     const [total, setTotal] = useState(0);
     const [mrp, setMrp] = useState(0);
     const [discount, setDiscount] = useState(0)
@@ -25,31 +24,29 @@ const BrowserCheckout = () => {
         fetcher('/api/carts')
             .then(r => r.json())
             .then(({ carts, purchase_wallet }) => {
-                setCart(carts)
-                setMrp(carts.map(item => item.mrp * item.quantity).reduce((a, b) => a + b, 0))
-                setDiscount(carts.map(item => item.discount * item.quantity).reduce((a, b) => a + b, 0))
-                setWallet(purchase_wallet)
-                const params = new URLSearchParams();
-                params.set('price', total)
-                params.set('address', sessionStorage.getItem('address'))
-            })
-        fetcher(`/api/purchases/shipping`)
-            .then(r => r.json())
-            .then(({ shipping_charge }) => {
-                setShipping(shipping_charge)
+                const safeCarts = Array.isArray(carts) ? carts : []
+                setCart(safeCarts)
+                setMrp(safeCarts.map(item => item.mrp * item.quantity).reduce((a, b) => a + b, 0))
+                setDiscount(safeCarts.map(item => item.discount * item.quantity).reduce((a, b) => a + b, 0))
+                setWallet(Number.isFinite(Number(purchase_wallet)) ? Number(purchase_wallet) : 0)
             })
     }, [])
 
     useEffect(() => {
-        setTotal(cart.map(({ price, quantity }) => price * quantity).reduce((a, b) => a + b, 0) + (shipping))
-    }, [shipping, cart])
+        setTotal(cart.map(({ price, quantity }) => price * quantity).reduce((a, b) => a + b, 0))
+    }, [cart])
 
     const makePayment = () => {
         setLoading(true)
         const address = sessionStorage.getItem('address');
+        if (!address || address === 'null') {
+            enqueueSnackbar('Please select a delivery address', { variant: 'error' })
+            setLoading(false)
+            return
+        }
         const body = new FormData();
         body.set('address', address)
-        body.set('shipping', true)
+        body.set('shipping', false)
         fetcher('/api/purchases', { method: 'POST', body })
             .then(r => r.json())
             .then(({ status, message = "Exception occurred" }) => {
@@ -57,7 +54,7 @@ const BrowserCheckout = () => {
                     enqueueSnackbar("Your order is placed", { variant: 'success' })
                     navigate('/dashboard/your-orders')
                 } else {
-                    enqueueSnackbar(message, { variant: 'error' })
+                    enqueueSnackbar(message?.trim() || "Exception occurred", { variant: 'error' })
                     setLoading(false)
                 }
             })
@@ -256,14 +253,6 @@ const BrowserCheckout = () => {
                                     </Typography>
                                     <Typography sx={{ color: '#51cf66', fontSize: '0.95rem' }}>
                                         -₹{round(discount)}
-                                    </Typography>
-                                </Box>
-                                <Box display="flex" justifyContent="space-between">
-                                    <Typography sx={{ color: 'rgba(255,255,255,.82)', fontSize: '0.95rem' }}>
-                                        Shipping:
-                                    </Typography>
-                                    <Typography sx={{ color: 'rgba(255,255,255,.82)', fontSize: '0.95rem' }}>
-                                        ₹{round(shipping)}/-
                                     </Typography>
                                 </Box>
                                 <Box

@@ -64,9 +64,11 @@ const cards = [
   { key: 'pending_shipments', label: 'Pending Shipments', accent: 'red', link: '/admin/shipments/pending', isCurrency: false },
   { key: 'revenue_today', label: 'Revenue Today', accent: 'green', link: null, isCurrency: true },
   { key: 'revenue_month', label: 'Revenue This Month', accent: 'teal', link: null, isCurrency: true },
-  { key: 'income_wallet', label: 'Income Wallet', accent: 'purple', link: null, isCurrency: true },
+  { key: 'current_cutoff_pair_income', label: 'Current Cutoff Pair Income', accent: 'red', link: null, isCurrency: true },
+  { key: 'pair_match_income_lifetime', label: 'Pair Match Income (Lifetime Gross)', accent: 'pink', link: null, isCurrency: true },
+  { key: 'income_wallet', label: 'Income Wallet (Net)', accent: 'purple', link: null, isCurrency: true },
   { key: 'purchase_wallet', label: 'Purchase Wallet', accent: 'blue', link: null, isCurrency: true },
-  { key: 'payouts', label: 'Payouts', accent: 'orange', link: null, isCurrency: true },
+  { key: 'payouts', label: 'Net Wallet Payouts', accent: 'orange', link: null, isCurrency: true },
   { key: 'revenue_lifetime', label: 'Revenue Lifetime', accent: 'pink', link: null, isCurrency: true },
 ]
 

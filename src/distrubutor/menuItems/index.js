@@ -86,7 +86,7 @@ const menuItems = {
     },
     {
         id: 'wallet-request',
-        title: 'Wallet request',
+        title: 'Wallet Request',
         type: 'group',
         children: [
             {
@@ -119,14 +119,14 @@ const menuItems = {
             },
             {
                 id: 'income-wallet-transactions',
-                title: 'Income Wallet',
+                title: 'Income Wallet (Net)',
                 type: 'item',
                 url: 'transactions/income',
                 icon: IconPigMoney
             },
             {
                 id: 'payout-transactions',
-                title: 'Payouts',
+                title: 'Net Payouts',
                 type: 'item',
                 url: 'transactions/payout',
                 icon: IconCurrencyRupee

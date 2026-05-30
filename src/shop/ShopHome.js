@@ -166,9 +166,10 @@ const ShopHome = () => {
         fetcher('/api/brands')
             .then(r => r.json())
             .then((data) => {
-                if (Array.isArray(data) && data.length > 0) {
+                const brandRows = Array.isArray(data) ? data : (Array.isArray(data?.rows) ? data.rows : []);
+                if (brandRows.length > 0) {
                     // Take first 5 brands for the services bar
-                    setBrands(data.slice(0, 5));
+                    setBrands(brandRows.slice(0, 5));
                 } else {
                     setBrands([]);
                 }
@@ -197,12 +198,15 @@ const ShopHome = () => {
                     
                     for (let i = 0; i < featuredProducts.length; i++) {
                         const product = featuredProducts[i];
-                        if (product && product.group_id && product.color) {
-                            const u = product.group_id + '-' + product.color;
-                            if (unique.indexOf(u) <= -1) {
-                                unique.push(u);
-                                finalListing.push(product);
-                            }
+                        if (!product) {
+                            continue;
+                        }
+                        const groupKey = product.group_id ?? product.groupId ?? product.id;
+                        const colorKey = product.color_id ?? product.colorId ?? product.color ?? 'na';
+                        const uniqueKey = `${groupKey}-${colorKey}`;
+                        if (unique.indexOf(uniqueKey) <= -1) {
+                            unique.push(uniqueKey);
+                            finalListing.push(product);
                         }
                     }
                     setFeatured(finalListing);

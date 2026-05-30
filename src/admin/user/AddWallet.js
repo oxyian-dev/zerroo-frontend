@@ -134,12 +134,12 @@ export default function AddCoin() {
                                         id="income_wallet"
                                         type="number"
                                         value={values.income_wallet}
-                                        label="Income Wallet"
+                                        label="Income Wallet (Net)"
                                         InputProps={{
                                             readOnly: true,
                                             disabled: true
                                         }}
-                                        helperText="90% will be added to Income Wallet, remaining TDS & Admin"
+                                        helperText="90% will be added to net income wallet after 5% TDS and 5% admin deductions"
                                     />
                                 </FormControl>
                             </Grid>
@@ -175,7 +175,7 @@ export default function AddCoin() {
                                             onChange={handleChange}
                                         >
                                             <FormControlLabel value="purchase" control={<Radio />} label="Purchase Wallet" />
-                                            <FormControlLabel value="income" control={<Radio />} label="Income Wallet" />
+                                            <FormControlLabel value="income" control={<Radio />} label="Income Wallet (Net)" />
                                         </RadioGroup>
                                     </FormControl>
                                     {touched.type && errors.type && (

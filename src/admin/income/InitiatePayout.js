@@ -47,9 +47,9 @@ const InitiatePayout = () => {
                         Initiate Payout?
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        This process is Highly critical and cannot be undone. Are you sure you want to initiate this Payout?
+                        This process settles the net income-wallet balance and cannot be undone. Are you sure you want to initiate this payout?
                     </Typography>
-                    <TextField required fullWidth value={value} onChange={({ target }) => {
+                        <TextField required fullWidth value={value} onChange={({ target }) => {
                         setValue(target.value)
                     }} label="Enter Initiate Payout" helperText="Type Initiate Payout" />
                     <LoadingButton fullWidth loading={loading} size="large" variant="contained"

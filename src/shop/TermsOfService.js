@@ -235,18 +235,11 @@ We may provide links and pointers to Internet sites maintained by others ("Third
                         },
                         {
                             question: "REFUND POLICY",
-                            answer: `We are confident about our products what we sell and we give a FULL MONEY BACK GUARANTEE (Deduction of Tax, shipping charges & Service charges) within 30 days of invoice date. If you are not satisfied with any product you may return it back to us and you will qualify for a full refund (minus of tax and handling charges), however the shipping charges will be borned by the user.
-<br><br>
-Refunds Terms & Conditions:<br><br>
+                            answer: `REFUND / RETURN POLICY<br><br>
 
-1. If refund requested after delivery then we refund within 5 working days of product returned back to us and received by the Dispatch team of Victory World.
-<br><br>
-2. Refund only possible if, the product is delivered back & shipment cost to be borne by the customer.<br><br>
-3. If the goods are delivered in the damaged condition to the customer, then the shipping cost is to be borne by the company. And we will reship the product.<br><br>
-4. Mode of refund would be Fund Transfer i.e. NEFT/RTGS.<br><br>
-5. No Exchange Policy: Customer can send product back and claim refund.<br><br>
-6. No Cancellation Policy: If, customer cancels midway after product shipped they will have the ship it back and claim refund.<br><br>
-7. If the product order needs to be cancelled due to any reason prior the receipt, shipping charges will not be charged if product not shipped at that point of time.`
+1. If you are not satisfied with any product, you may return it to the company within 7 days from the date of purchase by submitting the Customer Order Receipt, Product Return Form, and the corresponding invoice, and you will qualify for a full refund (minus tax and handling charges). There are no delivery charges on Victory World orders.<br><br>
+
+2. In case a customer returns the product under the 100% Satisfaction Guarantee (partially used up to 30%), he or she will have the option to take a credit note, through which they may buy the same or another product of the same value.`
                         },
                         {
                             question: "LEGAL ISSUES",
@@ -258,7 +251,7 @@ Refunds Terms & Conditions:<br><br>
                         },
                         {
                             question: "DISCLAIMER OR LIMITATION OF LIABILITY",
-                            answer: `Our products are not a medicine and not intended to treat, Cure or prevent any disease. The products, information, services and other content provided on and through this site, including without limitation any products, information, services and other content provided on any Linked Site, are provided for informational purposes only to facilitate discussions with your <b>Fashion products</b>.  
+                            answer: `Our products are not a medicine and not intended to treat, cure, or prevent any disease. The products, information, services and other content provided on and through this site, including without limitation any products, information, services and other content provided on any Linked Site, are provided for informational purposes only to facilitate discussions with product.  
 <br><br>
 The information provided on this site and Linked Sites, including without limitation information relating to products and treatments is often provided in summary or aggregate form.</b> </span>
 <br>

@@ -21,7 +21,7 @@ const Cutoff = () => {
                     enqueueSnackbar('Cutoff Initiated', { variant: 'success' })
                     navigate('/admin/cutoffs')
                 } else {
-                    enqueueSnackbar(message, { variant: 'error' })
+                    enqueueSnackbar(message?.trim() || 'Unable to initiate cutoff', { variant: 'error' })
                 }
                 setLoading(false);
             })

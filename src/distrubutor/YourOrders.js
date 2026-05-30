@@ -41,7 +41,7 @@ const YourOrders = () => {
                 </Box>
             ) : (
                 <Masonry columns={{ md: 2, xs: 1 }} spacing={2}>
-                    {data.orders.map(({ invoice_id, order_id, time, items, shipping_fee, total }) => (
+                    {data.orders.map(({ invoice_id, order_id, time, items, total }) => (
                         <Box key={order_id} width="100%">
                             <Paper elevation={2} sx={{ p: 2 }}>
                                 <Grid container spacing={2}>
@@ -70,17 +70,17 @@ const YourOrders = () => {
                                     </Grid>
                                     <Grid item xs={12}>
                                         {items.map(({
-                                            image,
-                                            title,
-                                            description,
-                                            price,
-                                            discount,
-                                            mrp,
-                                            size,
-                                            status,
+                                            image = null,
+                                            title = '',
+                                            description = '',
+                                            price = 0,
+                                            discount = 0,
+                                            mrp = 0,
+                                            size = '',
+                                            status = '',
                                             item_id,
-                                            category,
-                                            track
+                                            category = '',
+                                            track = null
                                         }, key) => (
                                             <Grid container spacing={1} key={key} mb={1}>
                                                 <Grid item xs={4}>
@@ -131,10 +131,7 @@ const YourOrders = () => {
                                         <Divider />
                                     </Grid>
                                     <Grid container alignItems="center">
-                                        <Grid item xs={6}>
-                                            <Typography fontWeight="bold" textAlign="center">Shipping Fee: ₹{shipping_fee}</Typography>
-                                        </Grid>
-                                        <Grid item xs={6} textAlign="center">
+                                        <Grid item xs={12} textAlign="center">
                                             <Typography fontWeight="bold">Total: ₹{total}</Typography>
                                         </Grid>
                                     </Grid>

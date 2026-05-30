@@ -123,15 +123,9 @@ export default function SaleOrderDetails({ id = useParams()['id'] }) {
                         </TableRow>
                         <TableRow>
                             <TableCell colSpan={2}>
-                                <Typography noWrap>Shipping Fee: </Typography>
-                            </TableCell>
-                            <TableCell>₹{inr(data.shipping_fee)}</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell colSpan={2}>
                                 <Typography noWrap>Total: </Typography>
                             </TableCell>
-                            <TableCell>₹{inr(data.items.map(({ price, quantity }) => quantity * price).reduce((a, b) => a + b, 0) + data.shipping_fee)}</TableCell>
+                            <TableCell>₹{inr(data.items.map(({ price, quantity }) => quantity * price).reduce((a, b) => a + b, 0))}</TableCell>
                         </TableRow>
                     </TableBody>
                 </Table>

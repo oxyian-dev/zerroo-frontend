@@ -40,6 +40,26 @@ export default function ComphensationPlan() {
                     </Typography>
                 </Box>
 
+                <Box
+                    sx={{
+                        p: 3,
+                        borderRadius: 2,
+                        bgcolor: 'rgba(239, 203, 119, 0.08)',
+                        border: '1px solid rgba(239, 203, 119, 0.18)'
+                    }}
+                >
+                    <Typography
+                        sx={{
+                            color: '#ffffff',
+                            lineHeight: 1.9,
+                            fontSize: { xs: '0.95rem', md: '1rem' },
+                            fontWeight: 500
+                        }}
+                    >
+                        Binary pair match rule: 80 PV on the left and 80 PV on the right completes one pair and earns ₹800. Unmatched PV carries forward until the opposite side is matched.
+                    </Typography>
+                </Box>
+
                 {/* Content Section */}
                 <Stack spacing={3}>
                     <Box
@@ -146,7 +166,7 @@ export default function ComphensationPlan() {
                                 }
                             }}
                         >
-                            There should be no compulsion or the minimum purchase criteria to activate and start earning income from the compensation plan. In other words, there should be no compulsion on the direct seller to buy products of a particular sum after or during enrolment. However, the direct seller should purchase for self-consumption and/or retail to meet the criteria as per the eligibility conditions defined in the compensation plan to qualify for an income.
+                            The direct seller should purchase the qualifying 80 PV product to activate and start earning income from the compensation plan. There is no compulsory purchase beyond this qualifying product, and any additional self-consumption or retail should be done only to support business growth and income qualification.
                         </Typography>
                     </Box>
 

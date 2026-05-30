@@ -213,6 +213,51 @@ export default function Dashboard() {
                       letterSpacing: '0.05em'
                     }}
                   >
+                    Current Cutoff Pair Income
+                  </Typography>
+                  {data ? (
+                    <Typography
+                      sx={{
+                        fontSize: { md: '1.75rem', xs: '1.25rem' },
+                        fontWeight: 700,
+                        color: '#efcb77'
+                      }}
+                    >
+                      ₹{inr(data.current_cutoff_pair_income)}
+                    </Typography>
+                  ) : (
+                    <Skeleton sx={{ bgcolor: 'rgba(255,255,255,.1)', fontSize: { md: '1.75rem', xs: '1.25rem' } }} />
+                  )}
+                </Box>
+                <Box position="absolute" top={8} right={8}>
+                  <Tooltip title="Pair-match income earned in the latest cutoff window" arrow>
+                    <IconButton
+                      size="small"
+                      sx={{
+                        color: 'rgba(255,255,255,.68)',
+                        '&:hover': { color: '#efcb77' }
+                      }}
+                    >
+                      <IconQuestionCircle size={20} />
+                    </IconButton>
+                  </Tooltip>
+                </Box>
+              </Card>
+            </Grid>
+
+            <Grid item xs={6} md={4}>
+              <Card elevation={0} sx={statCardStyles}>
+                <Box p={{ md: 4, xs: 2 }}>
+                  <Typography
+                    mb={1}
+                    sx={{
+                      color: 'rgba(255,255,255,.68)',
+                      fontSize: { md: '0.95rem', xs: '0.85rem' },
+                      fontWeight: 600,
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em'
+                    }}
+                  >
                     Total Purchase Amount
                   </Typography>
                   {data ? (
@@ -348,7 +393,7 @@ export default function Dashboard() {
                       letterSpacing: '0.05em'
                     }}
                   >
-                    Total Earnings
+                    Total Earnings (Gross)
                   </Typography>
                   {data ? (
                     <Typography
@@ -365,7 +410,7 @@ export default function Dashboard() {
                   )}
                 </Box>
                 <Box position="absolute" top={8} right={8}>
-                  <Tooltip title="The amount credited in your account so far!" arrow>
+                      <Tooltip title="Gross lifetime earnings before deductions" arrow>
                     <IconButton
                       size="small"
                       sx={{
@@ -393,7 +438,7 @@ export default function Dashboard() {
                       letterSpacing: '0.05em'
                     }}
                   >
-                    Pair Match Income
+                    Pair Match Income (Lifetime Gross)
                   </Typography>
                   {data ? (
                     <Typography
@@ -403,14 +448,14 @@ export default function Dashboard() {
                         color: '#efcb77'
                       }}
                     >
-                      ₹{inr(data.pair_match_income)}
+                      ₹{inr(data.pair_match_income_lifetime ?? data.pair_match_income)}
                     </Typography>
                   ) : (
                     <Skeleton sx={{ bgcolor: 'rgba(255,255,255,.1)', fontSize: { md: '1.75rem', xs: '1.25rem' } }} />
                   )}
                 </Box>
                 <Box position="absolute" top={8} right={8}>
-                  <Tooltip title="Binary compensation plan 1:1 ratio" arrow>
+                  <Tooltip title="Binary pair match: 80 PV left + 80 PV right = ₹800 gross" arrow>
                     <IconButton
                       size="small"
                       sx={{
@@ -438,7 +483,7 @@ export default function Dashboard() {
                       letterSpacing: '0.05em'
                     }}
                   >
-                    Self Purchase Income
+                    Self Purchase Income (Gross)
                   </Typography>
                   {data ? (
                     <Typography
@@ -455,7 +500,7 @@ export default function Dashboard() {
                   )}
                 </Box>
                 <Box position="absolute" top={8} right={8}>
-                  <Tooltip title="Self Purchased retail income" arrow>
+                      <Tooltip title="Self purchased retail income before wallet deductions" arrow>
                     <IconButton
                       size="small"
                       sx={{
@@ -495,7 +540,7 @@ export default function Dashboard() {
                         transition: 'color 0.3s ease'
                       }}
                     >
-                      Income Wallet
+                      Income Wallet (Net)
                     </Typography>
                     {data ? (
                       <Typography
@@ -513,7 +558,7 @@ export default function Dashboard() {
                     )}
                   </Box>
                   <Box position="absolute" top={8} right={8}>
-                    <Tooltip title="The amount will be in your bank account asap!" arrow>
+                      <Tooltip title="Net wallet balance after deductions, available for payout" arrow>
                       <IconButton
                         size="small"
                         sx={{

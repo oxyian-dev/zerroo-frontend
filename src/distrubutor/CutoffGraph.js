@@ -51,6 +51,27 @@ const CutoffGraph = () => {
 
     return (
         <Box>
+            <Typography
+                variant="subtitle2"
+                sx={{
+                    color: 'rgba(255,255,255,.68)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    fontWeight: 700,
+                    mb: 1
+                }}
+            >
+                Current Cutoff Pair Income
+            </Typography>
+            <Typography
+                variant="body2"
+                sx={{
+                    color: 'rgba(255,255,255,.48)',
+                    mb: 2
+                }}
+            >
+                This chart shows pair-match income recorded in the latest cutoff window.
+            </Typography>
             {errorMessage ? (
                 <Typography variant="h6" align="center" color="error">
                     {errorMessage}
@@ -77,7 +98,7 @@ const CutoffGraph = () => {
                     series={[
                         {
                             dataKey: 'fullAmount',
-                            label: 'CUTOFF INCOME',
+                            label: 'CURRENT CUTOFF PAIR INCOME',
                             valueFormatter: (value) => `₹${value ? value.toLocaleString() : 0}`,
                             color: '#8D1838',
                         },

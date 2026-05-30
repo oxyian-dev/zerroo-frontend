@@ -41,7 +41,7 @@ export default function Payouts() {
             <Card variant="outlined">
                 <CardContent>
                     <Typography variant="h2" textAlign="center">
-                        Payouts
+                        Net Wallet Payouts
                     </Typography>
                 </CardContent>
             </Card>

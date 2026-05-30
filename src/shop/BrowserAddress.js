@@ -1046,7 +1046,8 @@ const BrowserAddress = () => {
     useEffect(() => {
         fetcher(`/api/addresses`)
             .then(r => r.json())
-            .then(({ addresses }) => setAddresses(addresses))
+            .then(({ addresses }) => setAddresses(Array.isArray(addresses) ? addresses : []))
+            .catch(() => setAddresses([]))
     }, [reload])
 
     const remove = (id) => {

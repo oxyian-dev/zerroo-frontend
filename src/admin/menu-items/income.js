@@ -5,7 +5,7 @@ const income = {
     title: 'Income',
     type: 'group',
     roles: ['Admin'],
-    caption: 'Cutoffs, Payouts',
+    caption: 'Cutoffs, Net Payouts',
     children: [
         {
             id: 'wallet-transactions',
@@ -16,7 +16,7 @@ const income = {
                 {
                     id: 'income-wallet-transactions',
                     type: 'item',
-                    title: 'Income',
+                    title: 'Income (Net)',
                     url: '/admin/wallet/income'
                 },
                 {
@@ -55,13 +55,13 @@ const income = {
             children: [
                 {
                     id: 'view-payout',
-                    title: 'View Payout',
+                    title: 'View Net Payouts',
                     type: 'item',
                     url: '/admin/payouts'
                 },
                 {
                     id: 'initiate-payout',
-                    title: 'Initiate Payout',
+                    title: 'Initiate Net Payout',
                     type: 'item',
                     url: '/admin/payouts/initiate'
                 }

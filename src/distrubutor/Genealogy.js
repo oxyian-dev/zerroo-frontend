@@ -199,10 +199,14 @@ export default function Genealogy() {
                 if (status === 'success') {
                     setGenealogy(construct(genealogy))
                 } else {
-                    enqueueSnackbar(message, { variant: 'error' })
+                    enqueueSnackbar(message?.trim() || 'Unable to load genealogy', { variant: 'error' })
                     navigate('/dashboard/genealogy')
                 }
                 setSearch(id ? id : '')
+                setLoading(false)
+            })
+            .catch(() => {
+                enqueueSnackbar('Unable to load genealogy', { variant: 'error' })
                 setLoading(false)
             })
     }, [id])

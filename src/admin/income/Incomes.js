@@ -31,7 +31,7 @@ export default function Incomes() {
         <Stack spacing={2}>
             <Card variant="outlined">
                 <CardContent>
-                    <Typography variant="h2" textAlign="center">Income Wallet Transactions</Typography>
+                    <Typography variant="h2" textAlign="center">Income Wallet Transactions (Net)</Typography>
                 </CardContent>
             </Card>
             <ServerDataGrid

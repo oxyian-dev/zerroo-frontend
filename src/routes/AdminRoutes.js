@@ -78,6 +78,8 @@ const Brands = Loadable(lazy(() => import("../admin/brand/Brands")));
 const AddBrand = Loadable(lazy(() => import("../admin/brand/AddBrand")));
 const EditBrand = Loadable(lazy(() => import("../admin/brand/EditBrand")));
 const AddInventory = Loadable(lazy(() => import("../admin/inventory/AddInventory")));
+const Branches = Loadable(lazy(() => import("../admin/inventory/Branches")));
+const AddBranch = Loadable(lazy(() => import("../admin/inventory/AddBranch")));
 const Transporters = Loadable(lazy(() => import("../admin/transporter/Transporters")));
 const AddTransporter = Loadable(lazy(() => import("../admin/transporter/AddTransporter")));
 const EditTransporter = Loadable(lazy(() => import("../admin/transporter/EditTransporter")));
@@ -423,6 +425,14 @@ const AdminRoutes = {
         {
             path: 'add-inventory',
             element: <AddInventory />
+        },
+        {
+            path: 'branches',
+            element: <Branches />
+        },
+        {
+            path: 'branches/add',
+            element: <AddBranch />
         },
         {
             path: 'brands/view',
