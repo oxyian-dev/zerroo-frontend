@@ -344,11 +344,14 @@ const ShopHome = () => {
                         ))
                     ) : brands.length > 0 ? (
                         // Display brands from API
-                        brands.map((brand, index) => (
+                        brands.map((brand, index) => {
+                            const brandName = String(brand?.Brand || '').trim().toLowerCase();
+                            const brandHref = brandName === 'shaara' ? '/brand/shaara' : '/products';
+                            return (
                             <Box
                                 key={index}
                                 component={Link}
-                                to="/"
+                                to={brandHref}
                                 sx={{
                                     padding: { md: 4.5, xs: 3 },
                                     borderRight: '1px solid rgba(255,255,255,.08)',
@@ -372,7 +375,8 @@ const ShopHome = () => {
                             >
                                 {brand.Brand}
                             </Box>
-                        ))
+                            )
+                        })
                     ) : (
                         // Fallback to default categories if no brands
                         ['Personal Care', 'Health Care', 'Body Care', 'Home Care', 'Nutrition'].map((service, index) => (

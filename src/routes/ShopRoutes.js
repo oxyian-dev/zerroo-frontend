@@ -23,6 +23,7 @@ const RightsandDuties = Loadable(lazy(() => import("../shop/RightsandDuties")))
 const BusinessInformationKit = Loadable(lazy(() => import("../shop/BusinessInformationKit")))
 const Termination = Loadable(lazy(() => import("../shop/Termination")))
 const LegalDocuments =Loadable(lazy(() =>import("../shop/LegalDocuments")))
+const BrandShaara = Loadable(lazy(() => import("../shop/BrandShaara")))
 
 const ShopRoutes = {
     path: '',
@@ -112,6 +113,10 @@ const ShopRoutes = {
         {
             path: '/legal-documents',
             element: <LegalDocuments />
+        },
+        {
+            path: '/brand/shaara',
+            element: <BrandShaara />
         },
     ]
 }

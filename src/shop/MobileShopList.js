@@ -110,16 +110,16 @@ const MobileShopList = () => {
         
         fetcher(apiUrl)
             .then(r => r.json())
-            .then(({ listing, category }) => {
+            .then(({ listing, items, category }) => {
                 const finalListing = []
                 const unique = [];
                 // Add null check for listing array
-                const items = listing || [];
-                for (let i = 0; i < items.length; i++) {
-                    const u = items[i].group_id + '-' + items[i].color;
+                const records = listing || items || [];
+                for (let i = 0; i < records.length; i++) {
+                    const u = records[i].group_id + '-' + records[i].color;
                     if (unique.indexOf(u) <= -1) {
                         unique.push(u);
-                        finalListing.push(items[i])
+                        finalListing.push(records[i])
                     }
                 }
                 setData(finalListing)
