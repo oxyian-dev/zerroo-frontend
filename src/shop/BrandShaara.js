@@ -316,7 +316,7 @@ export default function BrandShaara() {
                                 >
                                     <Box
                                         component="img"
-                                        src="/product.png"
+                                        src="/shaara.png"
                                         alt="SHAARA Sanitary Pads"
                                         sx={{
                                             width: '100%',
@@ -364,7 +364,7 @@ export default function BrandShaara() {
                                                 maxWidth: 420
                                             }}
                                         >
-                                            Modern confidence
+                                            {/* Modern confidence */}
                                         </Typography>
                                     </Box>
                                 </Box>
