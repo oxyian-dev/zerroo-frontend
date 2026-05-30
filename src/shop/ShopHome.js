@@ -135,11 +135,11 @@ const ShopHome = () => {
     const heroSlides = [
         {
             image: "/main_bg.jpg",
-            label: "VICTORY WORLD",
-            title: "Your Gateway to Health & Prosperity",
-            description: "Join India's fastest-growing direct selling company. Build your business with premium health and wellness products while creating unlimited income opportunities.",
-            showLogo: true,
-            rightImage: null  // Logo circle for first slide
+            label: "SHAARA",
+            title: "An International Quality Napkin for Indian Women",
+            description: "Experience next-generation feminine hygiene with advanced comfort, protection, and wellness care designed for modern women.",
+            showLogo: false,
+            rightImage: "/shaara.png"
         },
         // {
         //     image: "/main_bg.jpg",

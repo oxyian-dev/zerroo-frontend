@@ -26,6 +26,7 @@ import { BrowserView, MobileView } from 'react-device-detect';
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { getName, getUsername, isDistributor, isLoggedIn, isOrgUser } from "../auth/AuthProvider";
 import LogoSection from '../layout/MainLayout/LogoSection';
+import { footerNavigationSections } from './navigation';
 import { getCartCount } from "../utils/CartUtil";
 import fetcher from "../utils/fetcher";
 import { href } from "../utils/util";
@@ -73,6 +74,7 @@ const ShopLayout = () => {
 
     const [viewCart, setViewCart] = useState(true)
     const [openDrawer, setOpenDrawer] = useState(false)
+    const [navMenuEl, setNavMenuEl] = useState(null)
 
     useEffect(() => {
         setViewCart(pathname !== '/cart')
@@ -81,6 +83,7 @@ const ShopLayout = () => {
     const login = isLoggedIn();
     const [mobileExpanded, setMobileExpanded] = useState({})
     const [scrolled, setScrolled] = useState(false)
+    const navMenuOpen = Boolean(navMenuEl)
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 10)
@@ -91,6 +94,14 @@ const ShopLayout = () => {
     const findXs = count => {
         if (count > 3) return 3;
         return 12 / count
+    }
+
+    const handleNavMenuOpen = (event) => {
+        setNavMenuEl(event.currentTarget)
+    }
+
+    const handleNavMenuClose = () => {
+        setNavMenuEl(null)
     }
 
     return (
@@ -545,38 +556,65 @@ const ShopLayout = () => {
                                 </Typography>
                             </Grid>
 
-                            {/* Services Section */}
-                            <Grid item xs={12}>
-                                <Typography
-                                    component="h4"
-                                    sx={{
-                                        textTransform: 'uppercase',
-                                        letterSpacing: '0.25em',
-                                        fontSize: '0.8rem',
-                                        color: '#efcb77',
-                                        mb: 3,
-                                        fontWeight: 600,
-                                    }}
-                                >
-                                    Services
-                                </Typography>
-                                <Box>
-                                    <Grid container spacing={2}>
-                                        <Grid item xs={6}><Typography component={Link} to="/" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Home</Typography></Grid>
-                                        <Grid item xs={6}><Typography component={Link} to="/products" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Products</Typography></Grid>
-                                        <Grid item xs={6}><Typography component={Link} to="/shipping" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Delivery Charges</Typography></Grid>
-                                        <Grid item xs={6}><Typography component={Link} to="/privacy-policy" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Privacy Policy</Typography></Grid>
-                                        <Grid item xs={6}><Typography component={Link} to="/terms-of-service" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Terms of Service</Typography></Grid>
-                                        <Grid item xs={6}><Typography component={Link} to="/commonly-terms-directselling" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Commonly Used Terms</Typography></Grid>
-                                        <Grid item xs={6}><Typography component={Link} to="/comphensation-plan" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Compensation Plan</Typography></Grid>
-                                        <Grid item xs={6}><Typography component={Link} to="/transactions" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Transactions</Typography></Grid>
-                                        <Grid item xs={6}><Typography component={Link} to="/rights-and-duties" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Rights and Duties</Typography></Grid>
-                                        <Grid item xs={6}><Typography component={Link} to="/business-informtion-kit" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Business Information Kit</Typography></Grid>
-                                        <Grid item xs={6}><Typography component={Link} to="/termination-directselling" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Termination</Typography></Grid>
-                                        <Grid item xs={6}><Typography component={Link} to="/legal-documents" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '0.95rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Legal Documents</Typography></Grid>
-                                    </Grid>
-                                </Box>
-                            </Grid>
+                            {/* Footer Navigation */}
+                            {footerNavigationSections.map((section) => (
+                                <Grid item xs={12} sm={6} key={section.title}>
+                                    <Typography
+                                        component="h4"
+                                        sx={{
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '0.25em',
+                                            fontSize: '0.8rem',
+                                            color: '#efcb77',
+                                            mb: 3,
+                                            fontWeight: 600,
+                                        }}
+                                    >
+                                        {section.title}
+                                    </Typography>
+                                    <Stack spacing={1.5}>
+                                        {section.links.map(({ text, link, external }) => (
+                                            external ? (
+                                                <Typography
+                                                    key={text}
+                                                    component="a"
+                                                    href={link}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    sx={{
+                                                        color: 'rgba(255,255,255,.62)',
+                                                        textDecoration: 'none',
+                                                        transition: 'all 0.3s ease',
+                                                        display: 'block',
+                                                        fontSize: '0.95rem',
+                                                        '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' },
+                                                        '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' }
+                                                    }}
+                                                >
+                                                    {text}
+                                                </Typography>
+                                            ) : (
+                                                <Typography
+                                                    key={text}
+                                                    component={Link}
+                                                    to={link}
+                                                    sx={{
+                                                        color: 'rgba(255,255,255,.62)',
+                                                        textDecoration: 'none',
+                                                        transition: 'all 0.3s ease',
+                                                        display: 'block',
+                                                        fontSize: '0.95rem',
+                                                        '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' },
+                                                        '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' }
+                                                    }}
+                                                >
+                                                    {text}
+                                                </Typography>
+                                            )
+                                        ))}
+                                    </Stack>
+                                </Grid>
+                            ))}
 
                             {/* Contact Section */}
                             <Grid item xs={12}>
@@ -742,6 +780,158 @@ const ShopLayout = () => {
                                 >
                                     Home
                                 </Typography>
+                                <Box>
+                                    <Typography
+                                        component="button"
+                                        type="button"
+                                        onClick={handleNavMenuOpen}
+                                        aria-haspopup="true"
+                                        aria-expanded={navMenuOpen ? 'true' : undefined}
+                                        sx={{
+                                            position: 'relative',
+                                            display: 'inline-flex',
+                                            alignItems: 'center',
+                                            gap: 0.8,
+                                            border: 'none',
+                                            background: 'transparent',
+                                            cursor: 'pointer',
+                                            fontSize: '0.8rem',
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '0.2em',
+                                            color: 'rgba(255,255,255,.82)',
+                                            textDecoration: 'none',
+                                            transition: '0.3s ease',
+                                            '&:hover': {
+                                                color: '#f5dc97',
+                                            },
+                                            '&::after': {
+                                                content: '""',
+                                                position: 'absolute',
+                                                left: 0,
+                                                bottom: '-10px',
+                                                width: 0,
+                                                height: '1px',
+                                                background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
+                                                transition: '0.35s ease',
+                                            },
+                                            '&:hover::after': {
+                                                width: '100%',
+                                            }
+                                        }}
+                                    >
+                                        Explore
+                                        <ExpandMore sx={{ fontSize: '1.1rem' }} />
+                                    </Typography>
+
+                                    <Menu
+                                        anchorReference="anchorPosition"
+                                        anchorPosition={{
+                                            top: 114,
+                                            left: typeof window !== 'undefined' ? window.innerWidth / 2 : 0
+                                        }}
+                                        id="explore-menu"
+                                        open={navMenuOpen}
+                                        onClose={handleNavMenuClose}
+                                        transformOrigin={{ horizontal: 'center', vertical: 'top' }}
+                                        PaperProps={{
+                                            elevation: 0,
+                                            sx: {
+                                                mt: 1.8,
+                                                overflow: 'hidden',
+                                                bgcolor: '#090909',
+                                                border: '1px solid rgba(255,255,255,.08)',
+                                                boxShadow: '0 30px 80px rgba(0,0,0,.42)',
+                                                borderRadius: 0,
+                                                width: { md: 920, lg: 1040 },
+                                                maxWidth: 'calc(100vw - 24px)',
+                                                mx: 'auto',
+                                                '&:before': {
+                                                    content: '""',
+                                                    display: 'block',
+                                                    position: 'absolute',
+                                                    top: 0,
+                                                    left: '50%',
+                                                    width: 12,
+                                                    height: 12,
+                                                    bgcolor: '#090909',
+                                                    transform: 'translate(-50%, -50%) rotate(45deg)',
+                                                    zIndex: 0,
+                                                    border: '1px solid rgba(255,255,255,.08)',
+                                                },
+                                            },
+                                        }}
+                                        MenuListProps={{
+                                            onMouseLeave: handleNavMenuClose
+                                        }}
+                                    >
+                                        <Box sx={{ p: 3.5 }}>
+                                            <Stack spacing={0.75} sx={{ mb: 3 }}>
+                                                <Typography sx={{ color: '#efcb77', textTransform: 'uppercase', letterSpacing: '0.32em', fontSize: '0.72rem', fontWeight: 700 }}>
+                                                    Navigate Victory World
+                                                </Typography>
+                                                <Typography sx={{ color: 'rgba(255,255,255,.72)', fontSize: '0.95rem' }}>
+                                                    Explore products, direct selling resources, policies, and support pages in one place.
+                                                </Typography>
+                                            </Stack>
+                                            <Grid container spacing={3}>
+                                                {footerNavigationSections.map((section) => (
+                                                    <Grid item xs={12} sm={6} md={3} key={section.title}>
+                                                        <Typography sx={{ color: '#fff', fontSize: '0.92rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.2em', mb: 2 }}>
+                                                            {section.title}
+                                                        </Typography>
+                                                        <Stack spacing={1.2}>
+                                                            {section.links.map(({ text, link, external }) => (
+                                                                external ? (
+                                                                    <Typography
+                                                                        key={text}
+                                                                        component="a"
+                                                                        href={link}
+                                                                        target="_blank"
+                                                                        rel="noopener noreferrer"
+                                                                        onClick={handleNavMenuClose}
+                                                                        sx={{
+                                                                            color: 'rgba(255,255,255,.72)',
+                                                                            textDecoration: 'none',
+                                                                            fontSize: '0.92rem',
+                                                                            transition: 'all 0.25s ease',
+                                                                            width: 'fit-content',
+                                                                            '&:hover': {
+                                                                                color: '#f5dc97',
+                                                                                transform: 'translateX(4px)'
+                                                                            }
+                                                                        }}
+                                                                    >
+                                                                        {text}
+                                                                    </Typography>
+                                                                ) : (
+                                                                    <Typography
+                                                                        key={text}
+                                                                        component={Link}
+                                                                        to={link}
+                                                                        onClick={handleNavMenuClose}
+                                                                        sx={{
+                                                                            color: 'rgba(255,255,255,.72)',
+                                                                            textDecoration: 'none',
+                                                                            fontSize: '0.92rem',
+                                                                            transition: 'all 0.25s ease',
+                                                                            width: 'fit-content',
+                                                                            '&:hover': {
+                                                                                color: '#f5dc97',
+                                                                                transform: 'translateX(4px)'
+                                                                            }
+                                                                        }}
+                                                                    >
+                                                                        {text}
+                                                                    </Typography>
+                                                                )
+                                                            ))}
+                                                        </Stack>
+                                                    </Grid>
+                                                ))}
+                                            </Grid>
+                                        </Box>
+                                    </Menu>
+                                </Box>
                                 <Typography
                                     component={Link}
                                     to="/shop"
@@ -978,8 +1168,8 @@ const ShopLayout = () => {
                                 </Typography>
                             </Grid>
 
-                            {/* Services Section */}
-                            <Grid item xs={12} lg={4}>
+                            {/* Footer Navigation */}
+                            <Grid item xs={12} lg={5}>
                                 <Typography
                                     component="h4"
                                     sx={{
@@ -991,24 +1181,70 @@ const ShopLayout = () => {
                                         fontWeight: 600,
                                     }}
                                 >
-                                    Services
+                                    Navigation
                                 </Typography>
-                                <Box>
-                                    <Grid container spacing={2}>
-                                        <Grid item xs={6}><Typography component={Link} to="/" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Home</Typography></Grid>
-                                        <Grid item xs={6}><Typography component={Link} to="/products" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Products</Typography></Grid>
-                                        <Grid item xs={6}><Typography component={Link} to="/shipping" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Delivery Charges</Typography></Grid>
-                                        <Grid item xs={6}><Typography component={Link} to="/privacy-policy" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Privacy Policy</Typography></Grid>
-                                        <Grid item xs={6}><Typography component={Link} to="/terms-of-service" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Terms of Service</Typography></Grid>
-                                        <Grid item xs={6}><Typography component={Link} to="/commonly-terms-directselling" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Commonly Used Terms</Typography></Grid>
-                                        <Grid item xs={6}><Typography component={Link} to="/comphensation-plan" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Compensation Plan</Typography></Grid>
-                                        <Grid item xs={6}><Typography component={Link} to="/transactions" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Transactions</Typography></Grid>
-                                        <Grid item xs={6}><Typography component={Link} to="/rights-and-duties" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Rights and Duties</Typography></Grid>
-                                        <Grid item xs={6}><Typography component={Link} to="/business-informtion-kit" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Business Information Kit</Typography></Grid>
-                                        <Grid item xs={6}><Typography component={Link} to="/termination-directselling" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Termination</Typography></Grid>
-                                        <Grid item xs={6}><Typography component={Link} to="/legal-documents" sx={{ color: 'rgba(255,255,255,.62)', textDecoration: 'none', transition: 'all 0.3s ease', display: 'block', fontSize: '1rem', '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' }, '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' } }}>Legal Documents</Typography></Grid>
-                                    </Grid>
-                                </Box>
+                                <Grid container spacing={4}>
+                                    {footerNavigationSections.map((section) => (
+                                        <Grid item xs={12} sm={6} key={section.title}>
+                                            <Typography
+                                                component="h5"
+                                                sx={{
+                                                    color: 'white',
+                                                    fontSize: '0.92rem',
+                                                    fontWeight: 800,
+                                                    textTransform: 'uppercase',
+                                                    letterSpacing: '0.2em',
+                                                    mb: 2.5
+                                                }}
+                                            >
+                                                {section.title}
+                                            </Typography>
+                                            <Stack spacing={1.35}>
+                                                {section.links.map(({ text, link, external }) => (
+                                                    external ? (
+                                                        <Typography
+                                                            key={text}
+                                                            component="a"
+                                                            href={link}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            sx={{
+                                                                color: 'rgba(255,255,255,.62)',
+                                                                textDecoration: 'none',
+                                                                transition: 'all 0.3s ease',
+                                                                display: 'block',
+                                                                fontSize: '1rem',
+                                                                width: 'fit-content',
+                                                                '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' },
+                                                                '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' }
+                                                            }}
+                                                        >
+                                                            {text}
+                                                        </Typography>
+                                                    ) : (
+                                                        <Typography
+                                                            key={text}
+                                                            component={Link}
+                                                            to={link}
+                                                            sx={{
+                                                                color: 'rgba(255,255,255,.62)',
+                                                                textDecoration: 'none',
+                                                                transition: 'all 0.3s ease',
+                                                                display: 'block',
+                                                                fontSize: '1rem',
+                                                                width: 'fit-content',
+                                                                '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' },
+                                                                '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' }
+                                                            }}
+                                                        >
+                                                            {text}
+                                                        </Typography>
+                                                    )
+                                                ))}
+                                            </Stack>
+                                        </Grid>
+                                    ))}
+                                </Grid>
                             </Grid>
 
                             {/* Contact Section */}
