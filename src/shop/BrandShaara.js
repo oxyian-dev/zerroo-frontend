@@ -59,6 +59,7 @@ const tickerItems = [
     'Comfort & Confidence',
     'Modern Feminine Hygiene'
 ]
+const marqueeItems = [...tickerItems, ...tickerItems, ...tickerItems]
 
 export default function BrandShaara() {
     return (
@@ -104,7 +105,7 @@ export default function BrandShaara() {
                             display: 'flex',
                             width: 'max-content',
                             alignItems: 'center',
-                            animation: 'shaaraMarquee 18s linear infinite',
+                            animation: 'shaaraMarquee 28s linear infinite',
                             willChange: 'transform',
                             '@keyframes shaaraMarquee': {
                                 '0%': { transform: 'translateX(0)' },
@@ -119,8 +120,8 @@ export default function BrandShaara() {
                                 sx={{
                                     display: 'inline-flex',
                                     alignItems: 'center',
-                                    gap: 2.5,
-                                    px: 3,
+                                    gap: 3,
+                                    px: 4,
                                     color: '#f5dc97',
                                     textTransform: 'uppercase',
                                     letterSpacing: '0.3em',
@@ -130,15 +131,15 @@ export default function BrandShaara() {
                                     flexShrink: 0
                                 }}
                             >
-                                {tickerItems.map((item, index) => (
-                                    <React.Fragment key={`${repeatIndex}-${item}`}>
+                                {marqueeItems.map((item, index) => (
+                                    <React.Fragment key={`${repeatIndex}-${index}-${item}`}>
                                         <span>{item}</span>
-                                        {index < tickerItems.length - 1 && (
+                                        {index < marqueeItems.length - 1 && (
                                             <span style={{ color: 'rgba(255,255,255,.45)' }}>•</span>
                                         )}
                                     </React.Fragment>
                                 ))}
-                                <span style={{ color: 'rgba(255,255,255,.45)', marginLeft: '6px' }}>•</span>
+                                <span style={{ color: 'rgba(255,255,255,.45)', marginLeft: '8px' }}>•</span>
                             </Box>
                         ))}
                     </Box>

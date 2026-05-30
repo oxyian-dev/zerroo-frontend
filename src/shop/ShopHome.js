@@ -334,11 +334,18 @@ const ShopHome = () => {
 
             {/* SERVICES BAR - BRANDS */}
             <Box component="section" sx={{ borderTop: '1px solid rgba(255,255,255,.08)', borderBottom: '1px solid rgba(255,255,255,.08)', background: '#050505', overflow: 'hidden' }}>
-                <Box sx={{ display: 'grid', gridTemplateColumns: { xs: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(5, 1fr)' } }}>
+                <Box
+                    sx={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 220px))',
+                        justifyContent: 'center',
+                        gap: 0,
+                    }}
+                >
                     {brandsLoading ? (
                         // Loading state - show placeholder boxes
                         Array.from({ length: 5 }).map((_, index) => (
-                            <Box key={index} sx={{ padding: { md: 4.5, xs: 3 }, borderRight: '1px solid rgba(255,255,255,.08)', textAlign: 'center', '&:last-child': { borderRight: 'none' } }}>
+                            <Box key={index} sx={{ padding: { md: 4.5, xs: 3 }, borderRight: '1px solid rgba(255,255,255,.08)', textAlign: 'center', minWidth: 180, '&:last-child': { borderRight: 'none' } }}>
                                 <Box sx={{ width: '60%', height: '20px', background: 'rgba(255,255,255,.1)', margin: '0 auto', borderRadius: '4px' }} />
                             </Box>
                         ))
@@ -354,6 +361,7 @@ const ShopHome = () => {
                                 to={brandHref}
                                 sx={{
                                     padding: { md: 4.5, xs: 3 },
+                                    borderLeft: '1px solid rgba(255,255,255,.08)',
                                     borderRight: '1px solid rgba(255,255,255,.08)',
                                     textTransform: 'uppercase',
                                     fontSize: { md: '0.78rem', xs: '0.7rem' },
@@ -366,11 +374,13 @@ const ShopHome = () => {
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
+                                    minWidth: 180,
                                     '&:hover': {
                                         background: 'rgba(221,180,93,.06)',
                                         color: '#f5dc97'
                                     },
-                                    '&:last-child': { borderRight: 'none' }
+                                    '&:first-of-type': { borderLeft: '1px solid rgba(255,255,255,.08)' },
+                                    '&:last-of-type': { borderRight: '1px solid rgba(255,255,255,.08)' }
                                 }}
                             >
                                 {brand.Brand}
@@ -380,7 +390,7 @@ const ShopHome = () => {
                     ) : (
                         // Fallback to default categories if no brands
                         ['Personal Care', 'Health Care', 'Body Care', 'Home Care', 'Nutrition'].map((service, index) => (
-                            <Box key={index} sx={{ padding: { md: 4.5, xs: 3 }, borderRight: '1px solid rgba(255,255,255,.08)', textTransform: 'uppercase', fontSize: { md: '0.78rem', xs: '0.7rem' }, letterSpacing: '0.16em', color: 'rgba(255,255,255,.7)', transition: 'all 0.35s ease', textAlign: 'center', cursor: 'pointer', '&:hover': { background: 'rgba(221,180,93,.06)', color: '#f5dc97' }, '&:last-child': { borderRight: 'none' } }}>{service}</Box>
+                            <Box key={index} sx={{ padding: { md: 4.5, xs: 3 }, borderLeft: '1px solid rgba(255,255,255,.08)', borderRight: '1px solid rgba(255,255,255,.08)', textTransform: 'uppercase', fontSize: { md: '0.78rem', xs: '0.7rem' }, letterSpacing: '0.16em', color: 'rgba(255,255,255,.7)', transition: 'all 0.35s ease', textAlign: 'center', cursor: 'pointer', minWidth: 180, '&:hover': { background: 'rgba(221,180,93,.06)', color: '#f5dc97' }, '&:first-of-type': { borderLeft: '1px solid rgba(255,255,255,.08)' }, '&:last-of-type': { borderRight: '1px solid rgba(255,255,255,.08)' } }}>{service}</Box>
                         ))
                     )}
                 </Box>
