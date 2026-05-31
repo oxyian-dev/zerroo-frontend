@@ -393,51 +393,6 @@ export default function Dashboard() {
                       letterSpacing: '0.05em'
                     }}
                   >
-                    Self Purchase SP
-                  </Typography>
-                  {data ? (
-                    <Typography
-                      sx={{
-                        fontSize: { md: '1.75rem', xs: '1.25rem' },
-                        fontWeight: 700,
-                        color: '#efcb77'
-                      }}
-                    >
-                      {inr(data.sp_pv)} SP
-                    </Typography>
-                  ) : (
-                    <Skeleton sx={{ bgcolor: 'rgba(255,255,255,.1)', fontSize: { md: '1.75rem', xs: '1.25rem' } }} />
-                  )}
-                </Box>
-                <Box position="absolute" top={8} right={8}>
-                  <Tooltip title="Self Purchased product's SP" arrow>
-                    <IconButton
-                      size="small"
-                      sx={{
-                        color: 'rgba(255,255,255,.68)',
-                        '&:hover': { color: '#efcb77' }
-                      }}
-                    >
-                      <IconQuestionCircle size={20} />
-                    </IconButton>
-                  </Tooltip>
-                </Box>
-              </Card>
-            </Grid>
-
-            <Grid item xs={6} md={4}>
-              <Card elevation={0} sx={statCardStyles}>
-                <Box p={{ md: 4, xs: 2 }}>
-                  <Typography
-                    mb={1}
-                    sx={{
-                      color: 'rgba(255,255,255,.68)',
-                      fontSize: { md: '0.95rem', xs: '0.85rem' },
-                      fontWeight: 600,
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.05em'
-                    }}
-                  >
                     Total Earnings (Gross)
                   </Typography>
                   {data ? (
@@ -501,51 +456,6 @@ export default function Dashboard() {
                 </Box>
                 <Box position="absolute" top={8} right={8}>
                   <Tooltip title="1:1 pair match after the initial 2:1 qualification payout" arrow>
-                    <IconButton
-                      size="small"
-                      sx={{
-                        color: 'rgba(255,255,255,.68)',
-                        '&:hover': { color: '#efcb77' }
-                      }}
-                    >
-                      <IconQuestionCircle size={20} />
-                    </IconButton>
-                  </Tooltip>
-                </Box>
-              </Card>
-            </Grid>
-
-            <Grid item xs={6} md={4}>
-              <Card elevation={0} sx={statCardStyles}>
-                <Box p={{ md: 4, xs: 2 }}>
-                  <Typography
-                    mb={1}
-                    sx={{
-                      color: 'rgba(255,255,255,.68)',
-                      fontSize: { md: '0.95rem', xs: '0.85rem' },
-                      fontWeight: 600,
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.05em'
-                    }}
-                  >
-                    Self Purchase Income (Gross)
-                  </Typography>
-                  {data ? (
-                    <Typography
-                      sx={{
-                        fontSize: { md: '1.75rem', xs: '1.25rem' },
-                        fontWeight: 700,
-                        color: '#efcb77'
-                      }}
-                    >
-                      ₹{inr(data.sp_income)}
-                    </Typography>
-                  ) : (
-                    <Skeleton sx={{ bgcolor: 'rgba(255,255,255,.1)', fontSize: { md: '1.75rem', xs: '1.25rem' } }} />
-                  )}
-                </Box>
-                <Box position="absolute" top={8} right={8}>
-                      <Tooltip title="Self purchased retail income before wallet deductions" arrow>
                     <IconButton
                       size="small"
                       sx={{

@@ -2,7 +2,6 @@ import {
     IconBinaryTree,
     IconCurrencyRupee,
     IconDashboard,
-    IconFile,
     IconList,
     IconPigMoney,
     IconShirt,
@@ -33,13 +32,6 @@ const menuItems = {
                 url: 'account',
                 icon: IconUser
             },
-            {
-                id: 'declaration',
-                title: 'Declaration',
-                type: 'item',
-                url: 'declaration',
-                icon: IconFile
-            }
         ]
     },
     {
