@@ -139,7 +139,7 @@ export default function AddCoin() {
                                             readOnly: true,
                                             disabled: true
                                         }}
-                                        helperText="90% will be added to net income wallet after 5% TDS and 5% admin deductions"
+                                        helperText="95% will be added to net income wallet after 2% TDS and 3% admin deductions"
                                     />
                                 </FormControl>
                             </Grid>
