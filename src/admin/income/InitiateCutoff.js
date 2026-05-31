@@ -18,7 +18,7 @@ const Cutoff = () => {
             .then(r => r.json())
             .then(({ status, message = 'Exception occurred' }) => {
                 if (status === 'success') {
-                    enqueueSnackbar('Cutoff Initiated', { variant: 'success' })
+                    enqueueSnackbar('Qualification Cutoff Initiated', { variant: 'success' })
                     navigate('/admin/cutoffs')
                 } else {
                     enqueueSnackbar(message?.trim() || 'Unable to initiate cutoff', { variant: 'error' })
@@ -44,16 +44,16 @@ const Cutoff = () => {
                         />
                     </Box>
                     <Typography gutterBottom variant="h3" component="div">
-                        Initiate Cutoff?
+                        Initiate Qualification Cutoff?
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        This process is Highly critical and cannot be undone. Are you sure you want to initiate this Cutoff?
+                        This process is highly critical and cannot be undone. Are you sure you want to initiate this qualification cutoff?
                     </Typography>
                     <TextField required fullWidth value={value} onChange={({ target }) => {
                         setValue(target.value)
-                    }} label="Enter Initiate Cutoff" helperText="Type Initiate Cutoff" />
+                    }} label="Enter Initiate Qualification Cutoff" helperText="Type Initiate Qualification Cutoff" />
                     <LoadingButton fullWidth loading={loading} size="large" variant="contained"
-                        disabled={value !== 'Initiate Cutoff'}
+                        disabled={value !== 'Initiate Qualification Cutoff'}
                         onClick={() => {
                             initiateCutoff()
                         }}

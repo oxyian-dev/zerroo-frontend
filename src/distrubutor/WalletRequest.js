@@ -135,7 +135,7 @@ export default function WalletRequests() {
               letterSpacing: '-0.02em'
             }}
           >
-            Wallet Request
+            Wallet Withdrawal Request
           </Typography>
         </CardContent>
       </Card>
@@ -237,7 +237,7 @@ export default function WalletRequests() {
             component="img"
             height="220"
             image="/img/Wallet_request.jpeg"
-            alt="Wallet Request Process Screenshot"
+            alt="Wallet Withdrawal Request Process Guide"
             sx={{
               borderBottom: '1px solid rgba(255,255,255,.08)'
             }}
@@ -250,9 +250,9 @@ export default function WalletRequests() {
               target="_blank"
               rel="noopener noreferrer"
               sx={secondaryButtonStyles}
-              aria-label="View wallet request process guide"
+              aria-label="View wallet withdrawal request process guide"
             >
-              View More
+              View Process Guide
             </Button>
           </CardActions>
         </Card>
@@ -279,7 +279,7 @@ export default function WalletRequests() {
             .then(res => res.json())
             .then(({ status, message = 'Exception occurred' }) => {
               if (status === 'success') {
-                enqueueSnackbar('Wallet Requested Successfully', { variant: 'success' })
+                enqueueSnackbar('Wallet withdrawal request submitted successfully', { variant: 'success' })
                 navigate('/dashboard/wallet-requests')
               } else {
                 enqueueSnackbar(message, { variant: 'error' })
@@ -489,9 +489,9 @@ export default function WalletRequests() {
                   type="submit"
                   variant="contained"
                   sx={primaryButtonStyles}
-                  aria-label="Create Wallet Request"
+                  aria-label="Submit wallet withdrawal request"
                 >
-                  Create Request
+                  Submit Request
                 </LoadingButton>
               </Grid>
             </Grid>

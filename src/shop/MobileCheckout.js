@@ -183,7 +183,7 @@ const MobileCheckout = () => {
                             component={Link}
                             to="/dashboard/wallet-request"
                             fullWidth
-                            aria-label="Raise Wallet Request"
+                            aria-label="Raise Withdrawal Request"
                             sx={{
                                 border: '1px solid #ff6b6b',
                                 color: '#ff6b6b',
@@ -198,7 +198,7 @@ const MobileCheckout = () => {
                                 }
                             }}
                         >
-                            Raise Wallet Request
+                            Raise Withdrawal Request
                         </Button>
                     </Box>
                 )}

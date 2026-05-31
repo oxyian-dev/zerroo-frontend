@@ -5,7 +5,7 @@ const income = {
     title: 'Income',
     type: 'group',
     roles: ['Admin'],
-    caption: 'Cutoffs, Net Payouts',
+    caption: 'Qualification Cutoffs, Net Payouts',
     children: [
         {
             id: 'wallet-transactions',
@@ -22,26 +22,26 @@ const income = {
                 {
                     id: 'purchase-wallet-transactions',
                     type: 'item',
-                    title: 'Purchase',
+                    title: 'Purchase Wallet',
                     url: '/admin/wallet/purchase'
                 }
             ]
         },
         {
             id: 'cutoff',
-            title: 'Cutoff',
+            title: 'Qualification Cutoffs',
             type: 'collapse',
             icon: IconPigMoney,
             children: [
                 {
                     id: 'view-cutoff',
-                    title: 'View Cutoffs',
+                    title: 'View Qualification Cutoffs',
                     type: 'item',
                     url: '/admin/cutoffs'
                 },
                 {
                     id: 'initiate-cutoff',
-                    title: 'Initiate Cutoffs',
+                    title: 'Initiate Qualification Cutoff',
                     type: 'item',
                     url: '/admin/cutoffs/initiate'
                 }
@@ -49,7 +49,7 @@ const income = {
         },
         {
             id: 'payout',
-            title: 'Payout',
+            title: 'Net Payouts',
             type: 'collapse',
             icon: IconCashBanknote,
             children: [

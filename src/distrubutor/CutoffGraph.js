@@ -61,7 +61,7 @@ const CutoffGraph = () => {
                     mb: 1
                 }}
             >
-                Current Cutoff Pair Income
+                Qualification + 1:1 Pair Income Timeline
             </Typography>
             <Typography
                 variant="body2"
@@ -70,7 +70,7 @@ const CutoffGraph = () => {
                     mb: 2
                 }}
             >
-                This chart shows pair-match income recorded in the latest cutoff window.
+                This chart shows qualification and 1:1 pair income entries over time.
             </Typography>
             {errorMessage ? (
                 <Typography variant="h6" align="center" color="error">
@@ -98,7 +98,7 @@ const CutoffGraph = () => {
                     series={[
                         {
                             dataKey: 'fullAmount',
-                            label: 'CURRENT CUTOFF PAIR INCOME',
+                            label: 'QUALIFICATION + 1:1 PAIR INCOME',
                             valueFormatter: (value) => `₹${value ? value.toLocaleString() : 0}`,
                             color: '#8D1838',
                         },

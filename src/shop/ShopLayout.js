@@ -353,7 +353,7 @@ const ShopLayout = () => {
                                 <ListItemIcon>
                                     <IconShoppingCart size={20} />
                                 </ListItemIcon>
-                                <ListItemText primary="Your Orders" />
+                                <ListItemText primary="Purchase History" />
                             </ListItemButton>
                         )}
 
@@ -1056,7 +1056,7 @@ const ShopLayout = () => {
                                                     <ListItemIcon sx={{ color: 'inherit' }}>
                                                         <IconShoppingCart size={20} />
                                                     </ListItemIcon>
-                                                    Your Orders
+                                                    Purchase History
                                                 </MenuItem>
                                             )}
                                             <MenuItem component={Link} to='/logout'>

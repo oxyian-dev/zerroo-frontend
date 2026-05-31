@@ -43,7 +43,7 @@ const WalletRequests = () => {
         <Stack spacing={2}>
             <Card>
                 <CardContent>
-                    <Typography variant="h2" textAlign="center">Wallet Request Transactions</Typography>
+                    <Typography variant="h2" textAlign="center">Wallet Withdrawal Request History</Typography>
                 </CardContent>
             </Card>
             <ServerDataGrid

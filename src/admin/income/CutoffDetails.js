@@ -8,7 +8,7 @@ export default function CutoffDetails({ id = useParams()['id'] }) {
         <Stack spacing={2}>
             <Card variant="outlined">
                 <CardContent>
-                    <Typography variant="h2" textAlign="center">Cutoff Details</Typography>
+                    <Typography variant="h2" textAlign="center">Qualification Cutoff Details</Typography>
                 </CardContent>
             </Card>
             <ServerDataGrid

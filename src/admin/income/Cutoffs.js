@@ -60,7 +60,7 @@ export default function Cutoffs() {
             <Stack spacing={2}>
                 <Card variant="outlined">
                     <CardContent>
-                        <Typography variant="h2" textAlign="center">Cutoffs</Typography>
+                        <Typography variant="h2" textAlign="center">Qualification Cutoffs</Typography>
                     </CardContent>
                 </Card>
                 <ServerDataGrid

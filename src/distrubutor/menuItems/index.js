@@ -77,7 +77,7 @@ const menuItems = {
             },
             {
                 id: 'your-orders',
-                title: 'Your Orders',
+                title: 'Purchase History',
                 type: 'item',
                 url: 'your-orders',
                 icon: IconShoppingBag
@@ -86,20 +86,20 @@ const menuItems = {
     },
     {
         id: 'wallet-request',
-        title: 'Wallet Request',
+        title: 'Wallet Requests',
         type: 'group',
         children: [
             {
                 id: 'wallet-request',
                 type: 'item',
-                title: 'Request',
+                title: 'Raise Request',
                 url: 'wallet-request',
                 icon: IconWallet
             },
             {
                 id: 'wallet-requests',
                 type: 'item',
-                title: 'View',
+                title: 'View Requests',
                 url: 'wallet-requests',
                 icon: IconList
             }
@@ -107,7 +107,7 @@ const menuItems = {
     },
     {
         id: 'transactions',
-        title: 'Transactions',
+        title: 'Wallet & Payouts',
         type: 'group',
         children: [
             {

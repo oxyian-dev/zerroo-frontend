@@ -50,7 +50,7 @@ const DeclarationForm = ({ setHasAcceptedDeclaration }) => {
             }}
         >
             <Box>
-                <DialogTitle textAlign="center">Terms & Conditions</DialogTitle>
+                <DialogTitle textAlign="center">Distributor Declaration & Terms</DialogTitle>
                 <DialogContent dividers>
                     <DialogContentText component="div">
 
@@ -124,7 +124,7 @@ const DeclarationForm = ({ setHasAcceptedDeclaration }) => {
                                 onChange={handleCheckboxChange}
                             />
                         }
-                        label="I agree to the declaration"
+                        label="I have read and agree to the declaration"
                     />
                     <Box mt={2}>
                         <Button
@@ -135,7 +135,7 @@ const DeclarationForm = ({ setHasAcceptedDeclaration }) => {
                             startIcon={loading ? <CircularProgress size={20} color="inherit" /> : null}
                             
                         >
-                            {loading ? 'Submitting...' : 'Submit'}
+                            {loading ? 'Submitting...' : 'Accept & Continue'}
                         </Button>
                     </Box>
                 </DialogActions>

@@ -455,7 +455,7 @@ export default function DistributorDetails({ id = useParams()['id'] }) {
                                     { "headerName": "IFSC", "field": "IFSC", "width": "200", "id": "IFSC" },
                                     { "headerName": "Bank", "field": "Bank", "width": "200", "id": "Bank" },
                                     { "headerName": "Branch", "field": "Branch", "width": "200", "id": "Branch" },
-                                    { "headerName": "Gross Amount", "field": "Full Amount", "width": "200", "id": "Full Amount", "type": "number" },
+                                    { "headerName": "Full Amount (Gross)", "field": "Full Amount", "width": "200", "id": "Full Amount", "type": "number" },
                                     { "headerName": "TDS Amount", "field": "TDS Amount", "width": "200", "id": "TDS Amount", "type": "number" },
                                     { "headerName": "Admin Amount", "field": "Admin Amount", "width": "200", "id": "Admin Amount", "type": "number" },
                                     { "headerName": "Net Amount", "field": "Actual Amount", "width": "200", "id": "Actual Amount", "type": "number" }

@@ -30,7 +30,7 @@ const YourOrders = () => {
         <React.Fragment>
             <Card variant="outlined" sx={{ mb: 2 }}>
                 <CardContent>
-                    <Typography variant="h2" textAlign="center">Your Orders</Typography>
+                    <Typography variant="h2" textAlign="center">Purchase History</Typography>
                 </CardContent>
             </Card>
             {data.orders.length === 0 ? (

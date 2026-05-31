@@ -43,7 +43,7 @@ export default function Incomes() {
                     { "headerName": "ZID", "field": "ZID", "width": "150", "id": "ZID" },
                     { "headerName": "Firstname", "field": "Firstname", "width": "150", "id": "Firstname" },
                     { "headerName": "Type", "field": "Type", "width": "150", "id": "Type" },
-                    { "headerName": "Effective Amount", "field": "Effective Amount", "width": "150", "id": "Effective Amount", "type": "number" },
+                    { "headerName": "Net Amount", "field": "Effective Amount", "width": "150", "id": "Effective Amount", "type": "number" },
                     { "headerName": "TDS", "field": "TDS", "width": "100", "id": "TDS", "type": "number" },
                     { "headerName": "Admin Charges", "field": "Admin Charges", "width": "150", "id": "Admin Charges", "type": "number" },
                     { "headerName": "Full Amount", "field": "Full Amount", "width": "150", "id": "Full Amount", "type": "number" },
