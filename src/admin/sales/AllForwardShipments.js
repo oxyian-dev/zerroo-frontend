@@ -5,6 +5,7 @@ import ServerDataGrid from "../../components/ServerDataGrid"
 const AllForwardShipments = () => {
     const color = {
         "Pending": "error",
+        "Hold": "warning",
         "Dispatched": "success"
     }
 
@@ -14,7 +15,7 @@ const AllForwardShipments = () => {
     datatype[6] = 'url'
 
     const render = []
-    render[4] = ({ value }) => <Chip color={color[value]} label={value} />
+    render[4] = ({ value }) => <Chip color={color[value] || 'default'} label={value} />
     render[7] = ({ value }) => value ? <IconButton target="_blank" href={value} component={Link}><IconRoute /></IconButton> : null
 
     const width = [

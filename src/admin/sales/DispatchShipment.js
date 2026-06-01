@@ -45,7 +45,7 @@ export default function DispatchShipment({ id = useParams()['id'] }) {
                     .then(({ status }) => {
                         if (status === 'success') {
                             enqueueSnackbar('Shipment Updated Successfully', { variant: 'success' })
-                            navigate('/admin/shipments/pending')
+                            navigate('/admin/shipments/dispatched')
                         } else {
                             enqueueSnackbar('Exception occurred', { variant: 'error' })
                             setSubmitting(false)

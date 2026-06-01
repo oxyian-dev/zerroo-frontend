@@ -59,6 +59,7 @@ export default function ShipmentLayout() {
                         }}>
                         <Tab label={`All (${Object.values(count).reduce((a, b) => a + b, 0)})`} id="all" value="all" />
                         <Tab label={`Pending (${count?.['Pending'] || 0})`} id="pending" value="pending" />
+                        <Tab label={`Hold (${count?.['Hold'] || 0})`} id="hold" value="hold" />
                         {/* <Tab label={`Processing (${count?.['Processing'] || 0})`} id="processing" value="processing" />
                         <Tab label={`Picked Up (${count?.['Picked Up'] || 0})`} id="picked-up" value="picked-up" /> */}
                         <Tab label={`Dispatched (${count?.['Dispatched'] || 0})`} id="dispatched" value="dispatched" />
