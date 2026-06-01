@@ -359,38 +359,6 @@ const LegalDocuments = () => {
                             })}
                         </Grid>
 
-                        <Box
-                            sx={{
-                                mt: 1,
-                                p: { xs: 2.5, md: 3 },
-                                borderRadius: 3,
-                                border: '1px solid rgba(255,255,255,.08)',
-                                bgcolor: 'rgba(255,255,255,.03)'
-                            }}
-                        >
-                            <Typography
-                                variant="subtitle2"
-                                sx={{
-                                    color: '#f6d27b',
-                                    fontWeight: 800,
-                                    textTransform: 'uppercase',
-                                    letterSpacing: '.12em',
-                                    mb: 1
-                                }}
-                            >
-                                Note
-                            </Typography>
-                            <Typography
-                                sx={{
-                                    color: 'rgba(255,255,255,.68)',
-                                    lineHeight: 1.9,
-                                    fontSize: { xs: '0.95rem', md: '1rem' }
-                                }}
-                            >
-                                These files are served directly from the site&apos;s <Box component="span" sx={{ color: '#f6d27b', fontWeight: 700 }}>/docs</Box> folder.
-                                If you add or replace a document there later, the legal documents page will continue to point to the same live file location.
-                            </Typography>
-                        </Box>
                     </Stack>
                 </Box>
             </Box>
