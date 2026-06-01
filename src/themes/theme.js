@@ -4,62 +4,62 @@ import config from "../config"
 let theme = createTheme({
     palette: {
         primary: {
-            light: "rgba(255,255,255,.08)",
-            main: "#efcb77",
-            dark: "#ddb45d",
-            200: "rgba(221,180,93,.2)",
-            800: "rgba(221,180,93,.3)",
+            light: "rgba(255,244,208,.12)",
+            main: "#f6d27b",
+            dark: "#d8a94a",
+            200: "rgba(246,210,123,.2)",
+            800: "rgba(246,210,123,.3)",
         },
         light: {
-            main: "rgba(255,255,255,.82)"
+            main: "rgba(255,255,255,.9)"
         },
         secondary: {
-            light: "rgba(255,255,255,.68)",
-            main: "#0a0a0a",
-            dark: "#020202",
-            200: "rgba(255,255,255,.1)",
-            800: "rgba(255,255,255,.15)",
+            light: "rgba(205,222,255,.7)",
+            main: "#0b1120",
+            dark: "#04070d",
+            200: "rgba(89,116,170,.16)",
+            800: "rgba(89,116,170,.24)",
         },
         background: {
-            default: "#020202",
-            paper: "#050505",
+            default: "#05070a",
+            paper: "#0a0f16",
         },
         grey: {
-            50: "rgba(255,255,255,.02)",
-            100: "rgba(255,255,255,.04)",
-            200: "rgba(255,255,255,.08)",
-            300: "rgba(255,255,255,.1)",
-            500: "rgba(255,255,255,.62)",
-            600: "rgba(255,255,255,.68)",
-            700: "rgba(255,255,255,.82)",
+            50: "rgba(255,255,255,.03)",
+            100: "rgba(255,255,255,.05)",
+            200: "rgba(255,255,255,.09)",
+            300: "rgba(255,255,255,.14)",
+            500: "rgba(255,255,255,.76)",
+            600: "rgba(255,255,255,.76)",
+            700: "rgba(255,255,255,.9)",
             900: "rgba(255,255,255,1)",
         },
         success: {
-            light: "rgba(81,207,102,.15)",
-            200: "rgba(81,207,102,.3)",
-            main: "#51cf66",
-            dark: "#3cb34f",
+            light: "rgba(60,200,120,.16)",
+            200: "rgba(60,200,120,.28)",
+            main: "#3ddc97",
+            dark: "#2aa46f",
         },
         error: {
-            light: "rgba(255,107,107,.15)",
+            light: "rgba(255,92,92,.16)",
             main: "#ff6b6b",
-            dark: "#e05555",
+            dark: "#e24f4f",
         },
         warning: {
-            light: "rgba(255,169,77,.15)",
-            main: "#ffa94d",
-            dark: "#f08c32",
+            light: "rgba(255,180,80,.16)",
+            main: "#ffb84d",
+            dark: "#ea8f1f",
         },
         info: {
-            light: "rgba(77,171,247,.15)",
-            main: "#4dabf7",
+            light: "rgba(85,187,255,.16)",
+            main: "#55bbff",
         },
         text: {
             primary: "rgba(255,255,255,1)",
-            secondary: "rgba(255,255,255,.82)",
-            disabled: "rgba(255,255,255,.4)",
+            secondary: "rgba(255,255,255,.86)",
+            disabled: "rgba(255,255,255,.42)",
         },
-        divider: "rgba(255,255,255,.08)",
+        divider: "rgba(255,255,255,.12)",
     },
     shape: {
         borderRadius: 4
@@ -134,16 +134,16 @@ theme = createTheme({
         MuiOutlinedInput: {
             styleOverrides: {
                 root: {
-                    background: 'rgba(255,255,255,.02)',
+                    background: 'linear-gradient(180deg, rgba(246,210,123,.08), rgba(255,255,255,.03))',
                     borderRadius: '4px',
                     '& .MuiOutlinedInput-notchedOutline': {
-                        borderColor: 'rgba(255,255,255,.15)'
+                        borderColor: 'rgba(255,255,255,.14)'
                     },
                     '&:hover .MuiOutlinedInput-notchedOutline': {
-                        borderColor: 'rgba(255,255,255,.3)'
+                        borderColor: 'rgba(246,210,123,.38)'
                     },
                     '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                        borderColor: '#efcb77'
+                        borderColor: '#f6d27b'
                     },
                     '&.MuiInputBase-multiline': {
                         padding: 1
@@ -172,9 +172,9 @@ theme = createTheme({
         MuiInputLabel: {
             styleOverrides: {
                 root: {
-                    color: 'rgba(255,255,255,.68)',
+                    color: 'rgba(255,255,255,.74)',
                     '&.Mui-focused': {
-                        color: '#efcb77'
+                        color: '#f6d27b'
                     }
                 }
             }
@@ -186,7 +186,7 @@ theme = createTheme({
             styleOverrides: {
                 root: {
                     backgroundImage: 'none',
-                    backgroundColor: '#050505',
+                    backgroundColor: '#0a0f16',
                 },
                 rounded: {
                     borderRadius: '4px'
@@ -196,10 +196,11 @@ theme = createTheme({
         MuiCard: {
             styleOverrides: {
                 root: {
-                    background: 'linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01))',
-                    border: '1px solid rgba(255,255,255,.08)',
+                    background: 'linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.015))',
+                    border: '1px solid rgba(255,255,255,.12)',
                     backdropFilter: 'blur(10px)',
                     borderRadius: '4px',
+                    boxShadow: '0 16px 38px rgba(0,0,0,.26)',
                 }
             }
         },
@@ -232,8 +233,8 @@ theme = createTheme({
         MuiAvatar: {
             styleOverrides: {
                 root: {
-                    color: '#efcb77',
-                    background: 'rgba(221,180,93,.2)',
+                    color: '#f6d27b',
+                    background: 'rgba(246,210,123,.18)',
                 }
             }
         },
@@ -258,27 +259,27 @@ theme = createTheme({
                     transition: 'all 0.4s ease',
                 },
                 containedPrimary: {
-                    background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
+                    background: 'linear-gradient(135deg, #fff7dc 0%, #fbe9bb 14%, #f6d27b 28%, #d59b3d 48%, #a96d1e 62%, #f4d891 80%, #fff6d8 100%)',
                     color: '#000',
-                    boxShadow: '0 15px 35px rgba(221,180,93,.15)',
+                    boxShadow: '0 18px 38px rgba(246,210,123,.18)',
                     '&:hover': {
                         transform: 'translateY(-5px)',
-                        boxShadow: '0 20px 50px rgba(221,180,93,.22)',
-                        background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
+                        boxShadow: '0 24px 56px rgba(246,210,123,.24)',
+                        background: 'linear-gradient(135deg, #fff7dc 0%, #fbe9bb 14%, #f6d27b 28%, #d59b3d 48%, #a96d1e 62%, #f4d891 80%, #fff6d8 100%)',
                     }
                 },
                 outlinedPrimary: {
-                    border: '1px solid rgba(221,180,93,.2)',
-                    color: '#efcb77',
+                    border: '1px solid rgba(246,210,123,.3)',
+                    color: '#f6d27b',
                     '&:hover': {
-                        borderColor: 'rgba(221,180,93,.3)',
-                        background: 'transparent',
+                        borderColor: 'rgba(246,210,123,.5)',
+                        background: 'rgba(246,210,123,.08)',
                     }
                 },
                 textPrimary: {
-                    color: '#efcb77',
+                    color: '#f6d27b',
                     '&:hover': {
-                        background: 'rgba(221,180,93,.1)',
+                        background: 'rgba(246,210,123,.1)',
                     }
                 }
             },
@@ -286,11 +287,11 @@ theme = createTheme({
         MuiIconButton: {
             styleOverrides: {
                 root: {
-                    color: 'rgba(255,255,255,.82)',
+                    color: 'rgba(255,255,255,.86)',
                     transition: 'all 0.3s ease',
                     '&:hover': {
-                        color: '#efcb77',
-                        background: 'rgba(221,180,93,.1)',
+                        color: '#f6d27b',
+                        background: 'rgba(246,210,123,.1)',
                     }
                 }
             }
@@ -298,7 +299,7 @@ theme = createTheme({
         MuiDivider: {
             styleOverrides: {
                 root: {
-                    borderColor: 'rgba(255,255,255,.08)',
+                    borderColor: 'rgba(255,255,255,.12)',
                 }
             }
         },
@@ -310,8 +311,8 @@ theme = createTheme({
                     fontSize: '0.78rem',
                 },
                 filled: {
-                    background: 'rgba(255,255,255,.08)',
-                    color: 'rgba(255,255,255,.82)',
+                    background: 'rgba(255,255,255,.12)',
+                    color: 'rgba(255,255,255,.9)',
                 }
             }
         },
@@ -326,12 +327,12 @@ theme = createTheme({
             styleOverrides: {
                 root: {
                     '& .MuiTableCell-head': {
-                        color: 'rgba(255,255,255,.82)',
+                        color: 'rgba(255,255,255,.9)',
                         fontWeight: 700,
                         fontSize: '0.78rem',
                         letterSpacing: '0.1em',
                         textTransform: 'uppercase',
-                        borderBottom: '1px solid rgba(255,255,255,.08)',
+                        borderBottom: '1px solid rgba(255,255,255,.12)',
                     }
                 }
             }
@@ -339,8 +340,8 @@ theme = createTheme({
         MuiTableCell: {
             styleOverrides: {
                 root: {
-                    borderBottom: '1px solid rgba(255,255,255,.08)',
-                    color: 'rgba(255,255,255,.82)',
+                    borderBottom: '1px solid rgba(255,255,255,.12)',
+                    color: 'rgba(255,255,255,.9)',
                 }
             }
         },
@@ -349,23 +350,23 @@ theme = createTheme({
                 switchBase: {
                     color: 'rgba(255,255,255,.4)',
                     '&.Mui-checked': {
-                        color: '#efcb77',
+                        color: '#f6d27b',
                     },
                     '&.Mui-checked + .MuiSwitch-track': {
-                        backgroundColor: 'rgba(221,180,93,.3)',
+                        backgroundColor: 'rgba(246,210,123,.3)',
                     }
                 },
                 track: {
-                    backgroundColor: 'rgba(255,255,255,.15)',
+                    backgroundColor: 'rgba(255,255,255,.16)',
                 }
             }
         },
         MuiTooltip: {
             styleOverrides: {
                 tooltip: {
-                    background: '#0a0a0a',
-                    border: '1px solid rgba(255,255,255,.08)',
-                    color: 'rgba(255,255,255,.82)',
+                    background: '#0b1120',
+                    border: '1px solid rgba(255,255,255,.12)',
+                    color: 'rgba(255,255,255,.9)',
                     fontSize: '0.78rem',
                     borderRadius: '4px',
                 }
@@ -374,8 +375,8 @@ theme = createTheme({
         MuiMenu: {
             styleOverrides: {
                 paper: {
-                    background: '#050505',
-                    border: '1px solid rgba(255,255,255,.08)',
+                    background: '#0b1120',
+                    border: '1px solid rgba(255,255,255,.12)',
                     borderRadius: '4px',
                 }
             }
@@ -383,9 +384,9 @@ theme = createTheme({
         MuiMenuItem: {
             styleOverrides: {
                 root: {
-                    color: 'rgba(255,255,255,.82)',
+                    color: 'rgba(255,255,255,.9)',
                     '&:hover': {
-                        background: 'rgba(255,255,255,.04)',
+                        background: 'rgba(246,210,123,.08)',
                     }
                 }
             }
@@ -393,8 +394,8 @@ theme = createTheme({
         MuiDialog: {
             styleOverrides: {
                 paper: {
-                    background: '#050505',
-                    border: '1px solid rgba(255,255,255,.08)',
+                    background: '#0b1120',
+                    border: '1px solid rgba(255,255,255,.12)',
                     borderRadius: '4px',
                     boxShadow: '0 30px 70px rgba(0,0,0,.5)',
                 }
@@ -411,21 +412,21 @@ theme = createTheme({
         MuiDialogContentText: {
             styleOverrides: {
                 root: {
-                    color: 'rgba(255,255,255,.68)',
+                    color: 'rgba(255,255,255,.76)',
                 }
             }
         },
         MuiSelect: {
             styleOverrides: {
                 icon: {
-                    color: 'rgba(255,255,255,.68)',
+                    color: 'rgba(255,255,255,.76)',
                 }
             }
         },
         MuiSkeleton: {
             styleOverrides: {
                 root: {
-                    backgroundColor: 'rgba(255,255,255,.1)',
+                    backgroundColor: 'rgba(255,255,255,.12)',
                     borderRadius: '4px',
                 }
             }
@@ -433,17 +434,17 @@ theme = createTheme({
         MuiCircularProgress: {
             styleOverrides: {
                 root: {
-                    color: '#efcb77',
+                    color: '#f6d27b',
                 }
             }
         },
         MuiLinearProgress: {
             styleOverrides: {
                 root: {
-                    backgroundColor: 'rgba(255,255,255,.08)',
+                    backgroundColor: 'rgba(255,255,255,.12)',
                 },
                 bar: {
-                    backgroundColor: '#efcb77',
+                    backgroundColor: '#f6d27b',
                 }
             }
         },
@@ -451,11 +452,11 @@ theme = createTheme({
             styleOverrides: {
                 root: {
                     borderRadius: '4px',
-                    border: '1px solid rgba(255,255,255,.08)',
+                    border: '1px solid rgba(255,255,255,.12)',
                 },
                 standardSuccess: {
                     background: 'rgba(81,207,102,.1)',
-                    color: '#51cf66',
+                    color: '#3ddc97',
                 },
                 standardError: {
                     background: 'rgba(255,107,107,.1)',
@@ -463,11 +464,11 @@ theme = createTheme({
                 },
                 standardWarning: {
                     background: 'rgba(255,169,77,.1)',
-                    color: '#ffa94d',
+                    color: '#ffb84d',
                 },
                 standardInfo: {
                     background: 'rgba(77,171,247,.1)',
-                    color: '#4dabf7',
+                    color: '#55bbff',
                 }
             }
         },
@@ -478,9 +479,9 @@ theme = createTheme({
                     letterSpacing: '0.1em',
                     fontWeight: 600,
                     fontSize: '0.78rem',
-                    color: 'rgba(255,255,255,.62)',
+                    color: 'rgba(255,255,255,.72)',
                     '&.Mui-selected': {
-                        color: '#efcb77',
+                        color: '#f6d27b',
                     }
                 }
             }
@@ -488,14 +489,14 @@ theme = createTheme({
         MuiTabs: {
             styleOverrides: {
                 indicator: {
-                    backgroundColor: '#efcb77',
+                    backgroundColor: '#f6d27b',
                 }
             }
         },
         MuiBreadcrumbs: {
             styleOverrides: {
                 li: {
-                    color: 'rgba(255,255,255,.62)',
+                    color: 'rgba(255,255,255,.72)',
                 },
                 separator: {
                     color: 'rgba(255,255,255,.3)',
@@ -507,17 +508,17 @@ theme = createTheme({
                 root: {
                     borderRadius: '4px',
                     '&.Mui-selected': {
-                        background: 'rgba(221,180,93,.12) !important',
+                        background: 'rgba(246,210,123,.14) !important',
                         '& .MuiListItemIcon-root': {
-                            color: '#efcb77',
+                            color: '#f6d27b',
                         },
                         '& .MuiListItemText-primary': {
-                            color: '#efcb77',
+                            color: '#f6d27b',
                             fontWeight: 700,
                         }
                     },
                     '&:hover': {
-                        background: 'rgba(255,255,255,.04)',
+                        background: 'rgba(246,210,123,.08)',
                     }
                 }
             }
@@ -525,7 +526,7 @@ theme = createTheme({
         MuiListItemIcon: {
             styleOverrides: {
                 root: {
-                    color: 'rgba(255,255,255,.62)',
+                    color: 'rgba(255,255,255,.72)',
                     minWidth: '36px',
                 }
             }
@@ -533,7 +534,7 @@ theme = createTheme({
         MuiListItemText: {
             styleOverrides: {
                 primary: {
-                    color: 'rgba(255,255,255,.82)',
+                    color: 'rgba(255,255,255,.9)',
                     fontWeight: 500,
                     fontSize: '0.875rem',
                 },
@@ -546,8 +547,8 @@ theme = createTheme({
         MuiAppBar: {
             styleOverrides: {
                 root: {
-                    borderBottom: '1px solid rgba(255,255,255,.08)',
-                    background: 'rgba(0,0,0,.85)',
+                    borderBottom: '1px solid rgba(255,255,255,.12)',
+                    background: 'rgba(8,12,18,.88)',
                     backdropFilter: 'blur(16px)',
                     WebkitBackdropFilter: 'blur(16px)',
                 }
@@ -556,24 +557,24 @@ theme = createTheme({
         MuiDrawer: {
             styleOverrides: {
                 paper: {
-                    borderRight: '1px solid rgba(255,255,255,.08)',
+                    borderRight: '1px solid rgba(255,255,255,.12)',
                 }
             }
         },
         MuiDataGrid: {
             styleOverrides: {
                 root: {
-                    border: '1px solid rgba(255,255,255,.08)',
+                    border: '1px solid rgba(255,255,255,.12)',
                     borderRadius: '4px',
-                    color: 'rgba(255,255,255,.82)',
+                    color: 'rgba(255,255,255,.9)',
                     '& .MuiDataGrid-cell': {
                         borderBottom: '1px solid rgba(255,255,255,.06)',
                     },
                     '& .MuiDataGrid-columnHeaders': {
-                        background: 'rgba(255,255,255,.02)',
-                        borderBottom: '1px solid rgba(255,255,255,.08)',
+                        background: 'rgba(255,255,255,.03)',
+                        borderBottom: '1px solid rgba(255,255,255,.12)',
                         '& .MuiDataGrid-columnHeader': {
-                            color: 'rgba(255,255,255,.68)',
+                            color: 'rgba(255,255,255,.76)',
                             fontWeight: 700,
                             fontSize: '0.78rem',
                             letterSpacing: '0.05em',
@@ -582,41 +583,41 @@ theme = createTheme({
                     },
                     '& .MuiDataGrid-row': {
                         '&:hover': {
-                            background: 'rgba(255,255,255,.02)',
+                            background: 'rgba(255,255,255,.03)',
                         },
                         '&.Mui-selected': {
-                            background: 'rgba(221,180,93,.08)',
+                            background: 'rgba(246,210,123,.08)',
                             '&:hover': {
-                                background: 'rgba(221,180,93,.1)',
+                                background: 'rgba(246,210,123,.12)',
                             }
                         }
                     },
                     '& .MuiDataGrid-footerContainer': {
-                        borderTop: '1px solid rgba(255,255,255,.08)',
+                        borderTop: '1px solid rgba(255,255,255,.12)',
                     },
                     '& .MuiTablePagination-root': {
-                        color: 'rgba(255,255,255,.62)',
+                        color: 'rgba(255,255,255,.72)',
                     },
                     '& .MuiTablePagination-selectIcon': {
-                        color: 'rgba(255,255,255,.62)',
+                        color: 'rgba(255,255,255,.72)',
                     },
                     '& .MuiDataGrid-columnSeparator': {
-                        color: 'rgba(255,255,255,.08)',
+                        color: 'rgba(255,255,255,.12)',
                     },
                     '& .MuiDataGrid-menuIcon button': {
-                        color: 'rgba(255,255,255,.62)',
+                        color: 'rgba(255,255,255,.72)',
                     },
                     '& .MuiDataGrid-sortIcon': {
-                        color: 'rgba(255,255,255,.62)',
+                        color: 'rgba(255,255,255,.72)',
                     },
                     '& .MuiDataGrid-iconButtonContainer button': {
-                        color: 'rgba(255,255,255,.62)',
+                        color: 'rgba(255,255,255,.72)',
                     },
                     '& .MuiDataGrid-detailPanel': {
                         background: 'rgba(255,255,255,.01)',
                     },
                     '& .MuiDataGrid-cellEditing': {
-                        background: 'rgba(221,180,93,.08)',
+                        background: 'rgba(246,210,123,.08)',
                     },
                     '& .MuiDataGrid-editInputCell': {
                         color: '#fff',
@@ -627,17 +628,17 @@ theme = createTheme({
         MuiTablePagination: {
             styleOverrides: {
                 root: {
-                    color: 'rgba(255,255,255,.62)',
+                    color: 'rgba(255,255,255,.72)',
                 },
                 selectIcon: {
-                    color: 'rgba(255,255,255,.62)',
+                    color: 'rgba(255,255,255,.72)',
                 }
             }
         },
         MuiBackdrop: {
             styleOverrides: {
                 root: {
-                    background: 'rgba(0,0,0,.6)',
+                    background: 'rgba(2,6,12,.72)',
                     backdropFilter: 'blur(4px)',
                 }
             }
@@ -645,32 +646,32 @@ theme = createTheme({
         MuiSnackbarContent: {
             styleOverrides: {
                 root: {
-                    background: '#0a0a0a',
-                    border: '1px solid rgba(255,255,255,.08)',
+                    background: '#0b1120',
+                    border: '1px solid rgba(255,255,255,.12)',
                     borderRadius: '4px',
-                    color: 'rgba(255,255,255,.82)',
+                    color: 'rgba(255,255,255,.9)',
                 }
             }
         },
         MuiAutocomplete: {
             styleOverrides: {
                 paper: {
-                    background: '#050505',
-                    border: '1px solid rgba(255,255,255,.08)',
+                    background: '#0b1120',
+                    border: '1px solid rgba(255,255,255,.12)',
                     borderRadius: '4px',
                 },
                 option: {
-                    color: 'rgba(255,255,255,.82)',
+                    color: 'rgba(255,255,255,.9)',
                     '&:hover': {
-                        background: 'rgba(255,255,255,.04)',
+                        background: 'rgba(246,210,123,.08)',
                     },
                     '&[aria-selected="true"]': {
-                        background: 'rgba(221,180,93,.12)',
+                        background: 'rgba(246,210,123,.14)',
                     }
                 },
                 listbox: {
                     '& .MuiAutocomplete-option': {
-                        color: 'rgba(255,255,255,.82)',
+                        color: 'rgba(255,255,255,.9)',
                     }
                 },
                 noOptions: {
@@ -684,9 +685,9 @@ theme = createTheme({
         MuiPickersDay: {
             styleOverrides: {
                 root: {
-                    color: 'rgba(255,255,255,.82)',
+                    color: 'rgba(255,255,255,.9)',
                     '&.Mui-selected': {
-                        background: '#efcb77',
+                        background: '#f6d27b',
                         color: '#000',
                     }
                 }

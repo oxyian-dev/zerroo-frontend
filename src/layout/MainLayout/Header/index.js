@@ -13,7 +13,19 @@ const Header = ({ handleLeftDrawerToggle }) => {
                 width={{ md: 228, xs: "auto" }}
             >
                 <Box display={{ xs: 'none', md: 'block' }} flexGrow={1}>
-                    <Box sx={{ fontSize:'20px', marginTop:'10px', fontWeight:'600', color:'#efcb77', textTransform: 'uppercase'  }}>Victory World</Box>
+                    <Box sx={{
+                        fontSize: '20px',
+                        marginTop: '10px',
+                        fontWeight: 700,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.24em',
+                        background: 'linear-gradient(135deg, #fff7dc 0%, #f6d27b 35%, #d59b3d 68%, #fff0bf 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text'
+                    }}>
+                        Victory World
+                    </Box>
                 </Box>
                 <Box alignSelf="center">
                     <IconButton onClick={handleLeftDrawerToggle} sx={{ color: 'rgba(255,255,255,.82)' }}>

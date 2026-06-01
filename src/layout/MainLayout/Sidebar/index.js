@@ -16,7 +16,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window, menuItems, setLeftDrawerOpe
 
     const drawer = (
         <React.Fragment>
-            <Box sx={{ bgcolor: '#020202', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
+            <Box sx={{ bgcolor: '#05070a', backgroundImage: 'linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01))', borderBottom: '1px solid rgba(255,255,255,.1)' }}>
                 <Box display={{ xs: 'block', md: 'none' }}>
                     <Box textAlign="center" p={2}>
                         <LogoSection />
@@ -62,9 +62,10 @@ const Sidebar = ({ drawerOpen, drawerToggle, window, menuItems, setLeftDrawerOpe
                 sx={{
                     '& .MuiDrawer-paper': {
                         width: config.drawerWidth,
-                        background: '#020202',
+                        backgroundColor: '#05070a',
+                        backgroundImage: 'linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01))',
                         color: theme.palette.text.primary,
-                        borderRight: '1px solid rgba(255,255,255,.08)',
+                        borderRight: '1px solid rgba(255,255,255,.1)',
                         [theme.breakpoints.up('md')]: {
                             top: '101px'
                         }

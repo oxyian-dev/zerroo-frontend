@@ -9,7 +9,8 @@ import Header from './Header';
 import Sidebar from './Sidebar';
 
 const Main = styled('main', { shouldForwardProp: prop => prop !== 'open' })(({ theme, open }) => ({
-    backgroundColor: '#020202',
+    backgroundColor: '#05070a',
+    backgroundImage: 'radial-gradient(circle at top, rgba(246,210,123,.05), transparent 26%), radial-gradient(circle at right, rgba(85,187,255,.04), transparent 22%), linear-gradient(180deg, #070b10 0%, #05070a 55%, #030406 100%)',
     width: '100%',
     minHeight: 'calc(100vh - 101px)',
     flexGrow: 1,
