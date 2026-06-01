@@ -175,6 +175,51 @@ export default function DistributorDetails({ id = useParams()['id'] }) {
                             </Typography>
                         </Paper>
                     </Grid>
+                    <Grid item xs={12}>
+                        <Paper
+                            sx={{
+                                p: 2.5,
+                                borderRadius: 2,
+                                bgcolor: data.active === false ? 'rgba(255, 193, 7, 0.08)' : 'rgba(239,203,119,0.06)',
+                                border: '1px solid rgba(239,203,119,.16)'
+                            }}
+                            elevation={0}
+                        >
+                            <Typography
+                                sx={{
+                                    color: '#efcb77',
+                                    letterSpacing: '0.12em',
+                                    textTransform: 'uppercase',
+                                    fontSize: '0.78rem',
+                                    fontWeight: 700,
+                                    mb: 1
+                                }}
+                            >
+                                Income Eligibility Policy
+                            </Typography>
+                            <Typography
+                                sx={{
+                                    color: 'rgba(255,255,255,.82)',
+                                    lineHeight: 1.9,
+                                    fontSize: '0.95rem'
+                                }}
+                            >
+                                Inactive IDs continue to contribute PV to the genealogy network, but they do not receive income, commission, or payout while inactive. When reactivated, only the new PV generated and new members added after the reactivation date are considered for income calculations. Missed payouts for the inactive period are not granted later.
+                            </Typography>
+                            {data.active === false && (
+                                <Typography
+                                    sx={{
+                                        mt: 1.25,
+                                        color: '#ffd54f',
+                                        fontSize: '0.9rem',
+                                        fontWeight: 600
+                                    }}
+                                >
+                                    This distributor is currently inactive and will not be included in payout runs until reactivated.
+                                </Typography>
+                            )}
+                        </Paper>
+                    </Grid>
                     <Grid item md={7} xs={12}>
                         <Paper sx={{ p: 2 }} elevation={2}>
                             <Typography mb={2} textAlign="center" variant='h4'>

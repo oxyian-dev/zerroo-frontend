@@ -23,6 +23,10 @@ const sections = [
         text: 'Unmatched PV is carried forward and can be used in future cutoff cycles. This keeps the balance ready until the opposite side matches.'
     },
     {
+        title: 'Inactive and Reactivated IDs',
+        text: 'If an ID is deactivated before cutoff processing, that ID does not receive income, commission, or payout for that cutoff period. The network PV still contributes to Left PV and Right PV volume. When the ID is reactivated, only the new PV generated and new members added after reactivation are considered for income calculations. Missed payouts for the inactive period are not carried forward for that ID.'
+    },
+    {
         title: 'Income Summary',
         text: 'Initial qualification payout = ₹800. Each subsequent 1:1 pair = ₹800. Unmatched PV remains in carry forward until a matching PV appears on the opposite side.'
     }
@@ -162,6 +166,37 @@ export default function ComphensationPlan() {
                         </Box>
                     </Grid>
                 </Grid>
+
+                <Box
+                    sx={{
+                        p: 3,
+                        borderRadius: 2,
+                        border: '1px solid rgba(239,203,119,.18)',
+                        bgcolor: 'rgba(239,203,119,0.06)'
+                    }}
+                >
+                    <Typography
+                        sx={{
+                            color: '#efcb77',
+                            letterSpacing: '0.18em',
+                            textTransform: 'uppercase',
+                            fontSize: '0.78rem',
+                            fontWeight: 700,
+                            mb: 1.25
+                        }}
+                    >
+                        Inactive ID Rule
+                    </Typography>
+                    <Typography
+                        sx={{
+                            color: 'rgba(255,255,255,.82)',
+                            lineHeight: 2,
+                            fontSize: { xs: '0.95rem', md: '1rem' }
+                        }}
+                    >
+                        Inactive IDs continue to contribute PV to the genealogy network, but they are not eligible for income, commission, or payout until they are reactivated. Once reactivated, only the PV and member activity created after reactivation are considered for new income calculations.
+                    </Typography>
+                </Box>
 
                 <Stack spacing={3}>
                     {sections.map((section, index) => (

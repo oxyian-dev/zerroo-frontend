@@ -1,4 +1,4 @@
-import { Box, Card, CardActionArea, CardContent, Grid, IconButton, Paper, Skeleton, Stack, Tooltip, Typography } from '@mui/material';
+import { Box, Card, CardActionArea, CardContent, Chip, Grid, IconButton, Paper, Skeleton, Stack, Tooltip, Typography } from '@mui/material';
 import { IconQuestionCircle } from '@tabler/icons';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -131,6 +131,66 @@ export default function Dashboard() {
               `}</style>
             </Paper>
           )}
+          <Paper
+            elevation={0}
+            sx={{
+              mb: 3,
+              p: { md: 2.5, xs: 2 },
+              borderRadius: 2,
+              border: '1px solid rgba(239,203,119,.18)',
+              bgcolor: data?.active === false ? 'rgba(255, 193, 7, 0.08)' : 'rgba(239,203,119,0.06)'
+            }}
+          >
+            <Stack spacing={1.25} direction={{ md: 'row', xs: 'column' }} alignItems={{ md: 'center', xs: 'flex-start' }} justifyContent="space-between">
+              <Box>
+                <Typography
+                  sx={{
+                    color: '#efcb77',
+                    fontWeight: 700,
+                    letterSpacing: '0.14em',
+                    textTransform: 'uppercase',
+                    fontSize: { md: '0.78rem', xs: '0.72rem' },
+                    mb: 0.6
+                  }}
+                >
+                  Income Eligibility Policy
+                </Typography>
+                <Typography
+                  sx={{
+                    color: 'rgba(255,255,255,.82)',
+                    fontSize: { md: '0.98rem', xs: '0.92rem' },
+                    lineHeight: 1.8,
+                    maxWidth: 980
+                  }}
+                >
+                  Inactive IDs continue contributing to network Left PV and Right PV volume, but no income, commission, or payout is released during inactivity. After reactivation, only new PV and new members added from that date forward are considered for income calculations.
+                </Typography>
+              </Box>
+              <Chip
+                label={data?.active === false ? 'Account Inactive' : 'Account Active'}
+                color={data?.active === false ? 'warning' : 'success'}
+                variant="outlined"
+                sx={{
+                  borderColor: data?.active === false ? 'rgba(255,193,7,.5)' : 'rgba(46, 204, 113, .45)',
+                  color: data?.active === false ? '#ffd54f' : '#6ee7a8',
+                  fontWeight: 700,
+                  letterSpacing: '0.08em'
+                }}
+              />
+            </Stack>
+            {data?.active === false && (
+              <Typography
+                sx={{
+                  mt: 1.25,
+                  color: '#ffd54f',
+                  fontSize: '0.9rem',
+                  lineHeight: 1.8
+                }}
+              >
+                This ID is currently inactive, so it will not earn income or be included in payout runs until it is reactivated.
+              </Typography>
+            )}
+          </Paper>
           <Grid container spacing={{ md: 3, xs: 2 }}>
             <Grid item md={6} xs={12}>
               <Typography
