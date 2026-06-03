@@ -1,5 +1,4 @@
 import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
 import {
     AppBar,
     Badge,
@@ -74,8 +73,6 @@ const ShopLayout = () => {
 
     const [viewCart, setViewCart] = useState(true)
     const [openDrawer, setOpenDrawer] = useState(false)
-    const [navMenuEl, setNavMenuEl] = useState(null)
-
     useEffect(() => {
         setViewCart(pathname !== '/cart')
     }, [pathname])
@@ -83,8 +80,6 @@ const ShopLayout = () => {
     const login = isLoggedIn();
     const [mobileExpanded, setMobileExpanded] = useState({})
     const [scrolled, setScrolled] = useState(false)
-    const navMenuOpen = Boolean(navMenuEl)
-
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 10)
         window.addEventListener('scroll', handleScroll, { passive: true })
@@ -94,14 +89,6 @@ const ShopLayout = () => {
     const findXs = count => {
         if (count > 3) return 3;
         return 12 / count
-    }
-
-    const handleNavMenuOpen = (event) => {
-        setNavMenuEl(event.currentTarget)
-    }
-
-    const handleNavMenuClose = () => {
-        setNavMenuEl(null)
     }
 
     return (
@@ -780,158 +767,6 @@ const ShopLayout = () => {
                                 >
                                     Home
                                 </Typography>
-                                <Box>
-                                    <Typography
-                                        component="button"
-                                        type="button"
-                                        onClick={handleNavMenuOpen}
-                                        aria-haspopup="true"
-                                        aria-expanded={navMenuOpen ? 'true' : undefined}
-                                        sx={{
-                                            position: 'relative',
-                                            display: 'inline-flex',
-                                            alignItems: 'center',
-                                            gap: 0.8,
-                                            border: 'none',
-                                            background: 'transparent',
-                                            cursor: 'pointer',
-                                            fontSize: '0.8rem',
-                                            textTransform: 'uppercase',
-                                            letterSpacing: '0.2em',
-                                            color: 'rgba(255,255,255,.82)',
-                                            textDecoration: 'none',
-                                            transition: '0.3s ease',
-                                            '&:hover': {
-                                                color: '#f5dc97',
-                                            },
-                                            '&::after': {
-                                                content: '""',
-                                                position: 'absolute',
-                                                left: 0,
-                                                bottom: '-10px',
-                                                width: 0,
-                                                height: '1px',
-                                                background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
-                                                transition: '0.35s ease',
-                                            },
-                                            '&:hover::after': {
-                                                width: '100%',
-                                            }
-                                        }}
-                                    >
-                                        Explore
-                                        <ExpandMore sx={{ fontSize: '1.1rem' }} />
-                                    </Typography>
-
-                                    <Menu
-                                        anchorReference="anchorPosition"
-                                        anchorPosition={{
-                                            top: 114,
-                                            left: typeof window !== 'undefined' ? window.innerWidth / 2 : 0
-                                        }}
-                                        id="explore-menu"
-                                        open={navMenuOpen}
-                                        onClose={handleNavMenuClose}
-                                        transformOrigin={{ horizontal: 'center', vertical: 'top' }}
-                                        PaperProps={{
-                                            elevation: 0,
-                                            sx: {
-                                                mt: 1.8,
-                                                overflow: 'hidden',
-                                                bgcolor: '#090909',
-                                                border: '1px solid rgba(255,255,255,.08)',
-                                                boxShadow: '0 30px 80px rgba(0,0,0,.42)',
-                                                borderRadius: 0,
-                                                width: { md: 920, lg: 1040 },
-                                                maxWidth: 'calc(100vw - 24px)',
-                                                mx: 'auto',
-                                                '&:before': {
-                                                    content: '""',
-                                                    display: 'block',
-                                                    position: 'absolute',
-                                                    top: 0,
-                                                    left: '50%',
-                                                    width: 12,
-                                                    height: 12,
-                                                    bgcolor: '#090909',
-                                                    transform: 'translate(-50%, -50%) rotate(45deg)',
-                                                    zIndex: 0,
-                                                    border: '1px solid rgba(255,255,255,.08)',
-                                                },
-                                            },
-                                        }}
-                                        MenuListProps={{
-                                            onMouseLeave: handleNavMenuClose
-                                        }}
-                                    >
-                                        <Box sx={{ p: 3.5 }}>
-                                            <Stack spacing={0.75} sx={{ mb: 3 }}>
-                                                <Typography sx={{ color: '#efcb77', textTransform: 'uppercase', letterSpacing: '0.32em', fontSize: '0.72rem', fontWeight: 700 }}>
-                                                    Navigate Victory World
-                                                </Typography>
-                                                <Typography sx={{ color: 'rgba(255,255,255,.72)', fontSize: '0.95rem' }}>
-                                                    Explore products, direct selling resources, policies, and support pages in one place.
-                                                </Typography>
-                                            </Stack>
-                                            <Grid container spacing={3}>
-                                                {footerNavigationSections.map((section) => (
-                                                    <Grid item xs={12} sm={6} md={3} key={section.title}>
-                                                        <Typography sx={{ color: '#fff', fontSize: '0.92rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.2em', mb: 2 }}>
-                                                            {section.title}
-                                                        </Typography>
-                                                        <Stack spacing={1.2}>
-                                                            {section.links.map(({ text, link, external }) => (
-                                                                external ? (
-                                                                    <Typography
-                                                                        key={text}
-                                                                        component="a"
-                                                                        href={link}
-                                                                        target="_blank"
-                                                                        rel="noopener noreferrer"
-                                                                        onClick={handleNavMenuClose}
-                                                                        sx={{
-                                                                            color: 'rgba(255,255,255,.72)',
-                                                                            textDecoration: 'none',
-                                                                            fontSize: '0.92rem',
-                                                                            transition: 'all 0.25s ease',
-                                                                            width: 'fit-content',
-                                                                            '&:hover': {
-                                                                                color: '#f5dc97',
-                                                                                transform: 'translateX(4px)'
-                                                                            }
-                                                                        }}
-                                                                    >
-                                                                        {text}
-                                                                    </Typography>
-                                                                ) : (
-                                                                    <Typography
-                                                                        key={text}
-                                                                        component={Link}
-                                                                        to={link}
-                                                                        onClick={handleNavMenuClose}
-                                                                        sx={{
-                                                                            color: 'rgba(255,255,255,.72)',
-                                                                            textDecoration: 'none',
-                                                                            fontSize: '0.92rem',
-                                                                            transition: 'all 0.25s ease',
-                                                                            width: 'fit-content',
-                                                                            '&:hover': {
-                                                                                color: '#f5dc97',
-                                                                                transform: 'translateX(4px)'
-                                                                            }
-                                                                        }}
-                                                                    >
-                                                                        {text}
-                                                                    </Typography>
-                                                                )
-                                                            ))}
-                                                        </Stack>
-                                                    </Grid>
-                                                ))}
-                                            </Grid>
-                                        </Box>
-                                    </Menu>
-                                </Box>
                                 <Typography
                                     component={Link}
                                     to="/shop"

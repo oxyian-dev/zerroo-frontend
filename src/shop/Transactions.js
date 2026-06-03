@@ -1,5 +1,6 @@
-import { Container, Stack, Typography, Box, Divider } from '@mui/material'
+import { Container, Stack, Typography, Box, Divider, Grid, Chip } from '@mui/material'
 import React from 'react'
+import { companyDetails } from './companyDetails'
 
 export default function Transactions() {
     return (
@@ -217,6 +218,110 @@ export default function Transactions() {
                     >
                         All financial transactions are conducted in strict compliance with Reserve Bank of India (RBI) guidelines and Indian banking regulations. We prioritize the security and transparency of every transaction to protect both the company and our direct sellers.
                     </Typography>
+                </Box>
+
+                <Box
+                    sx={{
+                        p: 4,
+                        borderRadius: 2,
+                        bgcolor: 'rgba(239, 203, 119, 0.06)',
+                        border: '1px solid rgba(239, 203, 119, 0.18)'
+                    }}
+                >
+                    <Typography
+                        variant="h5"
+                        sx={{
+                            color: '#efcb77',
+                            fontSize: { xs: '1.1rem', md: '1.25rem' },
+                            fontWeight: 600,
+                            mb: 2
+                        }}
+                    >
+                        Company Bank Details
+                    </Typography>
+                    <Typography
+                        sx={{
+                            color: 'rgba(255,255,255,.68)',
+                            lineHeight: 1.8,
+                            fontSize: { xs: '0.95rem', md: '1rem' },
+                            mb: 3,
+                            maxWidth: 760
+                        }}
+                    >
+                        Use the official company bank account below for approved payments and references.
+                    </Typography>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12} sm={6} md={4}>
+                            <Box sx={{ p: 2.5, borderRadius: 2, bgcolor: 'rgba(0,0,0,0.22)', border: '1px solid rgba(255,255,255,.08)' }}>
+                                <Typography sx={{ color: 'rgba(255,255,255,.6)', fontSize: '0.8rem', letterSpacing: '0.08em', textTransform: 'uppercase', mb: 0.75 }}>
+                                    Account Holder
+                                </Typography>
+                                <Typography sx={{ color: '#fff', fontWeight: 600, lineHeight: 1.6 }}>
+                                    {companyDetails.bankAccountHolder}
+                                </Typography>
+                            </Box>
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={4}>
+                            <Box sx={{ p: 2.5, borderRadius: 2, bgcolor: 'rgba(0,0,0,0.22)', border: '1px solid rgba(255,255,255,.08)' }}>
+                                <Typography sx={{ color: 'rgba(255,255,255,.6)', fontSize: '0.8rem', letterSpacing: '0.08em', textTransform: 'uppercase', mb: 0.75 }}>
+                                    Account Number
+                                </Typography>
+                                <Typography sx={{ color: '#fff', fontWeight: 600, lineHeight: 1.6 }}>
+                                    {companyDetails.bankAccountNumber}
+                                </Typography>
+                            </Box>
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={4}>
+                            <Box sx={{ p: 2.5, borderRadius: 2, bgcolor: 'rgba(0,0,0,0.22)', border: '1px solid rgba(255,255,255,.08)' }}>
+                                <Typography sx={{ color: 'rgba(255,255,255,.6)', fontSize: '0.8rem', letterSpacing: '0.08em', textTransform: 'uppercase', mb: 0.75 }}>
+                                    IFSC
+                                </Typography>
+                                <Typography sx={{ color: '#fff', fontWeight: 600, lineHeight: 1.6 }}>
+                                    {companyDetails.bankIfsc}
+                                </Typography>
+                            </Box>
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={4}>
+                            <Box sx={{ p: 2.5, borderRadius: 2, bgcolor: 'rgba(0,0,0,0.22)', border: '1px solid rgba(255,255,255,.08)' }}>
+                                <Typography sx={{ color: 'rgba(255,255,255,.6)', fontSize: '0.8rem', letterSpacing: '0.08em', textTransform: 'uppercase', mb: 0.75 }}>
+                                    Branch
+                                </Typography>
+                                <Typography sx={{ color: '#fff', fontWeight: 600, lineHeight: 1.6 }}>
+                                    {companyDetails.bankBranch}
+                                </Typography>
+                            </Box>
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={4}>
+                            <Box sx={{ p: 2.5, borderRadius: 2, bgcolor: 'rgba(0,0,0,0.22)', border: '1px solid rgba(255,255,255,.08)' }}>
+                                <Typography sx={{ color: 'rgba(255,255,255,.6)', fontSize: '0.8rem', letterSpacing: '0.08em', textTransform: 'uppercase', mb: 0.75 }}>
+                                    Account Type
+                                </Typography>
+                                <Typography sx={{ color: '#fff', fontWeight: 600, lineHeight: 1.6 }}>
+                                    {companyDetails.bankAccountType}
+                                </Typography>
+                            </Box>
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={4}>
+                            <Box sx={{ p: 2.5, borderRadius: 2, bgcolor: 'rgba(0,0,0,0.22)', border: '1px solid rgba(255,255,255,.08)' }}>
+                                <Typography sx={{ color: 'rgba(255,255,255,.6)', fontSize: '0.8rem', letterSpacing: '0.08em', textTransform: 'uppercase', mb: 0.75 }}>
+                                    GST / Company
+                                </Typography>
+                                <Typography sx={{ color: '#fff', fontWeight: 600, lineHeight: 1.6 }}>
+                                    {companyDetails.gstin}
+                                </Typography>
+                                <Chip
+                                    label={companyDetails.name}
+                                    size="small"
+                                    sx={{
+                                        mt: 1.25,
+                                        bgcolor: 'rgba(239, 203, 119, 0.12)',
+                                        color: '#efcb77',
+                                        fontWeight: 600
+                                    }}
+                                />
+                            </Box>
+                        </Grid>
+                    </Grid>
                 </Box>
             </Stack>
         </Container>

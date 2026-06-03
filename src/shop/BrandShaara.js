@@ -227,7 +227,7 @@ export default function BrandShaara() {
                                 <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} pt={1}>
                                     <Button
                                         component={Link}
-                                        to="/products"
+                                        to="/p/1/Sanitary-Napkin/Shaara-Sanitary-Pads"
                                         sx={{
                                             background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)',
                                             color: '#000',
@@ -241,7 +241,7 @@ export default function BrandShaara() {
                                             '&:hover': { transform: 'translateY(-3px)', boxShadow: '0 20px 50px rgba(221,180,93,.22)' }
                                         }}
                                     >
-                                        View Products
+                                        Buy Now
                                     </Button>
                                     <Button
                                         component={Link}

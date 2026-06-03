@@ -65,7 +65,12 @@ const BrowserShopList = () => {
                         finalListing.push(records[i])
                     }
                 }
-                setMeta(category || { category: 'All Products' })
+                const categoryName = category?.category || 'All Products'
+                setMeta(category || { category: categoryName })
+                if (id && categoryName !== 'All Products' && !/women hygiene/i.test(categoryName)) {
+                    navigate('/coming-soon', { replace: true })
+                    return
+                }
                 setItemLoading(false)
                 setData(finalListing)
             })

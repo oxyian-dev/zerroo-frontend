@@ -21,8 +21,8 @@ export default function HionImageUpload({
     const onChange = imageList => {
         setImages(imageList);
         if (handleChange) {
-            const images = imageList.map(({ file }) => new Blob([file], { type: file.type }))
-            const value = multiple ? images : images?.[0]
+            const files = imageList.map(({ file }) => file)
+            const value = multiple ? files : files?.[0]
             handleChange({ target: { name, value } }, value)
         }
     };

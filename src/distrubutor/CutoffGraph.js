@@ -61,9 +61,10 @@ const CutoffGraph = () => {
                     mb: 1
                 }}
             >
-                Qualification + 1:1 Pair Income Timeline
+                {/* Qualification + 1:1 Pair  */}
+                Income Timeline
             </Typography>
-            <Typography
+            {/* <Typography
                 variant="body2"
                 sx={{
                     color: 'rgba(255,255,255,.48)',
@@ -71,7 +72,7 @@ const CutoffGraph = () => {
                 }}
             >
                 This chart shows qualification and 1:1 pair income entries over time.
-            </Typography>
+            </Typography> */}
             {errorMessage ? (
                 <Typography variant="h6" align="center" color="error">
                     {errorMessage}

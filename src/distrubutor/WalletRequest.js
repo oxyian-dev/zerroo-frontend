@@ -11,6 +11,7 @@ import * as Yup from "yup";
 import HionImageUpload from '../components/HionImageUpload';
 import fetcher from '../utils/fetcher';
 import REGEX from '../utils/regex';
+import { companyDetails } from '../shop/companyDetails';
 import { constructFormData } from '../utils/util';
 
 // Design System Styles
@@ -151,7 +152,7 @@ export default function WalletRequests() {
                   </ListItemIcon>
                   <ListItemText
                     primary="Account Name"
-                    secondary="Victory World"
+                    secondary={companyDetails.bankAccountHolder}
                     primaryTypographyProps={{ sx: { color: 'white', fontWeight: 600 } }}
                     secondaryTypographyProps={{ sx: { color: 'rgba(255,255,255,.82)' } }}
                   />
@@ -164,7 +165,7 @@ export default function WalletRequests() {
                   </ListItemIcon>
                   <ListItemText
                     primary="Bank"
-                    secondary="Axis Bank"
+                    secondary={companyDetails.bankName}
                     primaryTypographyProps={{ sx: { color: 'white', fontWeight: 600 } }}
                     secondaryTypographyProps={{ sx: { color: 'rgba(255,255,255,.82)' } }}
                   />
@@ -178,7 +179,7 @@ export default function WalletRequests() {
                   <ListItemText
                     primaryTypographyProps={{ noWrap: true, sx: { color: 'white', fontWeight: 600 } }}
                     primary="Branch"
-                    secondary="Dindigul main"
+                    secondary={companyDetails.bankBranch}
                     secondaryTypographyProps={{ sx: { color: 'rgba(255,255,255,.82)' } }}
                   />
                 </ListItem>
@@ -190,7 +191,7 @@ export default function WalletRequests() {
                   </ListItemIcon>
                   <ListItemText
                     primary="Account Number"
-                    secondary="924020051741869"
+                    secondary={companyDetails.bankAccountNumber}
                     primaryTypographyProps={{ sx: { color: 'white', fontWeight: 600 } }}
                     secondaryTypographyProps={{ sx: { color: 'rgba(255,255,255,.82)' } }}
                   />
@@ -203,7 +204,20 @@ export default function WalletRequests() {
                   </ListItemIcon>
                   <ListItemText
                     primary="IFSC"
-                    secondary="UTIB0000352"
+                    secondary={companyDetails.bankIfsc}
+                    primaryTypographyProps={{ sx: { color: 'white', fontWeight: 600 } }}
+                    secondaryTypographyProps={{ sx: { color: 'rgba(255,255,255,.82)' } }}
+                  />
+                </ListItem>
+              </Grid>
+              <Grid item xs={12}>
+                <ListItem>
+                  <ListItemIcon>
+                    <IconNumbers color="#efcb77" />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary="Account Type"
+                    secondary={companyDetails.bankAccountType}
                     primaryTypographyProps={{ sx: { color: 'white', fontWeight: 600 } }}
                     secondaryTypographyProps={{ sx: { color: 'rgba(255,255,255,.82)' } }}
                   />

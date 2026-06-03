@@ -123,6 +123,53 @@ const SparkleStars = () => {
     );
 };
 
+const categoryPanels = [
+    {
+        title: 'Women Hygiene',
+        description: 'Premium hygiene essentials created for comfort, freshness, and daily confidence.',
+        accent: 'rgba(246, 210, 123, .22)',
+        image: '/shaara.png',
+        link: '/brand/shaara',
+        align: 'flex-end',
+        tall: true
+    },
+    {
+        title: 'Fashion & Lifestyle',
+        description: 'Curated style and everyday living essentials that blend modern aesthetics with practical comfort.',
+        accent: 'rgba(209, 170, 255, .20)',
+        image: 'https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1200&auto=format&fit=crop',
+        link: '/coming-soon',
+        align: 'flex-start'
+    }
+];
+
+const supportCategories = [
+    {
+        title: 'Personal Care',
+        description: 'Daily essentials for freshness, hygiene, and everyday confidence.',
+        image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=900&auto=format&fit=crop',
+        accent: 'rgba(246, 210, 123, .18)'
+    },
+    {
+        title: 'Body Care',
+        description: 'Body care selections that feel gentle, polished, and restorative.',
+        image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=900&auto=format&fit=crop',
+        accent: 'rgba(209, 170, 255, .18)'
+    },
+    {
+        title: 'Home Care',
+        description: 'Home care products that keep spaces fresh, clean, and organised.',
+        image: 'https://images.unsplash.com/photo-1581579185169-80e5f0c1f8c9?q=80&w=900&auto=format&fit=crop',
+        accent: 'rgba(103, 197, 255, .18)'
+    },
+    {
+        title: 'Nutrition',
+        description: 'Wellness-supporting choices that encourage balance, energy, and better living.',
+        image: 'https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=900&auto=format&fit=crop',
+        accent: 'rgba(138, 220, 155, .18)'
+    }
+];
+
 const ShopHome = () => {
     const [featured, setFeatured] = useState([]);
     const [brands, setBrands] = useState([]);
@@ -280,44 +327,44 @@ const ShopHome = () => {
                                     <Typography sx={{ color: 'rgba(255,255,255,.68)', lineHeight: 2.1, fontSize: { md: '1.05rem', xs: '1rem' }, mb: { md: 6, xs: 1 }, maxWidth: slide.showLogo ? '100%' : '720px' }}>{slide.description}</Typography>
                                     {index === 0 && (
                                         <Stack direction={{ md: 'row', xs: 'column' }} spacing={{ md: 3, xs: 2 }} sx={{ display: { xs: 'none', md: 'flex' } }}>
-                                            <Button component={Link} to={isLoggedIn() ? (isOrgUser() ? "/admin" : "/dashboard") : "/login"} size="large" sx={{ background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)', color: '#000', padding: { md: '18px 42px', xs: '16px 36px' }, textTransform: 'uppercase', letterSpacing: '0.22em', fontSize: { md: '0.78rem', xs: '0.72rem' }, fontWeight: 700, boxShadow: '0 15px 35px rgba(221,180,93,.15)', transition: 'all 0.4s ease', borderRadius: 0, '&:hover': { transform: 'translateY(-5px)', boxShadow: '0 20px 50px rgba(221,180,93,.22)' } }}>Login</Button>
-                                            <Button size="large" sx={{ border: '1px solid rgba(255,255,255,.15)', color: 'white', padding: { md: '18px 42px', xs: '16px 36px' }, textTransform: 'uppercase', letterSpacing: '0.2em', fontSize: { md: '0.78rem', xs: '0.72rem' }, fontWeight: 600, transition: 'all 0.35s ease', borderRadius: 0, '&:hover': { borderColor: '#ddb45d', color: '#ddb45d', background: 'transparent' } }} component="a" href="#" target="_blank" rel="noopener noreferrer">Contact Us</Button>
+                                            <Button component={Link} to={isLoggedIn() ? (isOrgUser() ? "/admin" : "/dashboard") : "/login"} size="large" sx={{ background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)', color: '#000', padding: { md: '18px 42px', xs: '16px 36px' }, textTransform: 'uppercase', letterSpacing: '0.22em', fontSize: { md: '0.78rem', xs: '0.72rem' }, fontWeight: 800, boxShadow: '0 15px 35px rgba(221,180,93,.15)', transition: 'all 0.35s ease', borderRadius: 0, border: '1px solid rgba(255,255,255,.06)', textShadow: '0 1px 0 rgba(255,255,255,.25)', '&:hover': { transform: 'translateY(-5px)', color: '#120f05', background: 'linear-gradient(135deg, #fffdf5 0%, #fbeec2 12%, #f5d778 30%, #d6a83f 55%, #a76f20 78%, #fff6d8 100%)', boxShadow: '0 22px 52px rgba(221,180,93,.28)', borderColor: 'rgba(255,255,255,.16)' } }}>Login</Button>
+                                            <Button component={Link} to="/p/1/Sanitary-Napkin/Shaara-Sanitary-Pads" size="large" sx={{ background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)', color: '#000', padding: { md: '18px 42px', xs: '16px 36px' }, textTransform: 'uppercase', letterSpacing: '0.22em', fontSize: { md: '0.78rem', xs: '0.72rem' }, fontWeight: 800, boxShadow: '0 15px 35px rgba(221,180,93,.15)', transition: 'all 0.35s ease', borderRadius: 0, border: '1px solid rgba(255,255,255,.06)', textShadow: '0 1px 0 rgba(255,255,255,.25)', '&:hover': { transform: 'translateY(-5px)', color: '#120f05', background: 'linear-gradient(135deg, #fffdf5 0%, #fbeec2 12%, #f5d778 30%, #d6a83f 55%, #a76f20 78%, #fff6d8 100%)', boxShadow: '0 22px 52px rgba(221,180,93,.28)', borderColor: 'rgba(255,255,255,.16)' } }}>Buy Now</Button>
                                         </Stack>
                                     )}
                                     {index === 1 && (
                                         <Stack direction={{ md: 'row', xs: 'column' }} spacing={3} sx={{ display: { xs: 'none', md: 'flex' } }}>
-                                            <Button component={Link} to="/products" size="large" sx={{ background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)', color: '#000', padding: { md: '18px 42px', xs: '16px 36px' }, textTransform: 'uppercase', letterSpacing: '0.22em', fontSize: { md: '0.78rem', xs: '0.72rem' }, fontWeight: 700, boxShadow: '0 15px 35px rgba(221,180,93,.15)', transition: 'all 0.4s ease', borderRadius: 0, '&:hover': { transform: 'translateY(-5px)', boxShadow: '0 20px 50px rgba(221,180,93,.22)' } }}>Buy Now</Button>
-                                            <Button component={Link} to="/login" size="large" sx={{ border: '1px solid rgba(255,255,255,.15)', color: 'white', padding: { md: '18px 42px', xs: '16px 36px' }, textTransform: 'uppercase', letterSpacing: '0.2em', fontSize: { md: '0.78rem', xs: '0.72rem' }, fontWeight: 600, transition: 'all 0.35s ease', borderRadius: 0, '&:hover': { borderColor: '#ddb45d', color: '#ddb45d', background: 'transparent' } }}>Login</Button>
+                                            <Button component={Link} to="/p/1/Sanitary-Napkin/Shaara-Sanitary-Pads" size="large" sx={{ background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)', color: '#000', padding: { md: '18px 42px', xs: '16px 36px' }, textTransform: 'uppercase', letterSpacing: '0.22em', fontSize: { md: '0.78rem', xs: '0.72rem' }, fontWeight: 800, boxShadow: '0 15px 35px rgba(221,180,93,.15)', transition: 'all 0.35s ease', borderRadius: 0, border: '1px solid rgba(255,255,255,.06)', textShadow: '0 1px 0 rgba(255,255,255,.25)', '&:hover': { transform: 'translateY(-5px)', color: '#120f05', background: 'linear-gradient(135deg, #fffdf5 0%, #fbeec2 12%, #f5d778 30%, #d6a83f 55%, #a76f20 78%, #fff6d8 100%)', boxShadow: '0 22px 52px rgba(221,180,93,.28)', borderColor: 'rgba(255,255,255,.16)' } }}>Buy Now</Button>
+                                            <Button component={Link} to="/login" size="large" sx={{ border: '1px solid rgba(255,255,255,.15)', color: 'white', padding: { md: '18px 42px', xs: '16px 36px' }, textTransform: 'uppercase', letterSpacing: '0.2em', fontSize: { md: '0.78rem', xs: '0.72rem' }, fontWeight: 700, transition: 'all 0.35s ease', borderRadius: 0, background: 'rgba(255,255,255,.02)', '&:hover': { borderColor: '#f5dc97', color: '#fff7dc', background: 'rgba(255,255,255,.08)', boxShadow: '0 14px 35px rgba(0,0,0,.24)', transform: 'translateY(-3px)' } }}>Login</Button>
                                         </Stack>
                                     )}
                                 </Grid>
                                 {slide.showLogo && (
                                     <Grid item xs={12} md={6} sx={{ order: { xs: 3, md: 2 } }}>
-                                        <Box sx={{ width: { md: '500px', xs: '300px' }, height: { md: '500px', xs: '300px' }, borderRadius: '50%', border: '1px solid rgba(255,255,255,.12)', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: 'auto', '&::before': { content: '""', position: 'absolute', inset: '30px', borderRadius: '50%', border: '1px solid rgba(221,180,93,.2)' }, '&::after': { content: '""', position: 'absolute', width: { md: '640px', xs: '400px' }, height: { md: '640px', xs: '400px' }, borderRadius: '50%', border: '1px solid rgba(255,255,255,.04)' } }}>
-                                            <Box component="img" src="brand_logo/web-app-manifest-512x512.png" alt="Victory World" sx={{ width: '100%', objectFit: 'contain', filter: 'drop-shadow(0 0 40px rgba(221,180,93,.22))' }} />
+                                        <Box sx={{ width: { md: '500px', xs: '300px' }, height: { md: '500px', xs: '300px' }, borderRadius: '50%', border: '1px solid rgba(255,255,255,.12)', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: 'auto', overflow: 'hidden', '&::before': { content: '""', position: 'absolute', inset: '30px', borderRadius: '50%', border: '1px solid rgba(221,180,93,.2)' }, '&::after': { content: '""', position: 'absolute', width: { md: '640px', xs: '400px' }, height: { md: '640px', xs: '400px' }, borderRadius: '50%', border: '1px solid rgba(255,255,255,.04)' } }}>
+                                            <Box component="img" src="brand_logo/web-app-manifest-512x512.png" alt="Victory World" sx={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%', filter: 'drop-shadow(0 0 40px rgba(221,180,93,.22))' }} />
                                         </Box>
                                     </Grid>
                                 )}
                                 {slide.rightImage && !slide.showLogo && (
                                     <Grid item xs={12} md={6} sx={{ order: { xs: 3, md: 2 } }}>
-                                        <Box sx={{ width: { md: '500px', xs: '300px' }, height: { md: '500px', xs: '300px' }, borderRadius: '50%', border: '1px solid rgba(255,255,255,.12)', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: 'auto', '&::before': { content: '""', position: 'absolute', inset: '30px', borderRadius: '50%', border: '1px solid rgba(221,180,93,.2)' }, '&::after': { content: '""', position: 'absolute', width: { md: '640px', xs: '400px' }, height: { md: '640px', xs: '400px' }, borderRadius: '50%', border: '1px solid rgba(255,255,255,.04)' } }}>
-                                            <Box component="img" src={slide.rightImage} alt="Transform Lives" sx={{ width: '120%', height: 'auto', objectFit: 'contain', position: 'relative', zIndex: 2, filter: 'drop-shadow(0 0 40px rgba(221,180,93,.22))' }} />
+                                        <Box sx={{ width: { md: '500px', xs: '300px' }, height: { md: '500px', xs: '300px' }, borderRadius: { md: '32px', xs: '24px' }, border: '1px solid rgba(255,255,255,.12)', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: 'auto', overflow: 'hidden', '&::before': { content: '""', position: 'absolute', inset: '22px', borderRadius: { md: '24px', xs: '18px' }, border: '1px solid rgba(221,180,93,.2)' }, '&::after': { content: '""', position: 'absolute', inset: 0, borderRadius: { md: '32px', xs: '24px' }, border: '1px solid rgba(255,255,255,.04)' } }}>
+                                            <Box component="img" src={slide.rightImage} alt="Transform Lives" sx={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', position: 'relative', zIndex: 2, borderRadius: { md: '32px', xs: '24px' }, filter: 'drop-shadow(0 0 40px rgba(221,180,93,.22))' }} />
                                         </Box>
                                     </Grid>
                                 )}
                                 {index === 0 && (
                                     <Grid item xs={12} sx={{ order: { xs: 2, md: 0 }, display: { xs: 'block', md: 'none' } }}>
                                         <Stack direction="column" spacing={1}>
-                                            <Button component={Link} to={isLoggedIn() ? (isOrgUser() ? "/admin" : "/dashboard") : "/login"} size="large" sx={{ background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)', color: '#000', padding: '16px 36px', textTransform: 'uppercase', letterSpacing: '0.22em', fontSize: '0.72rem', fontWeight: 700, boxShadow: '0 15px 35px rgba(221,180,93,.15)', transition: 'all 0.4s ease', borderRadius: 0, '&:hover': { transform: 'translateY(-5px)', boxShadow: '0 20px 50px rgba(221,180,93,.22)' } }}>Login</Button>
-                                            <Button size="large" sx={{ border: '1px solid rgba(255,255,255,.15)', color: 'white', padding: '16px 36px', textTransform: 'uppercase', letterSpacing: '0.2em', fontSize: '0.72rem', fontWeight: 600, transition: 'all 0.35s ease', borderRadius: 0, '&:hover': { borderColor: '#ddb45d', color: '#ddb45d', background: 'transparent' } }} component="a" href="#" target="_blank" rel="noopener noreferrer">Contact Us</Button>
+                                            <Button component={Link} to={isLoggedIn() ? (isOrgUser() ? "/admin" : "/dashboard") : "/login"} size="large" sx={{ background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)', color: '#000', padding: '16px 36px', textTransform: 'uppercase', letterSpacing: '0.22em', fontSize: '0.72rem', fontWeight: 800, boxShadow: '0 15px 35px rgba(221,180,93,.15)', transition: 'all 0.35s ease', borderRadius: 0, border: '1px solid rgba(255,255,255,.06)', textShadow: '0 1px 0 rgba(255,255,255,.25)', '&:hover': { transform: 'translateY(-5px)', color: '#120f05', background: 'linear-gradient(135deg, #fffdf5 0%, #fbeec2 12%, #f5d778 30%, #d6a83f 55%, #a76f20 78%, #fff6d8 100%)', boxShadow: '0 22px 52px rgba(221,180,93,.28)', borderColor: 'rgba(255,255,255,.16)' } }}>Login</Button>
+                                            <Button component={Link} to="/p/1/Sanitary-Napkin/Shaara-Sanitary-Pads" size="large" sx={{ background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)', color: '#000', padding: '16px 36px', textTransform: 'uppercase', letterSpacing: '0.22em', fontSize: '0.72rem', fontWeight: 800, boxShadow: '0 15px 35px rgba(221,180,93,.15)', transition: 'all 0.35s ease', borderRadius: 0, border: '1px solid rgba(255,255,255,.06)', textShadow: '0 1px 0 rgba(255,255,255,.25)', '&:hover': { transform: 'translateY(-5px)', color: '#120f05', background: 'linear-gradient(135deg, #fffdf5 0%, #fbeec2 12%, #f5d778 30%, #d6a83f 55%, #a76f20 78%, #fff6d8 100%)', boxShadow: '0 22px 52px rgba(221,180,93,.28)', borderColor: 'rgba(255,255,255,.16)' } }}>Buy Now</Button>
                                         </Stack>
                                     </Grid>
                                 )}
                                 {index === 1 && (
                                     <Grid item xs={12} sx={{ order: { xs: 2, md: 0 }, display: { xs: 'block', md: 'none' } }}>
                                         <Stack direction="column" spacing={1.5}>
-                                            <Button component={Link} to="/products" size="large" sx={{ background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)', color: '#000', padding: '16px 36px', textTransform: 'uppercase', letterSpacing: '0.22em', fontSize: '0.72rem', fontWeight: 700, boxShadow: '0 15px 35px rgba(221,180,93,.15)', transition: 'all 0.4s ease', borderRadius: 0, '&:hover': { transform: 'translateY(-5px)', boxShadow: '0 20px 50px rgba(221,180,93,.22)' } }}>Buy Now</Button>
-                                            <Button component={Link} to="/login" size="large" sx={{ border: '1px solid rgba(255,255,255,.15)', color: 'white', padding: '16px 36px', textTransform: 'uppercase', letterSpacing: '0.2em', fontSize: '0.72rem', fontWeight: 600, transition: 'all 0.35s ease', borderRadius: 0, '&:hover': { borderColor: '#ddb45d', color: '#ddb45d', background: 'transparent' } }}>Login</Button>
+                                            <Button component={Link} to="/p/1/Sanitary-Napkin/Shaara-Sanitary-Pads" size="large" sx={{ background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)', color: '#000', padding: '16px 36px', textTransform: 'uppercase', letterSpacing: '0.22em', fontSize: '0.72rem', fontWeight: 800, boxShadow: '0 15px 35px rgba(221,180,93,.15)', transition: 'all 0.35s ease', borderRadius: 0, border: '1px solid rgba(255,255,255,.06)', textShadow: '0 1px 0 rgba(255,255,255,.25)', '&:hover': { transform: 'translateY(-5px)', color: '#120f05', background: 'linear-gradient(135deg, #fffdf5 0%, #fbeec2 12%, #f5d778 30%, #d6a83f 55%, #a76f20 78%, #fff6d8 100%)', boxShadow: '0 22px 52px rgba(221,180,93,.28)', borderColor: 'rgba(255,255,255,.16)' } }}>Buy Now</Button>
+                                            <Button component={Link} to="/login" size="large" sx={{ border: '1px solid rgba(255,255,255,.15)', color: 'white', padding: '16px 36px', textTransform: 'uppercase', letterSpacing: '0.2em', fontSize: '0.72rem', fontWeight: 700, transition: 'all 0.35s ease', borderRadius: 0, background: 'rgba(255,255,255,.02)', '&:hover': { borderColor: '#f5dc97', color: '#fff7dc', background: 'rgba(255,255,255,.08)', boxShadow: '0 14px 35px rgba(0,0,0,.24)', transform: 'translateY(-3px)' } }}>Login</Button>
                                         </Stack>
                                     </Grid>
                                 )}
@@ -421,49 +468,377 @@ const ShopHome = () => {
             </Box> */}
 
             {/* PRODUCT CATEGORIES SECTION */}
-            <Box component="section" sx={{ background: '#020202', py: { md: '190px', xs: '100px' }, borderTop: '1px solid rgba(255,255,255,.08)', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
-                <Container maxWidth={false} sx={{ maxWidth: '1440px', px: { md: 10, xs: 3 } }}>
-                    <Grid container spacing={{ md: 8, xs: 4 }} alignItems="end" sx={{ mb: { md: 14, xs: 8 } }}>
-                        <Grid item xs={12} lg={6}>
-                            <Typography sx={{ textTransform: 'uppercase', letterSpacing: '0.45em', fontSize: { md: '0.78rem', xs: '0.7rem' }, fontWeight: 700, color: '#efcb77', mb: { md: 4, xs: 3 } }}>Product Categories</Typography>
-                            <Typography sx={{ fontSize: { xs: 'clamp(2rem, 8vw, 2.8rem)', md: 'clamp(2.8rem, 5vw, 5rem)' }, lineHeight: 1, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '-0.04em', color: 'white' }}>Premium Products For Every Need</Typography>
+            <Box
+                component="section"
+                sx={{
+                    background: 'linear-gradient(180deg, #020202 0%, #05070a 100%)',
+                    py: { md: '160px', xs: '92px' },
+                    borderTop: '1px solid rgba(255,255,255,.08)',
+                    borderBottom: '1px solid rgba(255,255,255,.08)',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    '&::before': {
+                        content: '""',
+                        position: 'absolute',
+                        inset: 0,
+                        background: 'radial-gradient(circle at 20% 10%, rgba(246,210,123,.08), transparent 30%), radial-gradient(circle at 80% 20%, rgba(103,197,255,.06), transparent 28%)',
+                        pointerEvents: 'none'
+                    }
+                }}
+            >
+                <Container maxWidth={false} sx={{ maxWidth: '1440px', px: { md: 10, xs: 3 }, position: 'relative', zIndex: 1 }}>
+                    <Grid container spacing={{ md: 8, xs: 4 }} alignItems="end" sx={{ mb: { md: 10, xs: 7 } }}>
+                        <Grid item xs={12} lg={7}>
+                            <Typography
+                                sx={{
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.45em',
+                                    fontSize: { md: '0.78rem', xs: '0.7rem' },
+                                    fontWeight: 700,
+                                    color: '#f6d27b',
+                                    mb: { md: 3, xs: 2.5 }
+                                }}
+                            >
+                                Product Categories
+                            </Typography>
+                            <Typography
+                                sx={{
+                                    maxWidth: 860,
+                                    fontSize: { xs: 'clamp(2rem, 8vw, 3rem)', md: 'clamp(3rem, 5vw, 5rem)' },
+                                    lineHeight: 0.95,
+                                    fontWeight: 800,
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '-0.045em',
+                                    color: 'white',
+                                    mb: 3
+                                }}
+                            >
+                                Curated categories for every lifestyle
+                            </Typography>
+                            <Typography
+                                sx={{
+                                    maxWidth: 760,
+                                    color: 'rgba(255,255,255,.72)',
+                                    lineHeight: 2.05,
+                                    fontSize: { md: '1.05rem', xs: '1rem' }
+                                }}
+                            >
+                                Explore the most relevant product families with a clear focus on Women Hygiene, Fashion & Lifestyle, alongside supporting everyday essentials.
+                            </Typography>
                         </Grid>
-                        <Grid item xs={12} lg={6}>
-                            <Typography sx={{ color: 'rgba(255,255,255,.68)', lineHeight: 2.1, fontSize: { md: '1.05rem', xs: '1rem' } }}>Discover our comprehensive range of health and wellness products designed to enhance your lifestyle and well-being.</Typography>
-                        </Grid>
-                    </Grid>
-                    <Grid container spacing={{ md: 4, xs: 3 }}>
                         <Grid item xs={12} lg={5}>
-                            <Box sx={{ position: 'relative', overflow: 'hidden', minHeight: { md: '820px', xs: '500px' }, cursor: 'pointer', transition: 'transform 0.45s ease', '&:hover': { transform: 'scale(1.02)' } }}>
-                                <Box component="img" src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=1200&auto=format&fit=crop" alt="Featured" sx={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
-                                <Box sx={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 0%, rgba(0,0,0,.2) 20%, rgba(0,0,0,1) 100%)' }} />
-                                <Box sx={{ position: 'absolute', bottom: 0, left: 0, p: { md: 7, xs: 4 } }}>
-                                    <Typography sx={{ textTransform: 'uppercase', letterSpacing: '0.45em', fontSize: '0.78rem', fontWeight: 700, color: '#efcb77', mb: 3 }}>Featured Category</Typography>
-                                    <Typography sx={{ fontSize: { md: '3rem', xs: '2rem' }, fontWeight: 900, textTransform: 'uppercase', lineHeight: 1.1, color: 'white', mb: 4 }}>Health Care Products</Typography>
-                                    <Typography sx={{ color: 'rgba(255,255,255,.68)', lineHeight: 2.1, fontSize: '1.05rem', maxWidth: '400px', mb: 6 }}>Premium health supplements and wellness products for optimal living.</Typography>
-                                    <Button component={Link} to="/shop" sx={{ background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)', color: '#000', padding: '18px 42px', textTransform: 'uppercase', letterSpacing: '0.22em', fontSize: '0.78rem', fontWeight: 700, boxShadow: '0 15px 35px rgba(221,180,93,.15)', transition: 'all 0.4s ease', borderRadius: 0, '&:hover': { transform: 'translateY(-5px)', boxShadow: '0 20px 50px rgba(221,180,93,.22)' } }}>Explore Products</Button>
-                                </Box>
+                            <Box
+                                sx={{
+                                    p: { xs: 2.5, md: 3.5 },
+                                    borderRadius: 3,
+                                    border: '1px solid rgba(255,255,255,.08)',
+                                    background: 'linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015))',
+                                    backdropFilter: 'blur(12px)'
+                                }}
+                            >
+                                <Stack direction="row" spacing={1.2} flexWrap="wrap" useFlexGap>
+                                    {['Women Hygiene', 'Fashion & Lifestyle', 'Personal Care'].map((tag) => (
+                                        <Box
+                                            key={tag}
+                                            sx={{
+                                                px: 2,
+                                                py: 1,
+                                                borderRadius: 999,
+                                                border: '1px solid rgba(246,210,123,.18)',
+                                                bgcolor: 'rgba(246,210,123,.08)',
+                                                color: '#f6d27b',
+                                                textTransform: 'uppercase',
+                                                letterSpacing: '.08em',
+                                                fontSize: '0.72rem',
+                                                fontWeight: 700
+                                            }}
+                                        >
+                                            {tag}
+                                        </Box>
+                                    ))}
+                                </Stack>
                             </Box>
                         </Grid>
-                        <Grid item xs={12} lg={7}>
-                            <Grid container spacing={{ md: 4, xs: 3 }}>
-                                {[
-                                    { number: '01', title: 'Personal Care', description: 'Premium skincare, haircare, and grooming essentials for daily wellness.' },
-                                    { number: '02', title: 'Body Care', description: 'Luxurious body lotions, oils, and treatments for complete care.' },
-                                    { number: '03', title: 'Home Care', description: 'Eco-friendly cleaning and household essentials for a healthy home.' },
-                                    { number: '04', title: 'Nutritions', description: 'High-quality supplements and nutritional products for optimal health.' }
-                                ].map((service, index) => (
-                                    <Grid item xs={12} md={6} key={index}>
-                                        <Box sx={{ background: 'linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01))', border: '1px solid rgba(255,255,255,.08)', minHeight: { md: '370px', xs: '320px' }, p: { md: 7.5, xs: 5 }, transition: 'all 0.45s cubic-bezier(0.4, 0, 0.2, 1)', position: 'relative', overflow: 'hidden', backdropFilter: 'blur(10px)', '&::before': { content: '""', position: 'absolute', top: '-120px', right: '-120px', width: '260px', height: '260px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(221,180,93,.16), transparent 70%)' }, '&:hover': { transform: 'translateY(-8px)', borderColor: 'rgba(221,180,93,.2)', boxShadow: '0 25px 60px rgba(0,0,0,.45)' } }}>
-                                            <Box sx={{ width: '74px', height: '74px', border: '1px solid rgba(221,180,93,.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 5.5, fontSize: '1.6rem', fontWeight: 700, color: '#f5dc97', position: 'relative', zIndex: 1 }}>{service.number}</Box>
-                                            <Typography sx={{ fontSize: { md: '1.5rem', xs: '1rem' }, fontWeight: 900, textTransform: 'uppercase', lineHeight: 1.1, color: 'white', mb: 3.5, position: 'relative', zIndex: 1 }}>{service.title}</Typography>
-                                            <Typography sx={{ color: 'rgba(255,255,255,.68)', lineHeight: 2.1, fontSize: '1.05rem', position: 'relative', zIndex: 1 }}>{service.description}</Typography>
-                                        </Box>
-                                    </Grid>
-                                ))}
-                            </Grid>
-                        </Grid>
                     </Grid>
+
+                    <Grid container spacing={{ md: 4, xs: 3 }}>
+                        {categoryPanels.map((panel, index) => (
+                            <Grid
+                                item
+                                xs={12}
+                                md={categoryPanels.length === 2 ? 12 : (index === 0 ? 12 : 6)}
+                                lg={categoryPanels.length === 2 ? (index === 0 ? 7 : 5) : (index === 0 ? 6 : 3)}
+                                key={panel.title}
+                            >
+                                <Box
+                                    component={Link}
+                                    to={panel.link}
+                                        sx={{
+                                            display: 'block',
+                                            position: 'relative',
+                                            overflow: 'hidden',
+                                            borderRadius: 4,
+                                        minHeight: panel.tall ? { xs: 440, md: 660 } : { xs: 360, md: 310 },
+                                        border: '1px solid rgba(255,255,255,.08)',
+                                        textDecoration: 'none',
+                                        background: `
+                                            linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.72)),
+                                            radial-gradient(circle at top right, ${panel.accent}, transparent 55%)
+                                        `,
+                                        transition: 'transform .35s ease, border-color .35s ease, box-shadow .35s ease',
+                                        '&:hover': {
+                                            transform: 'translateY(-6px)',
+                                            borderColor: 'rgba(246,210,123,.26)',
+                                            boxShadow: '0 24px 60px rgba(0,0,0,.38)'
+                                        },
+                                        '&:hover .category-media': {
+                                            transform: 'scale(1.06)'
+                                        }
+                                    }}
+                                >
+                                    <Box
+                                        className="category-media"
+                                        component="img"
+                                        src={panel.image}
+                                        alt={panel.title}
+                                        sx={{
+                                            position: 'absolute',
+                                            inset: 0,
+                                            width: '100%',
+                                            height: '100%',
+                                            objectFit: 'cover',
+                                            transition: 'transform .8s ease',
+                                            filter: panel.title === 'Women Hygiene' ? 'saturate(1.05) contrast(1.02)' : 'saturate(.88) contrast(1.05)'
+                                        }}
+                                    />
+                                        <Box
+                                            sx={{
+                                                position: 'absolute',
+                                                inset: 0,
+                                                background: 'linear-gradient(180deg, rgba(2,4,7,.12) 0%, rgba(2,4,7,.58) 36%, rgba(2,4,7,.9) 100%)'
+                                            }}
+                                        />
+                                        <Box
+                                            sx={{
+                                                position: 'relative',
+                                            zIndex: 1,
+                                            height: '100%',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            justifyContent: 'space-between',
+                                            p: { xs: 3, md: 4.5 },
+                                            minHeight: 'inherit'
+                                        }}
+                                    >
+                                        <Box sx={{ display: 'flex', justifyContent: panel.align }}>
+                                            <Box
+                                                sx={{
+                                            maxWidth: panel.tall ? 460 : 340,
+                                            width: '100%',
+                                            p: { xs: 2.25, md: 2.75 },
+                                                    borderRadius: 3,
+                                                    border: '1px solid rgba(255,255,255,.12)',
+                                                    background: 'linear-gradient(180deg, rgba(5,7,10,.66), rgba(5,7,10,.88))',
+                                                    backdropFilter: 'blur(10px)',
+                                                    boxShadow: '0 16px 34px rgba(0,0,0,.25)'
+                                                }}
+                                            >
+                                                <Stack spacing={1.2} alignItems={panel.align} sx={{ textAlign: panel.align === 'flex-end' ? 'right' : 'left' }}>
+                                                    <Typography
+                                                        sx={{
+                                                            color: '#fff',
+                                                            fontSize: { xs: '1.7rem', md: panel.tall ? '2.8rem' : '1.95rem' },
+                                                            lineHeight: 1.02,
+                                                            fontWeight: 900,
+                                                            textTransform: 'uppercase',
+                                                            letterSpacing: '-0.04em',
+                                                            maxWidth: panel.tall ? 420 : 260,
+                                                            textShadow: '0 2px 12px rgba(0,0,0,.55)'
+                                                        }}
+                                                    >
+                                                        {panel.title}
+                                                    </Typography>
+                                                    <Typography
+                                                        sx={{
+                                                            color: 'rgba(255,255,255,.86)',
+                                                            lineHeight: 1.75,
+                                                            fontSize: { xs: '0.93rem', md: '0.98rem' },
+                                                            maxWidth: panel.tall ? 420 : 280,
+                                                            textShadow: '0 1px 8px rgba(0,0,0,.4)'
+                                                        }}
+                                                    >
+                                                        {panel.description}
+                                                    </Typography>
+                                                </Stack>
+                                            </Box>
+                                        </Box>
+
+                                        <Stack direction="row" spacing={1.2} alignItems="center" justifyContent={panel.align === 'flex-end' ? 'flex-end' : 'flex-start'}>
+                                            <Typography
+                                                sx={{
+                                                    color: '#f6d27b',
+                                                    textTransform: 'uppercase',
+                                                    letterSpacing: '.18em',
+                                                    fontSize: '0.72rem',
+                                                    fontWeight: 800
+                                                }}
+                                            >
+                                                Explore
+                                            </Typography>
+                                            <Box
+                                                sx={{
+                                                    width: 42,
+                                                    height: 42,
+                                                    borderRadius: '50%',
+                                                    border: '1px solid rgba(246,210,123,.24)',
+                                                    display: 'grid',
+                                                    placeItems: 'center',
+                                                    color: '#f6d27b',
+                                                    bgcolor: 'rgba(246,210,123,.06)'
+                                                }}
+                                            >
+                                                →
+                                            </Box>
+                                        </Stack>
+                                    </Box>
+                                </Box>
+                            </Grid>
+                        ))}
+                    </Grid>
+
+                    <Box
+                        sx={{
+                            mt: { md: 5, xs: 4 },
+                            p: { xs: 0, md: 0 },
+                        }}
+                    >
+                        <Grid container spacing={{ md: 3, xs: 2.5 }} sx={{ mt: 0 }}>
+                            <Grid item xs={12}>
+                                <Typography
+                                    sx={{
+                                        color: '#f6d27b',
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '.18em',
+                                        fontSize: '0.72rem',
+                                        fontWeight: 800,
+                                        mb: 1.5
+                                    }}
+                                >
+                                    Supporting Categories
+                                </Typography>
+                            </Grid>
+                            {supportCategories.map((category) => (
+                                <Grid item xs={12} sm={6} lg={3} key={category.title}>
+                                    <Box
+                                        component={Link}
+                                        to="/coming-soon"
+                                        sx={{
+                                            display: 'block',
+                                            textDecoration: 'none',
+                                            position: 'relative',
+                                            overflow: 'hidden',
+                                            borderRadius: 3,
+                                            minHeight: 340,
+                                            border: '1px solid rgba(255,255,255,.08)',
+                                            background: 'rgba(255,255,255,.02)',
+                                            transition: 'transform .3s ease, border-color .3s ease, box-shadow .3s ease',
+                                            '&:hover': {
+                                                transform: 'translateY(-5px)',
+                                                borderColor: 'rgba(246,210,123,.24)',
+                                                boxShadow: '0 18px 42px rgba(0,0,0,.35)'
+                                            },
+                                            '&:hover .support-image': {
+                                                transform: 'scale(1.06)'
+                                            }
+                                        }}
+                                    >
+                                        <Box
+                                            sx={{
+                                                position: 'absolute',
+                                                top: 0,
+                                                left: 0,
+                                                right: 0,
+                                                height: 110,
+                                                background: 'linear-gradient(180deg, rgba(5,7,10,.2), transparent)',
+                                                zIndex: 1
+                                            }}
+                                        />
+                                        <Box
+                                            className="support-image"
+                                            component="img"
+                                            src={category.image}
+                                            alt={category.title}
+                                            sx={{
+                                                position: 'absolute',
+                                                inset: 0,
+                                                width: '100%',
+                                                height: '100%',
+                                                objectFit: 'cover',
+                                                transition: 'transform .7s ease',
+                                                filter: 'saturate(1.02) contrast(1.02)'
+                                            }}
+                                        />
+                                        <Box
+                                            sx={{
+                                                position: 'absolute',
+                                                inset: 0,
+                                                background: `linear-gradient(180deg, rgba(5,7,10,.06) 0%, ${category.accent} 24%, rgba(5,7,10,.58) 58%, rgba(5,7,10,.94) 100%)`
+                                            }}
+                                        />
+                                        <Box
+                                            sx={{
+                                                position: 'relative',
+                                                zIndex: 1,
+                                                minHeight: 'inherit',
+                                                display: 'flex',
+                                                flexDirection: 'column',
+                                                justifyContent: 'space-between',
+                                                p: 3
+                                            }}
+                                        >
+                                            <Box
+                                                sx={{
+                                                    mt: 'auto',
+                                                    p: 2.25,
+                                                    borderRadius: 3,
+                                                    border: '1px solid rgba(255,255,255,.12)',
+                                                    background: 'linear-gradient(180deg, rgba(5,7,10,.66), rgba(5,7,10,.88))',
+                                                    backdropFilter: 'blur(10px)',
+                                                    boxShadow: '0 14px 32px rgba(0,0,0,.2)'
+                                                }}
+                                            >
+                                                <Stack spacing={1} alignItems="flex-start">
+                                                    <Typography
+                                                        sx={{
+                                                            color: '#fff',
+                                                            textTransform: 'uppercase',
+                                                            letterSpacing: '-0.03em',
+                                                            fontWeight: 900,
+                                                            fontSize: '1.2rem',
+                                                            lineHeight: 1.08,
+                                                            textShadow: '0 2px 10px rgba(0,0,0,.55)'
+                                                        }}
+                                                    >
+                                                        {category.title}
+                                                    </Typography>
+                                                    <Typography
+                                                        sx={{
+                                                            color: 'rgba(255,255,255,.88)',
+                                                            lineHeight: 1.7,
+                                                            fontSize: '0.92rem',
+                                                            textShadow: '0 1px 8px rgba(0,0,0,.35)'
+                                                        }}
+                                                    >
+                                                        {category.description}
+                                                    </Typography>
+                                                </Stack>
+                                            </Box>
+                                        </Box>
+                                    </Box>
+                                </Grid>
+                            ))}
+                        </Grid>
+                    </Box>
                 </Container>
             </Box>
 

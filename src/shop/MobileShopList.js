@@ -122,8 +122,13 @@ const MobileShopList = () => {
                         finalListing.push(records[i])
                     }
                 }
+                const categoryName = category?.category || 'All Products'
+                if (id && categoryName !== 'All Products' && !/women hygiene/i.test(categoryName)) {
+                    navigate('/coming-soon', { replace: true })
+                    return
+                }
                 setData(finalListing)
-                setLayout({ ...layout, title: category?.category || 'All Products', back: '/' })
+                setLayout({ ...layout, title: categoryName, back: '/' })
             })
             .catch((error) => {
                 console.error('Error fetching items:', error)

@@ -2,11 +2,16 @@ import Decimal from "decimal.js";
 import moment from "moment/moment";
 import Image from 'mui-image';
 
-export const toImage = id => `https://download-accl.zoho.in/public/workdrive/previewdata/${id}?orig=true`
+export const toImage = id => {
+    if (!id) return undefined
+    const image = String(id)
+    if (image.startsWith('http') || image.startsWith('/')) return image
+    return `https://download-accl.zoho.in/public/workdrive/previewdata/${image}?orig=true`
+}
 export const WorkDriveImage = ({ image, alt, auto, width = '100%', sx }) => (
     <Image
         style={auto === 'width' ? { width: 'auto', height: '100%' } : { width, height: 'auto' }}
-        src={image ? toImage(image) : undefined}
+        src={image ? (String(image).startsWith('http') || String(image).startsWith('/') ? image : toImage(image)) : undefined}
         alt={alt}
         sx={sx}
         duration={0} />

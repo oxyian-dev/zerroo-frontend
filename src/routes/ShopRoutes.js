@@ -24,6 +24,7 @@ const BusinessInformationKit = Loadable(lazy(() => import("../shop/BusinessInfor
 const Termination = Loadable(lazy(() => import("../shop/Termination")))
 const LegalDocuments =Loadable(lazy(() =>import("../shop/LegalDocuments")))
 const BrandShaara = Loadable(lazy(() => import("../shop/BrandShaara")))
+const ComingSoon = Loadable(lazy(() => import("../shop/ComingSoon")))
 const SHOP_ROUTES_BUILD = '2026-05-30-shaara-ticker'
 
 const ShopRoutes = {
@@ -119,6 +120,10 @@ const ShopRoutes = {
         {
             path: '/brand/shaara',
             element: <BrandShaara />
+        },
+        {
+            path: '/coming-soon',
+            element: <ComingSoon />
         },
     ]
 }
