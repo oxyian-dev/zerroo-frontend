@@ -282,7 +282,7 @@ const ShopHome = () => {
                     minHeight: '100vh',
                     overflow: 'hidden',
                     marginTop: 0,
-                    pt: { xs: 0, md: '170px' },
+                    pt: { xs: 0, md: '80px' },
                 }}
             >
                 {heroSlides.map((slide, index) => (
@@ -319,8 +319,8 @@ const ShopHome = () => {
                         {/* Sparkle Stars Animation */}
                         <SparkleStars />
                         
-                        <Container maxWidth={false} sx={{ maxWidth: '1440px', px: { md: 10, xs: 3 }, position: 'relative', zIndex: 4, py: { md: 6, xs: 4 }, width: '100%' }}>
-                            <Grid container spacing={{ md: 15, xs: 8 }} alignItems="center">
+                        <Container maxWidth={false} sx={{ maxWidth: '1440px', px: { md: 6, xs: 2.5 }, position: 'relative', zIndex: 4, py: { md: 4, xs: 3 }, width: '100%' }}>
+                            <Grid container spacing={{ md: 8, xs: 4 }} alignItems="center">
                                 <Grid item xs={12} md={slide.showLogo || slide.rightImage ? 6 : 12} sx={{ order: { xs: 1, md: 1 } }}>
                                     <Typography sx={{ textTransform: 'uppercase', letterSpacing: '0.45em', fontSize: { md: '0.78rem', xs: '0.7rem' }, fontWeight: 700, color: '#efcb77', mb: { md: 4, xs: 2 } }}>{slide.label}</Typography>
                                     <Typography sx={{ fontSize: { xs: 'clamp(2rem, 7vw, 3rem)', md: 'clamp(3rem, 7vw, 5rem)' }, lineHeight: 0.95, fontWeight: 900, textTransform: 'uppercase', letterSpacing: '-0.05em', background: 'linear-gradient(135deg, #fff7dc 0%, #f9e7b4 12%, #efcb77 26%, #d69d45 45%, #9f6720 58%, #f2d38d 78%, #fff4d0 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', mb: { md: 5, xs: 2 }, maxWidth: slide.showLogo ? '100%' : '800px' }}>{slide.title}</Typography>
@@ -472,7 +472,7 @@ const ShopHome = () => {
                 component="section"
                 sx={{
                     background: 'linear-gradient(180deg, #020202 0%, #05070a 100%)',
-                    py: { md: '160px', xs: '92px' },
+                    py: { md: '80px', xs: '56px' },
                     borderTop: '1px solid rgba(255,255,255,.08)',
                     borderBottom: '1px solid rgba(255,255,255,.08)',
                     position: 'relative',
@@ -486,8 +486,8 @@ const ShopHome = () => {
                     }
                 }}
             >
-                <Container maxWidth={false} sx={{ maxWidth: '1440px', px: { md: 10, xs: 3 }, position: 'relative', zIndex: 1 }}>
-                    <Grid container spacing={{ md: 8, xs: 4 }} alignItems="end" sx={{ mb: { md: 10, xs: 7 } }}>
+                <Container maxWidth={false} sx={{ maxWidth: '1440px', px: { md: 6, xs: 2.5 }, position: 'relative', zIndex: 1 }}>
+                    <Grid container spacing={{ md: 6, xs: 3 }} alignItems="end" sx={{ mb: { md: 6, xs: 4 } }}>
                         <Grid item xs={12} lg={7}>
                             <Typography
                                 sx={{
@@ -578,7 +578,7 @@ const ShopHome = () => {
                                             position: 'relative',
                                             overflow: 'hidden',
                                             borderRadius: 4,
-                                        minHeight: panel.tall ? { xs: 440, md: 660 } : { xs: 360, md: 310 },
+                                        minHeight: panel.tall ? { xs: 340, md: 500 } : { xs: 280, md: 260 },
                                         border: '1px solid rgba(255,255,255,.08)',
                                         textDecoration: 'none',
                                         background: `
@@ -738,7 +738,7 @@ const ShopHome = () => {
                                             position: 'relative',
                                             overflow: 'hidden',
                                             borderRadius: 3,
-                                            minHeight: 340,
+                                            minHeight: 260,
                                             border: '1px solid rgba(255,255,255,.08)',
                                             background: 'rgba(255,255,255,.02)',
                                             transition: 'transform .3s ease, border-color .3s ease, box-shadow .3s ease',
@@ -872,9 +872,9 @@ const ShopHome = () => {
             </Box> */}
 
             {/* FEATURED PRODUCTS */}
-            <Box component="section" sx={{ background: '#020202', py: { md: '190px', xs: '100px' }, borderTop: '1px solid rgba(255,255,255,.08)', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
-                <Container maxWidth={false} sx={{ maxWidth: '1440px', px: { md: 10, xs: 3 } }}>
-                    <Box sx={{ display: 'flex', flexDirection: { xs: 'column', lg: 'row' }, alignItems: { lg: 'flex-end' }, justifyContent: 'space-between', gap: { md: 8, xs: 4 }, mb: { md: 14, xs: 8 } }}>
+            <Box component="section" sx={{ background: '#020202', py: { md: '80px', xs: '56px' }, borderTop: '1px solid rgba(255,255,255,.08)', borderBottom: '1px solid rgba(255,255,255,.08)' }}>
+                <Container maxWidth={false} sx={{ maxWidth: '1440px', px: { md: 6, xs: 2.5 } }}>
+                    <Box sx={{ display: 'flex', flexDirection: { xs: 'column', lg: 'row' }, alignItems: { lg: 'flex-end' }, justifyContent: 'space-between', gap: { md: 4, xs: 3 }, mb: { md: 6, xs: 4 } }}>
                         <Box>
                             <Typography sx={{ textTransform: 'uppercase', letterSpacing: '0.45em', fontSize: { md: '0.78rem', xs: '0.7rem' }, fontWeight: 700, color: '#efcb77', mb: { md: 4, xs: 3 } }}>Latest Collection</Typography>
                             <Typography sx={{ fontSize: { xs: 'clamp(2rem, 8vw, 2.8rem)', md: 'clamp(2.8rem, 5vw, 5rem)' }, lineHeight: 1, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '-0.04em', color: 'white' }}>Featured Products</Typography>
@@ -896,7 +896,7 @@ const ShopHome = () => {
                                             <Box sx={{ overflow: 'hidden', '&:hover img': { transform: 'scale(1.08)' } }}>
                                                 <CardMedia sx={{ transition: 'transform 1s ease' }}><WorkDriveImage image={image} alt={title} /></CardMedia>
                                             </Box>
-                                            <CardContent sx={{ p: { md: 5, xs: 3 } }}>
+                                            <CardContent sx={{ p: { md: 3, xs: 2 } }}>
                                                 <Typography sx={{ textTransform: 'uppercase', letterSpacing: '0.18em', fontSize: '0.78rem', fontWeight: 700, color: '#efcb77', mb: 2 }}>{category}</Typography>
                                                 <Typography sx={{ fontSize: { md: '1.25rem', xs: '1rem' }, lineHeight: 1.3, fontWeight: 800, textTransform: 'uppercase', color: 'white' }}>{title}</Typography>
                                             </CardContent>
@@ -910,21 +910,21 @@ const ShopHome = () => {
             </Box>
 
             {/* CTA SECTION - 3 STEPS */}
-            <Box component="section" sx={{ background: 'linear-gradient(135deg, #d69d45 0%, #9f6720 50%, #d69d45 100%)', py: { md: '140px', xs: '100px' }, position: 'relative', overflow: 'hidden', '&::before': { content: '""', position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at 30% 50%, rgba(255,247,220,.1), transparent 50%)' }, '&::after': { content: '""', position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, background: 'radial-gradient(circle at 70% 50%, rgba(255,247,220,.08), transparent 50%)' } }}>
-                <Container maxWidth={false} sx={{ maxWidth: '1440px', px: { md: 10, xs: 3 }, position: 'relative', zIndex: 1 }}>
-                    <Box sx={{ textAlign: 'center', maxWidth: '960px', margin: '0 auto', mb: { md: 10, xs: 8 } }}>
+            <Box component="section" sx={{ background: 'linear-gradient(135deg, #d69d45 0%, #9f6720 50%, #d69d45 100%)', py: { md: '80px', xs: '56px' }, position: 'relative', overflow: 'hidden', '&::before': { content: '""', position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at 30% 50%, rgba(255,247,220,.1), transparent 50%)' }, '&::after': { content: '""', position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, background: 'radial-gradient(circle at 70% 50%, rgba(255,247,220,.08), transparent 50%)' } }}>
+                <Container maxWidth={false} sx={{ maxWidth: '1440px', px: { md: 6, xs: 2.5 }, position: 'relative', zIndex: 1 }}>
+                    <Box sx={{ textAlign: 'center', maxWidth: '960px', margin: '0 auto', mb: { md: 6, xs: 4 } }}>
                         <Typography sx={{ fontSize: { xs: 'clamp(2rem, 8vw, 2.8rem)', md: 'clamp(2.8rem, 5vw, 5rem)' }, lineHeight: 1.05, fontWeight: 900, textTransform: 'uppercase', letterSpacing: '-0.04em', color: 'white', mb: { md: 5, xs: 4 }, textShadow: '0 2px 20px rgba(0,0,0,.2)' }}>Start Your Journey with Victory</Typography>
                         <Typography sx={{ color: 'rgba(255,255,255,.95)', lineHeight: 2.1, fontSize: { md: '1.15rem', xs: '1.05rem' }, maxWidth: '720px', margin: '0 auto' }}>Transform your life in three simple steps. Join thousands of successful distributors building their dreams.</Typography>
                     </Box>
                     
-                    <Grid container spacing={{ md: 5, xs: 4 }} sx={{ mb: { md: 8, xs: 6 } }}>
+                    <Grid container spacing={{ md: 4, xs: 3 }} sx={{ mb: { md: 5, xs: 4 } }}>
                         {[
                             { step: '01', title: 'Register Yourself as a Distributor', description: 'Sign up and become part of the Victory World family. Get instant access to our complete product catalog and business tools.' },
                             { step: '02', title: 'Buy Combo kit Product', description: 'Enjoy exclusive distributor pricing on all premium products. Stock up and save while building your inventory.' },
                             { step: '03', title: 'Follow our victory Business system & start building money', description: 'Share quality products with others and earn attractive commissions. Build your network and grow your income unlimited.' }
                         ].map((item, index) => (
                             <Grid item xs={12} md={4} key={index}>
-                                <Box sx={{ background: 'rgba(255,255,255,.1)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,.2)', p: { md: 6, xs: 4 }, minHeight: { md: '320px', xs: '280px' }, display: 'flex', flexDirection: 'column', transition: 'all 0.4s ease', '&:hover': { transform: 'translateY(-8px)', background: 'rgba(255,255,255,.15)', boxShadow: '0 20px 50px rgba(0,0,0,.3)' } }}>
+                                <Box sx={{ background: 'rgba(255,255,255,.1)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,.2)', p: { md: 4, xs: 3 }, minHeight: { md: '240px', xs: '220px' }, display: 'flex', flexDirection: 'column', transition: 'all 0.4s ease', '&:hover': { transform: 'translateY(-8px)', background: 'rgba(255,255,255,.15)', boxShadow: '0 20px 50px rgba(0,0,0,.3)' } }}>
                                     <Typography sx={{ fontSize: { md: '4rem', xs: '3rem' }, fontWeight: 900, color: 'rgba(255,255,255,.3)', lineHeight: 1, mb: 3 }}>{item.step}</Typography>
                                     <Typography sx={{ fontSize: { md: '1.5rem', xs: '1.2rem' }, fontWeight: 800, textTransform: 'uppercase', color: 'white', mb: 3, lineHeight: 1.2 }}>{item.title}</Typography>
                                     <Typography sx={{ color: 'rgba(255,255,255,.9)', lineHeight: 1.8, fontSize: { md: '1.05rem', xs: '1rem' } }}>{item.description}</Typography>

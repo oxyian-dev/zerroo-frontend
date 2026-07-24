@@ -40,7 +40,7 @@ const ImageListDetails = ({ id = useParams()['id'] }) => {
 
     function reorder() {
         setReordering(true)
-        const body = new FormData();
+        const body = new FormData()
         images.forEach(({ image }) => body.append('images', image))
         fetcher(`/api/image-lists/${id}/images/reorder`, { method: 'PUT', body })
             .then(r => r.json())

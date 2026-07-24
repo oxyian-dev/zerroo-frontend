@@ -151,12 +151,12 @@ export default function BrandShaara() {
                 sx={{
                     position: 'relative',
                     zIndex: 1,
-                    py: { md: 14, xs: 10 },
-                    px: { md: 10, xs: 3 }
+                    py: { md: 7, xs: 5 },
+                    px: { md: 6, xs: 2.5 }
                 }}
             >
-                <Stack spacing={{ md: 12, xs: 8 }}>
-                    <Grid container spacing={{ md: 8, xs: 5 }} alignItems="center">
+                <Stack spacing={{ md: 6, xs: 4 }}>
+                    <Grid container spacing={{ md: 5, xs: 3 }} alignItems="center">
                         <Grid item xs={12} md={6}>
                             <Stack spacing={3}>
                                 <Typography
@@ -321,7 +321,7 @@ export default function BrandShaara() {
                                         alt="SHAARA Sanitary Pads"
                                         sx={{
                                             width: '100%',
-                                            height: { xs: 460, md: 720 },
+                                            height: { xs: 340, md: 520 },
                                             objectFit: 'cover',
                                             display: 'block',
                                             transform: 'scale(1.02)'
@@ -432,7 +432,7 @@ export default function BrandShaara() {
                     background: '#050505'
                 }}
             >
-                <Container maxWidth="xl" sx={{ py: { md: 10, xs: 8 }, px: { md: 10, xs: 3 } }}>
+                <Container maxWidth="xl" sx={{ py: { md: 6, xs: 4 }, px: { md: 6, xs: 2.5 } }}>
                     <Grid container spacing={{ md: 4, xs: 3 }} alignItems="start">
                         <Grid item xs={12} md={4}>
                             <Box
@@ -601,8 +601,8 @@ export default function BrandShaara() {
             </Box>
 
             <Box component="section" sx={{ background: '#020202' }}>
-                <Container maxWidth="xl" sx={{ py: { md: 10, xs: 8 }, px: { md: 10, xs: 3 } }}>
-                    <Grid container spacing={{ md: 8, xs: 4 }} alignItems="start">
+                <Container maxWidth="xl" sx={{ py: { md: 6, xs: 4 }, px: { md: 6, xs: 2.5 } }}>
+                    <Grid container spacing={{ md: 5, xs: 3 }} alignItems="start">
                         <Grid item xs={12} md={4}>
                             <Typography
                                 sx={{
@@ -689,7 +689,7 @@ export default function BrandShaara() {
                     background: 'linear-gradient(180deg, rgba(239,203,119,.06), rgba(0,0,0,0))'
                 }}
             >
-                <Container maxWidth="xl" sx={{ py: { md: 10, xs: 8 }, px: { md: 10, xs: 3 } }}>
+                <Container maxWidth="xl" sx={{ py: { md: 6, xs: 4 }, px: { md: 6, xs: 2.5 } }}>
                     <Grid container spacing={3}>
                         <Grid item xs={12} md={6}>
                             <Box

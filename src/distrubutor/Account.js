@@ -35,6 +35,7 @@ import Gender from "../data/Gender";
 import fetcher from "../utils/fetcher";
 import REGEX from "../utils/regex";
 import { constructFormData, toImage } from "../utils/util";
+import { companyDetails } from "../shop/companyDetails";
 import States from "../data/States";
 import NomineeRelation from "../data/NomineeRelation";
 
@@ -48,6 +49,8 @@ const Account = () => {
         dob: '2000-01-01',
         phone: '',
         email: '',
+        kyc_verification_id: null,
+        bank_verification_id: null,
         address_1: '',
         address_2: '',
         landmark: '',
@@ -69,6 +72,8 @@ const Account = () => {
                     gender: profile.gender || '',
                     phone: profile.phone || '',
                     email: profile.email || '',
+                    kyc_verification_id: profile.kyc_verification_id || null,
+                    bank_verification_id: profile.bank_verification_id || null,
                     address_1: profile.address_1 || '',
                     address_2: profile.address_2 || '',
                     landmark: profile.landmark || '',
@@ -102,6 +107,9 @@ const Account = () => {
     const [verifyEmailLoading, setVerifyEmailLoading] = useState(false);
 
     const [set, setSet] = useState(false)
+
+    const hasKycRequest = profile.kyc_status === 'Pending' && Boolean(profile.kyc_verification_id)
+    const hasBankRequest = profile.bank_status === 'Pending' && Boolean(profile.bank_verification_id)
 
     const [avatar, setAvatar] = useState(null)
     const avatarRef = useRef(null)
@@ -1443,7 +1451,7 @@ const Account = () => {
                                 Reason: <strong>{profile.kyc_rejection_reason}</strong>
                             </Alert>
                         )}
-                        {(profile.kyc_status === null || profile.kyc_status === 'Rejected') && (
+                        {(profile.kyc_status === null || profile.kyc_status === 'Rejected' || (profile.kyc_status === 'Pending' && !hasKycRequest)) && (
                             <Formik
                                 validationSchema={Yup.object().shape({
                                     aadhaar: Yup.string().matches(REGEX.AADHAAR, 'Invalid Aadhaar')
@@ -1498,99 +1506,119 @@ const Account = () => {
                                     values
                                 }) => (
                                     <form noValidate onSubmit={handleSubmit}>
-                                        <Stack spacing={2}>
+                                        <Stack spacing={3}>
                                             <Card elevation={2}>
                                                 <CardContent>
-                                                    <Box
-                                                        sx={{
-                                                            height: '40vh',
-                                                            display: 'flex',
-                                                            justifyContent: 'center',
-                                                            alignItems: 'center',
-                                                        }}
-                                                    >
-                                                        <Card sx={{ maxWidth: 400, width: '100%' }}>
-
-                                                            <CardMedia
-                                                                component="img"
-                                                                height="220"
-                                                                image="/img/Kyc_verification.jpeg"
-                                                                alt="KYC updation Screen Shot"
-                                                                
-                                                            />
-
-
-                                                            <CardActions sx={{ justifyContent: 'center' }}>
-                                                                <Button size="small" component="a" href="/pdf/ZERROO KYC VERIFICATION PROCESS.pdf" target="_blank" rel="noopener noreferrer">View More</Button>
-                                                            </CardActions>
-                                                        </Card>
-                                                    </Box>
-                                                    <Grid container spacing={2}>
-                                                        <Grid item xs={12} textAlign="center">
-                                                            <Typography variant="h3">Aadhaar Section</Typography>
-                                                        </Grid>
-                                                        <Grid item xs={12}>
-                                                            <Divider />
-                                                        </Grid>
-                                                        <Grid item xs={12}>
-                                                            <FormControl fullWidth
-                                                                error={Boolean(touched.aadhaar && errors.aadhaar)}>
-                                                                <AadhaarField
-                                                                    required
-                                                                    type="text"
-                                                                    id="aadhaar"
-                                                                    value={values.aadhaar}
-                                                                    name="aadhaar"
-                                                                    onBlur={handleBlur}
-                                                                    onChange={handleChange}
-                                                                    label="Aadhaar Number"
-                                                                />
-                                                                {touched.aadhaar && errors.aadhaar && (
-                                                                    <FormHelperText error id="error-aadhaar">
-                                                                        {errors.aadhaar}
-                                                                    </FormHelperText>
-                                                                )}
-                                                            </FormControl>
-                                                        </Grid>
-                                                        <Grid item xs={12} md={6}>
-                                                            <FormControl fullWidth
-                                                                error={Boolean(touched.aadhaar_front && errors.aadhaar_front)}
+                                                    <Grid container spacing={3} alignItems="stretch">
+                                                        <Grid item xs={12} md={5}>
+                                                            <Card
                                                                 sx={{
-                                                                    borderRight: {
-                                                                        md: "1px solid grey",
-                                                                        xs: 0
-                                                                    }
+                                                                    height: '100%',
+                                                                    overflow: 'hidden',
+                                                                    borderRadius: 2,
+                                                                    border: '1px solid rgba(255,255,255,.08)',
+                                                                    bgcolor: 'rgba(255,255,255,.02)'
                                                                 }}
                                                             >
-                                                                <HionImageUpload
-                                                                    paperElevation={0}
-                                                                    buttonText="Upload Aadhaar Front"
-                                                                    name="aadhaar_front"
-                                                                    handleChange={handleChange}
+                                                                <CardMedia
+                                                                    component="img"
+                                                                    sx={{
+                                                                        width: '100%',
+                                                                        height: { xs: 200, md: '100%' },
+                                                                        objectFit: 'cover'
+                                                                    }}
+                                                                    image="/img/Kyc_verification.jpeg"
+                                                                    alt="KYC updation Screen Shot"
                                                                 />
-                                                                {touched.aadhaar_front && errors.aadhaar_front && (
-                                                                    <FormHelperText error id="error-aadhaar_front">
-                                                                        {errors.aadhaar_front}
-                                                                    </FormHelperText>
-                                                                )}
-                                                            </FormControl>
+                                                                <CardActions sx={{ justifyContent: 'center', px: 2, py: 1.5 }}>
+                                                                    <Button
+                                                                        size="small"
+                                                                        component="a"
+                                                                        href="/pdf/ZERROO KYC VERIFICATION PROCESS.pdf"
+                                                                        target="_blank"
+                                                                        rel="noopener noreferrer"
+                                                                    >
+                                                                        View More
+                                                                    </Button>
+                                                                </CardActions>
+                                                            </Card>
                                                         </Grid>
-                                                        <Grid item xs={12} md={6}>
-                                                            <FormControl fullWidth
-                                                                error={Boolean(touched.aadhaar_back && errors.aadhaar_back)}>
-                                                                <HionImageUpload
-                                                                    paperElevation={0}
-                                                                    buttonText="Upload Aadhaar Back"
-                                                                    name="aadhaar_back"
-                                                                    handleChange={handleChange}
-                                                                    maxFileSize={5242880}
-                                                                />
-                                                                {touched.aadhaar_back && errors.aadhaar_back && (
-                                                                    <FormHelperText error id="error-aadhaar_back">
-                                                                        {errors.aadhaar_back}
-                                                                    </FormHelperText>
-                                                                )}
-                                                            </FormControl>
+                                                        <Grid item xs={12} md={7}>
+                                                            <Box
+                                                                sx={{
+                                                                    height: '100%',
+                                                                    p: { xs: 2, md: 3 },
+                                                                    borderRadius: 2,
+                                                                    bgcolor: 'rgba(239,203,119,0.05)',
+                                                                    border: '1px solid rgba(239,203,119,0.12)'
+                                                                }}
+                                                            >
+                                                                <Typography variant="h3" textAlign="center" sx={{ mb: 1 }}>
+                                                                    KYC Verification
+                                                                </Typography>
+                                                                <Typography
+                                                                    sx={{
+                                                                        color: 'rgba(255,255,255,.72)',
+                                                                        textAlign: 'center',
+                                                                        lineHeight: 1.8,
+                                                                        mb: 2
+                                                                    }}
+                                                                >
+                                                                    Submit Aadhaar and PAN details together with clear document photos to complete KYC verification.
+                                                                </Typography>
+                                                                <Grid container spacing={2}>
+                                                                    <Grid item xs={12}>
+                                                                        <FormControl fullWidth error={Boolean(touched.aadhaar && errors.aadhaar)}>
+                                                                            <AadhaarField
+                                                                                required
+                                                                                type="text"
+                                                                                id="aadhaar"
+                                                                                value={values.aadhaar}
+                                                                                name="aadhaar"
+                                                                                onBlur={handleBlur}
+                                                                                onChange={handleChange}
+                                                                                label="Aadhaar Number"
+                                                                            />
+                                                                            {touched.aadhaar && errors.aadhaar && (
+                                                                                <FormHelperText error id="error-aadhaar">
+                                                                                    {errors.aadhaar}
+                                                                                </FormHelperText>
+                                                                            )}
+                                                                        </FormControl>
+                                                                    </Grid>
+                                                                    <Grid item xs={12} md={6}>
+                                                                        <FormControl fullWidth error={Boolean(touched.aadhaar_front && errors.aadhaar_front)}>
+                                                                            <HionImageUpload
+                                                                                paperElevation={0}
+                                                                                buttonText="Upload Aadhaar Front"
+                                                                                name="aadhaar_front"
+                                                                                handleChange={handleChange}
+                                                                            />
+                                                                            {touched.aadhaar_front && errors.aadhaar_front && (
+                                                                                <FormHelperText error id="error-aadhaar_front">
+                                                                                    {errors.aadhaar_front}
+                                                                                </FormHelperText>
+                                                                            )}
+                                                                        </FormControl>
+                                                                    </Grid>
+                                                                    <Grid item xs={12} md={6}>
+                                                                        <FormControl fullWidth error={Boolean(touched.aadhaar_back && errors.aadhaar_back)}>
+                                                                            <HionImageUpload
+                                                                                paperElevation={0}
+                                                                                buttonText="Upload Aadhaar Back"
+                                                                                name="aadhaar_back"
+                                                                                handleChange={handleChange}
+                                                                                maxFileSize={5242880}
+                                                                            />
+                                                                            {touched.aadhaar_back && errors.aadhaar_back && (
+                                                                                <FormHelperText error id="error-aadhaar_back">
+                                                                                    {errors.aadhaar_back}
+                                                                                </FormHelperText>
+                                                                            )}
+                                                                        </FormControl>
+                                                                    </Grid>
+                                                                </Grid>
+                                                            </Box>
                                                         </Grid>
                                                     </Grid>
                                                 </CardContent>
@@ -1798,7 +1826,7 @@ const Account = () => {
                                 <AlertTitle>KYC Verified</AlertTitle>
                             </Alert>
                         )}
-                        {profile.kyc_status === 'Pending' && (
+                        {hasKycRequest && (
                             <Alert severity="info">
                                 <AlertTitle>KYC Verification requested</AlertTitle>
                                 It'll take some time to verify your KYC details. Check again later
@@ -1814,7 +1842,7 @@ const Account = () => {
                                 Reason: <strong>{profile.bank_rejection_reason}</strong>
                             </Alert>
                         )}
-                        {(profile.bank_status === null || profile.bank_status === 'Rejected') && (
+                        {(profile.bank_status === null || profile.bank_status === 'Rejected' || (profile.bank_status === 'Pending' && !hasBankRequest)) && (
                             <Formik
                                 validationSchema={Yup.object().shape({
                                     ifsc: Yup.string().required('IFSC Code Required').matches(REGEX.IFSC, 'Invalid Ifsc'),
@@ -1865,302 +1893,267 @@ const Account = () => {
                                     setValues
                                 }) => (
                                     <form noValidate onSubmit={handleSubmit}>
-                                        <Card elevation={2}>
-                                            <CardContent>
-                                                <Grid container spacing={2}>
-                                                    <Grid item xs={12}>
-                                                        <Typography variant="h3" textAlign="center">Bank</Typography>
-                                                    </Grid>
-                                                    <Grid item xs={12}>
-                                                        <Divider />
-                                                    </Grid>
-                                                    <Grid item xs={12} md={6}>
-                                                        <FormControl fullWidth
-                                                            error={Boolean(touched.ifsc && errors.ifsc)}>
-                                                            <TextField
-                                                                id="ifsc"
-                                                                type="text"
-                                                                value={values.ifsc}
-                                                                name="ifsc"
-                                                                onBlur={({ target }) => {
-                                                                    handleBlur({
-                                                                        target: {
-                                                                            name: 'ifsc',
-                                                                            value: target.value
-                                                                        }
-                                                                    }, target.value)
-                                                                    updateIfsc(values, setValues)
-                                                                }}
-                                                                onChange={handleChange}
-                                                                label="IFSC Code"
-                                                                inputProps={{
-                                                                    'aria-label': 'IFSC code',
-                                                                }}
-                                                                sx={{
-                                                                    '& .MuiOutlinedInput-root': {
-                                                                        backgroundColor: 'rgba(255,255,255,.02)',
-                                                                        transition: 'all 0.3s ease',
-                                                                        '& fieldset': {
-                                                                            borderColor: 'rgba(255,255,255,0.1)',
-                                                                        },
-                                                                        '&:hover fieldset': {
-                                                                            borderColor: 'rgba(239,203,119,0.5)',
-                                                                        },
-                                                                        '&.Mui-focused fieldset': {
-                                                                            borderColor: '#efcb77',
-                                                                        },
-                                                                        '&.Mui-error fieldset': {
-                                                                            borderColor: '#ff6b6b',
-                                                                        },
-                                                                    },
-                                                                    '& .MuiInputBase-input': {
-                                                                        color: '#fff !important',
-                                                                        WebkitTextFillColor: '#fff !important',
-                                                                        '&:-webkit-autofill': {
-                                                                            WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
-                                                                            WebkitTextFillColor: '#fff !important',
-                                                                            transition: 'background-color 5000s ease-in-out 0s',
-                                                                        },
-                                                                    },
-                                                                    '& .MuiInputLabel-root': {
-                                                                        color: 'rgba(255,255,255,0.7)',
-                                                                        '&.Mui-focused': {
-                                                                            color: '#efcb77',
-                                                                        },
-                                                                        '&.Mui-error': {
-                                                                            color: '#ff6b6b',
-                                                                        },
-                                                                    },
-                                                                }}
-                                                            />
-                                                            {touched.ifsc && errors.ifsc && (
-                                                                <FormHelperText error id="error-ifsc">
-                                                                    {errors.ifsc}
-                                                                </FormHelperText>
-                                                            )}
-                                                        </FormControl>
-                                                    </Grid>
-                                                    <Grid item xs={12} md={6}>
-                                                        <FormControl fullWidth
-                                                            error={Boolean(touched.bank && errors.bank)}>
-                                                            <TextField
-                                                                id="bank"
-                                                                type="text"
-                                                                value={values.bank}
-                                                                name="bank"
-                                                                onBlur={handleBlur}
-                                                                onChange={handleChange}
-                                                                label="Bank Name"
-                                                                inputProps={{
-                                                                    'aria-label': 'Bank name',
-                                                                }}
-                                                                InputProps={{ readOnly: true }}
-                                                                sx={{
-                                                                    '& .MuiOutlinedInput-root': {
-                                                                        backgroundColor: 'rgba(255,255,255,.02)',
-                                                                        transition: 'all 0.3s ease',
-                                                                        '& fieldset': {
-                                                                            borderColor: 'rgba(255,255,255,0.1)',
-                                                                        },
-                                                                        '&:hover fieldset': {
-                                                                            borderColor: 'rgba(239,203,119,0.5)',
-                                                                        },
-                                                                        '&.Mui-focused fieldset': {
-                                                                            borderColor: '#efcb77',
-                                                                        },
-                                                                        '&.Mui-error fieldset': {
-                                                                            borderColor: '#ff6b6b',
-                                                                        },
-                                                                    },
-                                                                    '& .MuiInputBase-input': {
-                                                                        color: '#fff !important',
-                                                                        WebkitTextFillColor: '#fff !important',
-                                                                        '&:-webkit-autofill': {
-                                                                            WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
-                                                                            WebkitTextFillColor: '#fff !important',
-                                                                            transition: 'background-color 5000s ease-in-out 0s',
-                                                                        },
-                                                                    },
-                                                                    '& .MuiInputLabel-root': {
-                                                                        color: 'rgba(255,255,255,0.7)',
-                                                                        '&.Mui-focused': {
-                                                                            color: '#efcb77',
-                                                                        },
-                                                                        '&.Mui-error': {
-                                                                            color: '#ff6b6b',
-                                                                        },
-                                                                    },
-                                                                }}
-                                                            />
-                                                            {touched.bank && errors.bank && (
-                                                                <FormHelperText error id="error-bank">
-                                                                    {errors.bank}
-                                                                </FormHelperText>
-                                                            )}
-                                                        </FormControl>
-                                                    </Grid>
-                                                    <Grid item xs={12} md={6}>
-                                                        <FormControl fullWidth
-                                                            error={Boolean(touched.branch && errors.branch)}>
-                                                            <TextField
-                                                                id="branch"
-                                                                type="text"
-                                                                value={values.branch}
-                                                                name="branch"
-                                                                onBlur={handleBlur}
-                                                                onChange={handleChange}
-                                                                label="Branch"
-                                                                inputProps={{
-                                                                    'aria-label': 'Branch name',
-                                                                }}
-                                                                InputProps={{ readOnly: true }}
-                                                                sx={{
-                                                                    '& .MuiOutlinedInput-root': {
-                                                                        backgroundColor: 'rgba(255,255,255,.02)',
-                                                                        transition: 'all 0.3s ease',
-                                                                        '& fieldset': {
-                                                                            borderColor: 'rgba(255,255,255,0.1)',
-                                                                        },
-                                                                        '&:hover fieldset': {
-                                                                            borderColor: 'rgba(239,203,119,0.5)',
-                                                                        },
-                                                                        '&.Mui-focused fieldset': {
-                                                                            borderColor: '#efcb77',
-                                                                        },
-                                                                        '&.Mui-error fieldset': {
-                                                                            borderColor: '#ff6b6b',
-                                                                        },
-                                                                    },
-                                                                    '& .MuiInputBase-input': {
-                                                                        color: '#fff !important',
-                                                                        WebkitTextFillColor: '#fff !important',
-                                                                        '&:-webkit-autofill': {
-                                                                            WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
-                                                                            WebkitTextFillColor: '#fff !important',
-                                                                            transition: 'background-color 5000s ease-in-out 0s',
-                                                                        },
-                                                                    },
-                                                                    '& .MuiInputLabel-root': {
-                                                                        color: 'rgba(255,255,255,0.7)',
-                                                                        '&.Mui-focused': {
-                                                                            color: '#efcb77',
-                                                                        },
-                                                                        '&.Mui-error': {
-                                                                            color: '#ff6b6b',
-                                                                        },
-                                                                    },
-                                                                }}
-                                                            />
-                                                            {touched.branch && errors.branch && (
-                                                                <FormHelperText error id="error-branch">
-                                                                    {errors.branch}
-                                                                </FormHelperText>
-                                                            )}
-                                                        </FormControl>
-                                                    </Grid>
-                                                    <Grid item xs={12} md={6}>
-                                                        <FormControl fullWidth error={Boolean(touched.acc && errors.acc)}>
-                                                            <TextField
-                                                                id="acc"
-                                                                type="text"
-                                                                value={values.acc}
-                                                                name="acc"
-                                                                onBlur={handleBlur}
-                                                                onChange={handleChange}
-                                                                label="Account Number"
-                                                                inputProps={{
-                                                                    'aria-label': 'Account number',
-                                                                }}
-                                                                sx={{
-                                                                    '& .MuiOutlinedInput-root': {
-                                                                        backgroundColor: 'rgba(255,255,255,.02)',
-                                                                        transition: 'all 0.3s ease',
-                                                                        '& fieldset': {
-                                                                            borderColor: 'rgba(255,255,255,0.1)',
-                                                                        },
-                                                                        '&:hover fieldset': {
-                                                                            borderColor: 'rgba(239,203,119,0.5)',
-                                                                        },
-                                                                        '&.Mui-focused fieldset': {
-                                                                            borderColor: '#efcb77',
-                                                                        },
-                                                                        '&.Mui-error fieldset': {
-                                                                            borderColor: '#ff6b6b',
-                                                                        },
-                                                                    },
-                                                                    '& .MuiInputBase-input': {
-                                                                        color: '#fff !important',
-                                                                        WebkitTextFillColor: '#fff !important',
-                                                                        '&:-webkit-autofill': {
-                                                                            WebkitBoxShadow: '0 0 0 1000px rgba(255,255,255,.02) inset !important',
-                                                                            WebkitTextFillColor: '#fff !important',
-                                                                            transition: 'background-color 5000s ease-in-out 0s',
-                                                                        },
-                                                                    },
-                                                                    '& .MuiInputLabel-root': {
-                                                                        color: 'rgba(255,255,255,0.7)',
-                                                                        '&.Mui-focused': {
-                                                                            color: '#efcb77',
-                                                                        },
-                                                                        '&.Mui-error': {
-                                                                            color: '#ff6b6b',
-                                                                        },
-                                                                    },
-                                                                }}
-                                                            />
-                                                            {touched.acc && errors.acc && (
-                                                                <FormHelperText error id="error-acc">
-                                                                    {errors.acc}
-                                                                </FormHelperText>
-                                                            )}
-                                                        </FormControl>
-                                                    </Grid>
-                                                    <Grid item xs={12}>
-                                                        <FormControl fullWidth error={Boolean(touched.image && errors.image)}>
-                                                            <HionImageUpload
-                                                                paperElevation={0}
-                                                                name="image"
-                                                                buttonText="Upload Bank Passbook"
-                                                                handleChange={handleChange}
-                                                            />
-                                                            {touched.image && errors.image && (
-                                                                <FormHelperText error id="error-image">
-                                                                    {errors.image}
-                                                                </FormHelperText>
-                                                            )}
-                                                        </FormControl>
-                                                    </Grid>
-                                                    <Grid item xs={12}>
-                                                        <LoadingButton
-                                                            loading={isSubmitting}
-                                                            fullWidth
-                                                            size="large"
-                                                            type="submit"
-                                                            variant="contained"
-                                                            aria-label="Update bank details"
-                                                            sx={{
-                                                                background: 'linear-gradient(135deg, #efcb77 0%, #d4af37 100%)',
-                                                                color: '#000',
-                                                                fontWeight: 600,
-                                                                padding: '12px',
-                                                                '&:hover': {
-                                                                    background: 'linear-gradient(135deg, #d4af37 0%, #efcb77 100%)',
-                                                                    transform: 'translateY(-2px)',
-                                                                    boxShadow: '0 8px 16px rgba(239,203,119,0.3)',
-                                                                },
-                                                                '&:disabled': {
-                                                                    background: 'rgba(255,255,255,0.1)',
-                                                                    color: 'rgba(255,255,255,0.3)',
-                                                                },
-                                                                transition: 'all 0.3s ease',
-                                                            }}
+                                        <Stack spacing={3}>
+                                            <Card elevation={2}>
+                                                <CardContent>
+                                                    <Box
+                                                        sx={{
+                                                            p: { xs: 2, md: 3 },
+                                                            borderRadius: 2,
+                                                            bgcolor: 'rgba(239,203,119,0.05)',
+                                                            border: '1px solid rgba(239,203,119,0.12)'
+                                                        }}
+                                                    >
+                                                        <Typography variant="h3" textAlign="center" sx={{ mb: 1 }}>
+                                                            Bank Verification
+                                                        </Typography>
+                                                        <Typography
+                                                            textAlign="center"
+                                                            sx={{ color: 'rgba(255,255,255,.72)', lineHeight: 1.8 }}
                                                         >
-                                                            Update Bank Details
-                                                        </LoadingButton>
+                                                            Enter your bank details exactly as they appear on your account and upload a clear passbook or cancelled cheque image.
+                                                        </Typography>
+                                                    </Box>
+                                                </CardContent>
+                                            </Card>
+                                            <Card elevation={2}>
+                                                <CardContent>
+                                                    <Grid container spacing={2}>
+                                                        <Grid item xs={12}>
+                                                            <Typography variant="h3" textAlign="center">Company Bank Details</Typography>
+                                                        </Grid>
+                                                        <Grid item xs={12}>
+                                                            <Divider />
+                                                        </Grid>
+                                                        <Grid item xs={12} sm={6}>
+                                                            <Box sx={{ p: 2, borderRadius: 2, bgcolor: 'rgba(0,0,0,.18)', border: '1px solid rgba(255,255,255,.08)' }}>
+                                                                <Typography sx={{ color: 'rgba(255,255,255,.6)', fontSize: '0.78rem', letterSpacing: '0.08em', textTransform: 'uppercase', mb: 0.5 }}>Account Holder</Typography>
+                                                                <Typography sx={{ color: '#fff', fontWeight: 600 }}>{companyDetails.bankAccountHolder}</Typography>
+                                                            </Box>
+                                                        </Grid>
+                                                        <Grid item xs={12} sm={6}>
+                                                            <Box sx={{ p: 2, borderRadius: 2, bgcolor: 'rgba(0,0,0,.18)', border: '1px solid rgba(255,255,255,.08)' }}>
+                                                                <Typography sx={{ color: 'rgba(255,255,255,.6)', fontSize: '0.78rem', letterSpacing: '0.08em', textTransform: 'uppercase', mb: 0.5 }}>Bank</Typography>
+                                                                <Typography sx={{ color: '#fff', fontWeight: 600 }}>{companyDetails.bankName}</Typography>
+                                                            </Box>
+                                                        </Grid>
+                                                        <Grid item xs={12} sm={6}>
+                                                            <Box sx={{ p: 2, borderRadius: 2, bgcolor: 'rgba(0,0,0,.18)', border: '1px solid rgba(255,255,255,.08)' }}>
+                                                                <Typography sx={{ color: 'rgba(255,255,255,.6)', fontSize: '0.78rem', letterSpacing: '0.08em', textTransform: 'uppercase', mb: 0.5 }}>Branch</Typography>
+                                                                <Typography sx={{ color: '#fff', fontWeight: 600 }}>{companyDetails.bankBranch}</Typography>
+                                                            </Box>
+                                                        </Grid>
+                                                        <Grid item xs={12} sm={6}>
+                                                            <Box sx={{ p: 2, borderRadius: 2, bgcolor: 'rgba(0,0,0,.18)', border: '1px solid rgba(255,255,255,.08)' }}>
+                                                                <Typography sx={{ color: 'rgba(255,255,255,.6)', fontSize: '0.78rem', letterSpacing: '0.08em', textTransform: 'uppercase', mb: 0.5 }}>Account Number</Typography>
+                                                                <Typography sx={{ color: '#fff', fontWeight: 600 }}>{companyDetails.bankAccountNumber}</Typography>
+                                                            </Box>
+                                                        </Grid>
+                                                        <Grid item xs={12} sm={6}>
+                                                            <Box sx={{ p: 2, borderRadius: 2, bgcolor: 'rgba(0,0,0,.18)', border: '1px solid rgba(255,255,255,.08)' }}>
+                                                                <Typography sx={{ color: 'rgba(255,255,255,.6)', fontSize: '0.78rem', letterSpacing: '0.08em', textTransform: 'uppercase', mb: 0.5 }}>IFSC</Typography>
+                                                                <Typography sx={{ color: '#fff', fontWeight: 600 }}>{companyDetails.bankIfsc}</Typography>
+                                                            </Box>
+                                                        </Grid>
+                                                        <Grid item xs={12} sm={6}>
+                                                            <Box sx={{ p: 2, borderRadius: 2, bgcolor: 'rgba(0,0,0,.18)', border: '1px solid rgba(255,255,255,.08)' }}>
+                                                                <Typography sx={{ color: 'rgba(255,255,255,.6)', fontSize: '0.78rem', letterSpacing: '0.08em', textTransform: 'uppercase', mb: 0.5 }}>Account Type</Typography>
+                                                                <Typography sx={{ color: '#fff', fontWeight: 600 }}>{companyDetails.bankAccountType}</Typography>
+                                                            </Box>
+                                                        </Grid>
                                                     </Grid>
-                                                </Grid>
-                                            </CardContent>
-                                        </Card>
+                                                </CardContent>
+                                            </Card>
+                                            <Card elevation={2}>
+                                                <CardContent>
+                                                    <Grid container spacing={2}>
+                                                        <Grid item xs={12} md={6}>
+                                                            <FormControl fullWidth error={Boolean(touched.ifsc && errors.ifsc)}>
+                                                                <TextField
+                                                                    id="ifsc"
+                                                                    type="text"
+                                                                    value={values.ifsc}
+                                                                    name="ifsc"
+                                                                    onBlur={({ target }) => {
+                                                                        handleBlur({
+                                                                            target: {
+                                                                                name: 'ifsc',
+                                                                                value: target.value
+                                                                            }
+                                                                        }, target.value)
+                                                                        updateIfsc(values, setValues)
+                                                                    }}
+                                                                    onChange={handleChange}
+                                                                    label="IFSC Code"
+                                                                    inputProps={{ 'aria-label': 'IFSC code' }}
+                                                                    sx={{
+                                                                        '& .MuiOutlinedInput-root': {
+                                                                            backgroundColor: 'rgba(255,255,255,.02)',
+                                                                            transition: 'all 0.3s ease',
+                                                                            '& fieldset': { borderColor: 'rgba(255,255,255,0.1)' },
+                                                                            '&:hover fieldset': { borderColor: 'rgba(239,203,119,0.5)' },
+                                                                            '&.Mui-focused fieldset': { borderColor: '#efcb77' },
+                                                                            '&.Mui-error fieldset': { borderColor: '#ff6b6b' }
+                                                                        },
+                                                                        '& .MuiInputBase-input': { color: '#fff !important', WebkitTextFillColor: '#fff !important' },
+                                                                        '& .MuiInputLabel-root': {
+                                                                            color: 'rgba(255,255,255,0.7)',
+                                                                            '&.Mui-focused': { color: '#efcb77' },
+                                                                            '&.Mui-error': { color: '#ff6b6b' }
+                                                                        }
+                                                                    }}
+                                                                />
+                                                                {touched.ifsc && errors.ifsc && (
+                                                                    <FormHelperText error id="error-ifsc">{errors.ifsc}</FormHelperText>
+                                                                )}
+                                                            </FormControl>
+                                                        </Grid>
+                                                        <Grid item xs={12} md={6}>
+                                                            <FormControl fullWidth error={Boolean(touched.bank && errors.bank)}>
+                                                                <TextField
+                                                                    id="bank"
+                                                                    type="text"
+                                                                    value={values.bank}
+                                                                    name="bank"
+                                                                    onBlur={handleBlur}
+                                                                    onChange={handleChange}
+                                                                    label="Bank Name"
+                                                                    inputProps={{ 'aria-label': 'Bank name' }}
+                                                                    InputProps={{ readOnly: true }}
+                                                                    sx={{
+                                                                        '& .MuiOutlinedInput-root': {
+                                                                            backgroundColor: 'rgba(255,255,255,.02)',
+                                                                            transition: 'all 0.3s ease',
+                                                                            '& fieldset': { borderColor: 'rgba(255,255,255,0.1)' },
+                                                                            '&:hover fieldset': { borderColor: 'rgba(239,203,119,0.5)' },
+                                                                            '&.Mui-focused fieldset': { borderColor: '#efcb77' },
+                                                                            '&.Mui-error fieldset': { borderColor: '#ff6b6b' }
+                                                                        },
+                                                                        '& .MuiInputBase-input': { color: '#fff !important', WebkitTextFillColor: '#fff !important' },
+                                                                        '& .MuiInputLabel-root': {
+                                                                            color: 'rgba(255,255,255,0.7)',
+                                                                            '&.Mui-focused': { color: '#efcb77' },
+                                                                            '&.Mui-error': { color: '#ff6b6b' }
+                                                                        }
+                                                                    }}
+                                                                />
+                                                                {touched.bank && errors.bank && (
+                                                                    <FormHelperText error id="error-bank">{errors.bank}</FormHelperText>
+                                                                )}
+                                                            </FormControl>
+                                                        </Grid>
+                                                        <Grid item xs={12} md={6}>
+                                                            <FormControl fullWidth error={Boolean(touched.branch && errors.branch)}>
+                                                                <TextField
+                                                                    id="branch"
+                                                                    type="text"
+                                                                    value={values.branch}
+                                                                    name="branch"
+                                                                    onBlur={handleBlur}
+                                                                    onChange={handleChange}
+                                                                    label="Branch"
+                                                                    inputProps={{ 'aria-label': 'Branch name' }}
+                                                                    InputProps={{ readOnly: true }}
+                                                                    sx={{
+                                                                        '& .MuiOutlinedInput-root': {
+                                                                            backgroundColor: 'rgba(255,255,255,.02)',
+                                                                            transition: 'all 0.3s ease',
+                                                                            '& fieldset': { borderColor: 'rgba(255,255,255,0.1)' },
+                                                                            '&:hover fieldset': { borderColor: 'rgba(239,203,119,0.5)' },
+                                                                            '&.Mui-focused fieldset': { borderColor: '#efcb77' },
+                                                                            '&.Mui-error fieldset': { borderColor: '#ff6b6b' }
+                                                                        },
+                                                                        '& .MuiInputBase-input': { color: '#fff !important', WebkitTextFillColor: '#fff !important' },
+                                                                        '& .MuiInputLabel-root': {
+                                                                            color: 'rgba(255,255,255,0.7)',
+                                                                            '&.Mui-focused': { color: '#efcb77' },
+                                                                            '&.Mui-error': { color: '#ff6b6b' }
+                                                                        }
+                                                                    }}
+                                                                />
+                                                                {touched.branch && errors.branch && (
+                                                                    <FormHelperText error id="error-branch">{errors.branch}</FormHelperText>
+                                                                )}
+                                                            </FormControl>
+                                                        </Grid>
+                                                        <Grid item xs={12} md={6}>
+                                                            <FormControl fullWidth error={Boolean(touched.acc && errors.acc)}>
+                                                                <TextField
+                                                                    id="acc"
+                                                                    type="text"
+                                                                    value={values.acc}
+                                                                    name="acc"
+                                                                    onBlur={handleBlur}
+                                                                    onChange={handleChange}
+                                                                    label="Account Number"
+                                                                    inputProps={{ 'aria-label': 'Account number' }}
+                                                                    sx={{
+                                                                        '& .MuiOutlinedInput-root': {
+                                                                            backgroundColor: 'rgba(255,255,255,.02)',
+                                                                            transition: 'all 0.3s ease',
+                                                                            '& fieldset': { borderColor: 'rgba(255,255,255,0.1)' },
+                                                                            '&:hover fieldset': { borderColor: 'rgba(239,203,119,0.5)' },
+                                                                            '&.Mui-focused fieldset': { borderColor: '#efcb77' },
+                                                                            '&.Mui-error fieldset': { borderColor: '#ff6b6b' }
+                                                                        },
+                                                                        '& .MuiInputBase-input': { color: '#fff !important', WebkitTextFillColor: '#fff !important' },
+                                                                        '& .MuiInputLabel-root': {
+                                                                            color: 'rgba(255,255,255,0.7)',
+                                                                            '&.Mui-focused': { color: '#efcb77' },
+                                                                            '&.Mui-error': { color: '#ff6b6b' }
+                                                                        }
+                                                                    }}
+                                                                />
+                                                                {touched.acc && errors.acc && (
+                                                                    <FormHelperText error id="error-acc">{errors.acc}</FormHelperText>
+                                                                )}
+                                                            </FormControl>
+                                                        </Grid>
+                                                        <Grid item xs={12}>
+                                                            <FormControl fullWidth error={Boolean(touched.image && errors.image)}>
+                                                                <HionImageUpload
+                                                                    paperElevation={0}
+                                                                    name="image"
+                                                                    buttonText="Upload Bank Passbook"
+                                                                    handleChange={handleChange}
+                                                                />
+                                                                {touched.image && errors.image && (
+                                                                    <FormHelperText error id="error-image">{errors.image}</FormHelperText>
+                                                                )}
+                                                            </FormControl>
+                                                        </Grid>
+                                                        <Grid item xs={12}>
+                                                            <LoadingButton
+                                                                loading={isSubmitting}
+                                                                fullWidth
+                                                                size="large"
+                                                                type="submit"
+                                                                variant="contained"
+                                                                aria-label="Update bank details"
+                                                                sx={{
+                                                                    background: 'linear-gradient(135deg, #efcb77 0%, #d4af37 100%)',
+                                                                    color: '#000',
+                                                                    fontWeight: 600,
+                                                                    padding: '12px',
+                                                                    '&:hover': {
+                                                                        background: 'linear-gradient(135deg, #d4af37 0%, #efcb77 100%)',
+                                                                        transform: 'translateY(-2px)',
+                                                                        boxShadow: '0 8px 16px rgba(239,203,119,0.3)',
+                                                                    },
+                                                                    '&:disabled': {
+                                                                        background: 'rgba(255,255,255,0.1)',
+                                                                        color: 'rgba(255,255,255,0.3)',
+                                                                    },
+                                                                    transition: 'all 0.3s ease',
+                                                                }}
+                                                            >
+                                                                Update Bank Details
+                                                            </LoadingButton>
+                                                        </Grid>
+                                                    </Grid>
+                                                </CardContent>
+                                            </Card>
+                                        </Stack>
                                     </form>
                                 )}
                             </Formik>
@@ -2170,7 +2163,7 @@ const Account = () => {
                                 <AlertTitle>Bank Verified</AlertTitle>
                             </Alert>
                         )}
-                        {profile.bank_status === 'Pending' && (
+                        {hasBankRequest && (
                             <Alert severity="info">
                                 <AlertTitle>Bank Verification requested</AlertTitle>
                                 It'll take some time to verify your Bank details. Check again later

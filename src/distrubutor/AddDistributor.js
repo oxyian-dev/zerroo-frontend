@@ -298,7 +298,7 @@ export default function AddDistributor() {
                       onBlur={handleBlur}
                       onChange={handleChange}
                       label="Phone Number"
-                      helperText="Enter the correct Phone Number"
+                      helperText="Same phone number can be used for up to 7 accounts"
                       sx={formFieldStyles}
                       inputProps={{
                         'aria-label': 'Phone Number'
@@ -321,7 +321,7 @@ export default function AddDistributor() {
                       onBlur={handleBlur}
                       onChange={handleChange}
                       label="Email Address"
-                      helperText="Enter the correct Email Address"
+                      helperText="Same email can be used for up to 7 accounts"
                       sx={formFieldStyles}
                       inputProps={{
                         'aria-label': 'Email Address'

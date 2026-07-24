@@ -1,6 +1,7 @@
 import { Box, Card, CardContent, IconButton, Stack, Typography } from "@mui/material";
 import { useGridApiContext } from "@mui/x-data-grid-premium";
-import { IconCoin, IconCurrencyRupee, IconEdit, IconList } from "@tabler/icons";
+import { IconCoin, IconCurrencyRupee, IconEdit, IconList, IconTrash } from "@tabler/icons";
+import { useConfirm } from "material-ui-confirm";
 import { useSnackbar } from "notistack";
 import { useCallback, useEffect, useState } from "react";
 import { Link as Route } from 'react-router-dom';
@@ -10,6 +11,8 @@ import DistributorDetails from "./DistributorDetails";
 
 const DistributorList = () => {
     const { enqueueSnackbar } = useSnackbar();
+    const confirm = useConfirm();
+    const [refresh, setRefresh] = useState(0);
 
     const datatype = [null, null, null, "boolean", "number", "number", null, "inr", "inr", "phone", "email", "dateTime", null, null,
         "number",
@@ -73,6 +76,7 @@ const DistributorList = () => {
             <ServerDataGrid
                 width={width}
                 datatype={datatype}
+                refresh={refresh}
                 render={[
                     ({ value }) => (
                         <Box>
@@ -87,6 +91,29 @@ const DistributorList = () => {
                             </IconButton>
                             <IconButton title="Edit Distributor" component={Route} to={`/admin/distributors/${value}/edit`}>
                                 <IconEdit />
+                            </IconButton>
+                            <IconButton
+                                title="Delete Distributor"
+                                sx={{ color: 'error.main' }}
+                                onClick={() => {
+                                    confirm({
+                                        title: 'Delete Distributor',
+                                        description: `Are you sure you want to permanently delete distributor #${value}? This action cannot be undone.`,
+                                        confirmationText: 'Delete',
+                                        confirmationButtonProps: { color: 'error', variant: 'contained' },
+                                    }).then(async () => {
+                                        const res = await fetcher(`/api/admin/users/distributors/${value}`, { method: 'DELETE' });
+                                        const data = await res.json();
+                                        if (data.status === 'success') {
+                                            enqueueSnackbar('Distributor deleted successfully', { variant: 'success' });
+                                            setRefresh(r => r + 1);
+                                        } else {
+                                            enqueueSnackbar(data.message || 'Failed to delete distributor', { variant: 'error' });
+                                        }
+                                    }).catch(() => {});
+                                }}
+                            >
+                                <IconTrash />
                             </IconButton>
                         </Box>
                     )

@@ -36,7 +36,7 @@ export default function Footer() {
                 <Box
                     sx={{
                         display: 'grid',
-                        gridTemplateColumns: { xs: '1fr', md: 'repeat(2, minmax(0, 1fr))', lg: 'repeat(5, minmax(0, 1fr))' },
+                        gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, minmax(0, 1fr))', md: 'repeat(4, minmax(0, 1fr))', lg: 'repeat(5, minmax(0, 1fr))' },
                         gap: { md: 5, xs: 4 },
                         mb: { md: 6, xs: 4 }
                     }}
@@ -116,6 +116,7 @@ export default function Footer() {
                         </Box>
                     ))}
 
+                    {/* Reach Us — 5th column at lg, full-width below */}
                     <Box>
                         <Typography
                             variant="h2"
@@ -134,7 +135,6 @@ export default function Footer() {
                             <Typography
                                 sx={{
                                     color: 'rgba(255,255,255,.68)',
-                                    pl: { md: 1, xs: 0 },
                                     fontSize: { md: '1rem', xs: '0.95rem' },
                                     lineHeight: 1.8,
                                     textAlign: { xs: 'center', md: 'left' }

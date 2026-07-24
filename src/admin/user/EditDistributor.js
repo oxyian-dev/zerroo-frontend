@@ -38,12 +38,12 @@ export default function EditDistributor({ id = useParams()['id'] }) {
                     return await fetcher(`/api/admin/users/distributors/${id}`,
                         { method: 'put', body: constructFormData(values) })
                         .then(res => res.json())
-                        .then(({ status }) => {
+                        .then(({ status, message = 'Exception occurred' }) => {
                             if (status === 'success') {
                                 enqueueSnackbar('Distributor Edited Successfully', { variant: 'success' })
                                 navigate('/admin/distributors')
                             } else {
-                                enqueueSnackbar('Exception occurred', { variant: 'error' })
+                                enqueueSnackbar(message, { variant: 'error' })
                                 setSubmitting(false)
                             }
                         })
@@ -211,6 +211,7 @@ export default function EditDistributor({ id = useParams()['id'] }) {
                                         onBlur={handleBlur}
                                         onChange={handleChange}
                                         label="Phone Number"
+                                        helperText="Same phone number can be used for up to 7 accounts"
                                         inputProps={{
                                             'aria-label': 'Phone Number',
                                         }}
@@ -269,6 +270,7 @@ export default function EditDistributor({ id = useParams()['id'] }) {
                                         onBlur={handleBlur}
                                         onChange={handleChange}
                                         label="Email Address"
+                                        helperText="Same email can be used for up to 7 accounts"
                                         inputProps={{
                                             'aria-label': 'Email Address',
                                         }}

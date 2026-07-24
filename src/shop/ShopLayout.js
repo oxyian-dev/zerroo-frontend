@@ -620,12 +620,12 @@ const ShopLayout = () => {
                                 </Typography>
                                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, color: 'rgba(255,255,255,.62)', lineHeight: 2 }}>
                                     <Typography sx={{ fontSize: '0.95rem' }}>
-    18BC4, PKS Complex,<br />
-    Cutchery Road,<br />
-    Mayiladuthurai Rural,<br />
-    Mayiladuthurai - 609001,<br />
-    Tamil Nadu
-</Typography>
+                                        18BC4, PKS Complex,<br />
+                                        Cutchery Road,<br />
+                                        Mayiladuthurai Rural,<br />
+                                        Mayiladuthurai - 609001,<br />
+                                        Tamil Nadu
+                                    </Typography>
                                     <Typography
                                         component="a"
                                         href="mailto:info@victoryworld.in"
@@ -634,27 +634,36 @@ const ShopLayout = () => {
                                             textDecoration: 'none',
                                             fontSize: '0.95rem',
                                             transition: 'color 0.3s ease',
-                                            '&:hover': {
-                                                color: '#f5dc97',
-                                            }
+                                            '&:hover': { color: '#f5dc97' }
                                         }}
                                     >
                                         info@victoryworld.in
                                     </Typography>
                                     <Typography
                                         component="a"
-                                        href="tel:+4401943816670"
+                                        href="tel:+918220607081"
                                         sx={{
                                             color: 'inherit',
                                             textDecoration: 'none',
                                             fontSize: '0.95rem',
                                             transition: 'color 0.3s ease',
-                                            '&:hover': {
-                                                color: '#f5dc97',
-                                            }
+                                            '&:hover': { color: '#f5dc97' }
                                         }}
                                     >
-                                         +91 8220607081 <br/> +91 9025642753
+                                        +91 8220607081
+                                    </Typography>
+                                    <Typography
+                                        component="a"
+                                        href="tel:+919025642753"
+                                        sx={{
+                                            color: 'inherit',
+                                            textDecoration: 'none',
+                                            fontSize: '0.95rem',
+                                            transition: 'color 0.3s ease',
+                                            '&:hover': { color: '#f5dc97' }
+                                        }}
+                                    >
+                                        +91 9025642753
                                     </Typography>
                                 </Box>
                             </Grid>
@@ -953,224 +962,162 @@ const ShopLayout = () => {
                     <Outlet context={[setLayout, layout]} />
                 </Box>
 
-                {/* Elite Desktop Footer - Design System Compliant */}
-                <Box
-                    component="footer"
-                    sx={{
-                        borderTop: '1px solid rgba(255,255,255,.08)',
-                        background: '#050505',
-                    }}
-                >
-                    <Container
-                        maxWidth={false}
-                        sx={{
-                            maxWidth: '1440px',
-                            px: { md: 10, xs: 3 },
-                            py: 12,
-                        }}
-                    >
-                        <Grid container spacing={6}>
-                            {/* Brand/Logo Section */}
-                            <Grid item xs={12} lg={4}>
-                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2.5, mb: 3 }}>
-                                    <Box
-                                        component="img"
-                                        src="/brand_logo/web-app-manifest-192x192.png"
-                                        sx={{ width: '64px', height: '64px' }}
-                                        alt="Victory World Logo"
-                                    />
-                                    <Typography
-                                        component="h3"
-                                        sx={{
-                                            textTransform: 'uppercase',
-                                            letterSpacing: '0.35em',
-                                            fontSize: '0.875rem',
-                                            fontWeight: 600,
-                                            color: 'white',
-                                        }}
-                                    >
-                                        Victory World
-                                    </Typography>
-                                </Box>
-                                <Typography
-                                    sx={{
-                                        color: 'rgba(255,255,255,.68)',
-                                        lineHeight: 2.1,
-                                        fontSize: '1.05rem',
-                                    }}
-                                >
-                                    We provide a unique business opportunity for individuals to become distributors, purchase products at special prices, and build their own income by selling to others.
-                                </Typography>
-                            </Grid>
-
-                            {/* Footer Navigation */}
-                            <Grid item xs={12} lg={5}>
-                                <Typography
-                                    component="h4"
-                                    sx={{
-                                        textTransform: 'uppercase',
-                                        letterSpacing: '0.25em',
-                                        fontSize: '0.8rem',
-                                        color: '#efcb77',
-                                        mb: 4,
-                                        fontWeight: 600,
-                                    }}
-                                >
-                                    Navigation
-                                </Typography>
-                                <Grid container spacing={4}>
-                                    {footerNavigationSections.map((section) => (
-                                        <Grid item xs={12} sm={6} key={section.title}>
-                                            <Typography
-                                                component="h5"
-                                                sx={{
-                                                    color: 'white',
-                                                    fontSize: '0.92rem',
-                                                    fontWeight: 800,
-                                                    textTransform: 'uppercase',
-                                                    letterSpacing: '0.2em',
-                                                    mb: 2.5
-                                                }}
-                                            >
-                                                {section.title}
-                                            </Typography>
-                                            <Stack spacing={1.35}>
-                                                {section.links.map(({ text, link, external }) => (
-                                                    external ? (
-                                                        <Typography
-                                                            key={text}
-                                                            component="a"
-                                                            href={link}
-                                                            target="_blank"
-                                                            rel="noopener noreferrer"
-                                                            sx={{
-                                                                color: 'rgba(255,255,255,.62)',
-                                                                textDecoration: 'none',
-                                                                transition: 'all 0.3s ease',
-                                                                display: 'block',
-                                                                fontSize: '1rem',
-                                                                width: 'fit-content',
-                                                                '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' },
-                                                                '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' }
-                                                            }}
-                                                        >
-                                                            {text}
-                                                        </Typography>
-                                                    ) : (
-                                                        <Typography
-                                                            key={text}
-                                                            component={Link}
-                                                            to={link}
-                                                            sx={{
-                                                                color: 'rgba(255,255,255,.62)',
-                                                                textDecoration: 'none',
-                                                                transition: 'all 0.3s ease',
-                                                                display: 'block',
-                                                                fontSize: '1rem',
-                                                                width: 'fit-content',
-                                                                '&:hover': { color: '#f5dc97', transform: 'translateX(4px)' },
-                                                                '&:focus-visible': { outline: '2px solid #efcb77', outlineOffset: '2px' }
-                                                            }}
-                                                        >
-                                                            {text}
-                                                        </Typography>
-                                                    )
-                                                ))}
-                                            </Stack>
-                                        </Grid>
-                                    ))}
-                                </Grid>
-                            </Grid>
-
-                            {/* Contact Section */}
-                            <Grid item xs={12} lg={4}>
-                                <Typography
-                                    component="h4"
-                                    sx={{
-                                        textTransform: 'uppercase',
-                                        letterSpacing: '0.25em',
-                                        fontSize: '0.8rem',
-                                        color: '#efcb77',
-                                        mb: 4,
-                                        fontWeight: 600,
-                                    }}
-                                >
-                                    Contact
-                                </Typography>
-                                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, color: 'rgba(255,255,255,.62)', lineHeight: 2 }}>
-                                   <Typography sx={{ fontSize: '0.95rem' }}>
-    18BC4, PKS Complex,<br />
-    Cutchery Road,<br />
-    Mayiladuthurai Rural,<br />
-    Mayiladuthurai - 609001,<br />
-    Tamil Nadu
-</Typography>
-                                    <Typography
-                                        component="a"
-                                        href="mailto:info@victoryworld.in"
-                                        sx={{
-                                            color: 'inherit',
-                                            textDecoration: 'none',
-                                            fontSize: '1rem',
-                                            transition: 'color 0.3s ease',
-                                            '&:hover': {
-                                                color: '#f5dc97',
-                                            },
-                                            '&:focus-visible': {
-                                                outline: '2px solid #efcb77',
-                                                outlineOffset: '2px',
-                                            }
-                                        }}
-                                    >
-                                        info@victoryworld.in
-                                    </Typography>
-                                    <Typography
-                                        component="a"
-                                        href="tel:+4401943816670"
-                                        sx={{
-                                            color: 'inherit',
-                                            textDecoration: 'none',
-                                            fontSize: '1rem',
-                                            transition: 'color 0.3s ease',
-                                            '&:hover': {
-                                                color: '#f5dc97',
-                                            },
-                                            '&:focus-visible': {
-                                                outline: '2px solid #efcb77',
-                                                outlineOffset: '2px',
-                                            }
-                                        }}
-                                    >
-                                        +91 8220607081 <br/> +91 9025642753
-                                    </Typography>
-                                </Box>
-                            </Grid>
-                        </Grid>
-
-                        {/* Footer Bottom */}
-                        <Box
-                            sx={{
-                                mt: 10,
-                                pt: 4,
-                                borderTop: '1px solid rgba(255,255,255,.1)',
-                                display: 'flex',
-                                flexDirection: 'row',
-                                justifyContent: 'space-between',
-                                alignItems: 'center',
-                                gap: 3,
-                                color: 'rgba(255,255,255,.4)',
-                                fontSize: '0.875rem',
-                            }}
-                        >
-                            <Typography sx={{ color: 'inherit', fontSize: 'inherit' }}>
-                                © 2026 Victory World. 
-                            </Typography>
-                            <Typography sx={{ color: 'inherit', fontSize: 'inherit' }}>
-                                All Rights Reserved.
-                            </Typography>
-                        </Box>
-                    </Container>
+                {/* Elite Desktop Footer */}
+            <Box
+    component="footer"
+    sx={{
+        borderTop: "1px solid rgba(255,255,255,.08)",
+        background: "#050505",
+    }}
+>
+    <Container
+        maxWidth={false}
+        sx={{
+            maxWidth: "1440px",
+            px: { xs: 3, md: 8 },
+            py: 10,
+        }}
+    >
+        <Box
+            sx={{
+                display: "grid",
+                gridTemplateColumns: {
+                    xs: "1fr",
+                    sm: "repeat(2,1fr)",
+                    lg: "repeat(4,1fr)",
+                },
+                gap: 6,
+                alignItems: "start",
+            }}
+        >
+            {/* Brand */}
+            <Box>
+                <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}>
+                    <Box
+                        component="img"
+                        src="/brand_logo/web-app-manifest-192x192.png"
+                        alt="Victory World"
+                        sx={{ width: 55, height: 55 }}
+                    />
+                    <Typography sx={{ color: "#fff", fontWeight: 700, letterSpacing: ".3em", textTransform: "uppercase" }}>
+                        Victory World
+                    </Typography>
                 </Box>
+                <Typography sx={{ color: "rgba(255,255,255,.65)", lineHeight: 2 }}>
+                    We provide a unique business opportunity for individuals to become distributors, purchase products at special prices, and build their own income by selling to others.
+                </Typography>
+            </Box>
+
+            {/* Shop + Policies */}
+            <Box>
+                <Typography sx={{ color: "#fff", fontWeight: 700, mb: 2.5, textTransform: "uppercase", letterSpacing: ".15em" }}>
+                    Shop
+                </Typography>
+                <Stack spacing={1.4}>
+                    {[
+                        { label: 'Products', to: '/products' },
+                        { label: 'Shaara', to: '/brand/shaara' },
+                        { label: 'Delivery Charges', to: '/shipping' },
+                    ].map(({ label, to: dest }) => (
+                        <Typography key={label} component={Link} to={dest} sx={{ color: "rgba(255,255,255,.62)", textDecoration: "none", fontSize: "0.92rem", transition: "color 0.3s", '&:hover': { color: "#f5dc97" } }}>
+                            {label}
+                        </Typography>
+                    ))}
+                </Stack>
+
+                <Typography sx={{ color: "#fff", fontWeight: 700, mt: 4, mb: 2.5, textTransform: "uppercase", letterSpacing: ".15em" }}>
+                    Policies
+                </Typography>
+                <Stack spacing={1.4}>
+                    {[
+                        { label: 'Privacy Policy', to: '/privacy-policy' },
+                        { label: 'Terms of Service', to: '/terms-of-service' },
+                        { label: 'Legal Documents', to: '/legal-documents' },
+                    ].map(({ label, to: dest }) => (
+                        <Typography key={label} component={Link} to={dest} sx={{ color: "rgba(255,255,255,.62)", textDecoration: "none", fontSize: "0.92rem", transition: "color 0.3s", '&:hover': { color: "#f5dc97" } }}>
+                            {label}
+                        </Typography>
+                    ))}
+                </Stack>
+            </Box>
+
+            {/* Direct Selling */}
+            <Box>
+                <Typography sx={{ color: "#fff", fontWeight: 700, mb: 2.5, textTransform: "uppercase", letterSpacing: ".15em" }}>
+                    Direct Selling
+                </Typography>
+                <Stack spacing={1.4}>
+                    {[
+                        { label: 'Compensation Plan', to: '/comphensation-plan' },
+                        { label: 'Transactions', to: '/transactions' },
+                        { label: 'Commonly Used Terms', to: '/commonly-terms-directselling' },
+                        { label: 'Rights & Duties', to: '/rights-and-duties' },
+                        { label: 'Business Information Kit', to: '/business-informtion-kit' },
+                        { label: 'Termination', to: '/termination-directselling' },
+                    ].map(({ label, to: dest }) => (
+                        <Typography key={label} component={Link} to={dest} sx={{ color: "rgba(255,255,255,.62)", textDecoration: "none", fontSize: "0.92rem", transition: "color 0.3s", '&:hover': { color: "#f5dc97" } }}>
+                            {label}
+                        </Typography>
+                    ))}
+                </Stack>
+            </Box>
+
+            {/* Contact + Account */}
+            <Box>
+                <Typography sx={{ color: "#fff", fontWeight: 700, mb: 2.5, textTransform: "uppercase", letterSpacing: ".15em" }}>
+                    Contact
+                </Typography>
+                <Stack spacing={1.5}>
+                    <Typography sx={{ color: "rgba(255,255,255,.65)", lineHeight: 1.8, fontSize: "0.92rem" }}>
+                        18BC4, PKS Complex,<br />
+                        Cutchery Road,<br />
+                        Mayiladuthurai,<br />
+                        Tamil Nadu - 609001
+                    </Typography>
+                    <Typography component="a" href="mailto:info@victoryworld.in" sx={{ color: "rgba(255,255,255,.62)", textDecoration: "none", fontSize: "0.92rem", transition: "color 0.3s", '&:hover': { color: "#f5dc97" } }}>
+                        info@victoryworld.in
+                    </Typography>
+                    <Typography component="a" href="tel:+918220607081" sx={{ color: "rgba(255,255,255,.62)", textDecoration: "none", fontSize: "0.92rem", transition: "color 0.3s", '&:hover': { color: "#f5dc97" } }}>
+                        +91 8220607081
+                    </Typography>
+                    <Typography component="a" href="tel:+919025642753" sx={{ color: "rgba(255,255,255,.62)", textDecoration: "none", fontSize: "0.92rem", transition: "color 0.3s", '&:hover': { color: "#f5dc97" } }}>
+                        +91 9025642753
+                    </Typography>
+                </Stack>
+
+                <Typography sx={{ color: "#fff", fontWeight: 700, mt: 4, mb: 2.5, textTransform: "uppercase", letterSpacing: ".15em" }}>
+                    Account
+                </Typography>
+                <Stack spacing={1.4}>
+                    {[
+                        { label: 'Login', to: '/login' },
+                        { label: 'My Dashboard', to: '/dashboard' },
+                        { label: 'Contact Us', to: '/contact' },
+                    ].map(({ label, to: dest }) => (
+                        <Typography key={label} component={Link} to={dest} sx={{ color: "rgba(255,255,255,.62)", textDecoration: "none", fontSize: "0.92rem", transition: "color 0.3s", '&:hover': { color: "#f5dc97" } }}>
+                            {label}
+                        </Typography>
+                    ))}
+                </Stack>
+            </Box>
+        </Box>
+
+        <Box
+            sx={{
+                mt: 8,
+                pt: 3,
+                borderTop: "1px solid rgba(255,255,255,.08)",
+                display: "flex",
+                justifyContent: "space-between",
+                flexWrap: "wrap",
+                color: "rgba(255,255,255,.45)",
+            }}
+        >
+            <Typography>© 2025 Victory World.</Typography>
+            <Typography>All Rights Reserved.</Typography>
+        </Box>
+    </Container>
+</Box>
             </BrowserView>
         </Box >
     )
